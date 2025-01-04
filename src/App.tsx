@@ -1,20 +1,32 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/Login/Login";
-import Dashboard from "./pages/Dashbord/Dashbord";
-import ForgetPassword from "./pages/ForgetPage/ForgotPassword";
-import SignUpForm from "./pages/SignUp/SignUp";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ForgetPassword from './pages/ForgetPage/ForgotPassword';
+import SignUpForm from './pages/SignUp/SignUp';
+import AppLayout from './components/AppLayout/AppLayout';
+import UserManagement from './pages/UserManagement/UserManagement';
+import CalendarView from './pages/CalendarView/CalendarView';
+import ChatInbox from './pages/ChatInbox/ChatInbox';
+import CreateManager from './pages/CreateManage/CreateManage';
+import MyProfile from './pages/MyProfile/MyProfile';
+import Projects from './pages/Projects/Projects';
+import Home from './pages/Home/Home';
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/forgot-password" element={<ForgetPassword />} />
-        <Route path="/dashbord" element={<Dashboard />} />
+        <Route element={<AppLayout />}>
+          <Route path="/usermanagement" element={<UserManagement />} />
+          <Route path="/calenderview" element={<CalendarView />} />
+          <Route path="/chatinbox" element={<ChatInbox />} />
+          <Route path="/createmanager" element={<CreateManager />} />
+          <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/projects" element={<Projects />} />
+        </Route>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };
 
