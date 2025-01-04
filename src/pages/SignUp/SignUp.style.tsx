@@ -1,5 +1,13 @@
 import { styled } from "@mui/material/styles";
-import { Box, Button, TextField, Typography, Container } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Container,
+  Link as MuiLink,
+  Grid,
+} from "@mui/material";
 
 export const StyledContainer = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
@@ -22,14 +30,16 @@ export const StyledHeader = styled(Box)(({ theme }) => ({
   textAlign: "center",
   marginBottom: theme.spacing(3),
 }));
-export const GooleSignUp = styled(Button)(({ theme }) => ({
+
+export const MainGrid = styled(Grid)(() => ({
   display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  margin: "auto",
-  marginTop: "25px",
-  gap: "8px",
-  color: theme.palette.grey[900],
+  gap: "10px",
+}));
+
+export const ChildGrid = styled(Grid)(() => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
 }));
 
 export const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -47,6 +57,31 @@ export const StyledButton = styled(Button)(({ theme }) => ({
   textTransform: "none",
 }));
 
-export const StyledContainerWrapper = styled(Container)(({ theme }) => ({
-  // maxWidth: "xs",
+export const StyledContainerWrapper = styled(Container)({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+});
+
+export const StyledGoogleButton = styled(Button)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: theme.spacing(3),
+  gap: theme.spacing(1),
+  color: theme.palette.grey[900],
+}));
+
+export const StyledLink = styled(MuiLink)(({ theme }) => ({
+  cursor: "pointer",
+  color: theme.palette.primary.main,
+  textDecoration: "none",
+  "&:hover": {
+    textDecoration: "underline",
+  },
+}));
+
+export const StyledBoxCenter = styled(Box)(({ theme }) => ({
+  textAlign: "center",
+  marginTop: theme.spacing(2),
 }));
