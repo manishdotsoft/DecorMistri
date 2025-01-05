@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Typography, MenuItem, Select, TextField, Button } from "@mui/material";
 
 import {
@@ -11,22 +11,48 @@ import {
 
 const PropertyLocationDetails = ({
   currentPageIndex,
+  data,
+  updateData,
   handleNext,
   handlePrevious,
 }: {
   currentPageIndex: number;
+  data: {
+    country?: string;
+    state?: string;
+    city?: string;
+    zip?: string;
+    addressLine1?: string;
+    addressLine2?: string;
+  };
+  updateData: (data: {
+    country?: string;
+    state?: string;
+    city?: string;
+    zip?: string;
+    addressLine1?: string;
+    addressLine2?: string;
+  }) => void;
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  const [zip, setZip] = useState("");
+  const [country, setCountry] = useState(data.country || "");
+  const [state, setState] = useState(data.state || "");
+  const [city, setCity] = useState(data.city || "");
+  const [zip, setZip] = useState(data.zip || "");
+  const [addressLine1, setAddressLine1] = useState(data.addressLine1 || "");
+  const [addressLine2, setAddressLine2] = useState(data.addressLine2 || "");
 
   // Validation function to check if all required fields are filled
   const isFormValid = () => {
-    return !!country && !!state && !!city && !!zip.trim();
+    return (
+      !!country && !!state && !!city && !!zip.trim() && !!addressLine1.trim()
+    );
   };
+
+  useEffect(() => {
+    updateData({ country, state, city, zip, addressLine1, addressLine2 });
+  }, [country, state, city, zip, addressLine1, addressLine2, updateData]);
 
   const handleNextClick = () => {
     // Log values to console when "Next" is clicked
@@ -35,6 +61,8 @@ const PropertyLocationDetails = ({
       state,
       city,
       zip,
+      addressLine1,
+      addressLine2,
     });
 
     // Proceed with the handleNext callback if available
@@ -82,11 +110,19 @@ const PropertyLocationDetails = ({
         />
       </FlexRow>
 
-      <TextField label="Address line 1" variant="outlined" fullWidth />
+      <TextField
+        label="Address line 1"
+        variant="outlined"
+        fullWidth
+        value={addressLine1}
+        onChange={(e) => setAddressLine1(e.target.value)}
+      />
       <TextField
         label="Address line 2 (Optional)"
         variant="outlined"
         fullWidth
+        value={addressLine2}
+        onChange={(e) => setAddressLine2(e.target.value)}
       />
 
       <ButtonSection>
@@ -99,7 +135,7 @@ const PropertyLocationDetails = ({
         </Button>
         <Button
           variant="contained"
-          onClick={handleNextClick} // Use the custom handleNextClick
+          onClick={handleNextClick}
           disabled={!isFormValid()}
         >
           Next

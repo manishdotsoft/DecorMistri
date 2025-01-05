@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -11,15 +11,29 @@ import { ButtonSection, Container } from "./FinancialDetails.style";
 
 const FinancialDetails = ({
   currentPageIndex,
+  data,
+  updateData,
   handleNext,
   handlePrevious,
 }: {
   currentPageIndex: number;
+  data: {
+    paymentReceived?: string | null;
+    estimatedBudget?: string;
+  };
+  updateData: (data: {
+    paymentReceived?: string | null;
+    estimatedBudget?: string;
+  }) => void;
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const [paymentReceived, setPaymentReceived] = useState<string | null>(null);
-  const [estimatedBudget, setEstimatedBudget] = useState<string>("");
+  const [paymentReceived, setPaymentReceived] = useState<string | null>(
+    data.paymentReceived || null
+  );
+  const [estimatedBudget, setEstimatedBudget] = useState<string>(
+    data.estimatedBudget || ""
+  );
 
   const handlePaymentChange = (
     _: React.MouseEvent<HTMLElement>,
@@ -32,22 +46,25 @@ const FinancialDetails = ({
     return !!paymentReceived && !!estimatedBudget.trim();
   };
 
+  // Update shared state whenever local state changes
+  useEffect(() => {
+    updateData({ paymentReceived, estimatedBudget });
+  }, [paymentReceived, estimatedBudget, updateData]);
+
   // Handle Submit button click
   const handleSubmit = () => {
-    // Log values to the console
     console.log({
       paymentReceived,
       estimatedBudget,
     });
 
-    // Proceed with the next step
     handleNext();
   };
 
   return (
     <Container>
       <Typography variant="h6" gutterBottom>
-        Basic Information
+        Financial Details
       </Typography>
 
       <TextField
@@ -88,7 +105,7 @@ const FinancialDetails = ({
         </Button>
         <Button
           variant="contained"
-          onClick={handleSubmit} // Use the handleSubmit function here
+          onClick={handleSubmit}
           disabled={!isFormValid()}
         >
           Submit
