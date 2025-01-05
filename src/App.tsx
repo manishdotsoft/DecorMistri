@@ -7,6 +7,7 @@ import CalendarView from './pages/CalendarView/CalendarView';
 import ChatInbox from './pages/ChatInbox/ChatInbox';
 import CreateManager from './pages/CreateManage/CreateManage';
 import MyProfile from './pages/MyProfile/MyProfile';
+import Business from './pages/MyProfile/Business';
 import Projects from './pages/Projects/Projects';
 import Home from './pages/Home/Home';
 
@@ -23,6 +24,8 @@ const App = () => {
           <Route path="/chatinbox" element={<ChatInbox />} />
           <Route path="/createmanager" element={<CreateManager />} />
           <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/business" element={<Business />} />
+
           <Route path="/projects" element={<Projects />} />
         </Route>
       </Routes>

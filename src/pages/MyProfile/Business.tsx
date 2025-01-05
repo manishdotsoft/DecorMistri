@@ -1,13 +1,13 @@
 import { Box } from '@mui/material';
 
-const Myprofile = () => {
+const business = () => {
   return (
     <Box m="20px">
       <Box height="75vh">
-        <h1>My Profile information</h1>
+        <h1>My business</h1>
       </Box>
     </Box>
   );
 };
 
-export default Myprofile;
+export default business;

@@ -1,6 +1,5 @@
-import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import Calender from "./Calender";
+import { Calender } from "./Calender";
 
 export default {
   title: "atoms/Calender",

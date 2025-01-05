@@ -1,14 +1,8 @@
-import React, { useState } from "react";
-import { Grid, Link, Typography, Box } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import { useFormik } from "formik";
-import { signUpSchema } from "./SchemasSignup";
-import { theme } from "../../thems/primitives/theme";
-import { AppDispatch } from "../../store/store";
-import { setSignUpData } from "../../store/reducers/signUpSlice";
-import { useDispatch } from "react-redux";
-import Toaster from "../../atoms/Toaster/Toaster";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import React from 'react';
+import { Typography, ThemeProvider } from '@mui/material';
+import { theme } from '../../thems/primitives/theme';
+import Toaster from '../../atoms/Toaster/Toaster';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   StyledContainer,
   StyledForm,
@@ -17,55 +11,18 @@ import {
   StyledTypography,
   StyledButton,
   StyledContainerWrapper,
-  GooleSignUp,
-} from "./SignUp.style";
-
-interface SignUpFormValues {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirm_password: string;
-}
-
-const initialValues: SignUpFormValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confirm_password: "",
-};
+  StyledLink,
+  StyledBoxCenter,
+  MainGrid,
+  ChildGrid,
+  Logo,
+  Title,
+} from './SignUp.style';
+import { useSignUp } from './SignUp.hook';
 
 const SignUpForm: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
-  const [toasterOpen, setToasterOpen] = useState(false);
-
-  const { values, errors, handleChange, touched, handleBlur, handleSubmit } =
-    useFormik<SignUpFormValues>({
-      initialValues,
-      validationSchema: signUpSchema,
-      onSubmit: (values, actions) => {
-        // Dispatching signup data and showing toaster message
-        dispatch(setSignUpData(values));
-        setToasterOpen(true);
-        console.log("Form Submitted:", values);
-        actions.resetForm();
-
-        // Navigating after a successful signup
-        setTimeout(() => {
-          navigate("/"); // Navigate after a short delay
-        }, 2000);
-      },
-    });
-
-  const handleCloseToaster = () => {
-    setToasterOpen(false);
-  };
-
-  const isAnyFieldEmpty = Object.values(values).some(
-    (value) => value.trim() === ""
-  );
+  const { formik, toasterOpen, handleCloseToaster, isAnyFieldEmpty } =
+    useSignUp();
 
   return (
     <ThemeProvider theme={theme}>
@@ -77,71 +34,68 @@ const SignUpForm: React.FC = () => {
             open={toasterOpen}
             onClose={handleCloseToaster}
           />
-          {/* @ts-ignore */}
-          <StyledForm component="form" onSubmit={handleSubmit}>
+          {/* @ts-expect-error: StyledForm does not have a component prop */}
+          <StyledForm as="form" onSubmit={formik.handleSubmit}>
             <StyledHeader>
-              <Typography variant="h5">Sign Up</Typography>
-              <Typography variant="h5">DECOR MISTRI</Typography>
+              <Logo>
+                <img src="#" alt="Decord-mistri Logo" />
+                <Title variant="h5">DECORD-MISTRI</Title>
+              </Logo>
               <Typography variant="body1" color="textSecondary">
                 Create your free account to get started
               </Typography>
             </StyledHeader>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
+            <MainGrid>
+              <ChildGrid>
                 <StyledTextField
                   fullWidth
                   label="First name"
                   variant="outlined"
-                  type="text"
-                  id="firstName"
                   size="small"
                   name="firstName"
-                  autoComplete="off"
-                  value={values.firstName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={touched.firstName && Boolean(errors.firstName)}
+                  value={formik.values.firstName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.firstName && Boolean(formik.errors.firstName)
+                  }
                 />
-                {errors.firstName && touched.firstName && (
-                  <StyledTypography>{errors.firstName}</StyledTypography>
+                {formik.errors.firstName && formik.touched.firstName && (
+                  <StyledTypography>{formik.errors.firstName}</StyledTypography>
                 )}
-              </Grid>
-              <Grid item xs={6}>
+              </ChildGrid>
+              <ChildGrid>
                 <StyledTextField
                   fullWidth
                   label="Last name"
                   variant="outlined"
-                  type="text"
-                  id="lastName"
                   size="small"
                   name="lastName"
-                  autoComplete="off"
-                  value={values.lastName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={touched.lastName && Boolean(errors.lastName)}
+                  value={formik.values.lastName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.lastName && Boolean(formik.errors.lastName)
+                  }
                 />
-                {errors.lastName && touched.lastName && (
-                  <StyledTypography>{errors.lastName}</StyledTypography>
+                {formik.errors.lastName && formik.touched.lastName && (
+                  <StyledTypography>{formik.errors.lastName}</StyledTypography>
                 )}
-              </Grid>
-            </Grid>
+              </ChildGrid>
+            </MainGrid>
             <StyledTextField
               fullWidth
               label="Work email"
               variant="outlined"
               size="small"
-              type="email"
-              id="email"
-              autoComplete="off"
               name="email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.email && Boolean(errors.email)}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.email && Boolean(formik.errors.email)}
             />
-            {errors.email && touched.email && (
-              <StyledTypography>{errors.email}</StyledTypography>
+            {formik.errors.email && formik.touched.email && (
+              <StyledTypography>{formik.errors.email}</StyledTypography>
             )}
             <StyledTextField
               fullWidth
@@ -149,17 +103,14 @@ const SignUpForm: React.FC = () => {
               variant="outlined"
               size="small"
               type="password"
-              id="password"
-              autoComplete="off"
               name="password"
-              placeholder="Input your password..."
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.password && Boolean(errors.password)}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.password && Boolean(formik.errors.password)}
             />
-            {errors.password && touched.password && (
-              <StyledTypography>{errors.password}</StyledTypography>
+            {formik.errors.password && formik.touched.password && (
+              <StyledTypography>{formik.errors.password}</StyledTypography>
             )}
             <StyledTextField
               fullWidth
@@ -167,20 +118,21 @@ const SignUpForm: React.FC = () => {
               variant="outlined"
               size="small"
               type="password"
-              id="confirm_password"
-              autoComplete="off"
               name="confirm_password"
-              placeholder="Input your confirm password..."
-              value={values.confirm_password}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              value={formik.values.confirm_password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               error={
-                touched.confirm_password && Boolean(errors.confirm_password)
+                formik.touched.confirm_password &&
+                Boolean(formik.errors.confirm_password)
               }
             />
-            {errors.confirm_password && touched.confirm_password && (
-              <StyledTypography>{errors.confirm_password}</StyledTypography>
-            )}
+            {formik.errors.confirm_password &&
+              formik.touched.confirm_password && (
+                <StyledTypography>
+                  {formik.errors.confirm_password}
+                </StyledTypography>
+              )}
             <StyledButton
               fullWidth
               variant="contained"
@@ -190,31 +142,15 @@ const SignUpForm: React.FC = () => {
             >
               Sign Up
             </StyledButton>
-            <Box sx={{ textAlign: "center", mt: 2 }}>
+            <StyledBoxCenter>
               <Typography variant="body2">
-                Already have an account?
-                <Link
-                  component={RouterLink}
-                  to="/"
-                  underline="none"
-                  color="inherit"
-                  sx={{ cursor: "pointer", color: "blue" }}
-                >
+                Already have an account?{' '}
+                {/* @ts-expect-error: StyledForm does not have a component prop */}
+                <StyledLink component={RouterLink} to="/">
                   Sign in
-                </Link>
+                </StyledLink>
               </Typography>
-            </Box>
-            <GooleSignUp>
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZI78WvDPQ241thhVYKtVphlc_J01LbnFVqA&s"
-                alt="goole-image"
-                style={{ height: "34px" }}
-              />
-
-              <Typography sx={{ fontSize: "0.8rem" }}>
-                Continue with Google
-              </Typography>
-            </GooleSignUp>
+            </StyledBoxCenter>
           </StyledForm>
         </StyledContainerWrapper>
       </StyledContainer>
