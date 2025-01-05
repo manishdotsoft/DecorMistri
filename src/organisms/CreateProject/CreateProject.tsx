@@ -6,7 +6,6 @@ import {
   ListItem,
   ListItemText,
   ListItemButton,
-  // Button,
 } from "@mui/material";
 import { StyledSidebar, StyledPageContent, Title } from "./CreateProject.style";
 import ProjectProviderInformation from "./ProjectProviderInformation/ProjectProviderInformation";
@@ -23,10 +22,28 @@ const pages = [
   "Property Location Details",
   "Timeline & Schedule",
   "Financial Details",
-];
+] as const;
+
+type PageKey =
+  | "projectProviderInformation"
+  | "clientDetails"
+  | "propertyDetails"
+  | "propertyLocationDetails"
+  | "timelineSchedule"
+  | "financialDetails";
 
 const CreateProject = () => {
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [formData, setFormData] = useState<
+    Record<PageKey, Record<string, unknown>>
+  >({
+    projectProviderInformation: {},
+    clientDetails: {},
+    propertyDetails: {},
+    propertyLocationDetails: {},
+    timelineSchedule: {},
+    financialDetails: {},
+  });
 
   const handleNext = () => {
     if (currentPageIndex < pages.length - 1) {
@@ -40,12 +57,23 @@ const CreateProject = () => {
     }
   };
 
+  const updateFormData = (page: PageKey, data: Record<string, unknown>) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [page]: { ...prevData[page], ...data },
+    }));
+  };
+
   const renderPageContent = () => {
     switch (pages[currentPageIndex]) {
       case "Project & Provider Information":
         return (
           <ProjectProviderInformation
+            data={formData.projectProviderInformation}
             currentPageIndex={currentPageIndex}
+            updateData={(data) =>
+              updateFormData("projectProviderInformation", data)
+            }
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
@@ -53,7 +81,8 @@ const CreateProject = () => {
       case "Client Details":
         return (
           <ClientDetails
-            currentPageIndex={currentPageIndex}
+            data={formData.clientDetails}
+            updateData={(data) => updateFormData("clientDetails", data)}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
@@ -61,7 +90,9 @@ const CreateProject = () => {
       case "Property Details":
         return (
           <PropertyDetails
+            data={formData.propertyDetails}
             currentPageIndex={currentPageIndex}
+            updateData={(data) => updateFormData("propertyDetails", data)}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
@@ -69,7 +100,11 @@ const CreateProject = () => {
       case "Property Location Details":
         return (
           <PropertyLocationDetails
+            data={formData.propertyLocationDetails}
             currentPageIndex={currentPageIndex}
+            updateData={(data) =>
+              updateFormData("propertyLocationDetails", data)
+            }
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
@@ -77,22 +112,27 @@ const CreateProject = () => {
       case "Timeline & Schedule":
         return (
           <TimelineSchedule
+            data={formData.timelineSchedule}
             currentPageIndex={currentPageIndex}
+            updateData={(data) => updateFormData("timelineSchedule", data)}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
         );
-
       case "Financial Details":
         return (
           <FinancialDetails
+            data={formData.financialDetails}
             currentPageIndex={currentPageIndex}
+            updateData={(data) => updateFormData("financialDetails", data)}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
         );
       default:
-        return <Typography>Select a page to view its content.</Typography>;
+        return (
+          <Typography>Please select a valid page from the sidebar.</Typography>
+        );
     }
   };
 
@@ -104,8 +144,10 @@ const CreateProject = () => {
           {pages.map((page, index) => (
             <ListItem component="li" key={page}>
               <ListItemButton
-                // onClick={() => setCurrentPageIndex(index)}
                 selected={currentPageIndex === index}
+                sx={{
+                  "&.Mui-selected": { backgroundColor: "#e0f7fa" },
+                }}
               >
                 <ListItemText primary={page} />
               </ListItemButton>
@@ -115,7 +157,7 @@ const CreateProject = () => {
       </StyledSidebar>
 
       <StyledPageContent>
-        <Typography variant="h5" component="h1" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           {pages[currentPageIndex]}
         </Typography>
         <Box>{renderPageContent()}</Box>

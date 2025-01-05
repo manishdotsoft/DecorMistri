@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Box,
+  // Box,
   Typography,
   MenuItem,
   Select,
   TextField,
-  FormControlLabel,
-  Switch,
+  // FormControlLabel,
+  // Switch,
   Button,
 } from "@mui/material";
 import {
@@ -20,26 +20,63 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 const ProjectProviderInformation = ({
+  data,
+  updateData,
   currentPageIndex,
   handleNext,
   handlePrevious,
 }: {
   currentPageIndex: number;
+  data: {
+    sameAsCompanyAddress?: boolean;
+    dateOfIssue?: Date | null;
+    city?: string;
+    country?: string;
+    state?: string;
+    projectNumber?: string;
+    designerName?: string;
+    email?: string;
+    phoneNumber?: string;
+    website?: string;
+    addressLine1?: string;
+    addressLine2?: string; // Added optional addressLine2
+    zipCode?: string;
+  };
+  updateData: (data: {
+    sameAsCompanyAddress?: boolean;
+    dateOfIssue?: Date | null;
+    city?: string;
+    country?: string;
+    state?: string;
+    projectNumber?: string;
+    designerName?: string;
+    email?: string;
+    phoneNumber?: string;
+    website?: string;
+    addressLine1?: string;
+    addressLine2?: string; // Added optional addressLine2
+    zipCode?: string;
+  }) => void;
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const [sameAsCompanyAddress, setSameAsCompanyAddress] = useState(false);
-  const [dateOfIssue, setDateOfIssue] = useState<Date | null>(null);
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [projectNumber, setProjectNumber] = useState("");
-  const [designerName, setDesignerName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [website, setWebsite] = useState("");
-  const [addressLine1, setAddressLine1] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  // const [sameAsCompanyAddress, setSameAsCompanyAddress] = useState(
+  //   data.sameAsCompanyAddress || false
+  // );
+  const [dateOfIssue, setDateOfIssue] = useState<Date | null>(
+    data.dateOfIssue || null
+  );
+  const [city, setCity] = useState(data.city || "");
+  const [country, setCountry] = useState(data.country || "");
+  const [state, setState] = useState(data.state || "");
+  const [projectNumber, setProjectNumber] = useState(data.projectNumber || "");
+  const [designerName, setDesignerName] = useState(data.designerName || "");
+  const [email, setEmail] = useState(data.email || "");
+  const [phoneNumber, setPhoneNumber] = useState(data.phoneNumber || "");
+  const [website, setWebsite] = useState(data.website || "");
+  const [addressLine1, setAddressLine1] = useState(data.addressLine1 || "");
+  const [addressLine2, setAddressLine2] = useState(data.addressLine2 || ""); // Added addressLine2 state
+  const [zipCode, setZipCode] = useState(data.zipCode || "");
 
   // Validation function
   const isFormValid = () => {
@@ -57,10 +94,9 @@ const ProjectProviderInformation = ({
     );
   };
 
-  const handleNextClick = () => {
-    // Log all the input values to the console
-    console.log({
-      sameAsCompanyAddress,
+  useEffect(() => {
+    updateData({
+      // sameAsCompanyAddress,
       dateOfIssue,
       projectNumber,
       designerName,
@@ -68,13 +104,46 @@ const ProjectProviderInformation = ({
       phoneNumber,
       website,
       addressLine1,
+      addressLine2, // Include addressLine2 in the update
+      zipCode,
+      city,
+      country,
+      state,
+    });
+  }, [
+    // sameAsCompanyAddress,
+    dateOfIssue,
+    projectNumber,
+    designerName,
+    email,
+    phoneNumber,
+    website,
+    addressLine1,
+    addressLine2, // Track changes to addressLine2
+    zipCode,
+    city,
+    country,
+    state,
+    updateData,
+  ]);
+
+  const handleNextClick = () => {
+    console.log({
+      // sameAsCompanyAddress,
+      dateOfIssue,
+      projectNumber,
+      designerName,
+      email,
+      phoneNumber,
+      website,
+      addressLine1,
+      addressLine2, // Log addressLine2
       zipCode,
       city,
       country,
       state,
     });
 
-    // Call handleNext to proceed
     handleNext();
   };
 
@@ -139,7 +208,7 @@ const ProjectProviderInformation = ({
 
       <Typography variant="subtitle1">Office Address</Typography>
 
-      <Box>
+      {/* <Box>
         <FormControlLabel
           control={
             <Switch
@@ -149,7 +218,7 @@ const ProjectProviderInformation = ({
           }
           label="Same as company address"
         />
-      </Box>
+      </Box> */}
 
       <FlexRow>
         <FullWidthFormControl>
@@ -199,6 +268,8 @@ const ProjectProviderInformation = ({
         label="Address line 2 (Optional)"
         variant="outlined"
         fullWidth
+        value={addressLine2}
+        onChange={(e) => setAddressLine2(e.target.value)}
       />
 
       <ButtonSection>
@@ -211,8 +282,8 @@ const ProjectProviderInformation = ({
         </Button>
         <Button
           variant="contained"
-          onClick={handleNextClick} // Use handleNextClick here
-          disabled={!isFormValid()} // Disable if form is invalid
+          onClick={handleNextClick}
+          disabled={!isFormValid()}
         >
           Next
         </Button>

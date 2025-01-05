@@ -1,15 +1,16 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ForgetPassword from './pages/ForgetPage/ForgotPassword';
-import SignUpForm from './pages/SignUp/SignUp';
-import AppLayout from './components/AppLayout/AppLayout';
-import UserManagement from './pages/UserManagement/UserManagement';
-import CalendarView from './pages/CalendarView/CalendarView';
-import ChatInbox from './pages/ChatInbox/ChatInbox';
-import CreateManager from './pages/CreateManage/CreateManage';
-import MyProfile from './pages/MyProfile/MyProfile';
-import Business from './pages/MyProfile/Business';
-import Projects from './pages/Projects/Projects';
-import Home from './pages/Home/Home';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ForgetPassword from "./pages/ForgetPage/ForgotPassword";
+import SignUpForm from "./pages/SignUp/SignUp";
+import AppLayout from "./components/AppLayout/AppLayout";
+import UserManagement from "./pages/UserManagement/UserManagement";
+import CalendarView from "./pages/CalendarView/CalendarView";
+import ChatInbox from "./pages/ChatInbox/ChatInbox";
+import CreateManager from "./pages/CreateManage/CreateManage";
+import MyProfile from "./pages/MyProfile/MyProfile";
+import Business from "./pages/MyProfile/Business";
+import Projects from "./pages/Projects/Projects";
+import Home from "./pages/Home/Home";
+import CreateProject from "./organisms/CreateProject/CreateProject";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
 
           <Route path="/projects" element={<Projects />} />
         </Route>
+        <Route path="/create-project" element={<CreateProject />} />
       </Routes>
     </BrowserRouter>
   );

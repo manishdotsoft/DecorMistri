@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -20,17 +20,34 @@ import {
 
 const PropertyDetails = ({
   currentPageIndex,
+  data,
+  updateData,
   handleNext,
   handlePrevious,
 }: {
   currentPageIndex: number;
+  data: {
+    city?: string;
+    size?: string;
+    phases?: string;
+    file?: File | null;
+    comments?: string;
+  };
+  updateData: (data: {
+    city?: string;
+    size?: string;
+    phases?: string;
+    file?: File | null;
+    comments?: string;
+  }) => void;
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const [city, setCity] = useState("");
-  const [size, setSize] = useState("");
-  const [phases, setPhases] = useState("");
-  const [file, setFile] = useState<File | null>(null);
+  const [city, setCity] = useState(data.city || "");
+  const [size, setSize] = useState(data.size || "");
+  const [phases, setPhases] = useState(data.phases || "");
+  const [file, setFile] = useState<File | null>(data.file || null);
+  const [comments, setComments] = useState(data.comments || "");
 
   interface FileChangeEvent extends React.ChangeEvent<HTMLInputElement> {
     target: HTMLInputElement & { files: FileList };
@@ -41,19 +58,23 @@ const PropertyDetails = ({
   };
 
   const isFormValid = () => {
-    return !!city && !!size.trim() && !!phases.trim() && !!file;
+    return (
+      !!city && !!size.trim() && !!phases.trim() && !!file && !!comments.trim()
+    );
   };
 
+  useEffect(() => {
+    updateData({ city, size, phases, file, comments });
+  }, [city, size, phases, file, comments, updateData]);
+
   const handleNextClick = () => {
-    // Log values to console when "Next" is clicked
     console.log({
       city,
       size,
       phases,
       file: file ? file.name : null,
+      comments,
     });
-
-    // Proceed with the handleNext callback if available
     handleNext();
   };
 
@@ -104,7 +125,13 @@ const PropertyDetails = ({
         </SelectFile>
       </Phashes>
 
-      <TextField label="Additional Comments" variant="outlined" fullWidth />
+      <TextField
+        label="Additional Comments"
+        variant="outlined"
+        fullWidth
+        value={comments}
+        onChange={(e) => setComments(e.target.value)}
+      />
 
       <ButtonSection>
         <Button
@@ -116,7 +143,7 @@ const PropertyDetails = ({
         </Button>
         <Button
           variant="contained"
-          onClick={handleNextClick} // Use the modified handleNextClick
+          onClick={handleNextClick}
           disabled={!isFormValid()}
         >
           Next

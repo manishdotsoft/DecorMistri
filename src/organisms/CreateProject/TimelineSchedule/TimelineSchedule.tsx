@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Typography, Button } from "@mui/material";
 import {
   ButtonSection,
@@ -11,31 +11,45 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 const TimelineSchedule = ({
   currentPageIndex,
+  data,
+  updateData,
   handleNext,
   handlePrevious,
 }: {
   currentPageIndex: number;
+  data: {
+    startDate?: Date | null;
+    endDate?: Date | null;
+  };
+  updateData: (data: {
+    startDate?: Date | null;
+    endDate?: Date | null;
+  }) => void;
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<Date | null>(
+    data.startDate || null
+  );
+  const [endDate, setEndDate] = useState<Date | null>(data.endDate || null);
 
   // Disable the Next button if either date is not selected
   const isNextDisabled = !startDate || !endDate;
 
+  useEffect(() => {
+    updateData({ startDate, endDate });
+  }, [startDate, endDate, updateData]);
+
   const handleNextClick = () => {
-    // Log the selected start and end dates
     console.log("Start Date:", startDate);
     console.log("End Date:", endDate);
 
-    // Call the original handleNext function
     handleNext();
   };
 
   return (
     <Container>
-      <Typography variant="h6">Basic Information</Typography>
+      <Typography variant="h6">Timeline Schedule</Typography>
 
       <FlexRow>
         <FullWidthFormControl>
@@ -68,8 +82,8 @@ const TimelineSchedule = ({
         </Button>
         <Button
           variant="contained"
-          onClick={handleNextClick} // Use the new handleNextClick function
-          disabled={isNextDisabled} // Disable Next if any date is missing
+          onClick={handleNextClick}
+          disabled={isNextDisabled}
         >
           Next
         </Button>

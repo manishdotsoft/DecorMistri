@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Typography, MenuItem, Select, TextField, Button } from "@mui/material";
 import {
   ButtonSection,
@@ -7,26 +6,51 @@ import {
   FullWidthFormControl,
   InputLabelItem,
 } from "./ClientDetails.style";
+import { useState } from "react";
 
 const ClientDetails = ({
+  data,
+  updateData,
   currentPageIndex,
   handleNext,
   handlePrevious,
 }: {
   currentPageIndex: number;
+  data: {
+    clientName: string;
+    clientEmail: string;
+    phoneNumber: string;
+    city: string;
+    country: string;
+    state: string;
+    zipCode: string;
+    addressLine1: string;
+    addressLine2?: string; // Optional field
+  };
+  updateData: (data: {
+    clientName: string;
+    clientEmail: string;
+    phoneNumber: string;
+    city: string;
+    country: string;
+    state: string;
+    zipCode: string;
+    addressLine1: string;
+    addressLine2?: string; // Optional field
+  }) => void;
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const [clientName, setClientName] = useState("");
-  const [clientEmail, setClientEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [addressLine1, setAddressLine1] = useState("");
+  const [clientName, setClientName] = useState(data.clientName || "");
+  const [clientEmail, setClientEmail] = useState(data.clientEmail || "");
+  const [phoneNumber, setPhoneNumber] = useState(data.phoneNumber || "");
+  const [city, setCity] = useState(data.city || "");
+  const [country, setCountry] = useState(data.country || "");
+  const [state, setState] = useState(data.state || "");
+  const [zipCode, setZipCode] = useState(data.zipCode || "");
+  const [addressLine1, setAddressLine1] = useState(data.addressLine1 || "");
+  const [addressLine2, setAddressLine2] = useState(data.addressLine2 || ""); // Optional field
 
-  // Validation function
   const isFormValid = () => {
     return (
       clientName &&
@@ -40,9 +64,8 @@ const ClientDetails = ({
     );
   };
 
-  // Handle Next button click
   const handleNextClick = () => {
-    // Log all input and select values
+    // Log all the input and select values
     console.log({
       clientName,
       clientEmail,
@@ -52,9 +75,22 @@ const ClientDetails = ({
       state,
       zipCode,
       addressLine1,
+      addressLine2, // Optional field
     });
 
-    // Call the handleNext function
+    // Update the data for the next step
+    updateData({
+      clientName,
+      clientEmail,
+      phoneNumber,
+      city,
+      country,
+      state,
+      zipCode,
+      addressLine1,
+      addressLine2, // Include the optional field
+    });
+
     handleNext();
   };
 
@@ -130,16 +166,18 @@ const ClientDetails = ({
       </FlexRow>
 
       <TextField
-        label="Address line 1"
+        label="Address Line 1"
         variant="outlined"
         fullWidth
         value={addressLine1}
         onChange={(e) => setAddressLine1(e.target.value)}
       />
       <TextField
-        label="Address line 2 (Optional)"
+        label="Address Line 2 (Optional)"
         variant="outlined"
         fullWidth
+        value={addressLine2}
+        onChange={(e) => setAddressLine2(e.target.value)}
       />
 
       <ButtonSection>
@@ -152,7 +190,7 @@ const ClientDetails = ({
         </Button>
         <Button
           variant="contained"
-          onClick={handleNextClick} // Use the updated handleNextClick function
+          onClick={handleNextClick}
           disabled={!isFormValid()}
         >
           Next
