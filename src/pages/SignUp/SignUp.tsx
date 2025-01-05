@@ -1,8 +1,8 @@
-import React from "react";
-import { Typography, ThemeProvider } from "@mui/material";
-import { theme } from "../../thems/primitives/theme";
-import Toaster from "../../atoms/Toaster/Toaster";
-import { Link as RouterLink } from "react-router-dom";
+import React from 'react';
+import { Typography, ThemeProvider } from '@mui/material';
+import { theme } from '../../thems/primitives/theme';
+import Toaster from '../../atoms/Toaster/Toaster';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   StyledContainer,
   StyledForm,
@@ -15,8 +15,10 @@ import {
   StyledBoxCenter,
   MainGrid,
   ChildGrid,
-} from "./SignUp.style";
-import { useSignUp } from "./SignUp.hook";
+  Logo,
+  Title,
+} from './SignUp.style';
+import { useSignUp } from './SignUp.hook';
 
 const SignUpForm: React.FC = () => {
   const { formik, toasterOpen, handleCloseToaster, isAnyFieldEmpty } =
@@ -35,8 +37,10 @@ const SignUpForm: React.FC = () => {
           {/* @ts-expect-error: StyledForm does not have a component prop */}
           <StyledForm as="form" onSubmit={formik.handleSubmit}>
             <StyledHeader>
-              <Typography variant="h5">Sign Up</Typography>
-              <Typography variant="h5">DECOR MISTRI</Typography>
+              <Logo>
+                <img src="#" alt="Decord-mistri Logo" />
+                <Title variant="h5">DECORD-MISTRI</Title>
+              </Logo>
               <Typography variant="body1" color="textSecondary">
                 Create your free account to get started
               </Typography>
@@ -140,7 +144,7 @@ const SignUpForm: React.FC = () => {
             </StyledButton>
             <StyledBoxCenter>
               <Typography variant="body2">
-                Already have an account?{" "}
+                Already have an account?{' '}
                 {/* @ts-expect-error: StyledForm does not have a component prop */}
                 <StyledLink component={RouterLink} to="/">
                   Sign in

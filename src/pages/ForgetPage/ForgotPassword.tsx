@@ -1,5 +1,4 @@
-import React from 'react';
-import { Box, Typography, Link } from '@mui/material';
+import { Box, Link } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -7,6 +6,9 @@ import {
   StyledTextField,
   StyledButton,
   LoginContainer,
+  ForgetPas,
+  Title,
+  MainCon,
 } from '../Login/LoginPage.styel';
 
 const initialValues = {
@@ -21,23 +23,13 @@ const ForgotPasswordSchema = Yup.object().shape({
 
 const ForgotPasswordPage = () => {
   return (
-    <Box
-      sx={{
-        backgroundColor: 'background.default',
-        minHeight: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <MainCon>
       <LoginContainer maxWidth="xs">
-        <Typography variant="h5" fontWeight="bold" gutterBottom>
-          Forgot Password
-        </Typography>
-        <Typography variant="body2" color="textSecondary" paragraph>
+        <Title variant="h5">Forgot Password</Title>
+        <ForgetPas variant="body2">
           Please enter the email address associated with your account. We will
           send you a code to reset your password.
-        </Typography>
+        </ForgetPas>
 
         <Formik
           initialValues={initialValues}
@@ -66,8 +58,8 @@ const ForgotPasswordPage = () => {
           )}
         </Formik>
 
-        <Box mt={2} textAlign="center">
-          <Typography variant="body2" color="textSecondary">
+        <Box>
+          <ForgetPas variant="body2">
             <Link
               component={RouterLink}
               to="/"
@@ -76,10 +68,10 @@ const ForgotPasswordPage = () => {
             >
               Back to Login
             </Link>
-          </Typography>
+          </ForgetPas>
         </Box>
       </LoginContainer>
-    </Box>
+    </MainCon>
   );
 };
 
