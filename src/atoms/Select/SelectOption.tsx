@@ -5,7 +5,10 @@ import {
   InputLabelItem,
   SelectItem,
   OptionSelect,
+  ContainerMain,
+  ErrorMe,
 } from "./SelectOption.style";
+import { theme } from "../../thems/primitives/theme";
 
 interface SelectOptionProps {
   name: string;
@@ -17,6 +20,7 @@ interface SelectOptionProps {
   style?: React.CSSProperties;
   error?: boolean;
   helperText?: string;
+  labelFontSize?: string;
 }
 
 const SelectOption: React.FC<SelectOptionProps> = ({
@@ -29,44 +33,54 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   style,
   error,
   helperText,
+  labelFontSize,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <FullWidthFormControl style={{ ...style }}>
-      <InputLabelItem
-        htmlFor={name}
-        isFocused={isFocused}
-        hasValue={Boolean(value)}
-      >
-        {label}
-      </InputLabelItem>
-      <SelectItem
-        id={name}
-        name={name}
-        value={value}
-        onChange={onChange}
-        onBlur={(e) => {
-          setIsFocused(false);
-          if (onBlur) onBlur(e);
-        }}
-        onFocus={() => setIsFocused(true)}
-        style={{ ...style }}
-      >
-        <OptionSelect value="" disabled>
-          {/* Select {label} */}
-        </OptionSelect>
-        {options.map((option) => (
-          <OptionSelect key={option.value} value={option.value}>
-            {option.label}
+    <ContainerMain>
+      <FullWidthFormControl style={{ ...style }}>
+        <InputLabelItem
+          htmlFor={name}
+          isFocused={isFocused}
+          hasValue={Boolean(value)}
+          style={{ fontSize: labelFontSize ?? theme.typography.body2.fontSize }}
+        >
+          {label}
+        </InputLabelItem>
+        <SelectItem
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          onBlur={(e) => {
+            setIsFocused(false);
+            if (onBlur) onBlur(e);
+          }}
+          onFocus={() => setIsFocused(true)}
+          style={{ ...style }}
+        >
+          <OptionSelect value="" disabled>
+            {/* Select {label} */}
           </OptionSelect>
-        ))}
-      </SelectItem>
-      {error && (
-        <FormHelperText sx={{ color: "red" }}>{helperText}</FormHelperText>
-      )}
-    </FullWidthFormControl>
+          {options.map((option) => (
+            <OptionSelect key={option.value} value={option.value}>
+              {option.label}
+            </OptionSelect>
+          ))}
+        </SelectItem>
+      </FullWidthFormControl>
+      <ErrorMe>
+        {error && (
+          <FormHelperText sx={{ color: "red" }}>{helperText}</FormHelperText>
+        )}
+      </ErrorMe>
+    </ContainerMain>
   );
 };
 
 export default SelectOption;
+{
+  /* <ContainerMain>
+    </ContainerMain> */
+}
