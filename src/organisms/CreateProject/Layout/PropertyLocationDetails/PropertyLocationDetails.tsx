@@ -85,6 +85,7 @@ const PropertyLocationDetails = ({
           onBlur={formik.handleBlur}
           style={{ width: "100%" }}
           error={formik.touched.country && Boolean(formik.errors.country)}
+          helperText={formik.touched.country && formik.errors.country}
         />
         <SelectOption
           name="state"
@@ -97,6 +98,7 @@ const PropertyLocationDetails = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.state && Boolean(formik.errors.state)}
+          helperText={formik.touched.state && formik.errors.state}
           style={{ width: "100%" }}
         />
       </FlexRow>
@@ -113,6 +115,7 @@ const PropertyLocationDetails = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.city && Boolean(formik.errors.city)}
+          helperText={formik.touched.city && formik.errors.city}
           style={{ width: "100%" }}
         />
 

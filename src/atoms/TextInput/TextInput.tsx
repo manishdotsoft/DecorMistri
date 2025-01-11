@@ -1,6 +1,6 @@
-import React from 'react';
-import { TextField, FormHelperText, Box } from '@mui/material';
-import { FullWidthFormControl } from './TextInput.style';
+import React from "react";
+import { TextField, FormHelperText, Box } from "@mui/material";
+import { FullWidthFormControl } from "./TextInput.style";
 
 interface TextInputProps {
   name: string;
@@ -26,7 +26,7 @@ const TextInput: React.FC<TextInputProps> = ({
   type,
 }) => {
   return (
-    <FullWidthFormControl style={style}>
+    <FullWidthFormControl style={{ ...style }}>
       <TextField
         id={name}
         name={name}
@@ -39,6 +39,7 @@ const TextInput: React.FC<TextInputProps> = ({
         type={type}
         error={error}
         helperText={helperText}
+        style={{ ...style }}
       />
       <Box>{error && <FormHelperText>{helperText}</FormHelperText>}</Box>
     </FullWidthFormControl>

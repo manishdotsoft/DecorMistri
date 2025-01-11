@@ -188,6 +188,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           style={{ width: "100%" }}
+          error={formik.touched.country && Boolean(formik.errors.country)}
+          helperText={formik.touched.country && formik.errors.country}
         />
         <SelectOption
           name="state"
@@ -200,6 +202,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           style={{ width: "100%" }}
+          error={formik.touched.state && Boolean(formik.errors.state)}
+          helperText={formik.touched.state && formik.errors.state}
         />
       </FlexRow>
 
@@ -215,6 +219,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           style={{ width: "100%" }}
+          error={formik.touched.city && Boolean(formik.errors.city)}
+          helperText={formik.touched.city && formik.errors.city}
         />
         <TextField
           label="Zip/Postal Code"
