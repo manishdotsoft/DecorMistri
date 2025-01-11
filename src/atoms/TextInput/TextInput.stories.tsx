@@ -1,83 +1,83 @@
+import React, { useState } from 'react';
+import { Meta, StoryFn } from '@storybook/react';
 import TextInput from './TextInput';
+import { Box } from '@mui/material';
 
 export default {
   title: 'Atoms/TextInput',
   component: TextInput,
   tags: ['autodocs'],
-
+  parameters: {
+    layout: 'centered',
+  },
   argTypes: {
-    label: { contro: 'text' },
-    placeholder: { control: 'text' },
-    backgroundColor: { control: 'color' },
-    labelColor: { control: 'color' },
-    labelFontSize: { control: 'text' },
-    inputWidth: { control: 'text' },
-    inputPadding: { control: 'text' },
-    inputBorderColor: { control: 'color' },
-    inputBorderRadius: { control: 'text' },
-    inputFontSize: { control: 'text' },
+    error: { control: 'boolean' },
+    helperText: { control: 'text' },
     type: {
-      control: 'select',
-      options: ['text', 'email', 'password', 'number', 'tel'],
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
+      control: {
+        type: 'select',
+        options: ['text', 'password', 'email', 'tel'],
+      },
     },
   },
-};
-export const FullName = {
-  args: {
-    label: 'Full Name',
-    placeholder: 'Enter Your Name',
-    type: 'text',
-    backgroundColor: '#8adb4c',
-    labelColor: '#1d1dbb',
-    inputBorderColor: '#098b2b',
-    inputPadding: '12px',
-    inputBorderRadius: '8px',
-    inputFontSize: '14px',
-  },
+} as Meta<typeof TextInput>;
+
+const Template: StoryFn<typeof TextInput> = (args) => {
+  const [value, setValue] = useState('');
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(e.target.value);
+
+  return (
+    <Box sx={{ maxWidth: 400 }}>
+      <TextInput {...args} value={value} onChange={handleChange} />
+    </Box>
+  );
 };
 
-export const Email = {
-  args: {
-    label: 'Enter Email',
-    placeholder: 'Enter Your Email',
-    type: 'email',
-    backgroundColor: '#f9f9f9',
-    labelColor: '#333',
-    inputBorderColor: '#007BFF',
-    inputPadding: '12px',
-    inputBorderRadius: '8px',
-    inputFontSize: '14px',
-  },
+export const Default = Template.bind({});
+Default.args = {
+  name: 'default',
+  label: 'Default Input',
+  value: '',
+  helperText: '',
+  error: false,
 };
 
-export const Password = {
-  args: {
-    label: 'Password',
-    placeholder: 'Enter Your Password',
-    type: 'password',
-    backgroundColor: '#fff3cd',
-    labelColor: '#856404',
-    inputBorderColor: '#856404',
-    inputPadding: '12px',
-    inputBorderRadius: '8px',
-    inputFontSize: '14px',
-  },
+export const ErrorState = Template.bind({});
+ErrorState.args = {
+  name: 'error',
+  label: 'Error Input',
+  value: '',
+  error: true,
+  helperText: 'This field is required.',
 };
 
-export const NumberInput = {
-  args: {
-    label: 'Age',
-    placeholder: 'Enter Your Age',
-    type: 'number',
-    backgroundColor: '#e0f7fa',
-    labelColor: '#004d40',
-    inputBorderColor: '#004d40',
-    inputPadding: '10px',
-    inputBorderRadius: '6px',
-    inputFontSize: '14px',
-  },
+export const PasswordInput = Template.bind({});
+PasswordInput.args = {
+  name: 'password',
+  label: 'Password',
+  value: '',
+  type: 'password',
+  helperText: 'Password should be at least 8 characters.',
+  error: false,
+};
+
+export const EmailInput = Template.bind({});
+EmailInput.args = {
+  name: 'email',
+  label: 'Email Address',
+  value: '',
+  type: 'email',
+  helperText: 'Enter a valid email address.',
+  error: false,
+};
+
+export const PhoneInput = Template.bind({});
+PhoneInput.args = {
+  name: 'phone',
+  label: 'Phone Number',
+  value: '',
+  type: 'tel',
+  helperText: 'Enter a valid phone number.',
+  error: false,
 };

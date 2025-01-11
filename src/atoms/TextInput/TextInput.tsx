@@ -1,64 +1,47 @@
 import React from 'react';
-import { useTheme } from '@mui/material';
+import { TextField, FormHelperText, Box } from '@mui/material';
+import { FullWidthFormControl } from './TextInput.style';
 
-import {
-  TextFieldWrapper,
-  InputLabelStyled,
-  StyledInput,
-  ErrorMessage,
-} from './TextInput.style';
-import useEmailValidation from './customHooks';
+interface TextInputProps {
+  name: string;
+  label: string;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  style?: React.CSSProperties;
+  error?: boolean;
+  helperText?: string;
+  type?: React.HTMLInputTypeAttribute;
+}
 
-type TextInputProps = {
-  label?: string;
-  placeholder?: string;
-  backgroundColor?: string;
-  labelColor?: string;
-  labelFontSize?: string;
-  inputWidth?: string;
-  inputPadding?: string;
-  inputBorderColor?: string;
-  inputBorderRadius?: string;
-  inputFontSize?: string;
-
-  type?: 'text' | 'email' | 'password' | 'number';
-};
-
-const TextInput = (props: TextInputProps) => {
-  const { error, validateEmail } = useEmailValidation();
-
-  const handleChange = (event: any) => {
-    const value = event.target.value;
-    if (props.type === 'email') {
-      validateEmail(value);
-    }
-  };
-  const theme: string | number | any = useTheme();
-  console.log(theme);
-
+const TextInput: React.FC<TextInputProps> = ({
+  name,
+  label,
+  value,
+  onChange,
+  onBlur,
+  style,
+  error = false,
+  helperText,
+  type,
+}) => {
   return (
-    <TextFieldWrapper backgroundColor={props.backgroundColor}>
-      <InputLabelStyled
-        style={{}}
-        htmlFor={props.label}
-        labelColor={props.labelColor}
-        fontSize={props.labelFontSize}
-      >
-        {props.label}
-      </InputLabelStyled>
-      <StyledInput
-        id={props.label}
-        type={props.type || 'text'}
-        placeholder={props.placeholder || props.label}
-        width={props.inputWidth}
-        padding={props.inputPadding}
-        borderColor={error ? '#FF0000' : props.inputBorderColor}
-        borderRadius={props.inputBorderRadius}
-        fontSize={props.inputFontSize}
-        onChange={handleChange}
+    <FullWidthFormControl style={style}>
+      <TextField
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        label={label}
+        variant="outlined"
+        fullWidth
+        type={type}
+        error={error}
+        helperText={helperText}
       />
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-    </TextFieldWrapper>
+      <Box>{error && <FormHelperText>{helperText}</FormHelperText>}</Box>
+    </FullWidthFormControl>
   );
 };
 
