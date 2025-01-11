@@ -1,8 +1,8 @@
 import { styled } from '@mui/material/styles';
-import { Container, TextField, Button, Box, Typography } from '@mui/material';
+import { TextField, Button, Box, Typography } from '@mui/material';
 import { theme as customTheme, theme } from '../../thems/primitives/theme';
 
-export const LoginContainer = styled(Container)(({ theme }) => ({
+export const LoginContainer = styled('form')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -18,7 +18,7 @@ export const Title = styled(Typography)({
   fontWeight: 600,
 });
 
-export const MainCon = styled(Box)({
+export const MainCon = styled('div')({
   backgroundColor: theme.palette.background.default,
   minHeight: '100vh',
   display: 'flex',
