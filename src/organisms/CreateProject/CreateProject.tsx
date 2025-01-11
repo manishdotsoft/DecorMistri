@@ -1,19 +1,20 @@
 import { useState } from "react";
+import { Box, Typography, Stepper, Step, StepLabel } from "@mui/material";
+
+import ProjectProviderInformation from "./Layout/ProjectProviderInformation/ProjectProviderInformation";
+import PropertyDetails from "./Layout/PropertyDetails/PropertyDetails";
+import PropertyLocationDetails from "./Layout/PropertyLocationDetails/PropertyLocationDetails";
+
 import {
-  Box,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemButton,
-} from "@mui/material";
-import { StyledSidebar, StyledPageContent, Title } from "./CreateProject.style";
-import ProjectProviderInformation from "./ProjectProviderInformation/ProjectProviderInformation";
-import ClientDetails from "./ClientDetails/ClientDetails";
-import PropertyDetails from "./PropertyDetails/PropertyDetails";
-import PropertyLocationDetails from "./PropertyLocationDetails/PropertyLocationDetails";
-import TimelineSchedule from "./TimelineSchedule/TimelineSchedule";
-import FinancialDetails from "./FinancialDetails/FinancialDetails";
+  CompletedStepIcon,
+  StepIconContainer,
+  StepNumber,
+  StyledPageContent,
+  StyledSidebar,
+} from "./CreateProject.style";
+import ClientDetails from "./Layout/ClientDetails/ClientDetails";
+import TimelineSchedule from "./Layout/TimelineSchedule/TimelineSchedule";
+import FinancialDetails from "./Layout/FinancialDetails/FinancialDetails";
 
 const pages = [
   "Project & Provider Information",
@@ -32,20 +33,55 @@ type PageKey =
   | "timelineSchedule"
   | "financialDetails";
 
+type ClientDetailsType = {
+  clientName: string;
+  clientEmail: string;
+  phoneNumber: string;
+  city: string;
+  country: string;
+  state: string;
+  zipCode: string;
+  addressLine1: string;
+  addressLine2?: string;
+};
+
 const CreateProject = () => {
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
-  const [formData, setFormData] = useState<
-    Record<PageKey, Record<string, unknown>>
-  >({
+  const [formData, setFormData] = useState<{
+    projectProviderInformation: Record<string, unknown>;
+    clientDetails: ClientDetailsType;
+    propertyDetails: Record<string, unknown>;
+    propertyLocationDetails: Record<string, unknown>;
+    timelineSchedule: Record<string, unknown>;
+    financialDetails: Record<string, unknown>;
+  }>({
     projectProviderInformation: {},
-    clientDetails: {},
+    clientDetails: {
+      clientName: "",
+      clientEmail: "",
+      phoneNumber: "",
+      city: "",
+      country: "",
+      state: "",
+      zipCode: "",
+      addressLine1: "",
+      addressLine2: "",
+    },
     propertyDetails: {},
     propertyLocationDetails: {},
     timelineSchedule: {},
     financialDetails: {},
   });
+  const [completedSteps, setCompletedSteps] = useState<boolean[]>(
+    Array(pages.length).fill(false)
+  );
 
   const handleNext = () => {
+    setCompletedSteps((prevSteps) => {
+      const updatedSteps = [...prevSteps];
+      updatedSteps[currentPageIndex] = true;
+      return updatedSteps;
+    });
     if (currentPageIndex < pages.length - 1) {
       setCurrentPageIndex(currentPageIndex + 1);
     }
@@ -53,6 +89,11 @@ const CreateProject = () => {
 
   const handlePrevious = () => {
     if (currentPageIndex > 0) {
+      setCompletedSteps((prevSteps) => {
+        const updatedSteps = [...prevSteps];
+        updatedSteps[currentPageIndex] = false; // Uncheck the current step
+        return updatedSteps;
+      });
       setCurrentPageIndex(currentPageIndex - 1);
     }
   };
@@ -82,6 +123,7 @@ const CreateProject = () => {
         return (
           <ClientDetails
             data={formData.clientDetails}
+            currentPageIndex={currentPageIndex}
             updateData={(data) => updateFormData("clientDetails", data)}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
@@ -138,29 +180,39 @@ const CreateProject = () => {
 
   return (
     <Box display="flex" height="100vh">
+      {/* Sidebar */}
       <StyledSidebar>
-        <Title>Create Project</Title>
-        <List>
-          {pages.map((page, index) => (
-            <ListItem component="li" key={page}>
-              <ListItemButton
-                selected={currentPageIndex === index}
-                sx={{
-                  "&.Mui-selected": { backgroundColor: "#e0f7fa" },
+        <Typography variant="h6" sx={{ marginBottom: 4 }}>
+          Create Project
+        </Typography>
+        <Stepper activeStep={currentPageIndex} orientation="vertical">
+          {pages.map((label, index) => (
+            <Step key={label}>
+              <StepLabel
+                StepIconComponent={() => {
+                  if (completedSteps[index]) {
+                    return <CompletedStepIcon />;
+                  }
+                  return (
+                    <StepIconContainer>
+                      <StepNumber variant="body2">{index + 1}</StepNumber>
+                    </StepIconContainer>
+                  );
                 }}
               >
-                <ListItemText primary={page} />
-              </ListItemButton>
-            </ListItem>
+                {label}
+              </StepLabel>
+            </Step>
           ))}
-        </List>
+        </Stepper>
       </StyledSidebar>
 
+      {/* Main Page Content */}
       <StyledPageContent>
         <Typography variant="h5" gutterBottom>
           {pages[currentPageIndex]}
         </Typography>
-        <Box>{renderPageContent()}</Box>
+        {renderPageContent()}
       </StyledPageContent>
     </Box>
   );

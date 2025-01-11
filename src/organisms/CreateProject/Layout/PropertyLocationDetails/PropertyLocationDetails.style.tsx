@@ -1,8 +1,8 @@
 import { styled } from "@mui/system";
 import { Box, FormControl, InputLabel, Radio } from "@mui/material";
-import palette from "../../../thems/primitives/palette";
-import typeset from "../../../thems/primitives/typeset";
-import { COMMON_PAPER } from "../../../thems/primitives/colors";
+import palette from "../../../../thems/primitives/palette";
+import typeset from "../../../../thems/primitives/typeset";
+import { COMMON_PAPER } from "../../../../thems/primitives/colors";
 
 export const Container = styled(Box)({
   maxWidth: "800px",
