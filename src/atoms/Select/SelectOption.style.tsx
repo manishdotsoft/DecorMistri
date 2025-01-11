@@ -15,7 +15,7 @@ export const InputLabelItem = styled("label")<InputLabelItemProps>(
   ({ isFocused, hasValue }) => ({
     position: "absolute",
     left: "12px",
-    top: hasValue || isFocused ? "-10px" : "38%",
+    top: hasValue || isFocused ? "-10px" : "50%",
     transform:
       hasValue || isFocused
         ? "translateY(-2px) scale(0.85)"
@@ -25,13 +25,13 @@ export const InputLabelItem = styled("label")<InputLabelItemProps>(
     color: isFocused ? "#0fb34e" : hasValue ? "#757575" : "#757575",
     background: "white",
     pointerEvents: "none",
-    padding: "3px",
+    padding: "2px",
   })
 );
 
 export const SelectItem = styled("select")({
   width: "100%",
-  padding: "18px",
+  padding: "20px",
   borderRadius: "4px",
   border: "1px solid #ccc",
   fontSize: "16px",
@@ -48,3 +48,10 @@ export const SelectItem = styled("select")({
 export const OptionSelect = styled("option")({
   fontSize: "16px",
 });
+
+export const ContainerMain = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+});
+
+export const ErrorMe = styled("div")({});

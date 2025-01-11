@@ -187,7 +187,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           value={formik.values.country}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
           error={formik.touched.country && Boolean(formik.errors.country)}
           helperText={formik.touched.country && formik.errors.country}
         />
@@ -201,7 +201,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           value={formik.values.state}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
           error={formik.touched.state && Boolean(formik.errors.state)}
           helperText={formik.touched.state && formik.errors.state}
         />
@@ -218,7 +218,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           value={formik.values.city}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
           error={formik.touched.city && Boolean(formik.errors.city)}
           helperText={formik.touched.city && formik.errors.city}
         />
