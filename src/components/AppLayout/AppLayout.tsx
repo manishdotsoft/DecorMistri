@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import Sidebar from '../SideBar/Sidebar';
+import Sidebar from '../../organisms/SideBar/Sidebar';
 import TaskBoard from '../TaskBoard';
 import { Container, SidebarContainer, MainContent } from './AppLayout.styel';
 

@@ -15,6 +15,7 @@ interface ButtonProps {
   buttonFontSize?: string;
   fontWeight?: string;
   letterSpacing?: string;
+  type?: "button" | "reset" | "submit";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -24,6 +25,7 @@ const Button: React.FC<ButtonProps> = ({
   variant,
   backgroundColor,
   style,
+  type,
   disabled = false,
   loading = false,
   buttonFontSize,
@@ -47,10 +49,11 @@ const Button: React.FC<ButtonProps> = ({
         </DisabledButton>
       ) : (
         <StyledButton
-          data-loading={loading ? "true" : undefined} // Use a custom attribute
-          disabled={disabled || loading} // Disable the button when loading
+          data-loading={loading ? "true" : undefined}
+          disabled={disabled || loading}
           variant={variant}
           onClick={onClick}
+          type={type}
           backgroundColor={backgroundColor}
           color={color}
           style={{ ...style }}
