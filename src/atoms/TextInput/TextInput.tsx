@@ -1,6 +1,10 @@
-import React from "react";
-import { TextField, FormHelperText, Box } from "@mui/material";
-import { FullWidthFormControl } from "./TextInput.style";
+import React, { useState } from 'react';
+import {
+  FormHelp,
+  FullWidthFormControl,
+  InputLabelItem,
+  TextInputField,
+} from './TextInput.style';
 
 interface TextInputProps {
   name: string;
@@ -23,26 +27,36 @@ const TextInput: React.FC<TextInputProps> = ({
   style,
   error = false,
   helperText,
-  type,
+  type = 'text',
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
-    <FullWidthFormControl style={{ ...style }}>
-      <TextField
-        id={name}
-        name={name}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        label={label}
-        variant="outlined"
-        fullWidth
-        type={type}
-        error={error}
-        helperText={helperText}
-        style={{ ...style }}
-      />
-      <Box>{error && <FormHelperText>{helperText}</FormHelperText>}</Box>
-    </FullWidthFormControl>
+    <>
+      <FullWidthFormControl style={{ ...style }}>
+        <InputLabelItem
+          htmlFor={name}
+          isFocused={isFocused}
+          hasValue={Boolean(value)}
+        >
+          {label}
+        </InputLabelItem>
+        <TextInputField
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          onBlur={(e) => {
+            setIsFocused(false);
+            if (onBlur) onBlur(e);
+          }}
+          onFocus={() => setIsFocused(true)}
+          type={type}
+          style={{ ...style }}
+        />
+      </FullWidthFormControl>
+      {error && <FormHelp>{helperText}</FormHelp>}
+    </>
   );
 };
 
