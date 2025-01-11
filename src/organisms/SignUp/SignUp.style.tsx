@@ -22,12 +22,8 @@ export const StyledForm = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[3],
   padding: theme.spacing(4),
-<<<<<<< HEAD:src/pages/SignUp/SignUp.style.tsx
   margin: "auto",
   maxWidth: "400px",
-=======
-  margin: 'auto',
->>>>>>> d641b23362dc104eb1500667d3aa033a84ef48b4:src/organisms/SignUp/SignUp.style.tsx
 }));
 
 export const StyledHeader = styled(Box)(({ theme }) => ({

@@ -1,5 +1,5 @@
-import { useDispatch } from 'react-redux';
-import { setLoginData } from '../../store/reducers/loginSlice';
+import { useDispatch } from "react-redux";
+import { setLoginData } from "../../store/reducers/loginSlice";
 import {
   LoginContainer,
   Logo,
@@ -8,19 +8,19 @@ import {
   MainCon,
   ForgetPasF,
   StyledTypography,
-} from './LoginPage.styel';
+} from "./LoginPage.styel";
 
-import { AppDispatch } from '../../store/store';
-import { Box, Link, Typography } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
-import { Formik, Form } from 'formik';
-import { LoginSchema } from './LoginSchema';
-import TextInput from '../../atoms/TextInput/TextInput';
-import Button from '../../atoms/Button/Button';
+import { AppDispatch } from "../../store/store";
+import { Box, Link, Typography } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import { Formik, Form } from "formik";
+import { LoginSchema } from "./LoginSchema";
+import TextInput from "../../atoms/TextInput/TextInput";
+import Button from "../../atoms/Button/Button";
 
 const initialValues = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 };
 
 const LoginPage = () => {
@@ -41,7 +41,7 @@ const LoginPage = () => {
             // Dispatching login data to redux store
             dispatch(setLoginData(values));
             // Storing auth token in localStorage (replace 'your-auth-token' with actual token)
-            localStorage.setItem('authToken', 'your-auth-token');
+            localStorage.setItem("authToken", "your-auth-token");
             resetForm();
           }}
         >
@@ -57,7 +57,7 @@ const LoginPage = () => {
                   name="email"
                   type="email"
                   label="Email"
-                  style={{ marginTop: '10px', width: '500px', height: '55px' }}
+                  style={{ marginTop: "10px", width: "500px", height: "55px" }}
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -73,10 +73,10 @@ const LoginPage = () => {
                   type="password"
                   label="Password"
                   style={{
-                    marginTop: '10px',
-                    width: '500px',
-                    marginBottom: '10px',
-                    height: '55px',
+                    marginTop: "10px",
+                    width: "500px",
+                    marginBottom: "10px",
+                    height: "55px",
                   }}
                   value={values.password}
                   onChange={handleChange}
@@ -115,11 +115,11 @@ const LoginPage = () => {
                     variant="contained"
                     disabled={isButtonDisabled}
                     style={{
-                      width: '500px',
+                      width: "500px",
 
-                      borderRadius: '4px',
-                      height: '55px',
-                      marginTop: '10px',
+                      borderRadius: "4px",
+                      height: "55px",
+                      marginTop: "10px",
                     }}
                     onClick={() => {}}
                   />

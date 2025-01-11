@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ForgetPassword from './organisms/ForgetPage/ForgotPassword';
-import SignUpForm from './organisms/SignUp/SignUp';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ForgetPassword from "./organisms/ForgetPage/ForgotPassword";
+import SignUpForm from "./organisms/SignUp/SignUp";
 
-import Home from './pages/Dashboard/Home';
-import Login from './organisms/Login/Login';
-import CalenderView from './organisms/CalendarView/CalendarView';
+import Home from "./pages/Dashboard/Home";
+import Login from "./organisms/Login/Login";
+import CalenderView from "./organisms/CalendarView/CalendarView";
+import CreateProject from "./organisms/CreateProject/CreateProject";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/dashboard" element={<Home />} />
 
         <Route path="/calenderview" element={<CalenderView />} />
+        <Route path="/create-Project" element={<CreateProject />} />
       </Routes>
     </BrowserRouter>
   );

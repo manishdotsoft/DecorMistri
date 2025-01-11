@@ -135,6 +135,7 @@ const ClientDetails = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.country && Boolean(formik.errors.country)}
+          helperText={formik.touched.country && formik.errors.country}
           style={{ width: "100%" }}
         />
         <SelectOption
@@ -148,6 +149,7 @@ const ClientDetails = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.state && Boolean(formik.errors.state)}
+          helperText={formik.touched.state && formik.errors.state}
           style={{ width: "100%" }}
         />
       </FlexRow>
@@ -164,6 +166,7 @@ const ClientDetails = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.city && Boolean(formik.errors.city)}
+          helperText={formik.touched.city && formik.errors.city}
           style={{ width: "100%" }}
         />
         <TextField

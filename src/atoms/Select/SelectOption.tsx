@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { FormHelperText } from "@mui/material";
 import {
-  Select,
-  MenuItem,
-  SelectChangeEvent,
-  InputLabel,
-  FormHelperText,
-} from "@mui/material";
-import { FullWidthFormControl } from "./SelectOption.style";
+  FullWidthFormControl,
+  InputLabelItem,
+  SelectItem,
+  OptionSelect,
+} from "./SelectOption.style";
 
 interface SelectOptionProps {
   name: string;
   label: string;
   options: { value: string | number; label: string }[];
   value: string | number;
-  onChange: (event: SelectChangeEvent<string | number>) => void;
-  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onBlur?: React.FocusEventHandler<HTMLSelectElement>;
   style?: React.CSSProperties;
   error?: boolean;
   helperText?: string;
@@ -31,27 +30,41 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   error,
   helperText,
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
-    <FullWidthFormControl variant="outlined" style={{ ...style }} error={error}>
-      <InputLabel htmlFor={name} style={{ ...style }}>
+    <FullWidthFormControl style={{ ...style }}>
+      <InputLabelItem
+        htmlFor={name}
+        isFocused={isFocused}
+        hasValue={Boolean(value)}
+      >
         {label}
-      </InputLabel>
-      <Select
+      </InputLabelItem>
+      <SelectItem
         id={name}
         name={name}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
-        label={label}
+        onBlur={(e) => {
+          setIsFocused(false);
+          if (onBlur) onBlur(e);
+        }}
+        onFocus={() => setIsFocused(true)}
         style={{ ...style }}
       >
+        <OptionSelect value="" disabled>
+          {/* Select {label} */}
+        </OptionSelect>
         {options.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
+          <OptionSelect key={option.value} value={option.value}>
             {option.label}
-          </MenuItem>
+          </OptionSelect>
         ))}
-      </Select>
-      {error && <FormHelperText>{helperText}</FormHelperText>}
+      </SelectItem>
+      {error && (
+        <FormHelperText sx={{ color: "red" }}>{helperText}</FormHelperText>
+      )}
     </FullWidthFormControl>
   );
 };

@@ -1,7 +1,7 @@
-import { Box, styled } from '@mui/material';
+import { Box, styled } from "@mui/material";
 
-export const FullWidthFormControl = styled(Box)({
-  display: 'flex',
-  flexDirection: 'column',
+export const FullWidthFormControl = styled("div")({
+  display: "flex",
+  flexDirection: "column",
   // width: '100%',
 });

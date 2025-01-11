@@ -15,15 +15,12 @@ import {
   ChildGrid,
   Logo,
   Title,
-<<<<<<< HEAD:src/pages/SignUp/SignUp.tsx
 } from "./SignUp.style";
-import { useSignUp } from "./SignUp.hook";
-=======
-} from './SignUp.style';
+
+
 import { useSignUp } from './SignUp.hook';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Button from '../../atoms/Button/Button';
->>>>>>> d641b23362dc104eb1500667d3aa033a84ef48b4:src/organisms/SignUp/SignUp.tsx
 
 const SignUpForm: React.FC = () => {
   const { formik, toasterOpen, handleCloseToaster, isAnyFieldEmpty } =
