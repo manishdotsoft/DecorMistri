@@ -1,15 +1,23 @@
 import { styled } from "@mui/system";
-import { FormControl, InputLabel } from "@mui/material";
 
-export const FullWidthFormControl = styled(FormControl)({
+export const FullWidthFormControl = styled("form")({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   width: "500px",
   backgroundColor: "#fff",
   color: "#000",
   borderColor: "#1976d2",
 });
 
-export const InputLabelItem = styled(InputLabel)({
-  backgroundColor: "#fff",
+export const InputLabelItem = styled("label")({
+  backgroundColor: "#ffffff",
+});
 
-  padding: "0 8px",
+export const SelectItem = styled("select")({
+  backgroundColor: "#ffffff",
+});
+
+export const OptionSelect = styled("option")({
+  backgroundColor: "#6ac217",
 });

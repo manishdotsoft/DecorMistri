@@ -1,12 +1,11 @@
 import React from "react";
+import { SelectChangeEvent, FormHelperText } from "@mui/material";
 import {
-  Select,
-  MenuItem,
-  SelectChangeEvent,
-  InputLabel,
-  FormHelperText,
-} from "@mui/material";
-import { FullWidthFormControl } from "./SelectOption.style";
+  FullWidthFormControl,
+  InputLabelItem,
+  OptionSelect,
+  SelectItem,
+} from "./SelectOption.style";
 
 interface SelectOptionProps {
   name: string;
@@ -32,27 +31,29 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   helperText,
 }) => {
   return (
-    <FullWidthFormControl variant="outlined" style={{ ...style }} error={error}>
-      <InputLabel htmlFor={name} style={{ ...style }}>
-        {label}
-      </InputLabel>
-      <Select
-        id={name}
-        name={name}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        label={label}
-        style={{ ...style }}
-      >
-        {options.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </Select>
-      {error && <FormHelperText>{helperText}</FormHelperText>}
-    </FullWidthFormControl>
+    <>
+      <FullWidthFormControl style={{ ...style }} error={error}>
+        <InputLabelItem htmlFor={name} style={{ ...style }}>
+          {label}
+        </InputLabelItem>
+        <SelectItem
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          label={label}
+          style={{ ...style }}
+        >
+          {options.map((option) => (
+            <OptionSelect key={option.value} value={option.value}>
+              {option.label}
+            </OptionSelect>
+          ))}
+        </SelectItem>
+        {error && <FormHelperText>{helperText}</FormHelperText>}
+      </FullWidthFormControl>
+    </>
   );
 };
 
