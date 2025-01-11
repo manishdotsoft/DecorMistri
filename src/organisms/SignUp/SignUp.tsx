@@ -1,8 +1,8 @@
-import React from 'react';
-import { Typography, ThemeProvider } from '@mui/material';
-import { theme } from '../../thems/primitives/theme';
-import Toaster from '../../atoms/Toaster/Toaster';
-import { Link as RouterLink } from 'react-router-dom';
+import React from "react";
+import { Typography, ThemeProvider } from "@mui/material";
+import { theme } from "../../thems/primitives/theme";
+import Toaster from "../../atoms/Toaster/Toaster";
+import { Link as RouterLink } from "react-router-dom";
 import {
   StyledContainer,
   StyledForm,
@@ -15,10 +15,15 @@ import {
   ChildGrid,
   Logo,
   Title,
+<<<<<<< HEAD:src/pages/SignUp/SignUp.tsx
+} from "./SignUp.style";
+import { useSignUp } from "./SignUp.hook";
+=======
 } from './SignUp.style';
 import { useSignUp } from './SignUp.hook';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Button from '../../atoms/Button/Button';
+>>>>>>> d641b23362dc104eb1500667d3aa033a84ef48b4:src/organisms/SignUp/SignUp.tsx
 
 const SignUpForm: React.FC = () => {
   const { formik, toasterOpen, handleCloseToaster, isAnyFieldEmpty } =
@@ -143,7 +148,7 @@ const SignUpForm: React.FC = () => {
 
             <StyledBoxCenter>
               <Typography variant="body2">
-                Already have an account?{' '}
+                Already have an account?{" "}
                 {/* @ts-expect-error: StyledForm does not have a component prop */}
                 <StyledLink component={RouterLink} to="/">
                   Sign in

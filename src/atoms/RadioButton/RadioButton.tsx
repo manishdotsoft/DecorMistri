@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   FormControl,
   FormControlLabel,
@@ -6,7 +6,7 @@ import {
   Radio,
   RadioGroup,
   useTheme,
-} from '@mui/material';
+} from "@mui/material";
 
 export interface RadioOption {
   label: string;
@@ -19,7 +19,7 @@ interface RadioButtonProps {
   selectedValue: string;
   onChange: (value: string) => void;
   name: string;
-  direction: 'row' | 'column';
+  direction: "row" | "column";
 }
 
 const RadioButton: React.FC<RadioButtonProps> = ({
@@ -31,7 +31,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   direction,
 }) => {
   const theme: string | number | any = useTheme();
-  console.log(theme);
+  // console.log(theme);
   return (
     <FormControl>
       {label && (
@@ -45,7 +45,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         </FormLabel>
       )}
       <RadioGroup
-        row={direction === 'row'}
+        row={direction === "row"}
         value={selectedValue}
         onChange={(event) => onChange(event.target.value)}
         name={name}

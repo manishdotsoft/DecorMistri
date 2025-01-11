@@ -1,8 +1,8 @@
 import { styled } from "@mui/system";
 import { Box, FormControl, InputLabel, Radio } from "@mui/material";
-import palette from "../../../thems/primitives/palette";
-import typeset from "../../../thems/primitives/typeset";
-import { COMMON_PAPER } from "../../../thems/primitives/colors";
+import palette from "../../../../thems/primitives/palette";
+import typeset from "../../../../thems/primitives/typeset";
+import { COMMON_PAPER } from "../../../../thems/primitives/colors";
 
 export const Container = styled(Box)({
   maxWidth: "800px",
@@ -69,16 +69,4 @@ export const ButtonSection = styled(Box)({
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
-});
-
-export const Phashes = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: "70px",
-});
-
-export const SelectFile = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: "18px",
 });

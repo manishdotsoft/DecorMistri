@@ -1,14 +1,13 @@
-import React from 'react';
-import { Typography } from '@mui/material';
-import { CircularProgress } from '@mui/material';
-import { StyledButton, DisabledButton } from './Button.style';
-import { useTheme } from '@mui/material';
+import React from "react";
+import { Typography, CircularProgress } from "@mui/material";
+import { useTheme } from "@mui/material";
+import { StyledButton, DisabledButton } from "./Button.style";
 
 interface ButtonProps {
   title: string;
   color: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-  variant: 'contained' | 'outlined';
+  variant: "contained" | "outlined";
   backgroundColor?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
@@ -16,7 +15,7 @@ interface ButtonProps {
   buttonFontSize?: string;
   fontWeight?: string;
   letterSpacing?: string;
-  type?: 'button' | 'reset' | 'submit';
+  type?: "button" | "reset" | "submit";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -33,14 +32,15 @@ const Button: React.FC<ButtonProps> = ({
   fontWeight,
   letterSpacing,
 }: ButtonProps) => {
-  const theme: string | number | any = useTheme();
+  const theme = useTheme();
+
   return (
     <>
       {disabled ? (
         <DisabledButton style={{ ...style }} disabled>
           <Typography
             style={{
-              fontSize: buttonFontSize ?? theme.typography.body2,
+              fontSize: buttonFontSize ?? theme.typography.body2.fontSize,
               fontWeight: fontWeight,
             }}
           >
@@ -49,8 +49,8 @@ const Button: React.FC<ButtonProps> = ({
         </DisabledButton>
       ) : (
         <StyledButton
-          loading={loading}
-          disabled={disabled}
+          data-loading={loading ? "true" : undefined}
+          disabled={disabled || loading}
           variant={variant}
           onClick={onClick}
           type={type}
@@ -63,9 +63,9 @@ const Button: React.FC<ButtonProps> = ({
           ) : (
             <Typography
               style={{
-                fontSize: buttonFontSize ?? theme.typography.body2,
-                fontWeight: fontWeight || 'normal',
-                letterSpacing: letterSpacing || 'normal',
+                fontSize: buttonFontSize ?? theme.typography.body2.fontSize,
+                fontWeight: fontWeight || "normal",
+                letterSpacing: letterSpacing || "normal",
               }}
             >
               {title}

@@ -1,7 +1,7 @@
 import { styled } from "@mui/system";
 import { Box, FormControl, InputLabel } from "@mui/material";
-import palette from "../../../thems/primitives/palette";
-import typeset from "../../../thems/primitives/typeset";
+import palette from "../../../../thems/primitives/palette";
+import typeset from "../../../../thems/primitives/typeset";
 
 export const Container = styled(Box)({
   maxWidth: "800px",
@@ -38,3 +38,9 @@ export const ButtonSection = styled(Box)({
   flexDirection: "row",
   justifyContent: "space-between",
 });
+
+export const FormArea = styled("form")(() => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+}));

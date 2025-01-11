@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Box,
   Button,
@@ -7,38 +7,43 @@ import {
   Container,
   Link as MuiLink,
   Grid,
-} from '@mui/material';
+} from "@mui/material";
 
 export const StyledContainer = styled(Box)(({ theme }) => ({
-  minHeight: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  minHeight: "100vh",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   backgroundColor: theme.palette.background.default,
 }));
 
 export const StyledForm = styled(Box)(({ theme }) => ({
-  backgroundColor: '#fff',
+  backgroundColor: "#fff",
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[3],
   padding: theme.spacing(4),
+<<<<<<< HEAD:src/pages/SignUp/SignUp.style.tsx
+  margin: "auto",
+  maxWidth: "400px",
+=======
   margin: 'auto',
+>>>>>>> d641b23362dc104eb1500667d3aa033a84ef48b4:src/organisms/SignUp/SignUp.style.tsx
 }));
 
 export const StyledHeader = styled(Box)(({ theme }) => ({
-  textAlign: 'center',
+  textAlign: "center",
   marginBottom: theme.spacing(3),
 }));
 
 export const MainGrid = styled(Grid)(() => ({
-  display: 'flex',
-  gap: '10px',
+  display: "flex",
+  gap: "10px",
 }));
 
 export const ChildGrid = styled(Grid)(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '10px',
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
 }));
 
 export const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -46,48 +51,49 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
 }));
 
 export const StyledTypography = styled(Typography)(({ theme }) => ({
-  fontSize: '0.7rem',
+  fontSize: "0.7rem",
   color: theme.palette.error.main,
 }));
 
 export const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(3),
-  textTransform: 'none',
+  textTransform: "none",
 }));
 
 export const StyledContainerWrapper = styled(Container)({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 });
 
 export const StyledGoogleButton = styled(Button)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   marginTop: theme.spacing(3),
   color: theme.palette.grey[900],
 }));
 
 export const StyledLink = styled(MuiLink)({
-  cursor: 'pointer',
-  color: 'blue',
-  textDecoration: 'none',
+  cursor: "pointer",
+  color: "blue",
+  textDecoration: "none",
 });
 
 export const StyledBoxCenter = styled(Box)(({ theme }) => ({
-  textAlign: 'center',
+  textAlign: "center",
   marginTop: theme.spacing(2),
 }));
 
 export const Logo = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
   marginBottom: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
 }));
 
 export const Title = styled(Typography)({
   fontWeight: 600,
+  
 });

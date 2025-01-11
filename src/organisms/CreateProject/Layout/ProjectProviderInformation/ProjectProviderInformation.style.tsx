@@ -1,13 +1,13 @@
 import { styled } from "@mui/system";
 import { Box, FormControl, InputLabel, Radio } from "@mui/material";
-import palette from "../../../thems/primitives/palette";
-import typeset from "../../../thems/primitives/typeset";
-import { COMMON_PAPER } from "../../../thems/primitives/colors";
+import palette from "../../../../thems/primitives/palette";
+import typeset from "../../../../thems/primitives/typeset";
+import { COMMON_PAPER } from "../../../../thems/primitives/colors";
 
 export const Container = styled(Box)({
-  maxWidth: "800px",
+  maxWidth: "1000px",
   margin: "auto",
-  padding: "20px",
+  padding: "10px",
   display: "flex",
   flexDirection: "column",
   gap: "20px",
@@ -70,3 +70,9 @@ export const ButtonSection = styled(Box)({
   flexDirection: "row",
   justifyContent: "space-between",
 });
+
+export const FormArea = styled("form")(() => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+}));
