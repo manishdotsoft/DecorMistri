@@ -1,5 +1,5 @@
-import { SelectFieldParent, SelectOption, Option } from "./Select.styled";
-import useCustomSelect from "./Select.hook";
+import { SelectFieldParent, SelectOption, Option } from './Select.styled';
+import useCustomSelect from './Select.hook';
 
 type SelectProps = {
   label?: string;

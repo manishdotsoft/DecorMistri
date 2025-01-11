@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@mui/material';
 import { theme as customTheme } from '../../thems/primitives/theme';
 
@@ -27,7 +26,6 @@ const StyledButton = styled('button')<StyledButtonProps>(
       variant === 'outlined'
         ? `1px solid ${color || theme.palette.primary.main}`
         : 'none',
-    borderRadius: 24,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
