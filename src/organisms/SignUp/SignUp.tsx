@@ -1,161 +1,173 @@
 import React from "react";
-import { Typography, ThemeProvider } from "@mui/material";
-import { theme } from "../../thems/primitives/theme";
-import Toaster from "../../atoms/Toaster/Toaster";
+import { Typography, Divider } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import {
   StyledContainer,
   StyledForm,
   StyledHeader,
+  MainFlex,
+  ChildFlex,
+  ImageFlex,
+  AllImg,
   StyledTypography,
-  StyledContainerWrapper,
-  StyledLink,
-  StyledBoxCenter,
-  MainGrid,
-  ChildGrid,
   Logo,
   Title,
+  StyledBoxCenter,
+  StyledLink,
+  TextArea,
 } from "./SignUp.style";
 
-
-import { useSignUp } from './SignUp.hook';
-import TextInput from '../../atoms/TextInput/TextInput';
-import Button from '../../atoms/Button/Button';
+import { useFormik } from "formik";
+import TextInput from "../../atoms/TextInput/TextInput";
+import { signUpSchema } from "./SchemasSignup";
+import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
+import Button from "../../atoms/Button/Button";
 
 const SignUpForm: React.FC = () => {
-  const { formik, toasterOpen, handleCloseToaster, isAnyFieldEmpty } =
-    useSignUp();
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      phone: "",
+      email: "",
+      password: "",
+    },
+    validationSchema: signUpSchema,
+    onSubmit: (values) => {
+      console.log("Form Submitted", values);
+    },
+  });
 
   return (
-    <ThemeProvider theme={theme}>
-      <StyledContainer>
-        <StyledContainerWrapper>
-          <Toaster
-            message="Account created successfully!"
-            type="success"
-            open={toasterOpen}
-            onClose={handleCloseToaster}
-          />
-          {/* @ts-expect-error: StyledForm does not have a component prop */}
+    <StyledContainer>
+      <MainFlex>
+        <ChildFlex>
           <StyledForm as="form" onSubmit={formik.handleSubmit}>
             <StyledHeader>
               <Logo>
-                <img src="#" alt="Decord-mistri Logo" />
-                <Title variant="h5">DECORD-MISTRI</Title>
+                <img
+                  src="#"
+                  alt="Decord-mistri Logo"
+                  style={{ height: "40px" }}
+                />
+                <Title>DECORD-MISTRI</Title>
               </Logo>
-              <Typography variant="body1" color="textSecondary">
+              <Typography variant="body2" color="textSecondary">
                 Create your free account to get started
               </Typography>
             </StyledHeader>
-            <MainGrid>
-              <ChildGrid>
-                <TextInput
-                  name="firstName"
-                  label="First Name"
-                  value={formik.values.firstName}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.firstName && Boolean(formik.errors.firstName)
-                  }
-                />
-                {formik.errors.firstName && formik.touched.firstName && (
-                  <StyledTypography>{formik.errors.firstName}</StyledTypography>
-                )}
-              </ChildGrid>
-              <ChildGrid>
-                <TextInput
-                  name="lastName"
-                  type="text"
-                  label="Last Name"
-                  value={formik.values.lastName}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.lastName && Boolean(formik.errors.lastName)
-                  }
-                />
-                {formik.errors.lastName && formik.touched.lastName && (
-                  <StyledTypography>{formik.errors.lastName}</StyledTypography>
-                )}
-              </ChildGrid>
-            </MainGrid>
 
-            <TextInput
-              name="email"
-              type="email"
-              label="Email"
-              style={{ marginTop: '10px' }}
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-            />
-            {formik.errors.email && formik.touched.email && (
-              <StyledTypography>{formik.errors.email}</StyledTypography>
-            )}
+            <TextArea style={{}}>
+              <Button
+                title="Sign In with Google"
+                color="primary"
+                // onClick={() => console.log("Google Sign-In clicked")}
+                // variant="outlined"
+                startIcon={<img src="/path/to/google-icon.svg" alt="Google" />}
+                fullWidth
+                style={{
+                  marginBottom: "20px",
+                  borderRadius: "5px",
+                  background: "white",
+                  color: "black",
+                  border: "2px solid #cccccc",
+                }}
+              />
 
-            <TextInput
-              label="Password"
-              type="password"
-              name="password"
-              style={{ marginTop: '10px' }}
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-            />
-            {formik.errors.password && formik.touched.password && (
-              <StyledTypography>{formik.errors.password}</StyledTypography>
-            )}
+              <Divider style={{ margin: "20px 0", color: "#9e9e9e" }}>
+                Or
+              </Divider>
 
-            <TextInput
-              name="confirm_password"
-              type="password"
-              label="Confirm Password"
-              value={formik.values.confirm_password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              style={{ marginTop: '10px' }}
-              error={
-                formik.touched.confirm_password &&
-                Boolean(formik.errors.confirm_password)
-              }
-            />
-            {formik.errors.confirm_password &&
-              formik.touched.confirm_password && (
-                <StyledTypography>
-                  {formik.errors.confirm_password}
-                </StyledTypography>
+              <TextInput
+                name="name"
+                label="Enter your name"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                style={{ width: "90%", padding: "10px" }}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+              />
+              {formik.errors.name && formik.touched.name && (
+                <StyledTypography>{formik.errors.name}</StyledTypography>
               )}
+
+              <TextInput
+                name="phone"
+                label="Enter your phone number"
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.phone && Boolean(formik.errors.phone)}
+              />
+              {formik.errors.phone && formik.touched.phone && (
+                <StyledTypography>{formik.errors.phone}</StyledTypography>
+              )}
+
+              <TextInput
+                name="email"
+                label="Enter your email address"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+              />
+              {formik.errors.email && formik.touched.email && (
+                <StyledTypography>{formik.errors.email}</StyledTypography>
+              )}
+
+              <TextInput
+                name="password"
+                type="password"
+                label="Password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+              />
+              {formik.errors.password && formik.touched.password && (
+                <StyledTypography>{formik.errors.password}</StyledTypography>
+              )}
+            </TextArea>
+
+            <Typography
+              variant="caption"
+              style={{ marginTop: "10px", color: "#9e9e9e" }}
+            >
+              Password strength: Strong
+            </Typography>
+
             <Button
               title="Sign Up"
               color="primary"
               type="submit"
-              style={{
-                width: '100%',
-                borderRadius: '4px',
-                height: '55px',
-                marginTop: '10px',
-              }}
-              disabled={isAnyFieldEmpty}
-              onClick={() => formik.handleSubmit}
               variant="contained"
+              fullWidth
+              style={{
+                marginTop: "20px",
+                backgroundColor: "#7d22c3",
+                color: "#ffffff",
+              }}
             />
 
             <StyledBoxCenter>
-              <Typography variant="body2">
+              <Typography
+                variant="body2"
+                style={{ textAlign: "center", marginTop: "20px" }}
+              >
                 Already have an account?{" "}
-                {/* @ts-expect-error: StyledForm does not have a component prop */}
-                <StyledLink component={RouterLink} to="/">
+                <Typography component={RouterLink} to="/">
                   Sign in
-                </StyledLink>
+                </Typography>
               </Typography>
             </StyledBoxCenter>
           </StyledForm>
-        </StyledContainerWrapper>
-      </StyledContainer>
-    </ThemeProvider>
+        </ChildFlex>
+        <ImageFlex>
+          <AllImg src={SignUpImage} alt="Signup visuals" />
+        </ImageFlex>
+      </MainFlex>
+    </StyledContainer>
   );
 };
 
