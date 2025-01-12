@@ -1,8 +1,6 @@
-// import React, { useState } from 'react';
 import {
   FormHelp,
   FullWidthFormControl,
-  // InputLabelItem,
   TextInputField,
 } from './TextInput.style';
 
@@ -21,7 +19,7 @@ interface TextInputProps {
 
 const TextInput: React.FC<TextInputProps> = ({
   name,
-  // label,
+
   value,
   onChange,
   onBlur,
@@ -31,8 +29,6 @@ const TextInput: React.FC<TextInputProps> = ({
   type = 'text',
   placeholder,
 }) => {
-  // const [isFocused, setIsFocused] = useState(false);
-
   return (
     <>
       <FullWidthFormControl style={{ ...style }}>
@@ -42,10 +38,8 @@ const TextInput: React.FC<TextInputProps> = ({
           value={value}
           onChange={onChange}
           onBlur={(e) => {
-            // setIsFocused(false);
             if (onBlur) onBlur(e);
           }}
-          // onFocus={() => setIsFocused(true)}
           type={type}
           style={{ ...style }}
           placeholder={placeholder}

@@ -6,11 +6,27 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { LoginSchema } from './LoginSchema';
 import TextInput from '../../atoms/TextInput/TextInput';
-import loginImage from '../../assets/login.png';
-import loginLogo from '../../assets/logo/decorlogo.svg';
-
 import Button from '../../atoms/Button/Button';
-import { MainContainer, FullContainer, LoginImage } from './LoginPage.styel';
+import {
+  FullContainer,
+  MainContainer,
+  LeftContainer,
+  RightContainer,
+  LogoContainer,
+  Title,
+  Highlight,
+  ForgotPasswordLink,
+  SignupContainer,
+  LoginImage,
+  LoginLink,
+  ForgetPaswordContainer,
+  HeadlineSpan,
+} from './LoginPage.styel';
+
+import loginImage from '../../assets/login.png';
+import googleLogo from '../../assets/logo/googleLogo.svg';
+
+import loginLogo from '../../assets/logo/decorlogo.svg';
 
 const initialValues = {
   email: '',
@@ -23,27 +39,31 @@ const LoginPage = () => {
   return (
     <FullContainer>
       <MainContainer>
-        <div className="login-container">
-          <div className="logo">
+        <LeftContainer>
+          <LogoContainer>
             <img
+              style={{ width: '30px', height: '35px' }}
               src={loginLogo}
-              alt="Decord-mistri Logo"
+              alt="Decormistri Logo"
               className="logo-image"
             />
-            <div className="title">
-              <p>
-                <span>Welcome to</span> <span>Decormistri</span> Collaboration
-                tool
-              </p>
-              <p>
-                <span>
-                  Decormistri provides advanced collaboration tools for
-                </span>
-                <span> the Interior Industry and companies</span>
-              </p>
-            </div>
-          </div>
-
+            <Title>
+              <Typography
+                sx={{
+                  fontSize: '28px',
+                  fontWeight: 300,
+                }}
+                variant="body2"
+              >
+                <span>Welcome to</span> <br />
+                <Highlight>Decormistri</Highlight> Collaboration tool
+              </Typography>
+              <Typography variant="body2" sx={{ fontSize: '13px' }}>
+                Decormistri provides advanced collaboration tools for <br /> the
+                Interior Industry and companies.
+              </Typography>
+            </Title>
+          </LogoContainer>
           <Formik
             initialValues={initialValues}
             validationSchema={LoginSchema}
@@ -73,6 +93,11 @@ const LoginPage = () => {
                     placeholder="Email"
                     value={values.email}
                     onChange={handleChange}
+                    style={{
+                      width: '96%',
+                      height: '10px',
+                      marginBottom: '50px',
+                    }}
                     onBlur={handleBlur}
                     error={Boolean(touched.email && errors.email)}
                     helperText={
@@ -86,52 +111,108 @@ const LoginPage = () => {
                     placeholder="Password"
                     value={values.password}
                     onChange={handleChange}
+                    style={{
+                      width: '96%',
+                      borderRadius: '4px',
+                      height: '10px',
+                      marginBottom: '50px',
+                    }}
                     onBlur={handleBlur}
                     error={Boolean(touched.password && errors.password)}
                     helperText={
-                      touched.email && errors.email ? errors.email : undefined
+                      touched.password && errors.password
+                        ? errors.password
+                        : undefined
                     }
                   />
-                  <div className="forgot-password-container">
-                    <Link
-                      component={RouterLink}
-                      to="/forgot-password"
-                      className="forgot-password-link"
-                    >
-                      Forgot password?
-                    </Link>
-                  </div>
+                  <ForgetPaswordContainer>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="rememberMe"
+                        name="rememberMe"
+                      />
+                      <label htmlFor="rememberMe">Remember Me</label>
+                    </div>
 
-                  <Button
-                    title="Login"
-                    type="submit"
-                    color="primary"
-                    backgroundColor="#C7148A"
-                    variant="contained"
-                    disabled={isButtonDisabled}
-                    onClick={() => {}}
-                    style={{
-                      width: '100%',
-                      borderRadius: '4px',
-                      height: '55px',
-                      marginTop: '10px',
-                    }}
-                  />
+                    <ForgotPasswordLink to="/forgot-password">
+                      Forgot password?
+                    </ForgotPasswordLink>
+                  </ForgetPaswordContainer>
+                  <LoginLink to="/dashboard">
+                    <Button
+                      title="Sign In"
+                      type="submit"
+                      color="primary"
+                      backgroundColor={isButtonDisabled ? '#C7148A' : '#C7148A'}
+                      variant="contained"
+                      disabled={isButtonDisabled}
+                      onClick={() => {}}
+                      style={{
+                        width: '480px',
+                        borderRadius: '4px',
+                        height: '48px',
+                        marginTop: '15px',
+                        backgroundColor: isButtonDisabled
+                          ? '#C7148A'
+                          : '#C7148A',
+                      }}
+                    />
+                  </LoginLink>
                 </Form>
               );
             }}
           </Formik>
-
-          <div className="signup-container">
-            <Typography component="span">Don't have an account?</Typography>
-            <Link component={RouterLink} to="/signup" className="signup-link">
-              Sign Up
-            </Link>
+          <div
+            style={{
+              border: '1px solid #afaeae',
+              display: 'flex',
+              justifyContent: 'center',
+              width: '480px',
+              marginTop: '15px',
+              height: '48px',
+              borderRadius: '4px',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <img src={googleLogo} alt="google" />
+              <Button
+                title="Sign In with Google"
+                type="submit"
+                color="primary"
+                variant="contained"
+                backgroundColor="#ffffff"
+                onClick={() => {}}
+                style={{
+                  width: '100%',
+                  borderRadius: '4px',
+                  height: '48px',
+                  fontSize: '16px',
+                  fontWeight: 600,
+                  color: '#000000',
+                }}
+              />
+            </div>
           </div>
-        </div>
-        <div>
+
+          <SignupContainer>
+            <Typography component="span">
+              New to <HeadlineSpan> Decormistri?</HeadlineSpan>
+            </Typography>
+            <Link component={RouterLink} to="/signup" className="signup-link">
+              Create an account
+            </Link>
+          </SignupContainer>
+        </LeftContainer>
+        <RightContainer>
           <LoginImage src={loginImage} alt="Login illustration" />
-        </div>
+        </RightContainer>
       </MainContainer>
     </FullContainer>
   );
