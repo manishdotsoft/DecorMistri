@@ -1,22 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { setLoginData } from '../../store/reducers/loginSlice';
-import {
-  LoginContainer,
-  Logo,
-  Title,
-  ForgetPas,
-  MainCon,
-  ForgetPasF,
-  StyledTypography,
-} from './LoginPage.styel';
-
 import { AppDispatch } from '../../store/store';
-import { Box, Link, Typography } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { LoginSchema } from './LoginSchema';
 import TextInput from '../../atoms/TextInput/TextInput';
+import loginImage from '../../assets/login.png';
+import loginLogo from '../../assets/logo/decorlogo.svg';
+
 import Button from '../../atoms/Button/Button';
+import { MainContainer, FullContainer, LoginImage } from './LoginPage.styel';
 
 const initialValues = {
   email: '',
@@ -27,76 +21,87 @@ const LoginPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <MainCon>
-      <LoginContainer>
-        <Logo>
-          <img src="#" alt="Decord-mistri Logo" style={{ marginBottom: 8 }} />
-          <Title variant="h5">DECORD-MISTRI</Title>
-        </Logo>
+    <FullContainer>
+      <MainContainer>
+        <div className="login-container">
+          <div className="logo">
+            <img
+              src={loginLogo}
+              alt="Decord-mistri Logo"
+              className="logo-image"
+            />
+            <div className="title">
+              <p>
+                <span>Welcome to</span> <span>Decormistri</span> Collaboration
+                tool
+              </p>
+              <p>
+                <span>
+                  Decormistri provides advanced collaboration tools for
+                </span>
+                <span> the Interior Industry and companies</span>
+              </p>
+            </div>
+          </div>
 
-        <Formik
-          initialValues={initialValues}
-          validationSchema={LoginSchema}
-          onSubmit={(values, { resetForm }) => {
-            dispatch(setLoginData(values));
-            localStorage.setItem('authToken', 'your-auth-token');
-            resetForm();
-          }}
-        >
-          {({ values, errors, touched, handleChange, handleBlur, isValid }) => {
-            const isAnyFieldEmpty = !values.email || !values.password;
-            const isButtonDisabled = isAnyFieldEmpty || !isValid;
+          <Formik
+            initialValues={initialValues}
+            validationSchema={LoginSchema}
+            onSubmit={(values, { resetForm }) => {
+              dispatch(setLoginData(values));
+              localStorage.setItem('authToken', 'your-auth-token');
+              resetForm();
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              isValid,
+            }) => {
+              const isButtonDisabled =
+                !values.email || !values.password || !isValid;
 
-            return (
-              <Form>
-                {/* Email Field */}
-                <TextInput
-                  name="email"
-                  type="email"
-                  label="Email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={Boolean(touched.email && errors.email)}
-                />
-                {touched.email && errors.email && (
-                  <StyledTypography as="span">{errors.email}</StyledTypography>
-                )}
+              return (
+                <Form>
+                  <TextInput
+                    name="email"
+                    type="email"
+                    label="Email"
+                    placeholder="Email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={Boolean(touched.email && errors.email)}
+                    helperText={
+                      touched.email && errors.email ? errors.email : undefined
+                    }
+                  />
+                  <TextInput
+                    name="password"
+                    type="password"
+                    label="Password"
+                    placeholder="Password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={Boolean(touched.password && errors.password)}
+                    helperText={
+                      touched.email && errors.email ? errors.email : undefined
+                    }
+                  />
+                  <div className="forgot-password-container">
+                    <Link
+                      component={RouterLink}
+                      to="/forgot-password"
+                      className="forgot-password-link"
+                    >
+                      Forgot password?
+                    </Link>
+                  </div>
 
-                {/* Password Field */}
-                <TextInput
-                  name="password"
-                  type="password"
-                  label="Password"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={Boolean(touched.password && errors.password)}
-                />
-                {touched.password && errors.password && (
-                  <StyledTypography as="span">
-                    {errors.password}
-                  </StyledTypography>
-                )}
-
-                <ForgetPasF>
-                  <Link
-                    component={RouterLink}
-                    to="/forgot-password"
-                    underline="none"
-                    color="blue"
-                  >
-                    Forgot password?
-                  </Link>
-                </ForgetPasF>
-
-                <Link
-                  component={RouterLink}
-                  to="/dashboard"
-                  underline="none"
-                  color="inherit"
-                  onClick={(e) => isButtonDisabled && e.preventDefault()}
-                >
                   <Button
                     title="Login"
                     type="submit"
@@ -104,36 +109,31 @@ const LoginPage = () => {
                     backgroundColor="#C7148A"
                     variant="contained"
                     disabled={isButtonDisabled}
+                    onClick={() => {}}
                     style={{
-                      width: '500px',
-
+                      width: '100%',
                       borderRadius: '4px',
                       height: '55px',
                       marginTop: '10px',
                     }}
-                    onClick={() => {}}
                   />
-                </Link>
-              </Form>
-            );
-          }}
-        </Formik>
+                </Form>
+              );
+            }}
+          </Formik>
 
-        <Box>
-          <ForgetPas>
+          <div className="signup-container">
             <Typography component="span">Don't have an account?</Typography>
-            <Link
-              component={RouterLink}
-              to="/signup"
-              underline="none"
-              color="blue"
-            >
+            <Link component={RouterLink} to="/signup" className="signup-link">
               Sign Up
             </Link>
-          </ForgetPas>
-        </Box>
-      </LoginContainer>
-    </MainCon>
+          </div>
+        </div>
+        <div>
+          <LoginImage src={loginImage} alt="Login illustration" />
+        </div>
+      </MainContainer>
+    </FullContainer>
   );
 };
 
