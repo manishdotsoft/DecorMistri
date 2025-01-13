@@ -14,7 +14,8 @@ export const MainFlex = styled("div")(() => ({
   width: "80%",
   maxWidth: "1600px",
   backgroundColor: "#ffffff",
-  borderRadius: "12px",
+  borderRadius: "20px",
+
   boxShadow: "0px 0px 100px 10px rgba(0, 0, 0, 0.2)",
 }));
 
