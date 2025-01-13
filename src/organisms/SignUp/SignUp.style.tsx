@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 export const StyledContainer = styled("div")(() => ({
@@ -11,19 +12,24 @@ export const StyledContainer = styled("div")(() => ({
 export const MainFlex = styled("div")(() => ({
   display: "flex",
   width: "80%",
-  maxWidth: "1200px",
+  maxWidth: "1600px",
   backgroundColor: "#ffffff",
   borderRadius: "12px",
-  // overflow: "hidden",
-  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+  boxShadow: "0px 0px 100px 10px rgba(0, 0, 0, 0.2)",
 }));
 
-export const StyledForm = styled("div")(() => ({}));
-export const TextArea = styled("div")(() => ({}));
+export const StyledForm = styled("form")(() => ({}));
+export const TextArea = styled("div")(() => ({
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+}));
+
+export const TextArea2 = styled("div")(() => ({}));
 
 export const ChildFlex = styled("div")(() => ({
   flex: 1,
-  padding: "40px 60px",
+  padding: "40px 100px",
   display: "flex",
   flexDirection: "column",
 }));
@@ -37,15 +43,13 @@ export const ImageFlex = styled("div")(() => ({
 }));
 
 export const AllImg = styled("img")(() => ({
-  width: "650px",
-  // objectFit: "cover",
-  // maxHeight: "100%",
+  width: "",
+
   height: "100%",
 }));
 
 export const StyledHeader = styled("div")(() => ({
   marginBottom: "20px",
-  textAlign: "center",
 }));
 
 export const Logo = styled("div")(() => ({
@@ -56,10 +60,18 @@ export const Logo = styled("div")(() => ({
   marginBottom: "10px",
 }));
 
-export const Title = styled("h1")(() => ({
-  fontSize: "24px",
-  fontWeight: "700",
-  color: "#7d22c3",
+export const Title = styled(Typography)(() => ({
+  fontSize: "44px",
+  fontWeight: "300",
+  color: "#000000",
+  margin: "0",
+}));
+
+export const Title2 = styled(Typography)(() => ({
+  fontSize: "14px",
+  fontWeight: "300",
+  color: "#363636",
+  margin: "0",
 }));
 
 export const StyledTypography = styled("p")(() => ({

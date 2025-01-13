@@ -10,18 +10,18 @@ import {
   ImageFlex,
   AllImg,
   StyledTypography,
-  Logo,
   Title,
+  Title2,
   StyledBoxCenter,
-  StyledLink,
   TextArea,
+  TextArea2,
 } from "./SignUp.style";
-
 import { useFormik } from "formik";
 import TextInput from "../../atoms/TextInput/TextInput";
 import { signUpSchema } from "./SchemasSignup";
 import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
 import Button from "../../atoms/Button/Button";
+import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
 
 const SignUpForm: React.FC = () => {
   const formik = useFormik({
@@ -37,97 +37,117 @@ const SignUpForm: React.FC = () => {
     },
   });
 
+  const isAnyFieldEmpty = Object.values(formik.values).some(
+    (value) => value.trim() === ""
+  );
+
   return (
     <StyledContainer>
       <MainFlex>
         <ChildFlex>
-          <StyledForm as="form" onSubmit={formik.handleSubmit}>
+          <StyledForm onSubmit={formik.handleSubmit}>
             <StyledHeader>
-              <Logo>
-                <img
-                  src="#"
-                  alt="Decord-mistri Logo"
-                  style={{ height: "40px" }}
-                />
-                <Title>DECORD-MISTRI</Title>
-              </Logo>
-              <Typography variant="body2" color="textSecondary">
-                Create your free account to get started
-              </Typography>
+              <img
+                src={LogoDecor}
+                alt="Decord-mistri Logo"
+                style={{ height: "40px" }}
+              />
+              <Title>Create your account</Title>
+              <Title2 color="textSecondary">
+                Lorem ipsum is placeholder text commonly used in the graphic,
+                print, and publishing industries
+              </Title2>
             </StyledHeader>
 
-            <TextArea style={{}}>
-              <Button
-                title="Sign In with Google"
-                color="primary"
-                // onClick={() => console.log("Google Sign-In clicked")}
-                // variant="outlined"
-                startIcon={<img src="/path/to/google-icon.svg" alt="Google" />}
-                fullWidth
-                style={{
-                  marginBottom: "20px",
-                  borderRadius: "5px",
-                  background: "white",
-                  color: "black",
-                  border: "2px solid #cccccc",
-                }}
-              />
+            <Button
+              title="Sign In with Google"
+              color="primary"
+              style={{
+                borderRadius: "5px",
+                background: "white",
+                color: "black",
+                border: "1px solid #cccccc",
+                width: "100%",
+                height: "50px",
+              }}
+            />
 
-              <Divider style={{ margin: "20px 0", color: "#9e9e9e" }}>
-                Or
-              </Divider>
+            <Divider style={{ margin: "10px 0", color: "#000000" }}>Or</Divider>
 
-              <TextInput
-                name="name"
-                label="Enter your name"
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                style={{ width: "90%", padding: "10px" }}
-                error={formik.touched.name && Boolean(formik.errors.name)}
-              />
-              {formik.errors.name && formik.touched.name && (
-                <StyledTypography>{formik.errors.name}</StyledTypography>
-              )}
+            <TextInput
+              name="name"
+              label="Enter your name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.name && Boolean(formik.errors.name)}
+              style={{
+                width: "97%",
+                borderRadius: "8px",
+              }}
+              placeholder="Enter your name"
+            />
+            {formik.errors.name && formik.touched.name && (
+              <StyledTypography>{formik.errors.name}</StyledTypography>
+            )}
 
-              <TextInput
-                name="phone"
-                label="Enter your phone number"
-                value={formik.values.phone}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.phone && Boolean(formik.errors.phone)}
-              />
-              {formik.errors.phone && formik.touched.phone && (
-                <StyledTypography>{formik.errors.phone}</StyledTypography>
-              )}
+            <TextInput
+              name="phone"
+              label="Enter your phone number"
+              value={formik.values.phone}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.phone && Boolean(formik.errors.phone)}
+              style={{
+                width: "97%",
+                borderRadius: "8px",
+              }}
+              placeholder="Enter your phone number"
+            />
+            {formik.errors.phone && formik.touched.phone && (
+              <StyledTypography>{formik.errors.phone}</StyledTypography>
+            )}
 
-              <TextInput
-                name="email"
-                label="Enter your email address"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.email && Boolean(formik.errors.email)}
-              />
-              {formik.errors.email && formik.touched.email && (
-                <StyledTypography>{formik.errors.email}</StyledTypography>
-              )}
+            <TextInput
+              name="email"
+              label="Enter your email address"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              style={{
+                width: "97%",
+                borderRadius: "8px",
+              }}
+              placeholder="Enter your email address"
+            />
+            {formik.errors.email && formik.touched.email && (
+              <StyledTypography>{formik.errors.email}</StyledTypography>
+            )}
 
-              <TextInput
-                name="password"
-                type="password"
-                label="Password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={
-                  formik.touched.password && Boolean(formik.errors.password)
-                }
-              />
-              {formik.errors.password && formik.touched.password && (
-                <StyledTypography>{formik.errors.password}</StyledTypography>
-              )}
+            <TextArea>
+              <Typography sx={{ marginBottom: "7px" }}>Password</Typography>
+              <TextArea2>
+                <TextInput
+                  name="password"
+                  type="password"
+                  label="Password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Enter your password"
+                  error={
+                    formik.touched.password && Boolean(formik.errors.password)
+                  }
+                  style={{
+                    width: "145%",
+                    borderRadius: "8px",
+                  }}
+                />
+                {formik.errors.password && formik.touched.password && (
+                  <StyledTypography>{formik.errors.password}</StyledTypography>
+                )}
+              </TextArea2>
             </TextArea>
 
             <Typography
@@ -142,21 +162,35 @@ const SignUpForm: React.FC = () => {
               color="primary"
               type="submit"
               variant="contained"
-              fullWidth
+              disabled={isAnyFieldEmpty}
               style={{
                 marginTop: "20px",
-                backgroundColor: "#7d22c3",
+                backgroundColor: isAnyFieldEmpty ? "#e83bae" : "#C7148A",
                 color: "#ffffff",
+                width: "100%",
+                // height: "50px",
+                padding: "30px",
+                borderRadius: "5px",
+                cursor: isAnyFieldEmpty ? "not-allowed" : "pointer",
               }}
             />
 
             <StyledBoxCenter>
               <Typography
                 variant="body2"
-                style={{ textAlign: "center", marginTop: "20px" }}
+                style={{
+                  textAlign: "center",
+                  marginTop: "20px",
+                  fontWeight: "600",
+                  color: "#3f3f3f",
+                }}
               >
-                Already have an account?{" "}
-                <Typography component={RouterLink} to="/">
+                Already have an account?
+                <Typography
+                  component={RouterLink}
+                  to="/"
+                  sx={{ color: "#C7148A", fontSize: "14px" }}
+                >
                   Sign in
                 </Typography>
               </Typography>
