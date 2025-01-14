@@ -18,9 +18,8 @@ import {
   SignupContainer,
 } from './Forgetpage.style';
 
-import loginImage from '../../assets/login.png';
-
-import loginLogo from '../../assets/logo/decorlogo.svg';
+import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
+import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 import { Link } from 'react-router-dom';
 
 const initialValues = {

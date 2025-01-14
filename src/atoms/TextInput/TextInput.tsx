@@ -2,7 +2,7 @@ import {
   FormHelp,
   FullWidthFormControl,
   TextInputField,
-} from './TextInput.style';
+} from "./TextInput.style";
 
 interface TextInputProps {
   name: string;

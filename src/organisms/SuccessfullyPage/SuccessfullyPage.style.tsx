@@ -25,16 +25,6 @@ export const MainFlex = styled("div")(({ theme }) => ({
   },
 }));
 
-export const StyledForm = styled("form")(() => ({}));
-
-export const TextArea = styled("div")(() => ({
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-}));
-
-export const TextArea2 = styled("div")(() => ({}));
-
 export const ChildFlex = styled("div")(({ theme }) => ({
   flex: 1,
   padding: "35px 100px",
@@ -69,19 +59,16 @@ export const StyledHeader = styled("div")(() => ({
   marginBottom: "20px",
 }));
 
-export const Logo = styled("div")(() => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "10px",
-  marginBottom: "10px",
+export const Logo = styled("img")(() => ({
+  marginBottom: "20px",
 }));
 
 export const Title = styled(Typography)(({ theme }) => ({
-  fontSize: "44px",
+  fontSize: "2.1rem",
   fontWeight: "300",
   color: "#000000",
-  margin: "0",
+  lineHeight: "30px",
+  marginBottom: "10px",
   [theme.breakpoints.down("sm")]: {
     fontSize: "32px",
   },
@@ -95,23 +82,4 @@ export const Title2 = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     fontSize: "12px",
   },
-}));
-
-export const StyledTypography = styled("p")(() => ({
-  fontSize: "12px",
-  color: "#d32f2f",
-  marginTop: "5px",
-}));
-
-export const StyledBoxCenter = styled("div")(() => ({
-  display: "flex",
-  justifyContent: "center",
-  marginTop: "20px",
-}));
-
-export const StyledLink = styled("span")(() => ({
-  color: "#7d22c3",
-  fontWeight: "bold",
-  cursor: "pointer",
-  textDecoration: "none",
 }));

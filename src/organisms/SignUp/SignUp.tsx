@@ -1,161 +1,289 @@
-import React from "react";
-import { Typography, ThemeProvider } from "@mui/material";
-import { theme } from "../../thems/primitives/theme";
-import Toaster from "../../atoms/Toaster/Toaster";
+import React, { useState } from "react";
+import { Typography, Divider, Box, LinearProgress } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import {
   StyledContainer,
   StyledForm,
   StyledHeader,
+  MainFlex,
+  ChildFlex,
+  AllImg,
   StyledTypography,
-  StyledContainerWrapper,
-  StyledLink,
-  StyledBoxCenter,
-  MainGrid,
-  ChildGrid,
-  Logo,
   Title,
+  Title2,
+  StyledBoxCenter,
+  TextArea,
 } from "./SignUp.style";
 
+import TextInput from "../../atoms/TextInput/TextInput";
 
-import { useSignUp } from './SignUp.hook';
-import TextInput from '../../atoms/TextInput/TextInput';
-import Button from '../../atoms/Button/Button';
+import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
+import Button from "../../atoms/Button/Button";
+import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
+import { useSignUp } from "./SignUp.hook";
+
+const calculatePasswordStrength = (password) => {
+  let strength = 0;
+
+  if (password.length >= 8) strength += 1;
+  if (/[A-Z]/.test(password)) strength += 1;
+  if (/[0-9]/.test(password)) strength += 1;
+  if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+  return strength;
+};
+
+const getStrengthLabel = (strength) => {
+  switch (strength) {
+    case 1:
+      return { label: "Weak", color: "#f44336" };
+    case 2:
+      return { label: "Fair", color: "#ff9800" };
+    case 3:
+      return { label: "Good", color: "#ffc107" };
+    case 4:
+      return { label: "Strong", color: "#4caf50" };
+    default:
+      return { label: "Very Weak", color: "#9e9e9e" };
+  }
+};
 
 const SignUpForm: React.FC = () => {
-  const { formik, toasterOpen, handleCloseToaster, isAnyFieldEmpty } =
-    useSignUp();
+  const { formik, isAnyFieldEmpty } = useSignUp();
+
+  const [passwordStrength, setPasswordStrength] = useState(0);
+
+  const handlePasswordChange = (e) => {
+    const { value } = e.target;
+    formik.handleChange(e);
+    const strength = calculatePasswordStrength(value);
+    setPasswordStrength(strength);
+  };
+
+  const { label, color } = getStrengthLabel(passwordStrength);
+
+  const SegmentedProgressBar = ({ strength }) => {
+    const segments = [1, 2, 3, 4];
+    return (
+      <Box display="flex" gap={0.5}>
+        {segments.map((segment) => (
+          <Box
+            key={segment}
+            sx={{
+              flex: 1,
+              height: 4,
+              borderRadius: 4,
+
+              backgroundColor:
+                segment <= strength
+                  ? getStrengthLabel(segment).color
+                  : "#e0e0e0",
+            }}
+          />
+        ))}
+      </Box>
+    );
+  };
 
   return (
-    <ThemeProvider theme={theme}>
-      <StyledContainer>
-        <StyledContainerWrapper>
-          <Toaster
-            message="Account created successfully!"
-            type="success"
-            open={toasterOpen}
-            onClose={handleCloseToaster}
-          />
-          {/* @ts-expect-error: StyledForm does not have a component prop */}
-          <StyledForm as="form" onSubmit={formik.handleSubmit}>
+    <StyledContainer>
+      <MainFlex>
+        <ChildFlex>
+          <StyledForm onSubmit={formik.handleSubmit}>
             <StyledHeader>
-              <Logo>
-                <img src="#" alt="Decord-mistri Logo" />
-                <Title variant="h5">DECORD-MISTRI</Title>
-              </Logo>
-              <Typography variant="body1" color="textSecondary">
-                Create your free account to get started
-              </Typography>
+              <img
+                src={LogoDecor}
+                alt="Decord-mistri Logo"
+                style={{ height: "40px" }}
+              />
+              <Title>Create your account</Title>
+              <Title2 color="textSecondary">
+                Lorem ipsum is placeholder text commonly used in the graphic,
+                print, and publishing industries
+              </Title2>
             </StyledHeader>
-            <MainGrid>
-              <ChildGrid>
-                <TextInput
-                  name="firstName"
-                  label="First Name"
-                  value={formik.values.firstName}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.firstName && Boolean(formik.errors.firstName)
-                  }
-                />
-                {formik.errors.firstName && formik.touched.firstName && (
-                  <StyledTypography>{formik.errors.firstName}</StyledTypography>
-                )}
-              </ChildGrid>
-              <ChildGrid>
-                <TextInput
-                  name="lastName"
-                  type="text"
-                  label="Last Name"
-                  value={formik.values.lastName}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.lastName && Boolean(formik.errors.lastName)
-                  }
-                />
-                {formik.errors.lastName && formik.touched.lastName && (
-                  <StyledTypography>{formik.errors.lastName}</StyledTypography>
-                )}
-              </ChildGrid>
-            </MainGrid>
 
+            <Button
+              title="Sign In with Google"
+              color="primary"
+              style={{
+                borderRadius: "5px",
+                background: "white",
+                color: "black",
+                border: "1px solid #cccccc",
+                width: "100%",
+                height: "50px",
+              }}
+            />
+
+            <Divider style={{ margin: "10px 0", color: "#000000" }}>Or</Divider>
+
+            {/* Name Field */}
+            <TextInput
+              name="name"
+              label="Enter your name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.name && Boolean(formik.errors.name)}
+              style={{
+                width: "96%",
+                borderRadius: "8px",
+                height: "10px",
+                marginBottom: "50px",
+              }}
+              placeholder="Enter your name"
+            />
+            {formik.errors.name && formik.touched.name && (
+              <StyledTypography>{formik.errors.name}</StyledTypography>
+            )}
+
+            {/* Phone Field */}
+            <TextInput
+              name="phone"
+              label="Enter your phone number"
+              value={formik.values.phone}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.phone && Boolean(formik.errors.phone)}
+              style={{
+                width: "96%",
+                borderRadius: "8px",
+                height: "10px",
+                marginBottom: "50px",
+              }}
+              placeholder="Enter your phone number"
+            />
+            {formik.errors.phone && formik.touched.phone && (
+              <StyledTypography>{formik.errors.phone}</StyledTypography>
+            )}
+
+            {/* Email Field */}
             <TextInput
               name="email"
-              type="email"
-              label="Email"
-              style={{ marginTop: '10px' }}
+              label="Enter your email address"
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.email && Boolean(formik.errors.email)}
+              style={{
+                width: "96%",
+                borderRadius: "8px",
+                height: "10px",
+                marginBottom: "50px",
+              }}
+              placeholder="Enter your email address"
             />
             {formik.errors.email && formik.touched.email && (
               <StyledTypography>{formik.errors.email}</StyledTypography>
             )}
 
-            <TextInput
-              label="Password"
-              type="password"
-              name="password"
-              style={{ marginTop: '10px' }}
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-            />
-            {formik.errors.password && formik.touched.password && (
-              <StyledTypography>{formik.errors.password}</StyledTypography>
-            )}
+            {/* Password Field */}
+            <TextArea>
+              <Typography sx={{ marginBottom: "7px" }}>Password</Typography>
 
-            <TextInput
-              name="confirm_password"
-              type="password"
-              label="Confirm Password"
-              value={formik.values.confirm_password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              style={{ marginTop: '10px' }}
-              error={
-                formik.touched.confirm_password &&
-                Boolean(formik.errors.confirm_password)
-              }
-            />
-            {formik.errors.confirm_password &&
-              formik.touched.confirm_password && (
-                <StyledTypography>
-                  {formik.errors.confirm_password}
-                </StyledTypography>
+              <TextInput
+                name="password"
+                type="password"
+                label="Password"
+                value={formik.values.password}
+                onChange={handlePasswordChange}
+                onBlur={formik.handleBlur}
+                placeholder="Enter your password"
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                style={{
+                  width: "90%",
+                  borderRadius: "8px",
+                  height: "10px",
+                  marginBottom: "40px",
+                }}
+              />
+              {formik.errors.password && formik.touched.password && (
+                <StyledTypography>{formik.errors.password}</StyledTypography>
               )}
+            </TextArea>
+
+            {/* Password Strength Bar */}
+            {/* <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                mt: 1,
+              }}
+            >
+              <LinearProgress
+                variant="determinate"
+                value={(passwordStrength / 4) * 100}
+                sx={{ width: "82%", height: 6, borderRadius: 5 }}
+                style={{ backgroundColor: "#e0e0e0", color: color }}
+              />
+              <Typography
+                variant="caption"
+                style={{ color: color, fontWeight: 600 }}
+              ></Typography>
+            </Box> */}
+            <Box sx={{ mt: 1, mb: 2 }}>
+              <SegmentedProgressBar strength={passwordStrength} />
+            </Box>
+            <Typography
+              variant="caption"
+              style={{
+                marginTop: "10px",
+                color: "#9e9e9e",
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
+              Password strength: {label}
+            </Typography>
+
+            {/* Sign Up Button */}
             <Button
               title="Sign Up"
               color="primary"
               type="submit"
-              style={{
-                width: '100%',
-                borderRadius: '4px',
-                height: '55px',
-                marginTop: '10px',
-              }}
-              disabled={isAnyFieldEmpty}
-              onClick={() => formik.handleSubmit}
               variant="contained"
+              disabled={isAnyFieldEmpty || formik.isSubmitting}
+              style={{
+                backgroundColor: isAnyFieldEmpty ? "#e432a9" : "#C7148A",
+                cursor:
+                  isAnyFieldEmpty || formik.isSubmitting
+                    ? "not-allowed"
+                    : "pointer",
+
+                width: "100%",
+                borderRadius: "5px",
+                padding: "25px",
+              }}
             />
 
             <StyledBoxCenter>
-              <Typography variant="body2">
-                Already have an account?{" "}
-                {/* @ts-expect-error: StyledForm does not have a component prop */}
-                <StyledLink component={RouterLink} to="/">
+              <Typography
+                variant="body2"
+                style={{
+                  textAlign: "center",
+                  marginTop: "20px",
+                  fontWeight: "600",
+                  color: "#3f3f3f",
+                }}
+              >
+                Already have an account?
+                <Typography
+                  component={RouterLink}
+                  to="/"
+                  sx={{ color: "#C7148A", fontSize: "14px" }}
+                >
                   Sign in
-                </StyledLink>
+                </Typography>
               </Typography>
             </StyledBoxCenter>
           </StyledForm>
-        </StyledContainerWrapper>
-      </StyledContainer>
-    </ThemeProvider>
+        </ChildFlex>
+        <AllImg src={SignUpImage} alt="Signup visuals" />
+      </MainFlex>
+    </StyledContainer>
   );
 };
 

@@ -21,8 +21,8 @@ import {
   Title,
 } from './LoginPage.styel';
 
-import loginImage from '../../assets/login.png';
-import loginLogo from '../../assets/logo/decorlogo.svg';
+import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
+import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 
 const initialValues = {
   email: '',
