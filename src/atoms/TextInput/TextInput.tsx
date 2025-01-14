@@ -26,7 +26,7 @@ const TextInput: React.FC<TextInputProps> = ({
   style,
   error = false,
   helperText,
-  type = "text",
+  type = 'text',
   placeholder,
 }) => {
   return (
