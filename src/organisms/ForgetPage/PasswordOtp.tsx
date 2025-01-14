@@ -2,7 +2,6 @@ import { useDispatch } from 'react-redux';
 import { setLoginData } from '../../store/reducers/loginSlice';
 import { AppDispatch } from '../../store/store';
 import { Typography } from '@mui/material';
-
 import { Formik, Form } from 'formik';
 import { LoginSchema } from '../Login/LoginSchema';
 import TextInput from '../../atoms/TextInput/TextInput';
