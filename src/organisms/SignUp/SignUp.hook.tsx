@@ -7,19 +7,17 @@ import { setSignUpData } from "../../store/reducers/signUpSlice";
 import { signUpSchema } from "./SchemasSignup";
 
 export interface SignUpFormValues {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   password: string;
-  confirm_password: string;
+  phone: string;
 }
 
 const initialValues: SignUpFormValues = {
-  firstName: "",
-  lastName: "",
+  name: "",
   email: "",
   password: "",
-  confirm_password: "",
+  phone: "",
 };
 
 export const useSignUp = () => {
@@ -37,7 +35,7 @@ export const useSignUp = () => {
       actions.resetForm();
 
       setTimeout(() => {
-        navigate("/");
+        navigate("/success");
       }, 2000);
     },
   });
