@@ -8,7 +8,7 @@ interface InputLabelItemProps {
 export const FullWidthFormControl = styled("div")({
   position: "relative",
   width: "100%",
-  marginBottom: "16px",
+  // marginBottom: "16px",
 });
 
 export const InputLabelItem = styled("label")<InputLabelItemProps>(

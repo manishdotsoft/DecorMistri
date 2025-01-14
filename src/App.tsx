@@ -6,6 +6,7 @@ import Home from "./pages/Dashboard/Home";
 import Login from "./organisms/Login/Login";
 import CalenderView from "./organisms/CalendarView/CalendarView";
 import CreateProject from "./organisms/CreateProject/CreateProject";
+import SuccessfullyPage from "./organisms/SuccessfullyPage/SuccessfullyPage";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
 
         <Route path="/calenderview" element={<CalenderView />} />
         <Route path="/create-Project" element={<CreateProject />} />
+        <Route path="/success" element={<SuccessfullyPage />} />
       </Routes>
     </BrowserRouter>
   );

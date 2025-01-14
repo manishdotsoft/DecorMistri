@@ -1,5 +1,5 @@
-import React from "react";
-import { Typography, Divider } from "@mui/material";
+import React, { useState } from "react";
+import { Typography, Divider, Box, LinearProgress } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import {
   StyledContainer,
@@ -7,39 +7,83 @@ import {
   StyledHeader,
   MainFlex,
   ChildFlex,
-  ImageFlex,
   AllImg,
   StyledTypography,
   Title,
   Title2,
   StyledBoxCenter,
   TextArea,
-  TextArea2,
 } from "./SignUp.style";
-import { useFormik } from "formik";
+
 import TextInput from "../../atoms/TextInput/TextInput";
-import { signUpSchema } from "./SchemasSignup";
+
 import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
 import Button from "../../atoms/Button/Button";
 import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
+import { useSignUp } from "./SignUp.hook";
+
+const calculatePasswordStrength = (password) => {
+  let strength = 0;
+
+  if (password.length >= 8) strength += 1;
+  if (/[A-Z]/.test(password)) strength += 1;
+  if (/[0-9]/.test(password)) strength += 1;
+  if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+  return strength;
+};
+
+const getStrengthLabel = (strength) => {
+  switch (strength) {
+    case 1:
+      return { label: "Weak", color: "#f44336" };
+    case 2:
+      return { label: "Fair", color: "#ff9800" };
+    case 3:
+      return { label: "Good", color: "#ffc107" };
+    case 4:
+      return { label: "Strong", color: "#4caf50" };
+    default:
+      return { label: "Very Weak", color: "#9e9e9e" };
+  }
+};
 
 const SignUpForm: React.FC = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      phone: "",
-      email: "",
-      password: "",
-    },
-    validationSchema: signUpSchema,
-    onSubmit: (values) => {
-      console.log("Form Submitted", values);
-    },
-  });
+  const { formik, isAnyFieldEmpty } = useSignUp();
 
-  const isAnyFieldEmpty = Object.values(formik.values).some(
-    (value) => value.trim() === ""
-  );
+  const [passwordStrength, setPasswordStrength] = useState(0);
+
+  const handlePasswordChange = (e) => {
+    const { value } = e.target;
+    formik.handleChange(e);
+    const strength = calculatePasswordStrength(value);
+    setPasswordStrength(strength);
+  };
+
+  const { label, color } = getStrengthLabel(passwordStrength);
+
+  const SegmentedProgressBar = ({ strength }) => {
+    const segments = [1, 2, 3, 4];
+    return (
+      <Box display="flex" gap={0.5}>
+        {segments.map((segment) => (
+          <Box
+            key={segment}
+            sx={{
+              flex: 1,
+              height: 4,
+              borderRadius: 4,
+
+              backgroundColor:
+                segment <= strength
+                  ? getStrengthLabel(segment).color
+                  : "#e0e0e0",
+            }}
+          />
+        ))}
+      </Box>
+    );
+  };
 
   return (
     <StyledContainer>
@@ -74,6 +118,7 @@ const SignUpForm: React.FC = () => {
 
             <Divider style={{ margin: "10px 0", color: "#000000" }}>Or</Divider>
 
+            {/* Name Field */}
             <TextInput
               name="name"
               label="Enter your name"
@@ -82,8 +127,10 @@ const SignUpForm: React.FC = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.name && Boolean(formik.errors.name)}
               style={{
-                width: "97%",
+                width: "96%",
                 borderRadius: "8px",
+                height: "10px",
+                marginBottom: "50px",
               }}
               placeholder="Enter your name"
             />
@@ -91,6 +138,7 @@ const SignUpForm: React.FC = () => {
               <StyledTypography>{formik.errors.name}</StyledTypography>
             )}
 
+            {/* Phone Field */}
             <TextInput
               name="phone"
               label="Enter your phone number"
@@ -99,8 +147,10 @@ const SignUpForm: React.FC = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.phone && Boolean(formik.errors.phone)}
               style={{
-                width: "97%",
+                width: "96%",
                 borderRadius: "8px",
+                height: "10px",
+                marginBottom: "50px",
               }}
               placeholder="Enter your phone number"
             />
@@ -108,6 +158,7 @@ const SignUpForm: React.FC = () => {
               <StyledTypography>{formik.errors.phone}</StyledTypography>
             )}
 
+            {/* Email Field */}
             <TextInput
               name="email"
               label="Enter your email address"
@@ -116,8 +167,10 @@ const SignUpForm: React.FC = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.email && Boolean(formik.errors.email)}
               style={{
-                width: "97%",
+                width: "96%",
                 borderRadius: "8px",
+                height: "10px",
+                marginBottom: "50px",
               }}
               placeholder="Enter your email address"
             />
@@ -125,53 +178,84 @@ const SignUpForm: React.FC = () => {
               <StyledTypography>{formik.errors.email}</StyledTypography>
             )}
 
+            {/* Password Field */}
             <TextArea>
               <Typography sx={{ marginBottom: "7px" }}>Password</Typography>
-              <TextArea2>
-                <TextInput
-                  name="password"
-                  type="password"
-                  label="Password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="Enter your password"
-                  error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                  }
-                  style={{
-                    width: "145%",
-                    borderRadius: "8px",
-                  }}
-                />
-                {formik.errors.password && formik.touched.password && (
-                  <StyledTypography>{formik.errors.password}</StyledTypography>
-                )}
-              </TextArea2>
+
+              <TextInput
+                name="password"
+                type="password"
+                label="Password"
+                value={formik.values.password}
+                onChange={handlePasswordChange}
+                onBlur={formik.handleBlur}
+                placeholder="Enter your password"
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                style={{
+                  width: "90%",
+                  borderRadius: "8px",
+                  height: "10px",
+                  marginBottom: "40px",
+                }}
+              />
+              {formik.errors.password && formik.touched.password && (
+                <StyledTypography>{formik.errors.password}</StyledTypography>
+              )}
             </TextArea>
 
+            {/* Password Strength Bar */}
+            {/* <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                mt: 1,
+              }}
+            >
+              <LinearProgress
+                variant="determinate"
+                value={(passwordStrength / 4) * 100}
+                sx={{ width: "82%", height: 6, borderRadius: 5 }}
+                style={{ backgroundColor: "#e0e0e0", color: color }}
+              />
+              <Typography
+                variant="caption"
+                style={{ color: color, fontWeight: 600 }}
+              ></Typography>
+            </Box> */}
+            <Box sx={{ mt: 1, mb: 2 }}>
+              <SegmentedProgressBar strength={passwordStrength} />
+            </Box>
             <Typography
               variant="caption"
-              style={{ marginTop: "10px", color: "#9e9e9e" }}
+              style={{
+                marginTop: "10px",
+                color: "#9e9e9e",
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
             >
-              Password strength: Strong
+              Password strength: {label}
             </Typography>
 
+            {/* Sign Up Button */}
             <Button
               title="Sign Up"
               color="primary"
               type="submit"
               variant="contained"
-              disabled={isAnyFieldEmpty}
+              disabled={isAnyFieldEmpty || formik.isSubmitting}
               style={{
-                marginTop: "20px",
-                backgroundColor: isAnyFieldEmpty ? "#e83bae" : "#C7148A",
-                color: "#ffffff",
+                backgroundColor: isAnyFieldEmpty ? "#e432a9" : "#C7148A",
+                cursor:
+                  isAnyFieldEmpty || formik.isSubmitting
+                    ? "not-allowed"
+                    : "pointer",
+
                 width: "100%",
-                // height: "50px",
-                padding: "30px",
                 borderRadius: "5px",
-                cursor: isAnyFieldEmpty ? "not-allowed" : "pointer",
+                padding: "25px",
               }}
             />
 
@@ -197,9 +281,7 @@ const SignUpForm: React.FC = () => {
             </StyledBoxCenter>
           </StyledForm>
         </ChildFlex>
-        <ImageFlex>
-          <AllImg src={SignUpImage} alt="Signup visuals" />
-        </ImageFlex>
+        <AllImg src={SignUpImage} alt="Signup visuals" />
       </MainFlex>
     </StyledContainer>
   );

@@ -1,19 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SignUpState {
-  firstName: string;
-  lastName: string;
+  // firstName: string;
+  // lastName: string;
+  name: string;
   email: string;
   password: string;
-  confirm_password: string;
+  // confirm_password: string;
 }
 
 const initialState: SignUpState = {
-  firstName: "",
-  lastName: "",
+  // firstName: "",
+  // lastName: "",
+  name: "",
+
   email: "",
   password: "",
-  confirm_password: "",
+  // confirm_password: "",
 };
 
 const signUpSlice = createSlice({
