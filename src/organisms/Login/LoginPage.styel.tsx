@@ -1,74 +1,145 @@
-import { styled } from '@mui/material/styles';
-import { TextField, Button, Box, Typography } from '@mui/material';
-import { theme as customTheme, theme } from '../../thems/primitives/theme';
+import { styled } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
-export const LoginContainer = styled('form')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  minHeight: '70vh',
+export const FullContainer = styled('div')`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+`;
 
-  backgroundColor: theme.palette.background.paper || '#fff',
-  boxShadow: '0px 0px 5px 1px rgba(0,0,0,0.5)',
-  padding: theme.spacing(3),
-  borderRadius: theme.shape.borderRadius,
-}));
-export const Title = styled(Typography)({
-  fontWeight: 600,
-});
+export const MainContainer = styled('div')`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  border-radius: 25px;
+  height: 82vh;
+  background-color: white;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+`;
 
-export const MainCon = styled('div')({
-  backgroundColor: theme.palette.background.default,
-  minHeight: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
+export const LeftContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  width: 40%;
+`;
 
-export const ForgetPas = styled(Typography)({
-  color: theme.palette.grey[600],
-  marginTop: theme.spacing(1),
-  display: 'flex',
-  justifyContent: 'space-between',
-  gap: theme.spacing(1),
-});
+export const RightContainer = styled('div')`
+  width: 50%;
+`;
 
-export const ForgetPasF = styled(Typography)({
-  color: theme.palette.grey[600],
-  textAlign: 'end',
-});
+export const HeadlineSpan = styled('span')`
+  font-weight: 600;
+  color: black;
+`;
 
-export const Logo = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  marginBottom: theme.spacing(3),
-  textAlign: 'center',
-}));
+export const LogoContainer = styled('div')`
+  margin-bottom: 20px;
 
-export const StyledTextField = styled(TextField)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-  width: '100%',
-  '& .MuiOutlinedInput-root': {
-    borderRadius: theme.shape.borderRadius,
-  },
-}));
+  .logo-image {
+    height: 30px;
+  }
+`;
 
-export const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor:
-    customTheme.palette.primary.main || theme.palette.primary.main,
-  marginTop: theme.spacing(2),
-  borderRadius: theme.shape.borderRadius,
-  textTransform: 'none',
-  marginBottom: theme.spacing(2),
-  fontWeight: 500,
-  fontSize: theme.typography.h6.fontSize,
-  '&:hover': {
-    backgroundColor: theme.palette.primary.dark,
-  },
-}));
-export const StyledTypography = styled('span')(({ theme }) => ({
-  fontSize: '0.7rem',
-  color: theme.palette.error.main,
-}));
+export const Title = styled('div')`
+  font-size: 18px;
+  color: #333;
+`;
+
+export const Highlight = styled('span')`
+  color: #c7148a;
+  font-weight: bold;
+  font-size: 28px;
+`;
+
+export const ForgotPasswordLink = styled(RouterLink)`
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+  color: #c7148a;
+  text-decoration: none;
+  font-size: 15px;
+`;
+
+export const ForgetPaswordContainer = styled('div')`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  label {
+    font-size: 18px;
+    color: #000000;
+    font-weight: 400;
+  }
+
+  input[type='checkbox'] {
+    display: none;
+  }
+
+  input[type='checkbox'] + label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  input[type='checkbox'] + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  input[type='checkbox']:checked + label::before {
+    background-color: pink;
+    border-color: pink;
+  }
+
+  input[type='checkbox']:checked + label::after {
+    content: '✔';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    font-size: 14px;
+    color: #000000;
+  }
+`;
+
+export const SignupContainer = styled('div')`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 15px;
+  font-size: 6px;
+  color: #666;
+  width: 100%;
+  .signup-link {
+    margin-left: 5px;
+    font-size: 20px;
+    color: #c7148a;
+    text-decoration: none;
+  }
+`;
+
+export const LoginImage = styled('img')`
+  height: 100%;
+  width: 650px;
+  object-fit: cover;
+`;
+
+export const LoginLink = styled(RouterLink)`
+  text-decoration: none;
+`;

@@ -30,7 +30,6 @@ export const InputLabelItem = styled('label')<InputLabelItemProps>(
 );
 
 export const TextInputField = styled('input')({
-  width: '100%',
   padding: '18px',
   borderRadius: '4px',
   border: '1px solid #ccc',
