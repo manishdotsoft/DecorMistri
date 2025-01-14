@@ -16,18 +16,20 @@ import {
   AllImg,
   LoginLink,
   Title,
+  SignupContainer,
 } from './Forgetpage.style';
 
 import loginImage from '../../assets/login.png';
 
 import loginLogo from '../../assets/logo/decorlogo.svg';
+import { Link } from 'react-router-dom';
 
 const initialValues = {
   email: '',
   password: '',
 };
 
-const ForgetPassword = () => {
+const PasswordOtp = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
@@ -53,7 +55,7 @@ const ForgetPassword = () => {
                   Forgot password
                 </Typography>
                 <Typography sx={{ fontSize: '14px', fontWeight: 400 }}>
-                  No worries, We’ll send you instructions for reset
+                  Enter a reset code
                 </Typography>
               </Title>
             </StyledHeader>
@@ -71,9 +73,9 @@ const ForgetPassword = () => {
                   <Form>
                     <TextInput
                       name="email"
-                      type="email"
-                      label="Email Address / Mobile Number"
-                      placeholder="Email Address / Mobile Number"
+                      type="number"
+                      label="Enter OTP"
+                      placeholder="Enter OTP"
                       value={values.email}
                       onChange={handleChange}
                       style={{
@@ -89,9 +91,9 @@ const ForgetPassword = () => {
                       }
                     />
 
-                    <LoginLink to="/passwordotp">
+                    <LoginLink to="/newpassword">
                       <Button
-                        title="Reset Password"
+                        title="Continue"
                         type="submit"
                         color="primary"
                         backgroundColor={'#C7148A'}
@@ -112,9 +114,9 @@ const ForgetPassword = () => {
               }}
             </Formik>
           </StyledForm>
-          <LoginLink to="/">
+          <LoginLink to="/signup">
             <Button
-              title="Back"
+              title="Back to Sign in"
               type="submit"
               color="primary"
               variant="contained"
@@ -131,6 +133,12 @@ const ForgetPassword = () => {
               }}
             />
           </LoginLink>
+          <SignupContainer>
+            <Typography component="span">Dont receive the code ? </Typography>
+            <Link to="" className="signup-link">
+              Please resend
+            </Link>
+          </SignupContainer>
         </ChildFlex>
 
         <AllImg src={loginImage} alt="Login illustration" />
@@ -139,4 +147,4 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;
+export default PasswordOtp;
