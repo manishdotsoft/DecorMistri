@@ -7,7 +7,7 @@ export const HeadlineSpan = styled('span')`
 
 export const Highlight = styled('span')`
   color: #c7148a;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 28px;
 `;
 

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FormHelperText } from "@mui/material";
+import React, { useState } from 'react';
+import { FormHelperText } from '@mui/material';
 import {
   FullWidthFormControl,
   InputLabelItem,
@@ -7,8 +7,8 @@ import {
   OptionSelect,
   ContainerMain,
   ErrorMe,
-} from "./SelectOption.style";
-import { theme } from "../../thems/primitives/theme";
+} from './SelectOption.style';
+import { theme } from '../../thems/primitives/theme';
 
 interface SelectOptionProps {
   name: string;
@@ -72,7 +72,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
       </FullWidthFormControl>
       <ErrorMe>
         {error && (
-          <FormHelperText sx={{ color: "red" }}>{helperText}</FormHelperText>
+          <FormHelperText sx={{ color: 'red' }}>{helperText}</FormHelperText>
         )}
       </ErrorMe>
     </ContainerMain>
