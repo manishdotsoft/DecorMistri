@@ -75,6 +75,7 @@ export const SignupContainer = styled('div')`
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  gap: 10px;
   margin-top: 15px;
   font-size: 6px;
   color: #666;
@@ -96,6 +97,7 @@ import { styled } from '@mui/material/styles';
 export const StyledContainer = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
+  fontFamily: 'sans-serif',
   alignItems: 'center',
   minHeight: '100vh',
   backgroundColor: '#f7f7f7',
@@ -106,6 +108,8 @@ export const MainFlex = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  fontFamily: 'sans-serif',
+
   maxWidth: '1400px',
   backgroundColor: '#ffffff',
   borderRadius: '25px',
@@ -122,10 +126,14 @@ export const StyledForm = styled('div')(() => ({}));
 export const TextArea = styled('div')(() => ({
   display: 'flex',
   alignItems: 'center',
+  fontFamily: 'sans-serif',
+
   gap: '10px',
 }));
 
-export const TextArea2 = styled('div')(() => ({}));
+export const TextArea2 = styled('div')(() => ({
+  fontFamily: 'sans-serif',
+}));
 
 export const ChildFlex = styled('div')(({ theme }) => ({
   flex: 1,
@@ -136,6 +144,7 @@ export const ChildFlex = styled('div')(({ theme }) => ({
   height: '100%',
   [theme.breakpoints.down('md')]: {
     padding: '20px 16px',
+    fontFamily: 'sans-serif',
   },
 }));
 
@@ -144,6 +153,8 @@ export const ImageFlex = styled('div')(() => ({
   backgroundColor: '#f7f7f7',
   width: '100%',
   height: '100%',
+  fontFamily: 'sans-serif',
+
   borderRadius: '25px',
 }));
 
@@ -151,6 +162,8 @@ export const AllImg = styled('img')(({ theme }) => ({
   width: '50%',
   maxWidth: '100%',
   height: 'auto',
+  fontFamily: 'sans-serif',
+
   [theme.breakpoints.down('md')]: {
     width: '100%',
     margin: '0 auto',
@@ -159,6 +172,7 @@ export const AllImg = styled('img')(({ theme }) => ({
 
 export const StyledHeader = styled('div')(() => ({
   marginBottom: '20px',
+  fontFamily: 'sans-serif',
 }));
 
 export const Logo = styled('div')(() => ({
@@ -167,15 +181,19 @@ export const Logo = styled('div')(() => ({
   justifyContent: 'center',
   gap: '10px',
   marginBottom: '10px',
+  fontFamily: 'sans-serif',
 }));
 
 export const Title = styled(Box)(({ theme }) => ({
   fontSize: '44px',
   fontWeight: '300',
+  fontFamily: 'sans-serif',
+
   color: '#000000',
   margin: '0',
   [theme.breakpoints.down('sm')]: {
     fontSize: '32px',
+    fontFamily: 'sans-serif',
   },
 }));
 
@@ -183,6 +201,8 @@ export const Title2 = styled(Box)(({ theme }) => ({
   fontSize: '14px',
   fontWeight: '300',
   color: '#363636',
+  fontFamily: 'sans-serif',
+
   margin: '0',
   [theme.breakpoints.down('sm')]: {
     fontSize: '12px',
@@ -193,17 +213,21 @@ export const StyledTypography = styled(Typography)(() => ({
   fontSize: '12px',
   color: '#d32f2f',
   marginTop: '5px',
+  fontFamily: 'sans-serif',
 }));
 
 export const StyledBoxCenter = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
   marginTop: '20px',
+  fontFamily: 'sans-serif',
 }));
 
 export const StyledLink = styled('span')(() => ({
   color: '#7d22c3',
   fontWeight: 'bold',
   cursor: 'pointer',
+  fontFamily: 'sans-serif',
+
   textDecoration: 'none',
 }));

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Typography, Divider, Box, LinearProgress } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import React, { useState } from 'react';
+import { Typography, Divider, Box, LinearProgress } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   StyledContainer,
   StyledForm,
@@ -13,14 +13,15 @@ import {
   Title2,
   StyledBoxCenter,
   TextArea,
-} from "./SignUp.style";
+} from './SignUp.style';
 
-import TextInput from "../../atoms/TextInput/TextInput";
+import TextInput from '../../atoms/TextInput/TextInput';
 
-import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
-import Button from "../../atoms/Button/Button";
-import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
-import { useSignUp } from "./SignUp.hook";
+import SignUpImage from '../../assets/images/signUpLogImage/SignUpLog.png';
+import Button from '../../atoms/Button/Button';
+import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
+import { useSignUp } from './SignUp.hook';
+import googleLogo from '../../assets/images/logo/google.svg';
 
 const calculatePasswordStrength = (password) => {
   let strength = 0;
@@ -36,15 +37,15 @@ const calculatePasswordStrength = (password) => {
 const getStrengthLabel = (strength) => {
   switch (strength) {
     case 1:
-      return { label: "Weak", color: "#f44336" };
+      return { label: 'Weak', color: '#f44336' };
     case 2:
-      return { label: "Fair", color: "#ff9800" };
+      return { label: 'Fair', color: '#ff9800' };
     case 3:
-      return { label: "Good", color: "#ffc107" };
+      return { label: 'Good', color: '#ffc107' };
     case 4:
-      return { label: "Strong", color: "#4caf50" };
+      return { label: 'Strong', color: '#4caf50' };
     default:
-      return { label: "Very Weak", color: "#9e9e9e" };
+      return { label: 'Very Weak', color: '#9e9e9e' };
   }
 };
 
@@ -77,7 +78,7 @@ const SignUpForm: React.FC = () => {
               backgroundColor:
                 segment <= strength
                   ? getStrengthLabel(segment).color
-                  : "#e0e0e0",
+                  : '#e0e0e0',
             }}
           />
         ))}
@@ -94,7 +95,7 @@ const SignUpForm: React.FC = () => {
               <img
                 src={LogoDecor}
                 alt="Decord-mistri Logo"
-                style={{ height: "40px" }}
+                style={{ height: '40px' }}
               />
               <Title>Create your account</Title>
               <Title2 color="textSecondary">
@@ -106,17 +107,18 @@ const SignUpForm: React.FC = () => {
             <Button
               title="Sign In with Google"
               color="primary"
+              logo={googleLogo}
               style={{
-                borderRadius: "5px",
-                background: "white",
-                color: "black",
-                border: "1px solid #cccccc",
-                width: "100%",
-                height: "50px",
+                borderRadius: '5px',
+                background: 'white',
+                color: 'black',
+                border: '1px solid #cccccc',
+                width: '100%',
+                height: '50px',
               }}
             />
 
-            <Divider style={{ margin: "10px 0", color: "#000000" }}>Or</Divider>
+            <Divider style={{ margin: '10px 0', color: '#000000' }}>Or</Divider>
 
             {/* Name Field */}
             <TextInput
@@ -127,10 +129,10 @@ const SignUpForm: React.FC = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.name && Boolean(formik.errors.name)}
               style={{
-                width: "96%",
-                borderRadius: "8px",
-                height: "10px",
-                marginBottom: "50px",
+                width: '96%',
+                borderRadius: '8px',
+                height: '10px',
+                marginBottom: '50px',
               }}
               placeholder="Enter your name"
             />
@@ -147,10 +149,10 @@ const SignUpForm: React.FC = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.phone && Boolean(formik.errors.phone)}
               style={{
-                width: "96%",
-                borderRadius: "8px",
-                height: "10px",
-                marginBottom: "50px",
+                width: '96%',
+                borderRadius: '8px',
+                height: '10px',
+                marginBottom: '50px',
               }}
               placeholder="Enter your phone number"
             />
@@ -167,10 +169,10 @@ const SignUpForm: React.FC = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.email && Boolean(formik.errors.email)}
               style={{
-                width: "96%",
-                borderRadius: "8px",
-                height: "10px",
-                marginBottom: "50px",
+                width: '96%',
+                borderRadius: '8px',
+                height: '10px',
+                marginBottom: '50px',
               }}
               placeholder="Enter your email address"
             />
@@ -180,7 +182,7 @@ const SignUpForm: React.FC = () => {
 
             {/* Password Field */}
             <TextArea>
-              <Typography sx={{ marginBottom: "7px" }}>Password</Typography>
+              <Typography sx={{ marginBottom: '7px' }}>Password</Typography>
 
               <TextInput
                 name="password"
@@ -194,10 +196,10 @@ const SignUpForm: React.FC = () => {
                   formik.touched.password && Boolean(formik.errors.password)
                 }
                 style={{
-                  width: "90%",
-                  borderRadius: "8px",
-                  height: "10px",
-                  marginBottom: "40px",
+                  width: '90%',
+                  borderRadius: '8px',
+                  height: '10px',
+                  marginBottom: '40px',
                 }}
               />
               {formik.errors.password && formik.touched.password && (
@@ -230,10 +232,10 @@ const SignUpForm: React.FC = () => {
             <Typography
               variant="caption"
               style={{
-                marginTop: "10px",
-                color: "#9e9e9e",
-                display: "flex",
-                justifyContent: "flex-end",
+                marginTop: '10px',
+                color: '#9e9e9e',
+                display: 'flex',
+                justifyContent: 'flex-end',
               }}
             >
               Password strength: {label}
@@ -247,15 +249,15 @@ const SignUpForm: React.FC = () => {
               variant="contained"
               disabled={isAnyFieldEmpty || formik.isSubmitting}
               style={{
-                backgroundColor: isAnyFieldEmpty ? "#e432a9" : "#C7148A",
+                backgroundColor: isAnyFieldEmpty ? '#e432a9' : '#C7148A',
                 cursor:
                   isAnyFieldEmpty || formik.isSubmitting
-                    ? "not-allowed"
-                    : "pointer",
+                    ? 'not-allowed'
+                    : 'pointer',
 
-                width: "100%",
-                borderRadius: "5px",
-                padding: "25px",
+                width: '100%',
+                borderRadius: '5px',
+                padding: '25px',
               }}
             />
 
@@ -263,20 +265,23 @@ const SignUpForm: React.FC = () => {
               <Typography
                 variant="body2"
                 style={{
-                  textAlign: "center",
-                  marginTop: "20px",
-                  fontWeight: "600",
-                  color: "#3f3f3f",
+                  textAlign: 'center',
+                  fontWeight: '600',
+                  color: '#3f3f3f',
                 }}
               >
                 Already have an account?
-                <Typography
-                  component={RouterLink}
-                  to="/"
-                  sx={{ color: "#C7148A", fontSize: "14px" }}
-                >
-                  Sign in
-                </Typography>
+              </Typography>
+              <Typography
+                component={RouterLink}
+                to="/"
+                sx={{
+                  color: '#C7148A',
+                  fontSize: '14px',
+                  textDecoration: 'none',
+                }}
+              >
+                Sign in
               </Typography>
             </StyledBoxCenter>
           </StyledForm>

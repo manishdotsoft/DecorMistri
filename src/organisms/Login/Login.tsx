@@ -23,6 +23,7 @@ import {
 
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
 import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
+import googleLogo from '../../assets/images/logo/google.svg';
 
 const initialValues = {
   email: '',
@@ -88,7 +89,7 @@ const LoginPage = () => {
                   style={{
                     width: '96%',
                     borderRadius: '8px',
-                    marginBottom: '20px',
+                    marginBottom: '10px',
                   }}
                   onBlur={handleBlur}
                   error={Boolean(touched.email && errors.email)}
@@ -106,7 +107,7 @@ const LoginPage = () => {
                   style={{
                     width: '96%',
                     borderRadius: '8px',
-                    marginBottom: '20px',
+                    marginBottom: '10px',
                   }}
                   onBlur={handleBlur}
                   error={Boolean(touched.password && errors.password)}
@@ -125,35 +126,44 @@ const LoginPage = () => {
                     Forgot password?
                   </ForgotPasswordLink>
                 </ForgetPaswordContainer>
-                <Button
-                  title="Sign In"
-                  type="submit"
-                  color="primary"
-                  variant="contained"
-                  onClick={() => {}}
-                  disabled={!values.email || !values.password || !isValid}
-                  style={{
-                    marginTop: '20px',
-                    backgroundColor:
-                      !values.email || !values.password || !isValid
-                        ? '#e432a9'
-                        : '#C7148A',
-                    color: '#ffffff',
-                    width: '100%',
-                    height: '50px',
-                    borderRadius: '5px',
-                    cursor:
-                      !values.email || !values.password || !isValid
-                        ? 'not-allowed'
-                        : 'pointer',
-                  }}
-                />
+                <Link
+                  sx={{ textDecoration: 'none' }}
+                  component={RouterLink}
+                  to="/dashboard"
+                >
+                  <Button
+                    title="Sign In"
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    onClick={() => {}}
+                    disabled={!values.email || !values.password || !isValid}
+                    style={{
+                      marginTop: '20px',
+
+                      backgroundColor:
+                        !values.email || !values.password || !isValid
+                          ? '#e432a9'
+                          : '#C7148A',
+                      color: '#ffffff',
+                      width: '100%',
+                      height: '50px',
+                      borderRadius: '5px',
+                      cursor:
+                        !values.email || !values.password || !isValid
+                          ? 'not-allowed'
+                          : 'pointer',
+                    }}
+                  />{' '}
+                </Link>
               </Form>
             )}
           </Formik>
+
           <Button
             title="Sign In with Google"
             color="primary"
+            logo={googleLogo}
             variant="contained"
             style={{
               borderRadius: '5px',
@@ -166,6 +176,7 @@ const LoginPage = () => {
             }}
             onClick={() => console.log('Google Sign-In Clicked')}
           />
+
           <SignupContainer>
             <Typography component="span">
               New to <HeadlineSpan> Decormistri?</HeadlineSpan>
