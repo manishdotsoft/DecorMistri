@@ -4,7 +4,6 @@ import {
   Select,
   TextField,
   Box,
-  FormControl,
   InputLabel,
   FormHelperText,
   Checkbox,
@@ -20,6 +19,7 @@ import {
 } from "./PropertyDetails.style";
 import Button from "../../../../atoms/Button/Button";
 import { propertyDetailsSchema } from "../../Schema";
+import SelectOption from "../../../../atoms/Select/SelectOption";
 
 const designOptions = [
   {
@@ -172,73 +172,48 @@ const PropertyDetails = ({
       </FlexRow>
 
       <Box sx={{ p: 4 }}>
-        <FormControl
-          fullWidth
+        <SelectOption
+          name="designType"
+          label="Design Type"
+          options={designOptions.map(({ value, label }) => ({ value, label }))}
+          value={formik.values.designType}
+          onChange={(e) => formik.setFieldValue("designType", e.target.value)}
           error={formik.touched.designType && Boolean(formik.errors.designType)}
-        >
-          <InputLabel id="design-type-label">Design Type</InputLabel>
-          <Select
-            labelId="design-type-label"
-            id="design-type"
-            name="designType"
-            value={formik.values.designType || ""}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          >
-            <MenuItem value="">
-              <em>Select One</em>
-            </MenuItem>
-            {designOptions.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-          {formik.touched.designType && formik.errors.designType && (
-            <FormHelperText>{formik.errors.designType}</FormHelperText>
-          )}
-        </FormControl>
+          helperText={formik.touched.designType && formik.errors.designType}
+        />
 
         {/* Subcategories */}
         {formik.values.designType && (
           <Box sx={{ mt: 4 }}>
-            <FormControl
+            <InputLabel id="subcategory-label">Subcategories</InputLabel>
+            <Select
+              labelId="subcategory-label"
+              id="subcategories"
               fullWidth
-              error={
-                formik.touched.subcategories &&
-                Boolean(formik.errors.subcategories)
+              name="subcategories"
+              multiple
+              value={formik.values.subcategories}
+              onChange={(e) =>
+                formik.setFieldValue("subcategories", e.target.value)
               }
+              renderValue={(selected) => selected.join(", ")}
             >
-              <InputLabel id="subcategory-label">Subcategories</InputLabel>
-              <Select
-                labelId="subcategory-label"
-                id="subcategories"
-                name="subcategories"
-                multiple
-                value={formik.values.subcategories}
-                onChange={(e) =>
-                  formik.setFieldValue("subcategories", e.target.value)
-                }
-                onBlur={formik.handleBlur}
-                renderValue={(selected) => selected.join(", ")}
-              >
-                {designOptions
-                  .find((option) => option.value === formik.values.designType)
-                  ?.subcategories.map((subcategory) => (
-                    <MenuItem key={subcategory} value={subcategory}>
-                      <Checkbox
-                        checked={formik.values.subcategories.includes(
-                          subcategory
-                        )}
-                      />
-                      <ListItemText primary={subcategory} />
-                    </MenuItem>
-                  ))}
-              </Select>
-              {formik.touched.subcategories && formik.errors.subcategories && (
-                <FormHelperText>{formik.errors.subcategories}</FormHelperText>
-              )}
-            </FormControl>
+              {designOptions
+                .find((option) => option.value === formik.values.designType)
+                ?.subcategories.map((subcategory) => (
+                  <MenuItem key={subcategory} value={subcategory}>
+                    <Checkbox
+                      checked={formik.values.subcategories.includes(
+                        subcategory
+                      )}
+                    />
+                    <ListItemText primary={subcategory} />
+                  </MenuItem>
+                ))}
+            </Select>
+            {formik.touched.subcategories && formik.errors.subcategories && (
+              <FormHelperText>{formik.errors.subcategories}</FormHelperText>
+            )}
           </Box>
         )}
       </Box>

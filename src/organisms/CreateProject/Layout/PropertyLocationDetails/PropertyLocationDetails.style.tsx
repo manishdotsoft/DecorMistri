@@ -5,7 +5,7 @@ import typeset from "../../../../thems/primitives/typeset";
 import { COMMON_PAPER } from "../../../../thems/primitives/colors";
 
 export const Container = styled(Box)({
-  maxWidth: "800px",
+  maxWidth: "1000px",
   margin: "auto",
   padding: "20px",
   display: "flex",
