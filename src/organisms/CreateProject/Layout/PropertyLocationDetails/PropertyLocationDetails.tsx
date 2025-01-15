@@ -83,7 +83,7 @@ const PropertyLocationDetails = ({
           value={formik.values.country}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
           error={formik.touched.country && Boolean(formik.errors.country)}
           helperText={formik.touched.country && formik.errors.country}
         />
@@ -99,7 +99,7 @@ const PropertyLocationDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.state && Boolean(formik.errors.state)}
           helperText={formik.touched.state && formik.errors.state}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
         />
       </FlexRow>
 
@@ -116,7 +116,7 @@ const PropertyLocationDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.city && Boolean(formik.errors.city)}
           helperText={formik.touched.city && formik.errors.city}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
         />
 
         <TextField

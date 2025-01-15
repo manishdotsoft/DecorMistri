@@ -136,7 +136,7 @@ const ClientDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.country && Boolean(formik.errors.country)}
           helperText={formik.touched.country && formik.errors.country}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
         />
         <SelectOption
           name="state"
@@ -150,7 +150,7 @@ const ClientDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.state && Boolean(formik.errors.state)}
           helperText={formik.touched.state && formik.errors.state}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
         />
       </FlexRow>
 
@@ -167,7 +167,7 @@ const ClientDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.city && Boolean(formik.errors.city)}
           helperText={formik.touched.city && formik.errors.city}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
         />
         <TextField
           label="Zip/Postal code"

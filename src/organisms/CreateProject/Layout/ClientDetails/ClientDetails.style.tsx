@@ -4,7 +4,7 @@ import palette from "../../../../thems/primitives/palette";
 import typeset from "../../../../thems/primitives/typeset";
 
 export const Container = styled(Box)({
-  maxWidth: "800px",
+  maxWidth: "1000px",
   margin: "auto",
   padding: "20px",
   display: "flex",
