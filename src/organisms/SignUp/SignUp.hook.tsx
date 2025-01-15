@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
 import { setSignUpData } from "../../store/reducers/signUpSlice";
 import { signUpSchema } from "./SchemasSignup";
+import {createUserMutation} from '../../graphql/mutation/createUser';
 
 export interface SignUpFormValues {
   name: string;
@@ -25,19 +26,32 @@ export const useSignUp = () => {
   const navigate = useNavigate();
   const [toasterOpen, setToasterOpen] = useState(false);
 
+  const handleSubmit = async (values: SignUpFormValues, actions:any) => {
+    try {
+      dispatch(setSignUpData(values));
+      const response = await createUserMutation({ input: {
+        full_name:values.name,
+        email:values.email,
+        password:values.password,
+      } });
+      if (response.data) {
+        setToasterOpen(true);
+        actions.resetForm();
+        navigate("/success");
+      } else if (response.error) {
+        console.error("Error creating user:", response.error);
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+    } finally {
+      actions.setSubmitting(false);
+    }
+  };
+
   const formik = useFormik<SignUpFormValues>({
     initialValues,
     validationSchema: signUpSchema,
-    onSubmit: (values, actions) => {
-      dispatch(setSignUpData(values));
-      setToasterOpen(true);
-      console.log("Form Submitted:", values);
-      actions.resetForm();
-
-      setTimeout(() => {
-        navigate("/success");
-      }, 2000);
-    },
+    onSubmit: handleSubmit, 
   });
 
   const handleCloseToaster = () => {

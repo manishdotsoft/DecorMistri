@@ -14,9 +14,7 @@ import {
   StyledBoxCenter,
   TextArea,
 } from "./SignUp.style";
-
 import TextInput from "../../atoms/TextInput/TextInput";
-
 import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
 import Button from "../../atoms/Button/Button";
 import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
