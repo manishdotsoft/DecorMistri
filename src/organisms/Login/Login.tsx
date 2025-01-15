@@ -1,6 +1,5 @@
-import { useDispatch } from 'react-redux';
 import { setLoginData } from '../../store/reducers/loginSlice';
-import { AppDispatch } from '../../store/store';
+
 import { Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
@@ -24,14 +23,10 @@ import {
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
 import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 import googleLogo from '../../assets/images/logo/google.svg';
-
-const initialValues = {
-  email: '',
-  password: '',
-};
+import { useLoginLogic } from './Login.hook';
 
 const LoginPage = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const { dispatch, initialValues, handleSubmit } = useLoginLogic();
 
   return (
     <StyledContainer>
@@ -65,8 +60,7 @@ const LoginPage = () => {
             validationSchema={LoginSchema}
             onSubmit={(values, { resetForm }) => {
               dispatch(setLoginData(values));
-              localStorage.setItem('authToken', 'your-auth-token');
-              console.log(values);
+              handleSubmit(values);
               resetForm();
             }}
           >
