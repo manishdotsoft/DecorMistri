@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const CardContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin: 10px;
 `;
 
 export const FilterBox = styled.div`
@@ -26,6 +28,8 @@ export const StyledInput = styled.input`
   border: none;
   outline: none;
   width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 
 export const ActionBox = styled.div`

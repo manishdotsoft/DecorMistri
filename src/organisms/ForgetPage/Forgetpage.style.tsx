@@ -3,12 +3,14 @@ import { Link as RouterLink } from 'react-router-dom';
 export const HeadlineSpan = styled('span')`
   font-weight: 600;
   color: black;
+  font-family: sans-serif;
 `;
 
 export const Highlight = styled('span')`
   color: #c7148a;
   font-weight: bold;
   font-size: 28px;
+  font-family: sans-serif;
 `;
 
 export const ForgotPasswordLink = styled(RouterLink)`
@@ -18,6 +20,7 @@ export const ForgotPasswordLink = styled(RouterLink)`
   color: #c7148a;
   text-decoration: none;
   font-size: 15px;
+  font-family: sans-serif;
 `;
 
 export const ForgetPaswordContainer = styled('div')`
@@ -25,10 +28,13 @@ export const ForgetPaswordContainer = styled('div')`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  font-family: sans-serif;
+
   label {
     font-size: 18px;
     color: #000000;
     font-weight: 400;
+    font-family: sans-serif;
   }
 
   input[type='checkbox'] {
@@ -78,12 +84,15 @@ export const SignupContainer = styled('div')`
   margin-top: 15px;
   font-size: 6px;
   color: #666;
+  font-family: sans-serif;
+
   width: 100%;
   .signup-link {
     margin-left: 5px;
     font-size: 20px;
     color: #c7148a;
     text-decoration: none;
+    font-family: sans-serif;
   }
 `;
 
@@ -96,6 +105,7 @@ import { styled } from '@mui/material/styles';
 export const StyledContainer = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
+
   alignItems: 'center',
   minHeight: '100vh',
   backgroundColor: '#f7f7f7',
@@ -106,6 +116,7 @@ export const MainFlex = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+
   maxWidth: '1400px',
   backgroundColor: '#ffffff',
   borderRadius: '25px',
@@ -193,12 +204,14 @@ export const StyledTypography = styled(Typography)(() => ({
   fontSize: '12px',
   color: '#d32f2f',
   marginTop: '5px',
+  fontFamily: 'sans-serif',
 }));
 
 export const StyledBoxCenter = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
   marginTop: '20px',
+  fontFamily: 'sans-serif',
 }));
 
 export const StyledLink = styled('span')(() => ({
@@ -206,4 +219,5 @@ export const StyledLink = styled('span')(() => ({
   fontWeight: 'bold',
   cursor: 'pointer',
   textDecoration: 'none',
+  fontFamily: 'sans-serif',
 }));

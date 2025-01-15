@@ -16,10 +16,10 @@ import SelectOption from '../../atoms/Select/SelectOption';
 const HeaderFilter = () => {
   const theme = useTheme();
   const [selectedOption, setSelectedOption] = useState('');
-
   const handleOptionChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelectedOption(event.target.value as string);
-    console.log(event.target.value);
+    const selectedValue = event.target.value as string;
+    setSelectedOption(selectedValue);
+    console.log(selectedValue); // Logs the selected option value
   };
 
   return (
@@ -28,7 +28,7 @@ const HeaderFilter = () => {
         <FilterAltIcon />
         <SelectOption
           name="filterOption"
-          label="Filter Option"
+          label="Design Type"
           options={[
             { value: 'designType', label: 'Design Type' },
             { value: 'startDate', label: 'Start Date' },
@@ -36,7 +36,29 @@ const HeaderFilter = () => {
           ]}
           value={selectedOption}
           onChange={handleOptionChange}
-          style={{ width: '150px', height: '40px', color: 'black' }}
+          style={{
+            width: '120px',
+            padding: '10px',
+            margin: '0',
+            color: 'black',
+          }}
+        />
+        <SelectOption
+          name="filterOption"
+          label="Design Type"
+          options={[
+            { value: 'designType', label: 'Design Type' },
+            { value: 'startDate', label: 'Start Date' },
+            { value: 'endDate', label: 'End Date' },
+          ]}
+          value={selectedOption}
+          onChange={handleOptionChange}
+          style={{
+            width: '120px',
+            padding: '10px',
+            margin: '0',
+            color: 'black',
+          }}
         />
       </FilterBox>
       <ActionBox>
