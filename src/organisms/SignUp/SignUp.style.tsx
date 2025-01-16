@@ -14,7 +14,7 @@ export const StyledContainer = styled("div")(({ theme }) => ({
 
 export const MainFlex = styled("div")(({ theme }) => ({
   display: "flex",
-  // alignItems: "center",
+
   justifyContent: "center",
   fontFamily: "sans-serif",
 

@@ -1,11 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { setLoginData } from '../../store/reducers/loginSlice';
-import { AppDispatch } from '../../store/store';
-import { Typography } from '@mui/material';
-import { Formik, Form } from 'formik';
-import { LoginSchema } from '../Login/LoginSchema';
-import TextInput from '../../atoms/TextInput/TextInput';
-import Button from '../../atoms/Button/Button';
+import { useDispatch } from "react-redux";
+import { setLoginData } from "../../store/reducers/loginSlice";
+import { AppDispatch } from "../../store/store";
+import { Box, Typography } from "@mui/material";
+import { Formik, Form } from "formik";
+import { LoginSchema } from "../Login/LoginSchema";
+import TextInput from "../../atoms/TextInput/TextInput";
+import Button from "../../atoms/Button/Button";
 import {
   StyledContainer,
   StyledForm,
@@ -16,15 +16,15 @@ import {
   LoginLink,
   Title,
   SignupContainer,
-} from './Forgetpage.style';
+} from "./Forgetpage.style";
 
-import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
-import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
-import { Link } from 'react-router-dom';
+import loginImage from "../../assets/images/signUpLogImage/SignUpLog.png";
+import loginLogo from "../../assets/images/logo/Layer_x0020_1.svg";
+import { Link } from "react-router-dom";
 
 const initialValues = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 };
 
 const PasswordOtp = () => {
@@ -37,7 +37,7 @@ const PasswordOtp = () => {
           <StyledForm>
             <StyledHeader>
               <img
-                style={{ width: '40px', height: '45px' }}
+                style={{ width: "40px", height: "45px" }}
                 src={loginLogo}
                 alt="Decormistri Logo"
                 className="logo-image"
@@ -45,14 +45,14 @@ const PasswordOtp = () => {
               <Title>
                 <Typography
                   sx={{
-                    fontSize: '36px',
+                    fontSize: "36px",
                     fontWeight: 300,
-                    marginBottom: '5px',
+                    marginBottom: "5px",
                   }}
                 >
                   Forgot password
                 </Typography>
-                <Typography sx={{ fontSize: '14px', fontWeight: 400 }}>
+                <Typography sx={{ fontSize: "14px", fontWeight: 400 }}>
                   Enter a reset code
                 </Typography>
               </Title>
@@ -62,7 +62,7 @@ const PasswordOtp = () => {
               validationSchema={LoginSchema}
               onSubmit={(values, { resetForm }) => {
                 dispatch(setLoginData(values));
-                localStorage.setItem('authToken', 'your-auth-token');
+                localStorage.setItem("authToken", "your-auth-token");
                 resetForm();
               }}
             >
@@ -77,10 +77,10 @@ const PasswordOtp = () => {
                       value={values.email}
                       onChange={handleChange}
                       style={{
-                        width: '96%',
-                        borderRadius: '8px',
-                        height: '10px',
-                        marginBottom: '50px',
+                        width: "96%",
+                        borderRadius: "8px",
+                        height: "10px",
+                        marginBottom: "50px",
                       }}
                       onBlur={handleBlur}
                       error={Boolean(touched.email && errors.email)}
@@ -94,16 +94,16 @@ const PasswordOtp = () => {
                         title="Continue"
                         type="submit"
                         color="primary"
-                        backgroundColor={'#C7148A'}
+                        backgroundColor={"#C7148A"}
                         variant="contained"
                         onClick={() => {}}
                         style={{
-                          marginTop: '20px',
-                          backgroundColor: '#C7148A',
-                          color: '#ffffff',
-                          width: '100%',
-                          height: '50px',
-                          borderRadius: '5px',
+                          marginTop: "20px",
+                          backgroundColor: "#C7148A",
+                          color: "#ffffff",
+                          width: "100%",
+                          height: "50px",
+                          borderRadius: "5px",
                         }}
                       />
                     </LoginLink>
@@ -121,13 +121,13 @@ const PasswordOtp = () => {
               backgroundColor="#ffffff"
               onClick={() => {}}
               style={{
-                borderRadius: '5px',
-                background: 'white',
-                color: 'black',
-                border: '1px solid #cccccc',
-                width: '100%',
-                height: '50px',
-                marginTop: '15px',
+                borderRadius: "5px",
+                background: "white",
+                color: "black",
+                border: "1px solid #cccccc",
+                width: "100%",
+                height: "50px",
+                marginTop: "15px",
               }}
             />
           </LoginLink>
@@ -139,7 +139,9 @@ const PasswordOtp = () => {
           </SignupContainer>
         </ChildFlex>
 
-        <AllImg src={loginImage} alt="Login illustration" />
+        <Box sx={{ width: "50%", height: "auto" }}>
+          <AllImg src={loginImage} alt="Login illustration" />
+        </Box>
       </MainFlex>
     </StyledContainer>
   );
