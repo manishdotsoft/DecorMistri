@@ -1,6 +1,6 @@
 import { setLoginData } from '../../store/reducers/loginSlice';
 
-import { Link, Typography } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { LoginSchema } from './LoginSchema';
@@ -62,6 +62,7 @@ const LoginPage = () => {
               dispatch(setLoginData(values));
               handleSubmit(values);
               resetForm();
+              console.log(values);
             }}
           >
             {({
@@ -188,7 +189,9 @@ const LoginPage = () => {
             </Link>
           </SignupContainer>
         </ChildFlex>
-        <AllImg src={loginImage} alt="Login illustration" />
+        <Box sx={{ width: '50%', height: 'auto' }}>
+          <AllImg src={loginImage} alt="Login illustration" />
+        </Box>
       </MainFlex>
     </StyledContainer>
   );

@@ -99,16 +99,17 @@ export const StyledContainer = styled('div')(() => ({
   justifyContent: 'center',
   fontFamily: 'sans-serif',
   alignItems: 'center',
-  minHeight: '100vh',
+  minHeight: '92vh',
   backgroundColor: '#f7f7f7',
   padding: '16px',
 }));
 
 export const MainFlex = styled('div')(({ theme }) => ({
   display: 'flex',
-  alignItems: 'center',
+  // alignItems: 'center',
   justifyContent: 'center',
   fontFamily: 'sans-serif',
+  minHeight: '92vh',
 
   maxWidth: '1400px',
   backgroundColor: '#ffffff',
@@ -158,16 +159,14 @@ export const ImageFlex = styled('div')(() => ({
   borderRadius: '25px',
 }));
 
-export const AllImg = styled('img')(({ theme }) => ({
-  width: '50%',
-  maxWidth: '100%',
-  height: 'auto',
-  fontFamily: 'sans-serif',
+export const AllImg = styled('img')(() => ({
+  width: '100%',
+  height: '100%',
 
-  [theme.breakpoints.down('md')]: {
-    width: '100%',
-    margin: '0 auto',
-  },
+  // [theme.breakpoints.down('md')]: {
+  //   width: '100%',
+  //   margin: '0 auto',
+  // },
 }));
 
 export const StyledHeader = styled('div')(() => ({
