@@ -9,7 +9,6 @@ import {
   Checkbox,
   ListItemText,
 } from "@mui/material";
-import { useFormik } from "formik";
 import {
   ButtonSection,
   Container,
@@ -18,8 +17,8 @@ import {
   SelectFile,
 } from "./PropertyDetails.style";
 import Button from "../../../../atoms/Button/Button";
-import { propertyDetailsSchema } from "../../Schema";
 import SelectOption from "../../../../atoms/Select/SelectOption";
+import usePropertyDetailsForm from "./PropertyDetails.hook";
 
 const designOptions = [
   {
@@ -115,43 +114,12 @@ const PropertyDetails = ({
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const formik = useFormik({
-    initialValues: {
-      size: data.size || "",
-      phases: data.phases || "",
-      file: data.file || null,
-      comments: data.comments || "",
-      designType: data.designType || "",
-      subcategories: data.subcategories || [],
-    },
-    validationSchema: propertyDetailsSchema,
-    validateOnBlur: true,
-    onSubmit: (values) => {
-      updateData(values);
-      handleNext();
-      console.log(values);
-    },
+  const { formik, handleFileChange, isFormValid } = usePropertyDetailsForm({
+    data,
+    updateData,
+    handleNext,
   });
 
-  // const selectedDesign = formik.values.designType;
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      formik.setFieldValue("file", event.target.files[0]);
-    }
-  };
-
-  const isFormValid = () => {
-    return (
-      !!formik.values.size &&
-      !!formik.values.phases &&
-      !!formik.values.file &&
-      !!formik.values.comments &&
-      !!formik.values.designType &&
-      formik.values.subcategories.length > 0 &&
-      !Object.keys(formik.errors).length
-    );
-  };
   return (
     <Container>
       <Typography variant="h6">Basic Information</Typography>

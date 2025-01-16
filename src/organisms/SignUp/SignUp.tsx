@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Typography, Divider, Box } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import {
@@ -13,6 +13,8 @@ import {
   Title2,
   StyledBoxCenter,
   TextArea,
+  ProgressBar,
+  ProgressBar1,
 } from "./SignUp.style";
 
 import TextInput from "../../atoms/TextInput/TextInput";
@@ -23,50 +25,23 @@ import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
 import { useSignUp } from "./SignUp.hook";
 import googleLogo from "../../assets/images/logo/google.svg";
 
-const calculatePasswordStrength = (password) => {
-  let strength = 0;
-
-  if (password.length >= 8) strength += 1;
-  if (/[A-Z]/.test(password)) strength += 1;
-  if (/[0-9]/.test(password)) strength += 1;
-  if (/[^A-Za-z0-9]/.test(password)) strength += 1;
-
-  return strength;
-};
-
-const getStrengthLabel = (strength) => {
-  switch (strength) {
-    case 1:
-      return { label: "Weak", color: "#f44336" };
-    case 2:
-      return { label: "Fair", color: "#ff9800" };
-    case 3:
-      return { label: "Good", color: "#ffc107" };
-    case 4:
-      return { label: "Strong", color: "#4caf50" };
-    default:
-      return { label: "Very Weak", color: "#9e9e9e" };
-  }
-};
-
 const SignUpForm: React.FC = () => {
-  const { formik, isAnyFieldEmpty } = useSignUp();
+  const {
+    formik,
 
-  const [passwordStrength, setPasswordStrength] = useState(0);
+    isAnyFieldEmpty,
+    passwordStrength,
+    handlePasswordChange,
+    label,
+    getStrengthLabel,
+  } = useSignUp();
 
-  const handlePasswordChange = (e) => {
-    const { value } = e.target;
-    formik.handleChange(e);
-    const strength = calculatePasswordStrength(value);
-    setPasswordStrength(strength);
-  };
-
-  const { label, color } = getStrengthLabel(passwordStrength);
-
-  const SegmentedProgressBar = ({ strength }) => {
+  const SegmentedProgressBar: React.FC<{ strength: number }> = ({
+    strength,
+  }) => {
     const segments = [1, 2, 3, 4];
     return (
-      <Box display="flex" gap={0.5}>
+      <ProgressBar>
         {segments.map((segment) => (
           <Box
             key={segment}
@@ -74,7 +49,6 @@ const SignUpForm: React.FC = () => {
               flex: 1,
               height: 4,
               borderRadius: 4,
-
               backgroundColor:
                 segment <= strength
                   ? getStrengthLabel(segment).color
@@ -82,7 +56,7 @@ const SignUpForm: React.FC = () => {
             }}
           />
         ))}
-      </Box>
+      </ProgressBar>
     );
   };
 
@@ -106,7 +80,9 @@ const SignUpForm: React.FC = () => {
 
             <Button
               title="Sign In with Google"
+              type="submit"
               color="primary"
+              variant="contained"
               logo={googleLogo}
               style={{
                 borderRadius: "5px",
@@ -116,6 +92,7 @@ const SignUpForm: React.FC = () => {
                 width: "100%",
                 height: "50px",
               }}
+              onClick={() => {}}
             />
 
             <Divider style={{ margin: "10px 0", color: "#000000" }}>Or</Divider>
@@ -143,9 +120,14 @@ const SignUpForm: React.FC = () => {
             {/* Phone Field */}
             <TextInput
               name="phone"
+              type="number"
               label="Enter your phone number"
               value={formik.values.phone}
-              onChange={formik.handleChange}
+              onChange={(e) => {
+                if (e.target.value.length <= 10) {
+                  formik.handleChange(e);
+                }
+              }}
               onBlur={formik.handleBlur}
               error={formik.touched.phone && Boolean(formik.errors.phone)}
               style={{
@@ -154,8 +136,12 @@ const SignUpForm: React.FC = () => {
                 height: "10px",
                 marginBottom: "50px",
               }}
+              inputProps={{
+                maxLength: 10,
+              }}
               placeholder="Enter your phone number"
             />
+
             {formik.errors.phone && formik.touched.phone && (
               <StyledTypography>{formik.errors.phone}</StyledTypography>
             )}
@@ -207,9 +193,9 @@ const SignUpForm: React.FC = () => {
               )}
             </TextArea>
 
-            <Box sx={{ mt: 1, mb: 2 }}>
+            <ProgressBar1>
               <SegmentedProgressBar strength={passwordStrength} />
-            </Box>
+            </ProgressBar1>
             <Typography
               variant="caption"
               style={{
@@ -225,12 +211,12 @@ const SignUpForm: React.FC = () => {
             {/* Sign Up Button */}
             <Button
               title="Sign Up"
-              color="primary"
               type="submit"
+              color="primary"
               variant="contained"
               disabled={isAnyFieldEmpty || formik.isSubmitting}
               style={{
-                backgroundColor: isAnyFieldEmpty ? "#e432a9" : "#C7148A",
+                backgroundColor: isAnyFieldEmpty ? "#5c5c5c" : "#C7148A",
                 cursor:
                   isAnyFieldEmpty || formik.isSubmitting
                     ? "not-allowed"
@@ -240,6 +226,7 @@ const SignUpForm: React.FC = () => {
                 borderRadius: "5px",
                 padding: "25px",
               }}
+              onClick={() => {}}
             />
 
             <StyledBoxCenter>

@@ -1,6 +1,5 @@
 import { Typography, TextField } from "@mui/material";
-import { useFormik } from "formik";
-import { financialDetailsSchema } from "../../Schema"; // Assuming the schema.tsx file exports the validation schema
+// Assuming the schema.tsx file exports the validation schema
 import {
   ButtonSection,
   Container,
@@ -9,6 +8,7 @@ import {
 } from "./FinancialDetails.style";
 import Button from "../../../../atoms/Button/Button";
 import RadioButton from "../../../../atoms/RadioButton/RadioButton"; // Import the RadioButton component
+import useFinancialDetails from "./FinancialDetails.hook";
 
 const FinancialDetails = ({
   data,
@@ -28,18 +28,10 @@ const FinancialDetails = ({
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const formik = useFormik({
-    initialValues: {
-      estimatedBudget: data.estimatedBudget || "",
-      paymentReceived: data.paymentReceived || null,
-    },
-    validationSchema: financialDetailsSchema,
-    validateOnBlur: true,
-    onSubmit: (values) => {
-      updateData(values);
-      handleNext();
-      console.log(values);
-    },
+  const { formik, isFormValid } = useFinancialDetails({
+    data,
+    updateData,
+    handleNext,
   });
 
   const paymentOptions = [
@@ -102,7 +94,7 @@ const FinancialDetails = ({
         <Button
           title="Submit"
           color="primary"
-          onClick={formik.handleSubmit}
+          onClick={() => formik.handleSubmit()}
           variant="contained"
           disabled={!formik.isValid || !formik.dirty}
         />

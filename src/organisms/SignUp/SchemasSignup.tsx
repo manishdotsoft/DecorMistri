@@ -6,7 +6,12 @@ export const signUpSchema = Yup.object({
   email: Yup.string().email().required("Please enter your email"),
   password: Yup.string().min(6).required("Please enter your password"),
   phone: Yup.string()
-    .matches(/^[0-9]+$/, "Phone number must only contain digits")
-    .min(10, "Phone number must be at least 10 digits")
+    .matches(
+      /^[6-9]\d{9}$/,
+      "Phone number must start with 6, 7, 8, or 9 and be 10 digits long"
+    )
+    .min(6, "Phone number must be at least 6 digits")
+    .max(10, "Phone number maximum put 10 digits")
+    .length(10, "Phone number must be exactly 10 digits")
     .required("Please enter your phone number"),
 });
