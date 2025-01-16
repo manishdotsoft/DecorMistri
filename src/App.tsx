@@ -1,16 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ApolloProvider } from "@apollo/client";
-import client from "./apolloClient";
-import Home from "./pages/Dashboard/Home";
-import Login from "./organisms/Login/Login";
-import CalenderView from "./organisms/CalendarView/CalendarView";
-import CreateProject from "./organisms/CreateProject/CreateProject";
-import PasswordOtp from "./organisms/ForgetPage/PasswordOtp";
-import NewPassword from "./organisms/ForgetPage/NewPassword";
-import ResetPassword from "./organisms/ForgetPage/Resetpassword";
-import ForgetPassword from "./organisms/ForgetPage/ForgotPassword";
-import SignUpForm from "./organisms/SignUp/SignUp";
-import SuccessfullyPage from "./organisms/SuccessfullyPage/SuccessfullyPage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ApolloProvider } from '@apollo/client';
+import client from './apolloClient';
+import Home from './pages/Dashboard/Home';
+import Login from './organisms/Login/Login';
+import CalenderView from './organisms/CalendarView/CalendarView';
+import CreateProject from './organisms/CreateProject/CreateProject';
+import PasswordOtp from './organisms/ForgetPage/PasswordOtp/PasswordOtp.tsx';
+import NewPassword from './organisms/ForgetPage/NewPassword/NewPassword.tsx';
+import ResetPassword from './organisms/ForgetPage/ResetPassword/Resetpassword.tsx';
+import ForgetPassword from './organisms/ForgetPage/ForgotPassword/ForgotPassword.tsx';
+import SignUpForm from './organisms/SignUp/SignUp';
+import SuccessfullyPage from './organisms/SuccessfullyPage/SuccessfullyPage';
 
 const App = () => {
   return (

@@ -2,14 +2,18 @@ import {
   CardContent,
   Typography,
   LinearProgress,
-  Box,
   IconButton,
 } from '@mui/material';
 import Button from '../../atoms/Button/Button';
-import { CardContainer, HeadingTitle } from './Card.styel';
+import {
+  ButtonBox,
+  CardContainer,
+  HeadingTitle,
+  SuccessStatus,
+} from './Card.styel';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useProjectMenu } from './card.hook';
-import ProjectMenu from './Menu';
+import ProjectMenu from './ThreeDotMenu/Menu';
 
 interface Project {
   value: string;
@@ -98,14 +102,11 @@ const LiveProjectCard = () => {
               value={project.completionPercentage}
               sx={{ marginTop: 2 }}
             />
-            <Typography
-              variant="body2"
-              sx={{ textAlign: 'center', marginTop: 1 }}
-            >
+            <SuccessStatus>
               {project.completionPercentage}% Completed
-            </Typography>
+            </SuccessStatus>
           </CardContent>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+          <ButtonBox>
             <Button
               title="Open Project"
               color="secondary"
@@ -116,7 +117,7 @@ const LiveProjectCard = () => {
               variant="contained"
               onClick={() => console.log('Button clicked')}
             />
-          </Box>
+          </ButtonBox>
         </CardContainer>
       ))}
 

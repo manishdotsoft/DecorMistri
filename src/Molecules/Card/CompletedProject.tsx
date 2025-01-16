@@ -2,14 +2,18 @@ import {
   CardContent,
   Typography,
   LinearProgress,
-  Box,
   IconButton,
 } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from '../../atoms/Button/Button';
-import { CardContainer, HeadingTitle } from './Card.styel';
+import {
+  ButtonBox,
+  CardContainer,
+  HeadingTitle,
+  SuccessStatus,
+} from './Card.styel';
 import { useProjectMenu } from './card.hook';
-import ProjectMenu from './Menu';
+import ProjectMenu from './ThreeDotMenu/Menu';
 
 const projectData = [
   {
@@ -89,15 +93,12 @@ const CompleteProjectCard: React.FC = () => {
               value={project.completionPercentage}
               sx={{ marginTop: 2 }}
             />
-            <Typography
-              variant="body2"
-              sx={{ textAlign: 'center', marginTop: 1 }}
-            >
+            <SuccessStatus>
               {project.completionPercentage}% Completed
-            </Typography>
+            </SuccessStatus>
           </CardContent>
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+          <ButtonBox>
             <Button
               title="Detail View"
               color="primary"
@@ -108,7 +109,7 @@ const CompleteProjectCard: React.FC = () => {
               }}
               onClick={() => console.log('Detail View clicked')}
             />
-          </Box>
+          </ButtonBox>
         </CardContainer>
       ))}
 

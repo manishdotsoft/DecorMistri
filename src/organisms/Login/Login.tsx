@@ -1,11 +1,10 @@
-import { setLoginData } from "../../store/reducers/loginSlice";
-
-import { Box, Link, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import { Formik, Form } from "formik";
-import { LoginSchema } from "./LoginSchema";
-import TextInput from "../../atoms/TextInput/TextInput";
-import Button from "../../atoms/Button/Button";
+import { setLoginData } from '../../store/reducers/loginSlice';
+import { Link, Typography } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import { LoginSchema } from './LoginSchema';
+import TextInput from '../../atoms/TextInput/TextInput';
+import Button from '../../atoms/Button/Button';
 import {
   StyledContainer,
   StyledHeader,
@@ -18,12 +17,16 @@ import {
   ForgotPasswordLink,
   ForgetPaswordContainer,
   Title,
-} from "./LoginPage.style";
+  ImageBox,
+  TitleOne,
+  TitleTwo,
+  LogoImage,
+} from './LoginPage.style';
 
-import loginImage from "../../assets/images/signUpLogImage/SignUpLog.png";
-import loginLogo from "../../assets/images/logo/Layer_x0020_1.svg";
-import googleLogo from "../../assets/images/logo/google.svg";
-import { useLoginLogic } from "./Login.hook";
+import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
+import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
+import googleLogo from '../../assets/images/logo/google.svg';
+import { useLoginLogic } from './Login.hook';
 
 const LoginPage = () => {
   const { dispatch, initialValues, handleSubmit } = useLoginLogic();
@@ -33,26 +36,20 @@ const LoginPage = () => {
       <MainFlex>
         <ChildFlex>
           <StyledHeader>
-            <img
-              style={{ width: "30px", height: "35px" }}
+            <LogoImage
               src={loginLogo}
               alt="Decormistri Logo"
               className="logo-image"
             />
             <Title>
-              <Typography
-                sx={{
-                  fontSize: "28px",
-                  fontWeight: 300,
-                }}
-              >
+              <TitleOne>
                 Welcome to <br />
                 <Highlight>Decormistri</Highlight> Collaboration Tool
-              </Typography>
-              <Typography variant="body2" sx={{ fontSize: "13px" }}>
+              </TitleOne>
+              <TitleTwo variant="body2">
                 Decormistri provides advanced collaboration tools for <br /> the
                 Interior Industry and companies.
-              </Typography>
+              </TitleTwo>
             </Title>
           </StyledHeader>
           <Formik
@@ -82,9 +79,9 @@ const LoginPage = () => {
                   value={values.email}
                   onChange={handleChange}
                   style={{
-                    width: "96%",
-                    borderRadius: "8px",
-                    marginBottom: "10px",
+                    width: '96%',
+                    borderRadius: '8px',
+                    marginBottom: '10px',
                   }}
                   onBlur={handleBlur}
                   error={Boolean(touched.email && errors.email)}
@@ -100,9 +97,9 @@ const LoginPage = () => {
                   value={values.password}
                   onChange={handleChange}
                   style={{
-                    width: "96%",
-                    borderRadius: "8px",
-                    marginBottom: "10px",
+                    width: '96%',
+                    borderRadius: '8px',
+                    marginBottom: '10px',
                   }}
                   onBlur={handleBlur}
                   error={Boolean(touched.password && errors.password)}
@@ -122,7 +119,7 @@ const LoginPage = () => {
                   </ForgotPasswordLink>
                 </ForgetPaswordContainer>
                 <Link
-                  sx={{ textDecoration: "none" }}
+                  sx={{ textDecoration: 'none' }}
                   component={RouterLink}
                   to="/dashboard"
                 >
@@ -134,22 +131,22 @@ const LoginPage = () => {
                     onClick={() => {}}
                     disabled={!values.email || !values.password || !isValid}
                     style={{
-                      marginTop: "20px",
+                      marginTop: '20px',
 
                       backgroundColor:
                         !values.email || !values.password || !isValid
-                          ? "#e432a9"
-                          : "#C7148A",
-                      color: "#ffffff",
-                      width: "100%",
-                      height: "50px",
-                      borderRadius: "5px",
+                          ? '#565155'
+                          : '#C7148A',
+                      color: '#ffffff',
+                      width: '100%',
+                      height: '50px',
+                      borderRadius: '5px',
                       cursor:
                         !values.email || !values.password || !isValid
-                          ? "not-allowed"
-                          : "pointer",
+                          ? 'not-allowed'
+                          : 'pointer',
                     }}
-                  />{" "}
+                  />
                 </Link>
               </Form>
             )}
@@ -161,15 +158,15 @@ const LoginPage = () => {
             logo={googleLogo}
             variant="contained"
             style={{
-              borderRadius: "5px",
-              background: "white",
-              color: "black",
-              border: "1px solid #cccccc",
-              width: "100%",
-              height: "50px",
-              marginTop: "15px",
+              borderRadius: '5px',
+              background: 'white',
+              color: 'black',
+              border: '1px solid #cccccc',
+              width: '100%',
+              height: '50px',
+              marginTop: '15px',
             }}
-            onClick={() => console.log("Google Sign-In Clicked")}
+            onClick={() => console.log('Google Sign-In Clicked')}
           />
 
           <SignupContainer>
@@ -178,9 +175,9 @@ const LoginPage = () => {
             </Typography>
             <Link
               sx={{
-                fontSize: "16px",
-                color: "#c7148a",
-                textDecoration: "none",
+                fontSize: '16px',
+                color: '#c7148a',
+                textDecoration: 'none',
               }}
               component={RouterLink}
               to="/signup"
@@ -189,9 +186,9 @@ const LoginPage = () => {
             </Link>
           </SignupContainer>
         </ChildFlex>
-        <Box sx={{ width: "50%", height: "auto" }}>
+        <ImageBox>
           <AllImg src={loginImage} alt="Login illustration" />
-        </Box>
+        </ImageBox>
       </MainFlex>
     </StyledContainer>
   );

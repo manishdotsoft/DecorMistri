@@ -38,3 +38,7 @@ export const ActionBox = styled.div`
   align-items: center;
   gap: 20px;
 `;
+
+export const BoxItems = styled.div`
+  padding: 20px;
+`;

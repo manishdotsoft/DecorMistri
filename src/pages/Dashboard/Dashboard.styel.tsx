@@ -36,3 +36,21 @@ export const BoxContainer = styled(Box)({
   justifyContent: 'space-between',
   gap: 4,
 });
+
+export const Drivider = styled(Box)({
+  background: 'grey',
+  height: '1px',
+  display: 'flex',
+  flexDirection: 'row',
+  marginBottom: '20px',
+});
+
+export const Titel = styled(Typography)({
+  textAlign: 'center',
+  marginBottom: 4,
+  fontWeight: 600,
+});
+
+export const Cards = styled(Box)({
+  marginBottom: '15px',
+});

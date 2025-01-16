@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Checkbox,
@@ -9,114 +9,49 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ButtonProject from '../../atoms/Button/Button';
-import { useTheme } from '@mui/material/styles';
 import {
   CardContainer,
   FilterBox,
   SearchContainer,
   StyledInput,
   ActionBox,
+  BoxItems,
 } from './HeaderFilter.style';
 import SelectOption from '../../atoms/Select/SelectOption';
+import useHeaderFilter from './Header.hook';
 
-const designOptions = [
+interface DesignOption {
+  value: string;
+  label: string;
+  subcategories: string[];
+}
+
+const designOptions: DesignOption[] = [
   {
     value: 'commercial',
     label: 'Commercial Design',
-    subcategories: [
-      'Office Spaces',
-      'Retail Spaces',
-      'Hospitality Spaces',
-      'Entertainment Spaces',
-    ],
+    subcategories: ['Office Spaces', 'Retail Spaces'],
   },
   {
     value: 'residential',
     label: 'Residential Design',
-    subcategories: [
-      'Living Areas',
-      'Bedrooms',
-      'Dining Areas',
-      'Kitchens',
-      'Bathrooms',
-      'Outdoor Spaces',
-    ],
-  },
-  {
-    value: 'industrial',
-    label: 'Industrial Design',
-    subcategories: [
-      'Manufacturing Areas',
-      'Storage Areas',
-      'Service Areas',
-      'Admin Spaces',
-      'Specialized Areas',
-    ],
-  },
-  {
-    value: 'institutional',
-    label: 'Institutional Design',
-    subcategories: [
-      'Educational Spaces',
-      'Healthcare Spaces',
-      'Cultural Spaces',
-      'Religious Spaces',
-      'Government Spaces',
-    ],
-  },
-  {
-    value: 'mixed-use',
-    label: 'Mixed-Use Design',
-    subcategories: [
-      'Residential Components',
-      'Commercial Components',
-      'Shared Amenities',
-      'Public Spaces',
-    ],
-  },
-  {
-    value: 'landscape',
-    label: 'Landscape Design',
-    subcategories: [
-      'Residential Landscaping',
-      'Commercial Landscaping',
-      'Urban Landscaping',
-      'Environmental Spaces',
-      'Specialized Areas',
-    ],
+    subcategories: ['Living Areas', 'Bedrooms'],
   },
 ];
 
-const HeaderFilter = () => {
-  const theme = useTheme();
-
-  const [selectedOption, setSelectedOption] = useState<string>('');
-  const [values, setValues] = useState({
-    designType: '',
-    subcategories: [] as string[],
-  });
-
-  const handleOptionChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const selectedValue = event.target.value as string;
-    setSelectedOption(selectedValue);
-    setValues((prev) => ({
-      ...prev,
-      designType: selectedValue,
-      subcategories: [],
-    }));
-  };
-
-  const handleSubcategoriesChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => {
-    const selectedSubcategories = event.target.value as string[];
-    setValues((prev) => ({ ...prev, subcategories: selectedSubcategories }));
-  };
+const HeaderFilter: React.FC = () => {
+  const {
+    selectedOption,
+    values,
+    handleOptionChange,
+    handleSubcategoriesChange,
+    filteredSubcategories,
+  } = useHeaderFilter({ designOptions });
 
   return (
     <CardContainer>
       <FilterBox>
-        <Box sx={{ p: 4 }}>
+        <BoxItems>
           <SelectOption
             name="designType"
             label="Design Type"
@@ -127,46 +62,41 @@ const HeaderFilter = () => {
             value={selectedOption}
             onChange={handleOptionChange}
             style={{
-              width: '120px',
-              padding: '10px',
-              margin: '0',
+              width: '100%',
+              padding: 1,
+              margin: 0,
               color: 'black',
             }}
           />
-
-          {/* Subcategories */}
           {values.designType && (
-            <Box sx={{ mt: 4 }}>
+            <BoxItems>
               <InputLabel id="subcategory-label">Subcategories</InputLabel>
               <Select
                 labelId="subcategory-label"
                 id="subcategories"
                 fullWidth
-                name="subcategories"
                 multiple
                 value={values.subcategories}
                 onChange={handleSubcategoriesChange}
                 renderValue={(selected) => (selected as string[]).join(', ')}
+                aria-label="Select subcategories"
               >
-                {designOptions
-                  .find((option) => option.value === values.designType)
-                  ?.subcategories.map((subcategory) => (
-                    <MenuItem key={subcategory} value={subcategory}>
-                      <Checkbox
-                        checked={values.subcategories.includes(subcategory)}
-                      />
-                      <ListItemText primary={subcategory} />
-                    </MenuItem>
-                  ))}
+                {filteredSubcategories.map((subcategory) => (
+                  <MenuItem key={subcategory} value={subcategory}>
+                    <Checkbox
+                      checked={values.subcategories.includes(subcategory)}
+                    />
+                    <ListItemText primary={subcategory} />
+                  </MenuItem>
+                ))}
               </Select>
-            </Box>
+            </BoxItems>
           )}
-        </Box>
+        </BoxItems>
       </FilterBox>
-
       <ActionBox>
         <SearchContainer>
-          <StyledInput placeholder="Search Box of all the page" />
+          <StyledInput placeholder="Search..." aria-label="Search field" />
           <SearchIcon />
         </SearchContainer>
         <Box>
@@ -178,7 +108,7 @@ const HeaderFilter = () => {
             style={{
               width: '180px',
               borderRadius: '4px',
-              backgroundColor: theme.palette.primary.main,
+              backgroundColor: 'primary.main',
             }}
             onClick={() => console.log('Button clicked')}
           />
