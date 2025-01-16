@@ -177,7 +177,11 @@ const PropertyDetails = ({
           label="Design Type"
           options={designOptions.map(({ value, label }) => ({ value, label }))}
           value={formik.values.designType}
-          onChange={(e) => formik.setFieldValue("designType", e.target.value)}
+          onChange={(e) => {
+            // Clear subcategories when designType is changed
+            formik.setFieldValue("designType", e.target.value);
+            formik.setFieldValue("subcategories", []); // Reset subcategories
+          }}
           error={formik.touched.designType && Boolean(formik.errors.designType)}
           helperText={formik.touched.designType && formik.errors.designType}
         />
