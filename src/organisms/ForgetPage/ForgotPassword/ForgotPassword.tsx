@@ -7,7 +7,7 @@ import { ForgetPasswordValidationSchema } from './validationSchema';
 import { useForgetPassword } from './ForgotPassword.hook';
 import {
   StyledContainer,
-  StyledForm,
+  // StyledForm,
   StyledHeader,
   MainFlex,
   ChildFlex,
@@ -33,7 +33,7 @@ const ForgetPassword = () => {
     <StyledContainer>
       <MainFlex>
         <ChildFlex>
-          <StyledForm>
+          {/* <StyledForm> */}
             <StyledHeader>
               <LogoImage
                 src={loginLogo}
@@ -50,9 +50,10 @@ const ForgetPassword = () => {
             <Formik
               initialValues={initialValues}
               validationSchema={ForgetPasswordValidationSchema}
-              onSubmit={(values, { resetForm }) =>
-                handleSubmit(values, resetForm)
-              }
+              onSubmit={(values, { resetForm }) => {
+                handleSubmit(values);
+                resetForm();
+              }}
             >
               {({
                 values,
@@ -90,13 +91,13 @@ const ForgetPassword = () => {
                       />
                     </ParentInputBox>
 
-                    <LoginLink to="/newpassword">
+                    {/* <LoginLink to="/newpassword"> */}
                       <Button
                         title="Reset Password"
                         type="submit"
                         color="primary"
                         variant="contained"
-                        onClick={() => {}}
+                        onClick={() =>{}}
                         backgroundColor={
                           isButtonDisabled ? '#e432a9' : '#C7148A'
                         }
@@ -110,12 +111,12 @@ const ForgetPassword = () => {
                           cursor: isButtonDisabled ? 'not-allowed' : 'pointer',
                         }}
                       />
-                    </LoginLink>
+                    {/* </LoginLink> */}
                   </Form>
                 );
               }}
             </Formik>
-          </StyledForm>
+          {/* </StyledForm> */}
           <LoginLink to="/">
             <Button
               title="Back"
@@ -123,7 +124,7 @@ const ForgetPassword = () => {
               color="primary"
               variant="contained"
               backgroundColor="#ffffff"
-              onClick={() => {}}
+              onClick={() => { }}
               style={{
                 borderRadius: '5px',
                 background: 'white',

@@ -15,8 +15,10 @@ import SignUpImage from '../../assets/images/signUpLogImage/SignUpLog.png';
 import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
 import Button from '../../atoms/Button/Button';
 import { Link } from 'react-router-dom';
+import { useSuccessfullyPageLogic } from "./SuccessfullyPage.hook";
 
 const SuccessfullyPage: React.FC = () => {
+  const {handleClick} = useSuccessfullyPageLogic();
   return (
     <StyledContainer>
       <MainFlex>
@@ -44,7 +46,8 @@ const SuccessfullyPage: React.FC = () => {
                 borderRadius: '5px',
                 padding: '25px',
               }}
-            />
+              onClick={handleClick}
+          />
           </Link>
         </ChildFlex>
         <AllImg src={SignUpImage} alt="Signup visuals" />

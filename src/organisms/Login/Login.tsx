@@ -1,4 +1,3 @@
-import { setLoginData } from '../../store/reducers/loginSlice';
 import { Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
@@ -24,14 +23,15 @@ import {
   Collaboration,
   ParentInputBox,
 } from './LoginPage.style';
-
+import Toaster from '../../atoms/Toaster/Toaster';
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
 import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 import googleLogo from '../../assets/images/logo/google.svg';
 import { useLoginLogic } from './Login.hook';
 
 const LoginPage = () => {
-  const { dispatch, initialValues, handleSubmit } = useLoginLogic();
+  const { initialValues, handleSubmit,message,showToaster,handleClose,severity } = useLoginLogic();
+
 
   return (
     <StyledContainer>
@@ -58,7 +58,6 @@ const LoginPage = () => {
             initialValues={initialValues}
             validationSchema={LoginSchema}
             onSubmit={(values, { resetForm }) => {
-              dispatch(setLoginData(values));
               handleSubmit(values);
               resetForm();
               console.log(values);
@@ -123,17 +122,12 @@ const LoginPage = () => {
                     Forgot password?
                   </ForgotPasswordLink>
                 </ForgetPaswordContainer>
-                <Link
-                  sx={{ textDecoration: 'none' }}
-                  component={RouterLink}
-                  to="/dashboard"
-                >
                   <Button
                     title="Sign In"
                     type="submit"
                     color="primary"
                     variant="contained"
-                    onClick={() => {}}
+                    onClick={() =>handleSubmit(values)}
                     disabled={!values.email || !values.password || !isValid}
                     style={{
                       marginTop: '20px',
@@ -152,7 +146,6 @@ const LoginPage = () => {
                           : 'pointer',
                     }}
                   />
-                </Link>
               </Form>
             )}
           </Formik>
@@ -195,6 +188,14 @@ const LoginPage = () => {
           <AllImg src={loginImage} alt="Login illustration" />
         </ImageBox>
       </MainFlex>
+      {
+        message && <Toaster 
+         message={message}
+         open={showToaster}
+         onClose={handleClose}
+         severity={severity}
+        />
+      }
     </StyledContainer>
   );
 };

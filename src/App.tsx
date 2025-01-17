@@ -22,11 +22,10 @@ const App = () => {
           <Route path="/forgot-password" element={<ForgetPassword />} />
           <Route path="/dashboard" element={<Home />} />
           <Route path="/passwordotp" element={<PasswordOtp />} />
-          <Route path="/dashboard" element={<Home />} />
           <Route path="/newpassword" element={<NewPassword />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/calenderview" element={<CalenderView />} />
-          <Route path="/create-Project" element={<CreateProject />} />
+          <Route path="/create-project" element={<CreateProject />} />
           <Route path="/success" element={<SuccessfullyPage />} />
         </Routes>
       </BrowserRouter>
