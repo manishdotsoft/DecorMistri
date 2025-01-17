@@ -1,6 +1,4 @@
-import { Typography } from '@mui/material';
-
-import Button from '../../atoms/Button/Button';
+import Button from '../../../atoms/Button/Button';
 import {
   StyledContainer,
   StyledForm,
@@ -10,10 +8,16 @@ import {
   AllImg,
   LoginLink,
   Title,
-} from './Forgetpage.style';
+} from '../Forgetpage.style';
 
-import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
-import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
+import loginImage from '../../../assets/images/signUpLogImage/SignUpLog.png';
+import loginLogo from '../../../assets/images/logo/Layer_x0020_1.svg';
+import {
+  ImageBox,
+  LogoImage,
+  TitleOne,
+  TitleTwo,
+} from '../../Login/LoginPage.style';
 
 const ResetPassword = () => {
   return (
@@ -22,25 +26,14 @@ const ResetPassword = () => {
         <ChildFlex>
           <StyledForm>
             <StyledHeader>
-              <img
-                style={{ width: '40px', height: '45px' }}
+              <LogoImage
                 src={loginLogo}
                 alt="Decormistri Logo"
                 className="logo-image"
               />
               <Title>
-                <Typography
-                  sx={{
-                    fontSize: '36px',
-                    fontWeight: 300,
-                    marginBottom: '5px',
-                  }}
-                >
-                  Reset password
-                </Typography>
-                <Typography sx={{ fontSize: '14px', fontWeight: 400 }}>
-                  Your password has been reset
-                </Typography>
+                <TitleOne>Reset password</TitleOne>
+                <TitleTwo>Your password has been reset</TitleTwo>
               </Title>
             </StyledHeader>
 
@@ -65,7 +58,9 @@ const ResetPassword = () => {
           </StyledForm>
         </ChildFlex>
 
-        <AllImg src={loginImage} alt="Login illustration" />
+        <ImageBox>
+          <AllImg src={loginImage} alt="Login illustration" />
+        </ImageBox>
       </MainFlex>
     </StyledContainer>
   );

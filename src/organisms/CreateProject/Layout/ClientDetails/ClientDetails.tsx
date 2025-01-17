@@ -1,10 +1,8 @@
 import { Typography, TextField } from "@mui/material";
-import { useFormik } from "formik";
-
 import { ButtonSection, Container, FlexRow } from "./ClientDetails.style";
 import Button from "../../../../atoms/Button/Button";
-import { clientDetailsSchema } from "../../Schema";
 import SelectOption from "../../../../atoms/Select/SelectOption";
+import useClientDetailsForm from "./ClientDetails.hook"; // Import the custom hook
 
 const ClientDetails = ({
   data,
@@ -38,39 +36,12 @@ const ClientDetails = ({
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const formik = useFormik({
-    initialValues: {
-      clientName: data.clientName || "",
-      clientEmail: data.clientEmail || "",
-      phoneNumber: data.phoneNumber || "",
-      city: data.city || "",
-      country: data.country || "",
-      state: data.state || "",
-      zipCode: data.zipCode || "",
-      addressLine1: data.addressLine1 || "",
-      addressLine2: data.addressLine2 || "",
-    },
-    validationSchema: clientDetailsSchema,
-    validateOnBlur: true,
-    onSubmit: (values) => {
-      updateData(values);
-      handleNext();
-      console.log(values);
-    },
+  const { formik, isFormValid } = useClientDetailsForm({
+    data,
+    updateData,
+    handleNext,
+    handlePrevious,
   });
-
-  const isFormValid = () => {
-    return (
-      formik.values.clientName &&
-      formik.values.clientEmail &&
-      formik.values.phoneNumber &&
-      formik.values.city &&
-      formik.values.country &&
-      formik.values.state &&
-      formik.values.zipCode &&
-      formik.values.addressLine1
-    );
-  };
 
   return (
     <Container>
@@ -136,7 +107,7 @@ const ClientDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.country && Boolean(formik.errors.country)}
           helperText={formik.touched.country && formik.errors.country}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
         />
         <SelectOption
           name="state"
@@ -150,7 +121,7 @@ const ClientDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.state && Boolean(formik.errors.state)}
           helperText={formik.touched.state && formik.errors.state}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
         />
       </FlexRow>
 
@@ -167,14 +138,13 @@ const ClientDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.city && Boolean(formik.errors.city)}
           helperText={formik.touched.city && formik.errors.city}
-          style={{ width: "100%" }}
+          style={{ width: "482px" }}
         />
         <TextField
           label="Zip/Postal code"
           variant="outlined"
           name="zipCode"
           type="number"
-          placeholder="ex. 098098"
           value={formik.values.zipCode}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -218,7 +188,7 @@ const ClientDetails = ({
           color="primary"
           variant="contained"
           disabled={!isFormValid()}
-          onClick={formik.handleSubmit}
+          onClick={() => formik.handleSubmit()}
         />
       </ButtonSection>
     </Container>

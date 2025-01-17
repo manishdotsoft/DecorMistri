@@ -1,4 +1,3 @@
-// src/components/Modal/Modal.tsx
 import React, { ReactNode } from 'react';
 import { Modal, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -7,7 +6,7 @@ import {
   ModalHeader,
   ModalContent,
   CloseButton,
-} from './Modal.styles'; // Import the styled components
+} from './Modal.styles';
 
 export interface ModalProps {
   open: boolean;

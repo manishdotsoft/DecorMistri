@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FormHelperText } from '@mui/material';
+import React, { useState } from "react";
+import { FormHelperText } from "@mui/material";
 import {
   FullWidthFormControl,
   InputLabelItem,
@@ -7,8 +7,8 @@ import {
   OptionSelect,
   ContainerMain,
   ErrorMe,
-} from './SelectOption.style';
-import { theme } from '../../thems/primitives/theme';
+} from "./SelectOption.style";
+import { theme } from "../../thems/primitives/theme";
 
 interface SelectOptionProps {
   name: string;
@@ -51,7 +51,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
         <SelectItem
           id={name}
           name={name}
-          value={value}
+          value={value || ""}
           onChange={onChange}
           onBlur={(e) => {
             setIsFocused(false);
@@ -60,9 +60,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
           onFocus={() => setIsFocused(true)}
           style={{ ...style }}
         >
-          <OptionSelect value="" disabled>
-            {/* Select {label} */}
-          </OptionSelect>
+          <OptionSelect value="" disabled></OptionSelect>
           {options.map((option) => (
             <OptionSelect key={option.value} value={option.value}>
               {option.label}
@@ -72,7 +70,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
       </FullWidthFormControl>
       <ErrorMe>
         {error && (
-          <FormHelperText sx={{ color: 'red' }}>{helperText}</FormHelperText>
+          <FormHelperText sx={{ color: "red" }}>{helperText}</FormHelperText>
         )}
       </ErrorMe>
     </ContainerMain>
@@ -80,7 +78,3 @@ const SelectOption: React.FC<SelectOptionProps> = ({
 };
 
 export default SelectOption;
-{
-  /* <ContainerMain>
-    </ContainerMain> */
-}

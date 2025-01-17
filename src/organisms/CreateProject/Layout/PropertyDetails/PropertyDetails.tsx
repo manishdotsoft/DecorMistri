@@ -4,13 +4,11 @@ import {
   Select,
   TextField,
   Box,
-  FormControl,
   InputLabel,
   FormHelperText,
   Checkbox,
   ListItemText,
 } from "@mui/material";
-import { useFormik } from "formik";
 import {
   ButtonSection,
   Container,
@@ -19,7 +17,8 @@ import {
   SelectFile,
 } from "./PropertyDetails.style";
 import Button from "../../../../atoms/Button/Button";
-import { propertyDetailsSchema } from "../../Schema";
+import SelectOption from "../../../../atoms/Select/SelectOption";
+import usePropertyDetailsForm from "./PropertyDetails.hook";
 
 const designOptions = [
   {
@@ -115,43 +114,12 @@ const PropertyDetails = ({
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const formik = useFormik({
-    initialValues: {
-      size: data.size || "",
-      phases: data.phases || "",
-      file: data.file || null,
-      comments: data.comments || "",
-      designType: data.designType || "",
-      subcategories: data.subcategories || [],
-    },
-    validationSchema: propertyDetailsSchema,
-    validateOnBlur: true,
-    onSubmit: (values) => {
-      updateData(values);
-      handleNext();
-      console.log(values);
-    },
+  const { formik, handleFileChange, isFormValid } = usePropertyDetailsForm({
+    data,
+    updateData,
+    handleNext,
   });
 
-  // const selectedDesign = formik.values.designType;
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      formik.setFieldValue("file", event.target.files[0]);
-    }
-  };
-
-  const isFormValid = () => {
-    return (
-      !!formik.values.size &&
-      !!formik.values.phases &&
-      !!formik.values.file &&
-      !!formik.values.comments &&
-      !!formik.values.designType &&
-      formik.values.subcategories.length > 0 &&
-      !Object.keys(formik.errors).length
-    );
-  };
   return (
     <Container>
       <Typography variant="h6">Basic Information</Typography>
@@ -172,73 +140,52 @@ const PropertyDetails = ({
       </FlexRow>
 
       <Box sx={{ p: 4 }}>
-        <FormControl
-          fullWidth
+        <SelectOption
+          name="designType"
+          label="Design Type"
+          options={designOptions.map(({ value, label }) => ({ value, label }))}
+          value={formik.values.designType}
+          onChange={(e) => {
+            // Clear subcategories when designType is changed
+            formik.setFieldValue("designType", e.target.value);
+            formik.setFieldValue("subcategories", []); // Reset subcategories
+          }}
           error={formik.touched.designType && Boolean(formik.errors.designType)}
-        >
-          <InputLabel id="design-type-label">Design Type</InputLabel>
-          <Select
-            labelId="design-type-label"
-            id="design-type"
-            name="designType"
-            value={formik.values.designType || ""}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          >
-            <MenuItem value="">
-              <em>Select One</em>
-            </MenuItem>
-            {designOptions.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-          {formik.touched.designType && formik.errors.designType && (
-            <FormHelperText>{formik.errors.designType}</FormHelperText>
-          )}
-        </FormControl>
+          helperText={formik.touched.designType && formik.errors.designType}
+        />
 
         {/* Subcategories */}
         {formik.values.designType && (
           <Box sx={{ mt: 4 }}>
-            <FormControl
+            <InputLabel id="subcategory-label">Subcategories</InputLabel>
+            <Select
+              labelId="subcategory-label"
+              id="subcategories"
               fullWidth
-              error={
-                formik.touched.subcategories &&
-                Boolean(formik.errors.subcategories)
+              name="subcategories"
+              multiple
+              value={formik.values.subcategories}
+              onChange={(e) =>
+                formik.setFieldValue("subcategories", e.target.value)
               }
+              renderValue={(selected) => selected.join(", ")}
             >
-              <InputLabel id="subcategory-label">Subcategories</InputLabel>
-              <Select
-                labelId="subcategory-label"
-                id="subcategories"
-                name="subcategories"
-                multiple
-                value={formik.values.subcategories}
-                onChange={(e) =>
-                  formik.setFieldValue("subcategories", e.target.value)
-                }
-                onBlur={formik.handleBlur}
-                renderValue={(selected) => selected.join(", ")}
-              >
-                {designOptions
-                  .find((option) => option.value === formik.values.designType)
-                  ?.subcategories.map((subcategory) => (
-                    <MenuItem key={subcategory} value={subcategory}>
-                      <Checkbox
-                        checked={formik.values.subcategories.includes(
-                          subcategory
-                        )}
-                      />
-                      <ListItemText primary={subcategory} />
-                    </MenuItem>
-                  ))}
-              </Select>
-              {formik.touched.subcategories && formik.errors.subcategories && (
-                <FormHelperText>{formik.errors.subcategories}</FormHelperText>
-              )}
-            </FormControl>
+              {designOptions
+                .find((option) => option.value === formik.values.designType)
+                ?.subcategories.map((subcategory) => (
+                  <MenuItem key={subcategory} value={subcategory}>
+                    <Checkbox
+                      checked={formik.values.subcategories.includes(
+                        subcategory
+                      )}
+                    />
+                    <ListItemText primary={subcategory} />
+                  </MenuItem>
+                ))}
+            </Select>
+            {formik.touched.subcategories && formik.errors.subcategories && (
+              <FormHelperText>{formik.errors.subcategories}</FormHelperText>
+            )}
           </Box>
         )}
       </Box>

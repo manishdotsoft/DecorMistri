@@ -1,12 +1,8 @@
-import { useDispatch } from 'react-redux';
-import { setLoginData } from '../../store/reducers/loginSlice';
-import { AppDispatch } from '../../store/store';
 import { Typography } from '@mui/material';
-
 import { Formik, Form } from 'formik';
-import { LoginSchema } from '../Login/LoginSchema';
-import TextInput from '../../atoms/TextInput/TextInput';
-import Button from '../../atoms/Button/Button';
+import { LoginSchema } from '../../Login/LoginSchema';
+import TextInput from '../../../atoms/TextInput/TextInput';
+import Button from '../../../atoms/Button/Button';
 import {
   StyledContainer,
   StyledForm,
@@ -16,50 +12,46 @@ import {
   AllImg,
   LoginLink,
   Title,
-} from './Forgetpage.style';
-import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
-import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
+  SignupContainer,
+} from '../Forgetpage.style';
+
+import loginImage from '../../../assets/images/signUpLogImage/SignUpLog.png';
+import loginLogo from '../../../assets/images/logo/Layer_x0020_1.svg';
+import { Link } from 'react-router-dom';
+import {
+  ImageBox,
+  LogoImage,
+  TitleOne,
+  TitleTwo,
+} from '../../Login/LoginPage.style';
 
 const initialValues = {
   email: '',
   password: '',
 };
 
-const ForgetPassword = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
+const PasswordOtp = () => {
+ 
   return (
     <StyledContainer>
       <MainFlex>
         <ChildFlex>
           <StyledForm>
             <StyledHeader>
-              <img
-                style={{ width: '40px', height: '45px' }}
+              <LogoImage
                 src={loginLogo}
                 alt="Decormistri Logo"
                 className="logo-image"
               />
               <Title>
-                <Typography
-                  sx={{
-                    fontSize: '36px',
-                    fontWeight: 300,
-                    marginBottom: '5px',
-                  }}
-                >
-                  Forgot password
-                </Typography>
-                <Typography sx={{ fontSize: '14px', fontWeight: 400 }}>
-                  No worries, We’ll send you instructions for reset
-                </Typography>
+                <TitleOne>Forgot password</TitleOne>
+                <TitleTwo>Enter a reset code</TitleTwo>
               </Title>
             </StyledHeader>
             <Formik
               initialValues={initialValues}
               validationSchema={LoginSchema}
               onSubmit={(values, { resetForm }) => {
-                dispatch(setLoginData(values));
                 localStorage.setItem('authToken', 'your-auth-token');
                 resetForm();
               }}
@@ -69,9 +61,9 @@ const ForgetPassword = () => {
                   <Form>
                     <TextInput
                       name="email"
-                      type="email"
-                      label="Email Address / Mobile Number"
-                      placeholder="Email Address / Mobile Number"
+                      type="number"
+                      label="Enter OTP"
+                      placeholder="Enter OTP"
                       value={values.email}
                       onChange={handleChange}
                       style={{
@@ -87,9 +79,9 @@ const ForgetPassword = () => {
                       }
                     />
 
-                    <LoginLink to="/passwordotp">
+                    <LoginLink to="/newpassword">
                       <Button
-                        title="Reset Password"
+                        title="Continue"
                         type="submit"
                         color="primary"
                         backgroundColor={'#C7148A'}
@@ -110,9 +102,9 @@ const ForgetPassword = () => {
               }}
             </Formik>
           </StyledForm>
-          <LoginLink to="/">
+          <LoginLink to="/signup">
             <Button
-              title="Back"
+              title="Back to Sign in"
               type="submit"
               color="primary"
               variant="contained"
@@ -129,12 +121,20 @@ const ForgetPassword = () => {
               }}
             />
           </LoginLink>
+          <SignupContainer>
+            <Typography component="span">Dont receive the code ? </Typography>
+            <Link to="" className="signup-link">
+              Please resend
+            </Link>
+          </SignupContainer>
         </ChildFlex>
 
-        <AllImg src={loginImage} alt="Login illustration" />
+        <ImageBox>
+          <AllImg src={loginImage} alt="Login illustration" />
+        </ImageBox>
       </MainFlex>
     </StyledContainer>
   );
 };
 
-export default ForgetPassword;
+export default PasswordOtp;

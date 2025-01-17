@@ -30,7 +30,7 @@ export const createUserMutation = async (params: ICreateUserProps) => {
 		});
 		return { data };
 	} catch (error) {
-		console.error(error);
+		console.error('Error in createUserMutation',error);
 		return { error };
 	}
 };

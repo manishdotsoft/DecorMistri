@@ -1,13 +1,14 @@
-import React from "react";
-import { Typography, CircularProgress } from "@mui/material";
-import { useTheme } from "@mui/material";
-import { StyledButton, DisabledButton } from "./Button.style";
+import React from 'react';
+import { Typography, CircularProgress, Box } from '@mui/material';
+import { useTheme } from '@mui/material';
+import { StyledButton, DisabledButton } from './Button.style';
 
 interface ButtonProps {
   title: string;
-  color: string;
+  color?: string;
+  logo?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-  variant: "contained" | "outlined";
+  variant: 'contained' | 'outlined';
   backgroundColor?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
@@ -15,12 +16,13 @@ interface ButtonProps {
   buttonFontSize?: string;
   fontWeight?: string;
   letterSpacing?: string;
-  type?: "button" | "reset" | "submit";
+  type?: 'button' | 'reset' | 'submit';
 }
 
 const Button: React.FC<ButtonProps> = ({
   title,
   color,
+  logo,
   onClick,
   variant,
   backgroundColor,
@@ -35,7 +37,7 @@ const Button: React.FC<ButtonProps> = ({
   const theme = useTheme();
 
   return (
-    <>
+    <Box display="flex" flexDirection="column" alignItems="center">
       {disabled ? (
         <DisabledButton style={{ ...style }} disabled>
           <Typography
@@ -49,7 +51,7 @@ const Button: React.FC<ButtonProps> = ({
         </DisabledButton>
       ) : (
         <StyledButton
-          data-loading={loading ? "true" : undefined}
+          data-loading={loading ? 'true' : undefined}
           disabled={disabled || loading}
           variant={variant}
           onClick={onClick}
@@ -61,19 +63,30 @@ const Button: React.FC<ButtonProps> = ({
           {loading ? (
             <CircularProgress size={20} />
           ) : (
-            <Typography
-              style={{
-                fontSize: buttonFontSize ?? theme.typography.body2.fontSize,
-                fontWeight: fontWeight || "normal",
-                letterSpacing: letterSpacing || "normal",
-              }}
+            <Box
+              display="flex"
+              gap="8px"
+              justifyContent="center"
+              alignItems="center"
+              textAlign="center"
             >
-              {title}
-            </Typography>
+              {logo && (
+                <img src={logo} alt="button logo" style={{ height: '25px' }} />
+              )}
+              <Typography
+                style={{
+                  fontSize: buttonFontSize ?? theme.typography.body2.fontSize,
+                  fontWeight: fontWeight || 'normal',
+                  letterSpacing: letterSpacing || 'normal',
+                }}
+              >
+                {title}
+              </Typography>
+            </Box>
           )}
         </StyledButton>
       )}
-    </>
+    </Box>
   );
 };
 

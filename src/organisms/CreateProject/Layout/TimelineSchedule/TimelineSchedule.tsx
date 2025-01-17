@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { Typography } from "@mui/material";
-import { useFormik } from "formik";
 import {
   ButtonSection,
   Container,
@@ -10,8 +8,7 @@ import {
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import Button from "../../../../atoms/Button/Button";
-
-import { timelineScheduleSchema } from "../../Schema";
+import useTimelineSchedule from "./TimelineSchedule.hook";
 
 // Import validation schema
 
@@ -33,27 +30,11 @@ const TimelineSchedule = ({
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const formik = useFormik({
-    initialValues: {
-      startDate: data.startDate || null,
-      endDate: data.endDate || null,
-    },
-    validationSchema: timelineScheduleSchema,
-    validateOnBlur: true,
-    onSubmit: (values) => {
-      updateData(values);
-      handleNext();
-      console.log(values);
-    },
+  const { formik, isFormValid } = useTimelineSchedule({
+    data,
+    updateData,
+    handleNext,
   });
-
-  useEffect(() => {
-    updateData(formik.values);
-  }, [formik.values, updateData]);
-
-  const isFormValid = () => {
-    return formik.values.startDate !== null && formik.values.endDate !== null;
-  };
 
   return (
     <Container>
@@ -111,7 +92,7 @@ const TimelineSchedule = ({
         <Button
           title="Next"
           color="primary"
-          onClick={formik.handleSubmit}
+          onClick={() => formik.handleSubmit()}
           variant="contained"
           disabled={!isFormValid() || !formik.isValid}
         />

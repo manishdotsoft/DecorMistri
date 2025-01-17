@@ -1,60 +1,54 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import LiveProjectCard from '../../Molecules/Card/LiveProjectCard';
 import NotConfirmedCard from '../../Molecules/Card/NotConfirmed';
 import UpcomeingProjetsCard from '../../Molecules/Card/UpcomingProject';
 import CompleteProjectCard from '../../Molecules/Card/CompletedProject';
-import { Divider, HeadingItem, BoxItem, BoxContainer } from './Dashboard.styel';
+import {
+  Divider,
+  HeadingItem,
+  BoxItem,
+  BoxContainer,
+  Drivider,
+  Titel,
+  Cards,
+} from './Dashboard.styel';
 import HeaderFilter from '../../organisms/Header/HeaderFilter';
 
 const Dashboard = () => {
   return (
     <Box sx={{ padding: 4 }}>
-      <Typography
-        variant="h4"
-        sx={{ textAlign: 'center', marginBottom: 4, fontWeight: 600 }}
-        component="h1"
-      >
-        Project Dashboard
-      </Typography>
+      <Titel variant="h4">Project Dashboard</Titel>
 
       <HeaderFilter />
 
-      <Box
-        sx={{
-          background: 'grey',
-          height: '1px',
-          display: 'flex',
-          flexDirection: 'row',
-          mb: '20px',
-        }}
-      ></Box>
+      <Drivider></Drivider>
 
       <BoxContainer>
         <BoxItem>
-          <Box sx={{ mb: '15px' }}>
+          <Cards>
             <HeadingItem variant="h6">Live Project</HeadingItem>
-          </Box>
+          </Cards>
           <LiveProjectCard />
         </BoxItem>
         <Divider />
         <BoxItem>
-          <Box sx={{ mb: '15px' }}>
+          <Cards>
             <HeadingItem variant="h6">Upcoming Project</HeadingItem>
-          </Box>
+          </Cards>
           <UpcomeingProjetsCard />
         </BoxItem>
         <Divider />
         <BoxItem>
-          <Box sx={{ mb: '15px' }}>
+          <Cards>
             <HeadingItem variant="h6">Completed Project</HeadingItem>
-          </Box>
+          </Cards>
           <CompleteProjectCard />
         </BoxItem>
         <Divider />
         <BoxItem>
-          <Box sx={{ mb: '15px' }}>
+          <Cards>
             <HeadingItem variant="h6">Not Confirmed</HeadingItem>
-          </Box>
+          </Cards>
           <NotConfirmedCard />
         </BoxItem>
       </BoxContainer>

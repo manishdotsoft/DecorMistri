@@ -25,7 +25,7 @@ export const loginUserMutation = async (params: ILoginUserProps) => {
     });
     return { data };
   } catch (error) {
-    console.error(error);
-    return { error };
+    console.error('Error in loginUserMutation',error);
+    return {error };
   }
 };

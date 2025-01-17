@@ -27,7 +27,6 @@ export const useLoginLogic = () => {
   };
 
   const handleSubmit = async (values: LoginFormValues) => {
-    setShowToaster(true);
     try {
       const response = await loginUserMutation({
         input: {
@@ -35,22 +34,23 @@ export const useLoginLogic = () => {
           password: values.password,
         },
       });
-
+  
       if (response && response?.data?.loginUser?.token) {
-        console.log(response?.data, "res");
-        navigate("/dashboard");
-        setSeverity("success"); 
         setMessage(response?.data?.loginUser?.message || "Login successful!");
+        navigate("/dashboard");
       } else {
         setSeverity("warning"); 
         setMessage(response?.data?.loginUser?.message || "Invalid credentials.");
+        setShowToaster(true); 
       }
     } catch (err) {
       console.error(err);
       setSeverity("error"); 
       setMessage("An error occurred while logging in. Please try again.");
+      setShowToaster(true); 
     }
   };
+  
 
   return {
     dispatch,

@@ -1,5 +1,3 @@
-
-import { setLoginData } from '../../store/reducers/loginSlice';
 import { Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
@@ -18,53 +16,49 @@ import {
   ForgotPasswordLink,
   ForgetPaswordContainer,
   Title,
+  ImageBox,
+  TitleOne,
+  TitleTwo,
+  LogoImage,
 } from './LoginPage.style';
 import Toaster from '../../atoms/Toaster/Toaster';
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
 import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
+import googleLogo from '../../assets/images/logo/google.svg';
 import { useLoginLogic } from './Login.hook';
 
-
-
 const LoginPage = () => {
+  const { initialValues, handleSubmit,message,showToaster,handleClose,severity } = useLoginLogic();
 
-  const {dispatch,initialValues,handleSubmit,message,showToaster,handleClose,severity} = useLoginLogic();
-  console.log(showToaster,'toaster',message);
-  
+
   return (
     <StyledContainer>
       <MainFlex>
         <ChildFlex>
           <StyledHeader>
-            <img
-              style={{ width: '30px', height: '35px' }}
+            <LogoImage
               src={loginLogo}
               alt="Decormistri Logo"
               className="logo-image"
             />
             <Title>
-              <Typography
-                sx={{
-                  fontSize: '28px',
-                  fontWeight: 300,
-                }}
-              >
+              <TitleOne>
                 Welcome to <br />
                 <Highlight>Decormistri</Highlight> Collaboration Tool
-              </Typography>
-              <Typography variant="body2" sx={{ fontSize: '13px' }}>
+              </TitleOne>
+              <TitleTwo variant="body2">
                 Decormistri provides advanced collaboration tools for <br /> the
                 Interior Industry and companies.
-              </Typography>
+              </TitleTwo>
             </Title>
           </StyledHeader>
           <Formik
             initialValues={initialValues}
             validationSchema={LoginSchema}
             onSubmit={(values, { resetForm }) => {
-              dispatch(setLoginData(values));
               handleSubmit(values);
               resetForm();
+              console.log(values);
             }}
           >
             {({
@@ -86,7 +80,7 @@ const LoginPage = () => {
                   style={{
                     width: '96%',
                     borderRadius: '8px',
-                    marginBottom: '20px',
+                    marginBottom: '10px',
                   }}
                   onBlur={handleBlur}
                   error={Boolean(touched.email && errors.email)}
@@ -104,7 +98,7 @@ const LoginPage = () => {
                   style={{
                     width: '96%',
                     borderRadius: '8px',
-                    marginBottom: '20px',
+                    marginBottom: '10px',
                   }}
                   onBlur={handleBlur}
                   error={Boolean(touched.password && errors.password)}
@@ -123,35 +117,38 @@ const LoginPage = () => {
                     Forgot password?
                   </ForgotPasswordLink>
                 </ForgetPaswordContainer>
-                <Button
-                  title="Sign In"
-                  type="submit"
-                  color="primary"
-                  variant="contained"
-                  onClick={() => {}}
-                  disabled={!values.email || !values.password || !isValid}
-                  style={{
-                    marginTop: '20px',
-                    backgroundColor:
-                      !values.email || !values.password || !isValid
-                        ? '#e432a9'
-                        : '#C7148A',
-                    color: '#ffffff',
-                    width: '100%',
-                    height: '50px',
-                    borderRadius: '5px',
-                    cursor:
-                      !values.email || !values.password || !isValid
-                        ? 'not-allowed'
-                        : 'pointer',
-                  }}
-                />
+                  <Button
+                    title="Sign In"
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    onClick={() =>handleSubmit(values)}
+                    disabled={!values.email || !values.password || !isValid}
+                    style={{
+                      marginTop: '20px',
+
+                      backgroundColor:
+                        !values.email || !values.password || !isValid
+                          ? '#565155'
+                          : '#C7148A',
+                      color: '#ffffff',
+                      width: '100%',
+                      height: '50px',
+                      borderRadius: '5px',
+                      cursor:
+                        !values.email || !values.password || !isValid
+                          ? 'not-allowed'
+                          : 'pointer',
+                    }}
+                  />
               </Form>
             )}
           </Formik>
+
           <Button
             title="Sign In with Google"
             color="primary"
+            logo={googleLogo}
             variant="contained"
             style={{
               borderRadius: '5px',
@@ -164,6 +161,7 @@ const LoginPage = () => {
             }}
             onClick={() => console.log('Google Sign-In Clicked')}
           />
+
           <SignupContainer>
             <Typography component="span">
               New to <HeadlineSpan> Decormistri?</HeadlineSpan>
@@ -181,7 +179,9 @@ const LoginPage = () => {
             </Link>
           </SignupContainer>
         </ChildFlex>
-        <AllImg src={loginImage} alt="Login illustration" />
+        <ImageBox>
+          <AllImg src={loginImage} alt="Login illustration" />
+        </ImageBox>
       </MainFlex>
       {
         message && <Toaster 

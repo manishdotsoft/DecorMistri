@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
 import { setSignUpData } from "../../store/reducers/signUpSlice";
 import { signUpSchema } from "./SchemasSignup";
-import {createUserMutation} from '../../graphql/mutation/createUser';
+import { createUserMutation } from "../../graphql/mutation/createUser";
 
 export interface SignUpFormValues {
   name: string;
@@ -25,8 +25,9 @@ export const useSignUp = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [toasterOpen, setToasterOpen] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState(0);
 
-  const handleSubmit = async (values: SignUpFormValues, actions:any) => {
+  const handleSubmit = async (values: SignUpFormValues, actions: any) => {
     try {
       dispatch(setSignUpData(values));
       const response = await createUserMutation({ input: {
@@ -52,7 +53,7 @@ export const useSignUp = () => {
   const formik = useFormik<SignUpFormValues>({
     initialValues,
     validationSchema: signUpSchema,
-    onSubmit: handleSubmit, 
+    onSubmit: handleSubmit,
   });
 
   const handleCloseToaster = () => {
@@ -60,8 +61,50 @@ export const useSignUp = () => {
   };
 
   const isAnyFieldEmpty = Object.values(formik.values).some(
-    (value) => value.trim() === ""
+    (value) => typeof value === "string" && value.trim() === ""
   );
 
-  return { formik, toasterOpen, handleCloseToaster, isAnyFieldEmpty };
+  const calculatePasswordStrength = (password: string): number => {
+    let strength = 0;
+    if (password.length >= 8) strength += 1;
+    if (/[A-Z]/.test(password)) strength += 1;
+    if (/[0-9]/.test(password)) strength += 1;
+    if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+    return strength;
+  };
+
+  const getStrengthLabel = (strength: number) => {
+    switch (strength) {
+      case 1:
+        return { label: "Weak", color: "#f44336" };
+      case 2:
+        return { label: "Fair", color: "#ff9800" };
+      case 3:
+        return { label: "Good", color: "#ffc107" };
+      case 4:
+        return { label: "Strong", color: "#4caf50" };
+      default:
+        return { label: "Very Weak", color: "#9e9e9e" };
+    }
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    formik.handleChange(e);
+    const strength = calculatePasswordStrength(value);
+    setPasswordStrength(strength);
+  };
+
+  const { label } = getStrengthLabel(passwordStrength);
+
+  return {
+    formik,
+    toasterOpen,
+    handleCloseToaster,
+    isAnyFieldEmpty,
+    passwordStrength,
+    handlePasswordChange,
+    label,
+    getStrengthLabel,
+  };
 };
