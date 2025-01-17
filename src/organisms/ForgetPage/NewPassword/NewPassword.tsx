@@ -23,6 +23,7 @@ import LoginSchema from './validationSchema';
 import {
   ImageBox,
   LogoImage,
+  ParentInputBox,
   TitleOne,
   TitleTwo,
 } from '../../Login/LoginPage.style';
@@ -83,51 +84,53 @@ const NewPassword = () => {
 
                 return (
                   <Form>
-                    <TextInput
-                      label="Password"
-                      type="password"
-                      name="password"
-                      placeholder="New Password"
-                      style={{
-                        width: '96%',
-                        borderRadius: '8px',
-                        height: '10px',
-                        marginBottom: '50px',
-                      }}
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      error={touched.password && Boolean(errors.password)}
-                    />
-                    {errors.password && touched.password && (
-                      <StyledTypography>{errors.password}</StyledTypography>
-                    )}
+                    <ParentInputBox>
+                      <TextInput
+                        label="Password"
+                        type="password"
+                        name="password"
+                        placeholder="New Password"
+                        style={{
+                          width: '100%',
+                          borderRadius: '8px',
+                          height: '10px',
+                          marginBottom: '5px',
+                        }}
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={touched.password && Boolean(errors.password)}
+                      />
+                      {errors.password && touched.password && (
+                        <StyledTypography>{errors.password}</StyledTypography>
+                      )}
 
-                    <TextInput
-                      name="confirm_password"
-                      type="password"
-                      label="Confirm Password"
-                      placeholder="Confirm Password"
-                      value={values.confirm_password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      style={{
-                        width: '96%',
-                        borderRadius: '8px',
-                        height: '10px',
-                        marginBottom: '50px',
-                      }}
-                      error={
-                        touched.confirm_password &&
-                        Boolean(errors.confirm_password)
-                      }
-                    />
-                    {errors.confirm_password && touched.confirm_password && (
-                      <StyledTypography>
-                        {errors.confirm_password}
-                      </StyledTypography>
-                    )}
-
+                      <TextInput
+                        name="confirm_password"
+                        type="password"
+                        label="Confirm Password"
+                        placeholder="Confirm Password"
+                        value={values.confirm_password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        style={{
+                          width: '100%',
+                          borderRadius: '8px',
+                          height: '10px',
+                          marginBottom: '10px',
+                          marginTop: '10px',
+                        }}
+                        error={
+                          touched.confirm_password &&
+                          Boolean(errors.confirm_password)
+                        }
+                      />
+                      {errors.confirm_password && touched.confirm_password && (
+                        <StyledTypography>
+                          {errors.confirm_password}
+                        </StyledTypography>
+                      )}
+                    </ParentInputBox>
                     <LoginLink to="/resetpassword">
                       <Button
                         title="Reset Password"

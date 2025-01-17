@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom';
 import {
   ImageBox,
   LogoImage,
+  ParentInputBox,
   TitleOne,
   TitleTwo,
 } from '../../Login/LoginPage.style';
@@ -64,26 +65,29 @@ const PasswordOtp = () => {
               {({ values, errors, touched, handleChange, handleBlur }) => {
                 return (
                   <Form>
-                    <TextInput
-                      name="email"
-                      type="number"
-                      label="Enter OTP"
-                      placeholder="Enter OTP"
-                      value={values.email}
-                      onChange={handleChange}
-                      style={{
-                        width: '96%',
-                        borderRadius: '8px',
-                        height: '10px',
-                        marginBottom: '50px',
-                      }}
-                      onBlur={handleBlur}
-                      error={Boolean(touched.email && errors.email)}
-                      helperText={
-                        touched.email && errors.email ? errors.email : undefined
-                      }
-                    />
-
+                    <ParentInputBox>
+                      <TextInput
+                        name="email"
+                        type="number"
+                        label="Enter OTP"
+                        placeholder="Enter OTP"
+                        value={values.email}
+                        onChange={handleChange}
+                        style={{
+                          width: '100%',
+                          borderRadius: '8px',
+                          height: '10px',
+                          marginBottom: '5px',
+                        }}
+                        onBlur={handleBlur}
+                        error={Boolean(touched.email && errors.email)}
+                        helperText={
+                          touched.email && errors.email
+                            ? errors.email
+                            : undefined
+                        }
+                      />
+                    </ParentInputBox>
                     <LoginLink to="/newpassword">
                       <Button
                         title="Continue"

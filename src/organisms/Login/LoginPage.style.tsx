@@ -26,6 +26,7 @@ export const ForgetPaswordContainer = styled('div')`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 20px;
   margin-bottom: 10px;
   label {
     font-size: 18px;
@@ -94,7 +95,7 @@ export const LoginLink = styled(RouterLink)`
   text-decoration: none;
 `;
 
-export const StyledContainer = styled('div')(({ theme }) => ({
+export const StyledContainer = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
   fontFamily: 'sans-serif',
@@ -102,7 +103,9 @@ export const StyledContainer = styled('div')(({ theme }) => ({
   minHeight: '92vh',
   backgroundColor: '#ffffff',
   padding: '16px',
-  [theme.breakpoints.down('md')]: {},
+  '@media (max-width: 468px)': {
+    padding: '0px',
+  },
 }));
 
 export const MainFlex = styled('div')(({ theme }) => ({
@@ -123,6 +126,9 @@ export const MainFlex = styled('div')(({ theme }) => ({
   },
   [theme.breakpoints.down('md')]: {
     maxWidth: '700px',
+  },
+  '@media (max-width: 468px)': {
+    boxShadow: 'none',
   },
 }));
 
@@ -169,6 +175,12 @@ export const ImageFlex = styled('div')(() => ({
 export const AllImg = styled('img')(() => ({
   width: '100%',
   height: '100%',
+
+  '@media (max-width: 768px)': {},
+
+  '@media (max-width: 480px)': {
+    display: 'none',
+  },
 }));
 
 export const StyledHeader = styled('div')(() => ({
@@ -238,6 +250,9 @@ export const StyledLink = styled('span')(() => ({
 export const ImageBox = styled('div')(() => ({
   width: '50%',
   height: 'auto',
+  '@media (max-width: 1200px)': {
+    width: '100%',
+  },
 }));
 
 export const TitleOne = styled(Typography)(() => ({
@@ -249,6 +264,15 @@ export const TitleTwo = styled(Typography)(() => ({
 }));
 
 export const LogoImage = styled('img')(() => ({
-  width: '30px',
-  height: '35px',
+  height: '40px',
+}));
+
+export const Collaboration = styled(Typography)(() => ({
+  fontSize: '28px',
+  fontWeight: 300,
+}));
+
+export const ParentInputBox = styled('div')(() => ({
+  marginRight: '40px',
+  '@media (max-width: 480px)': {},
 }));
