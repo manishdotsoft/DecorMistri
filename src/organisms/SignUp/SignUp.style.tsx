@@ -77,10 +77,10 @@ export const AllImg = styled("img")(({ theme }) => ({
   width: "100%",
   height: "100%",
 
-  // [theme.breakpoints.down("lg")]: {
-  //   width: "100%",
-  //   margin: "0 auto",
-  // },
+  [theme.breakpoints.down("lg")]: {
+    width: "100%",
+    margin: "0 auto",
+  },
 }));
 
 export const StyledHeader = styled("div")(() => ({
@@ -145,4 +145,18 @@ export const StyledLink = styled("span")(() => ({
   fontFamily: "sans-serif",
 
   textDecoration: "none",
+}));
+
+export const ProgressBar1 = styled("div")(() => ({
+  display: "flex",
+  justifyContent: "flex-end",
+  width: "100%",
+  marginTop: "3px",
+}));
+
+export const ProgressBar = styled("div")(() => ({
+  display: "flex",
+
+  gap: "5px",
+  width: "80%",
 }));

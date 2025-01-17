@@ -1,14 +1,12 @@
-import { useEffect } from "react";
 import { Typography, TextField } from "@mui/material";
-import { useFormik } from "formik";
-import { propertyLocationSchema } from "../../Schema";
+import usePropertyLocationDetails from "./PropertyLocationDetails.hook";
+import Button from "../../../../atoms/Button/Button";
+import SelectOption from "../../../../atoms/Select/SelectOption";
 import {
   ButtonSection,
   Container,
   FlexRow,
 } from "./PropertyLocationDetails.style";
-import Button from "../../../../atoms/Button/Button";
-import SelectOption from "../../../../atoms/Select/SelectOption";
 
 const PropertyLocationDetails = ({
   data,
@@ -36,38 +34,11 @@ const PropertyLocationDetails = ({
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const formik = useFormik({
-    initialValues: {
-      country: data.country || "",
-      state: data.state || "",
-      city: data.city || "",
-      zip: data.zip || "",
-      addressLine1: data.addressLine1 || "",
-      addressLine2: data.addressLine2 || "",
-    },
-    validationSchema: propertyLocationSchema,
-    validateOnBlur: true,
-    onSubmit: (values) => {
-      updateData(values);
-      handleNext();
-      console.log(values);
-    },
+  const { formik, isFormValid } = usePropertyLocationDetails({
+    data,
+    updateData,
+    handleNext,
   });
-
-  const isFormValid = () => {
-    return (
-      formik.values.country &&
-      formik.values.state &&
-      formik.values.city &&
-      formik.values.zip.trim() &&
-      formik.values.addressLine1.trim()
-    );
-  };
-
-  useEffect(() => {
-    updateData(formik.values);
-  }, [formik.values, updateData]);
-
   return (
     <Container>
       <Typography variant="h6">Property Location Details</Typography>
@@ -168,7 +139,7 @@ const PropertyLocationDetails = ({
           color="primary"
           variant="contained"
           disabled={!isFormValid()}
-          onClick={formik.handleSubmit}
+          onClick={() => formik.handleSubmit()}
         />
       </ButtonSection>
     </Container>
