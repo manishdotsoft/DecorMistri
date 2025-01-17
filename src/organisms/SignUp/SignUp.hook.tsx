@@ -30,13 +30,12 @@ export const useSignUp = () => {
   const handleSubmit = async (values: SignUpFormValues, actions: any) => {
     try {
       dispatch(setSignUpData(values));
-      const response = await createUserMutation({
-        input: {
-          full_name: values.name,
-          email: values.email,
-          password: values.password,
-        },
-      });
+      const response = await createUserMutation({ input: {
+        full_name:values.name,
+        email:values.email,
+        password:values.password,
+        phone:values.phone,
+      } });
       if (response.data) {
         setToasterOpen(true);
         actions.resetForm();

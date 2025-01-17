@@ -5,7 +5,7 @@ import { StyledButton, DisabledButton } from './Button.style';
 
 interface ButtonProps {
   title: string;
-  color: string;
+  color?: string;
   logo?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   variant: 'contained' | 'outlined';

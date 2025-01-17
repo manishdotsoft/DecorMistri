@@ -1,22 +1,17 @@
-import { useDispatch } from 'react-redux';
-import { setLoginData } from '../../../store/reducers/loginSlice';
-import { AppDispatch } from '../../../store/store';
-
 import { Formik, Form } from 'formik';
 import TextInput from '../../../atoms/TextInput/TextInput';
 import Button from '../../../atoms/Button/Button';
 import {
   StyledContainer,
-  StyledForm,
+  // StyledForm,
   StyledHeader,
   MainFlex,
   ChildFlex,
   AllImg,
-  LoginLink,
+  // LoginLink,
   Title,
   StyledTypography,
 } from '../Forgetpage.style';
-
 import loginImage from '../../../assets/images/signUpLogImage/SignUpLog.png';
 import loginLogo from '../../../assets/images/logo/Layer_x0020_1.svg';
 import LoginSchema from './validationSchema';
@@ -26,21 +21,20 @@ import {
   TitleOne,
   TitleTwo,
 } from '../../Login/LoginPage.style';
-
-const initialValues = {
-  email: '',
-  password: '',
-  confirm_password: '',
-};
+import { useNewPasswordLogic } from './NewPassword.hook';
+import Toaster from '../../../atoms/Toaster/Toaster';
 
 const NewPassword = () => {
-  const dispatch = useDispatch<AppDispatch>();
+
+  const { handleSubmit, initialValues,message,showToaster,handleClose,severity } = useNewPasswordLogic();
+
+  console.log(message,showToaster,'toast');
 
   return (
     <StyledContainer>
       <MainFlex>
         <ChildFlex>
-          <StyledForm>
+          {/* <StyledForm> */}
             <StyledHeader>
               <LogoImage
                 src={loginLogo}
@@ -59,15 +53,8 @@ const NewPassword = () => {
               initialValues={initialValues}
               validationSchema={LoginSchema}
               onSubmit={(values, { resetForm }) => {
-                dispatch(
-                  setLoginData({
-                    email: values.email,
-                    password: values.password,
-                  })
-                );
-                localStorage.setItem('authToken', 'your-auth-token');
+                handleSubmit(values); 
                 resetForm();
-                console.log(values);
               }}
             >
               {({
@@ -89,10 +76,10 @@ const NewPassword = () => {
                       name="password"
                       placeholder="New Password"
                       style={{
-                        width: '96%',
-                        borderRadius: '8px',
-                        height: '10px',
-                        marginBottom: '50px',
+                        width: "96%",
+                        borderRadius: "8px",
+                        height: "10px",
+                        marginBottom: "50px",
                       }}
                       value={values.password}
                       onChange={handleChange}
@@ -112,53 +99,57 @@ const NewPassword = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       style={{
-                        width: '96%',
-                        borderRadius: '8px',
-                        height: '10px',
-                        marginBottom: '50px',
+                        width: "96%",
+                        borderRadius: "8px",
+                        height: "10px",
+                        marginBottom: "50px",
                       }}
                       error={
-                        touched.confirm_password &&
-                        Boolean(errors.confirm_password)
+                        touched.confirm_password && Boolean(errors.confirm_password)
                       }
                     />
                     {errors.confirm_password && touched.confirm_password && (
-                      <StyledTypography>
-                        {errors.confirm_password}
-                      </StyledTypography>
+                      <StyledTypography>{errors.confirm_password}</StyledTypography>
                     )}
 
-                    <LoginLink to="/resetpassword">
-                      <Button
-                        title="Reset Password"
-                        type="submit"
-                        color="#e432a9"
-                        onClick={() => {}}
-                        backgroundColor={
-                          isButtonDisabled ? '#e432a9' : '#C7148A'
-                        }
-                        variant="contained"
-                        disabled={isButtonDisabled}
-                        style={{
-                          marginTop: '20px',
-                          color: '#ffffff',
-                          width: '100%',
-                          height: '50px',
-                          borderRadius: '5px',
-                          cursor: isButtonDisabled ? 'not-allowed' : 'pointer',
-                        }}
-                      />
-                    </LoginLink>
+                    <Button
+                      title="Reset Password"
+                      type="submit" 
+                      color="#e432a9"
+                      onClick={()=>{}}
+                      backgroundColor={
+                        isButtonDisabled ? "#e432a9" : "#C7148A"
+                      }
+                      variant="contained"
+                      disabled={isButtonDisabled}
+                      style={{
+                        marginTop: "20px",
+                        color: "#ffffff",
+                        width: "100%",
+                        height: "50px",
+                        borderRadius: "5px",
+                        cursor: isButtonDisabled ? "not-allowed" : "pointer",
+                      }}
+                    />
                   </Form>
                 );
               }}
             </Formik>
-          </StyledForm>
+
+          {/* </StyledForm> */}
         </ChildFlex>
         <ImageBox>
           <AllImg src={loginImage} alt="Login illustration" />
         </ImageBox>
       </MainFlex>
+      {
+        message && <Toaster 
+         message={message}
+         open={showToaster}
+         onClose={handleClose}
+         severity={severity}
+        />
+      }
     </StyledContainer>
   );
 };

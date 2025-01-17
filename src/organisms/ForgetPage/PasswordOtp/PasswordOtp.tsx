@@ -1,6 +1,3 @@
-import { useDispatch } from 'react-redux';
-import { setLoginData } from '../../../store/reducers/loginSlice';
-import { AppDispatch } from '../../../store/store';
 import { Typography } from '@mui/material';
 import { Formik, Form } from 'formik';
 import { LoginSchema } from '../../Login/LoginSchema';
@@ -34,8 +31,7 @@ const initialValues = {
 };
 
 const PasswordOtp = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
+ 
   return (
     <StyledContainer>
       <MainFlex>
@@ -56,7 +52,6 @@ const PasswordOtp = () => {
               initialValues={initialValues}
               validationSchema={LoginSchema}
               onSubmit={(values, { resetForm }) => {
-                dispatch(setLoginData(values));
                 localStorage.setItem('authToken', 'your-auth-token');
                 resetForm();
               }}

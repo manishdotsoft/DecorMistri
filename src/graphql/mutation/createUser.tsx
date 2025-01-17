@@ -6,6 +6,7 @@ interface ICreateUserProps {
 		full_name: string;
 		email: string;
 		password: string;
+		phone:string;
 	};
 }
 
@@ -17,7 +18,6 @@ export const CREATE_USER = gql`
 			email
 			phone
 			role
-			password
 		}
 	}
 `;
@@ -30,7 +30,7 @@ export const createUserMutation = async (params: ICreateUserProps) => {
 		});
 		return { data };
 	} catch (error) {
-		console.error(error);
+		console.error('Error in createUserMutation',error);
 		return { error };
 	}
 };

@@ -1,14 +1,16 @@
 import { useDispatch } from 'react-redux';
-import { setLoginData } from '../../../store/reducers/loginSlice';
+import { setEmail } from '../../../store/reducers/loginSlice';
 import { AppDispatch } from '../../../store/store';
+import { useNavigate } from 'react-router-dom';
 
 export const useForgetPassword = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleSubmit = (values: { email: string }, resetForm: () => void) => {
-    dispatch(setLoginData(values));
+  const handleSubmit = (values: { email: string }) => {
+    dispatch(setEmail(values.email));
+    navigate('/newpassword');
     localStorage.setItem('authToken', 'your-auth-token');
-    resetForm();
   };
 
   return { handleSubmit };
