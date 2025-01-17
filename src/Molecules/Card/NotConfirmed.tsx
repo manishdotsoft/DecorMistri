@@ -1,9 +1,14 @@
-import { Box, CardContent, Typography, IconButton } from '@mui/material';
+import { CardContent, Typography, IconButton } from '@mui/material';
 import Button from '../../atoms/Button/Button';
-import { CardContainer, HeadingTitle } from './Card.styel';
+import {
+  CardContainer,
+  HeadingTitle,
+  ButtonBox,
+  TiteleStatus,
+} from './Card.styel';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useProjectMenu } from './card.hook';
-import ProjectMenu from './Menu';
+import ProjectMenu from './ThreeDotMenu/Menu';
 
 const projectData = [
   {
@@ -78,14 +83,9 @@ const NotConfirmedCard = () => {
             <Typography variant="body2" color="text.secondary">
               End Date: {project.endDate}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{ marginTop: 2, mb: 1.5, color: '#721c24' }}
-            >
-              Status: Not Confirmed
-            </Typography>
+            <TiteleStatus>Status: Not Confirmed</TiteleStatus>
           </CardContent>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+          <ButtonBox>
             <Button
               title="Update Status"
               color="secondary"
@@ -96,7 +96,7 @@ const NotConfirmedCard = () => {
               }}
               onClick={() => console.log('Update Status button clicked')}
             />
-          </Box>
+          </ButtonBox>
         </CardContainer>
       ))}
 
