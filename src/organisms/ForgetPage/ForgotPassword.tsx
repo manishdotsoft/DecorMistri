@@ -17,7 +17,6 @@ import {
   LoginLink,
   Title,
 } from './Forgetpage.style';
-
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
 import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 

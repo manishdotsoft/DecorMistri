@@ -124,6 +124,7 @@ const palette = {
   warning: {
     main: WARNING_COLOR,
     contrastText: TEXT_WARNING,
+    warning:TROPHY_ICON_COLOR,
   },
   confirm: {
     main: CONFIRM_COLOR,

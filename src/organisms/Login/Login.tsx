@@ -1,6 +1,5 @@
 
 import { setLoginData } from '../../store/reducers/loginSlice';
-
 import { Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
@@ -19,8 +18,8 @@ import {
   ForgotPasswordLink,
   ForgetPaswordContainer,
   Title,
-} from './LoginPage.styel';
-
+} from './LoginPage.style';
+import Toaster from '../../atoms/Toaster/Toaster';
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
 import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 import { useLoginLogic } from './Login.hook';
@@ -29,7 +28,8 @@ import { useLoginLogic } from './Login.hook';
 
 const LoginPage = () => {
 
-  const {dispatch,initialValues,handleSubmit} = useLoginLogic();
+  const {dispatch,initialValues,handleSubmit,message,showToaster,handleClose,severity} = useLoginLogic();
+  console.log(showToaster,'toaster',message);
   
   return (
     <StyledContainer>
@@ -183,6 +183,14 @@ const LoginPage = () => {
         </ChildFlex>
         <AllImg src={loginImage} alt="Login illustration" />
       </MainFlex>
+      {
+        message && <Toaster 
+         message={message}
+         open={showToaster}
+         onClose={handleClose}
+         severity={severity}
+        />
+      }
     </StyledContainer>
   );
 };

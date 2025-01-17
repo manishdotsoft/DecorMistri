@@ -33,6 +33,7 @@ export const useSignUp = () => {
         full_name:values.name,
         email:values.email,
         password:values.password,
+        phone:values.phone,
       } });
       if (response.data) {
         setToasterOpen(true);
