@@ -31,7 +31,7 @@ const TextInput: React.FC<TextInputProps> = ({
 }) => {
   return (
     <>
-      <FullWidthFormControl style={{ ...style }}>
+      <FullWidthFormControl>
         <TextInputField
           id={name}
           name={name}
