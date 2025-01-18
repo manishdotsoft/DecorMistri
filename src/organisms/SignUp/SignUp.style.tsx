@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-export const StyledContainer = styled("div")(({ theme }) => ({
+export const StyledContainer = styled("div")(() => ({
   display: "flex",
   justifyContent: "center",
   fontFamily: "sans-serif",
@@ -9,32 +9,62 @@ export const StyledContainer = styled("div")(({ theme }) => ({
   minHeight: "92vh",
   backgroundColor: "#ffffff",
   padding: "16px",
-  [theme.breakpoints.down("md")]: {},
+
+  // width: "100%",
+
+  // flexDirection: "column",
+  "@media(max-width: 468px)": {
+    padding: "0px",
+  },
 }));
 
-export const MainFlex = styled("div")(({ theme }) => ({
+export const MainFlex = styled("div")(() => ({
   display: "flex",
 
   justifyContent: "center",
   fontFamily: "sans-serif",
 
-  maxWidth: "1400px",
+  // maxWidth: "1400px",
   backgroundColor: "#ffffff",
   borderRadius: "25px",
   boxShadow: "0px 0px 100px 10px rgba(0, 0, 0, 0.3)",
-  width: "100%",
+
   overflow: "hidden",
-  [theme.breakpoints.down("lg")]: {
+  // [theme.breakpoints.down("lg")]: {
+  //   flexDirection: "column",
+  //   maxWidth: "1200px",
+  // },
+  // [theme.breakpoints.down("md")]: {
+  //   maxWidth: "700px",
+  // },
+
+  "@media(max-width: 468px)": {
+    width: "100%",
+  },
+
+  "@media(max-width: 1047px)": {
     flexDirection: "column",
-    maxWidth: "1200px",
+
+    width: "97%",
   },
-  [theme.breakpoints.down("md")]: {
-    maxWidth: "700px",
+
+  "@media(max-width: 1310px)": {
+    flexDirection: "column",
+
+    width: "90%",
   },
+  width: "80%",
 }));
 
 export const StyledForm = styled("form")(() => ({
   fontFamily: "sans-serif",
+}));
+
+export const ParentInputBox = styled("div")(() => ({
+  fontFamily: "sans-serif",
+
+  marginRight: "40px",
+  "@media(max-width: 468px)": {},
 }));
 
 export const TextArea = styled("div")(() => ({
@@ -73,6 +103,18 @@ export const ImageFlex = styled("div")(() => ({
   borderRadius: "25px",
 }));
 
+export const SignUpImageBox = styled("div")(() => ({
+  width: "50%",
+  height: "auto",
+
+  "@media(max-width: 468px)": {
+    display: "none",
+  },
+  "@media(max-width: 1338px)": {
+    width: "100%",
+  },
+}));
+
 export const AllImg = styled("img")(({ theme }) => ({
   width: "100%",
   height: "100%",
@@ -98,7 +140,7 @@ export const Logo = styled("div")(() => ({
 }));
 
 export const Title = styled(Typography)(({ theme }) => ({
-  fontSize: "44px",
+  fontSize: "2.3rem",
   fontWeight: "300",
   fontFamily: "sans-serif",
 
@@ -114,19 +156,19 @@ export const Title2 = styled(Typography)(({ theme }) => ({
   fontWeight: "300",
   fontFamily: "sans-serif",
 
-  color: "#363636",
+  color: "##000000",
   margin: "0",
   [theme.breakpoints.down("sm")]: {
     fontSize: "12px",
   },
 }));
 
-export const StyledTypography = styled("p")(() => ({
+export const StyledTypography = styled(Typography)(() => ({
   fontSize: "12px",
   color: "#d32f2f",
   fontFamily: "sans-serif",
 
-  marginTop: "5px",
+  // marginTop: "5px",
 }));
 
 export const StyledBoxCenter = styled("div")(() => ({
