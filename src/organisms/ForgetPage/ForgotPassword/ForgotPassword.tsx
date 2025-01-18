@@ -18,6 +18,7 @@ import {
 import {
   ImageBox,
   LogoImage,
+  ParentInputBox,
   TitleOne,
   TitleTwo,
 } from '../../Login/LoginPage.style';
@@ -66,25 +67,29 @@ const ForgetPassword = () => {
 
                 return (
                   <Form>
-                    <TextInput
-                      name="email"
-                      type="email"
-                      label="Email Address / Mobile Number"
-                      placeholder="Enter Your Email"
-                      value={values.email}
-                      onChange={handleChange}
-                      style={{
-                        width: '96%',
-                        borderRadius: '8px',
-                        height: '10px',
-                        marginBottom: '50px',
-                      }}
-                      onBlur={handleBlur}
-                      error={Boolean(touched.email && errors.email)}
-                      helperText={
-                        touched.email && errors.email ? errors.email : undefined
-                      }
-                    />
+                    <ParentInputBox>
+                      <TextInput
+                        name="email"
+                        type="email"
+                        label="Email Address / Mobile Number"
+                        placeholder="Enter Your Email"
+                        value={values.email}
+                        onChange={handleChange}
+                        style={{
+                          width: '100%',
+                          borderRadius: '8px',
+                          height: '10px',
+                          marginBottom: '6px',
+                        }}
+                        onBlur={handleBlur}
+                        error={Boolean(touched.email && errors.email)}
+                        helperText={
+                          touched.email && errors.email
+                            ? errors.email
+                            : undefined
+                        }
+                      />
+                    </ParentInputBox>
 
                     {/* <LoginLink to="/newpassword"> */}
                       <Button

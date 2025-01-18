@@ -20,6 +20,8 @@ import {
   TitleOne,
   TitleTwo,
   LogoImage,
+  Collaboration,
+  ParentInputBox,
 } from './LoginPage.style';
 import Toaster from '../../atoms/Toaster/Toaster';
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
@@ -42,11 +44,11 @@ const LoginPage = () => {
               className="logo-image"
             />
             <Title>
-              <TitleOne>
-                Welcome to <br />
+              <TitleOne>Welcome To</TitleOne>
+              <Collaboration>
                 <Highlight>Decormistri</Highlight> Collaboration Tool
-              </TitleOne>
-              <TitleTwo variant="body2">
+              </Collaboration>
+              <TitleTwo>
                 Decormistri provides advanced collaboration tools for <br /> the
                 Interior Industry and companies.
               </TitleTwo>
@@ -70,44 +72,47 @@ const LoginPage = () => {
               isValid,
             }) => (
               <Form>
-                <TextInput
-                  name="email"
-                  type="email"
-                  label="Email"
-                  placeholder="Email"
-                  value={values.email}
-                  onChange={handleChange}
-                  style={{
-                    width: '96%',
-                    borderRadius: '8px',
-                    marginBottom: '10px',
-                  }}
-                  onBlur={handleBlur}
-                  error={Boolean(touched.email && errors.email)}
-                  helperText={
-                    touched.email && errors.email ? errors.email : undefined
-                  }
-                />
-                <TextInput
-                  name="password"
-                  type="password"
-                  label="Password"
-                  placeholder="Password"
-                  value={values.password}
-                  onChange={handleChange}
-                  style={{
-                    width: '96%',
-                    borderRadius: '8px',
-                    marginBottom: '10px',
-                  }}
-                  onBlur={handleBlur}
-                  error={Boolean(touched.password && errors.password)}
-                  helperText={
-                    touched.password && errors.password
-                      ? errors.password
-                      : undefined
-                  }
-                />
+                <ParentInputBox>
+                  <TextInput
+                    name="email"
+                    type="email"
+                    label="Email"
+                    placeholder="Email"
+                    value={values.email}
+                    onChange={handleChange}
+                    style={{
+                      width: '100%',
+                      borderRadius: '8px',
+                      marginBottom: '6px',
+                    }}
+                    onBlur={handleBlur}
+                    error={Boolean(touched.email && errors.email)}
+                    helperText={
+                      touched.email && errors.email ? errors.email : undefined
+                    }
+                  />
+                  <TextInput
+                    name="password"
+                    type="password"
+                    label="Password"
+                    placeholder="Password"
+                    value={values.password}
+                    onChange={handleChange}
+                    style={{
+                      width: '100%',
+                      borderRadius: '8px',
+                      marginTop: '15px',
+                      marginBottom: '6px',
+                    }}
+                    onBlur={handleBlur}
+                    error={Boolean(touched.password && errors.password)}
+                    helperText={
+                      touched.password && errors.password
+                        ? errors.password
+                        : undefined
+                    }
+                  />
+                </ParentInputBox>
                 <ForgetPaswordContainer>
                   <div>
                     <input type="checkbox" id="rememberMe" name="rememberMe" />

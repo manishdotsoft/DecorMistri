@@ -94,7 +94,7 @@ export const LoginLink = styled(RouterLink)`
   text-decoration: none;
 `;
 
-export const StyledContainer = styled('div')(({ theme }) => ({
+export const StyledContainer = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
   fontFamily: 'sans-serif',
@@ -102,7 +102,9 @@ export const StyledContainer = styled('div')(({ theme }) => ({
   minHeight: '92vh',
   backgroundColor: '#ffffff',
   padding: '16px',
-  [theme.breakpoints.down('md')]: {},
+  '@media (max-width: 468px)': {
+    padding: '0px',
+  },
 }));
 
 export const MainFlex = styled('div')(({ theme }) => ({
@@ -123,6 +125,9 @@ export const MainFlex = styled('div')(({ theme }) => ({
   },
   [theme.breakpoints.down('md')]: {
     maxWidth: '700px',
+  },
+  '@media (max-width: 468px)': {
+    boxShadow: 'none',
   },
 }));
 
@@ -170,10 +175,11 @@ export const AllImg = styled('img')(() => ({
   width: '100%',
   height: '100%',
 
-  // [theme.breakpoints.down("lg")]: {
-  //   width: "100%",
-  //   margin: "0 auto",
-  // },
+  '@media (max-width: 768px)': {},
+
+  '@media (max-width: 480px)': {
+    display: 'none',
+  },
 }));
 
 export const StyledHeader = styled('div')(() => ({

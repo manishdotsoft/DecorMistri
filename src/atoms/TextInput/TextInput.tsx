@@ -2,7 +2,7 @@ import {
   FormHelp,
   FullWidthFormControl,
   TextInputField,
-} from "./TextInput.style";
+} from './TextInput.style';
 
 interface TextInputProps {
   name: string;
@@ -26,7 +26,7 @@ const TextInput: React.FC<TextInputProps> = ({
   style,
   error = false,
   helperText,
-  type = "text",
+  type = 'text',
   placeholder,
 }) => {
   return (
