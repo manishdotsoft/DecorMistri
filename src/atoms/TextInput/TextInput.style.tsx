@@ -42,6 +42,6 @@ export const TextInputField = styled("input")({
   },
 });
 
-export const FormHelp = styled("p")({
+export const FormHelp = styled("span")({
   color: "red",
 });

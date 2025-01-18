@@ -15,6 +15,8 @@ import {
   TextArea,
   ProgressBar,
   ProgressBar1,
+  SignUpImageBox,
+  ParentInputBox,
 } from "./SignUp.style";
 
 import TextInput from "../../atoms/TextInput/TextInput";
@@ -69,10 +71,10 @@ const SignUpForm: React.FC = () => {
               <img
                 src={LogoDecor}
                 alt="Decord-mistri Logo"
-                style={{ height: "40px" }}
+                style={{ height: "50px" }}
               />
               <Title>Create your account</Title>
-              <Title2 color="textSecondary">
+              <Title2>
                 Lorem ipsum is placeholder text commonly used in the graphic,
                 print, and publishing industries
               </Title2>
@@ -98,101 +100,110 @@ const SignUpForm: React.FC = () => {
             <Divider style={{ margin: "10px 0", color: "#000000" }}>Or</Divider>
 
             {/* Name Field */}
-            <TextInput
-              name="name"
-              label="Enter your name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.name && Boolean(formik.errors.name)}
-              style={{
-                width: "96%",
-                borderRadius: "8px",
-                height: "10px",
-                marginBottom: "50px",
-              }}
-              placeholder="Enter your name"
-            />
-            {formik.errors.name && formik.touched.name && (
-              <StyledTypography>{formik.errors.name}</StyledTypography>
-            )}
-
-            {/* Phone Field */}
-            <TextInput
-              name="phone"
-              type="number"
-              label="Enter your phone number"
-              value={formik.values.phone}
-              onChange={(e) => {
-                if (e.target.value.length <= 10) {
-                  formik.handleChange(e);
-                }
-              }}
-              onBlur={formik.handleBlur}
-              error={formik.touched.phone && Boolean(formik.errors.phone)}
-              style={{
-                width: "96%",
-                borderRadius: "8px",
-                height: "10px",
-                marginBottom: "50px",
-              }}
-              inputProps={{
-                maxLength: 10,
-              }}
-              placeholder="Enter your phone number"
-            />
-
-            {formik.errors.phone && formik.touched.phone && (
-              <StyledTypography>{formik.errors.phone}</StyledTypography>
-            )}
-
-            {/* Email Field */}
-            <TextInput
-              name="email"
-              label="Enter your email address"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              style={{
-                width: "96%",
-                borderRadius: "8px",
-                height: "10px",
-                marginBottom: "50px",
-              }}
-              placeholder="Enter your email address"
-            />
-            {formik.errors.email && formik.touched.email && (
-              <StyledTypography>{formik.errors.email}</StyledTypography>
-            )}
-
-            {/* Password Field */}
-            <TextArea>
-              <Typography sx={{ marginBottom: "7px" }}>Password</Typography>
-
+            <ParentInputBox>
               <TextInput
-                name="password"
-                type="password"
-                label="Password"
-                value={formik.values.password}
-                onChange={handlePasswordChange}
+                name="name"
+                label="Enter your name"
+                value={formik.values.name}
+                onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Enter your password"
-                error={
-                  formik.touched.password && Boolean(formik.errors.password)
-                }
+                error={formik.touched.name && Boolean(formik.errors.name)}
                 style={{
-                  width: "90%",
+                  width: "100%",
                   borderRadius: "8px",
-                  height: "10px",
-                  marginBottom: "40px",
-                }}
-              />
-              {formik.errors.password && formik.touched.password && (
-                <StyledTypography>{formik.errors.password}</StyledTypography>
-              )}
-            </TextArea>
 
+                  marginTop: "10px",
+                  marginBottom: "6px",
+
+                  // "@media(max-width: 468px)": {
+                  //   boxShadow: "none",
+                  // },
+                }}
+                placeholder="Enter your name"
+              />
+              {formik.errors.name && formik.touched.name && (
+                <StyledTypography>{formik.errors.name}</StyledTypography>
+              )}
+
+              {/* Phone Field */}
+              <TextInput
+                name="phone"
+                type="number"
+                label="Enter your phone number"
+                value={formik.values.phone}
+                onChange={(e) => {
+                  if (e.target.value.length <= 10) {
+                    formik.handleChange(e);
+                  }
+                }}
+                onBlur={formik.handleBlur}
+                error={formik.touched.phone && Boolean(formik.errors.phone)}
+                style={{
+                  width: "100%",
+                  borderRadius: "8px",
+
+                  marginTop: "10px",
+                  marginBottom: "6px",
+                }}
+                inputProps={{
+                  maxLength: 10,
+                }}
+                placeholder="Enter your phone number"
+              />
+
+              {formik.errors.phone && formik.touched.phone && (
+                <StyledTypography>{formik.errors.phone}</StyledTypography>
+              )}
+
+              {/* Email Field */}
+              <TextInput
+                name="email"
+                label="Enter your email address"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                style={{
+                  width: "100%",
+                  borderRadius: "8px",
+
+                  marginTop: "10px",
+                  marginBottom: "6px",
+                }}
+                placeholder="Enter your email address"
+              />
+              {formik.errors.email && formik.touched.email && (
+                <StyledTypography>{formik.errors.email}</StyledTypography>
+              )}
+
+              {/* Password Field */}
+              <TextArea>
+                <Typography sx={{ marginBottom: "7px" }}>Password</Typography>
+
+                <TextInput
+                  name="password"
+                  type="password"
+                  label="Password"
+                  value={formik.values.password}
+                  onChange={handlePasswordChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Enter your password"
+                  error={
+                    formik.touched.password && Boolean(formik.errors.password)
+                  }
+                  style={{
+                    width: "100%",
+                    borderRadius: "8px",
+
+                    marginTop: "10px",
+                    marginBottom: "6px",
+                  }}
+                />
+                {formik.errors.password && formik.touched.password && (
+                  <StyledTypography>{formik.errors.password}</StyledTypography>
+                )}
+              </TextArea>
+            </ParentInputBox>
             <ProgressBar1>
               <SegmentedProgressBar strength={passwordStrength} />
             </ProgressBar1>
@@ -255,9 +266,9 @@ const SignUpForm: React.FC = () => {
           </StyledForm>
         </ChildFlex>
 
-        <Box sx={{ width: "50%", height: "auto" }}>
+        <SignUpImageBox>
           <AllImg src={SignUpImage} alt="Signup visuals" />
-        </Box>
+        </SignUpImageBox>
       </MainFlex>
     </StyledContainer>
   );
