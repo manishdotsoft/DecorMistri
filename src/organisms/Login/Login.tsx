@@ -30,8 +30,14 @@ import googleLogo from '../../assets/images/logo/google.svg';
 import { useLoginLogic } from './Login.hook';
 
 const LoginPage = () => {
-  const { initialValues, handleSubmit,message,showToaster,handleClose,severity } = useLoginLogic();
-
+  const {
+    initialValues,
+    handleSubmit,
+    message,
+    showToaster,
+    handleClose,
+    severity,
+  } = useLoginLogic();
 
   return (
     <StyledContainer>
@@ -122,30 +128,30 @@ const LoginPage = () => {
                     Forgot password?
                   </ForgotPasswordLink>
                 </ForgetPaswordContainer>
-                  <Button
-                    title="Sign In"
-                    type="submit"
-                    color="primary"
-                    variant="contained"
-                    onClick={() =>handleSubmit(values)}
-                    disabled={!values.email || !values.password || !isValid}
-                    style={{
-                      marginTop: '20px',
+                <Button
+                  title="Sign In"
+                  type="submit"
+                  color="primary"
+                  variant="contained"
+                  onClick={() => handleSubmit(values)}
+                  disabled={!values.email || !values.password || !isValid}
+                  style={{
+                    marginTop: '20px',
 
-                      backgroundColor:
-                        !values.email || !values.password || !isValid
-                          ? '#565155'
-                          : '#C7148A',
-                      color: '#ffffff',
-                      width: '100%',
-                      height: '50px',
-                      borderRadius: '5px',
-                      cursor:
-                        !values.email || !values.password || !isValid
-                          ? 'not-allowed'
-                          : 'pointer',
-                    }}
-                  />
+                    backgroundColor:
+                      !values.email || !values.password || !isValid
+                        ? '#565155'
+                        : '#C7148A',
+                    color: '#ffffff',
+                    width: '100%',
+                    height: '50px',
+                    borderRadius: '5px',
+                    cursor:
+                      !values.email || !values.password || !isValid
+                        ? 'not-allowed'
+                        : 'pointer',
+                  }}
+                />
               </Form>
             )}
           </Formik>
@@ -188,14 +194,14 @@ const LoginPage = () => {
           <AllImg src={loginImage} alt="Login illustration" />
         </ImageBox>
       </MainFlex>
-      {
-        message && <Toaster 
-         message={message}
-         open={showToaster}
-         onClose={handleClose}
-         severity={severity}
+      {message && (
+        <Toaster
+          message={message}
+          open={showToaster}
+          onClose={handleClose}
+          severity={severity}
         />
-      }
+      )}
     </StyledContainer>
   );
 };

@@ -102,32 +102,47 @@ export const StyledContainer = styled('div')(() => ({
   minHeight: '92vh',
   backgroundColor: '#ffffff',
   padding: '16px',
-  '@media (max-width: 468px)': {
+
+  // flexDirection: "column",
+  '@media(max-width: 468px)': {
     padding: '0px',
+    marginTop: '35px',
   },
 }));
 
-export const MainFlex = styled('div')(({ theme }) => ({
+export const MainFlex = styled('div')(() => ({
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
   fontFamily: 'sans-serif',
-
-  maxWidth: '1400px',
+  // maxWidth: "1400px",
   backgroundColor: '#ffffff',
   borderRadius: '25px',
   boxShadow: '0px 0px 100px 10px rgba(0, 0, 0, 0.3)',
-  width: '100%',
+
   overflow: 'hidden',
-  [theme.breakpoints.down('lg')]: {
+  // [theme.breakpoints.down("lg")]: {
+  //   flexDirection: "column",
+  //   maxWidth: "1200px",
+  // },
+  // [theme.breakpoints.down("md")]: {
+  //   maxWidth: "700px",
+  // },
+  width: '80%',
+  '@media(max-width: 1310px)': {
     flexDirection: 'column',
-    maxWidth: '1200px',
+
+    width: '90%',
   },
-  [theme.breakpoints.down('md')]: {
-    maxWidth: '700px',
+  '@media(max-width: 1047px)': {
+    flexDirection: 'column',
+    padding: '16px',
+    width: '97%',
   },
-  '@media (max-width: 468px)': {
+
+  '@media(max-width: 468px)': {
+    width: '100%',
     boxShadow: 'none',
+    padding: '0',
   },
 }));
 
