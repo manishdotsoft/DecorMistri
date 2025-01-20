@@ -17,6 +17,7 @@ import {
   ProgressBar1,
   SignUpImageBox,
   ParentInputBox,
+  PasswordError,
 } from "./SignUp.style";
 
 import TextInput from "../../atoms/TextInput/TextInput";
@@ -30,7 +31,6 @@ import googleLogo from "../../assets/images/logo/google.svg";
 const SignUpForm: React.FC = () => {
   const {
     formik,
-
     isAnyFieldEmpty,
     passwordStrength,
     handlePasswordChange,
@@ -179,29 +179,32 @@ const SignUpForm: React.FC = () => {
               {/* Password Field */}
               <TextArea>
                 <Typography sx={{ marginBottom: "7px" }}>Password</Typography>
+                <PasswordError>
+                  <TextInput
+                    name="password"
+                    type="password"
+                    label="Password"
+                    value={formik.values.password}
+                    onChange={handlePasswordChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="Enter your password"
+                    error={
+                      formik.touched.password && Boolean(formik.errors.password)
+                    }
+                    style={{
+                      width: "100%",
+                      borderRadius: "8px",
 
-                <TextInput
-                  name="password"
-                  type="password"
-                  label="Password"
-                  value={formik.values.password}
-                  onChange={handlePasswordChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="Enter your password"
-                  error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                  }
-                  style={{
-                    width: "100%",
-                    borderRadius: "8px",
-
-                    marginTop: "10px",
-                    marginBottom: "6px",
-                  }}
-                />
-                {formik.errors.password && formik.touched.password && (
-                  <StyledTypography>{formik.errors.password}</StyledTypography>
-                )}
+                      marginTop: "10px",
+                      marginBottom: "6px",
+                    }}
+                  />
+                  {formik.errors.password && formik.touched.password && (
+                    <StyledTypography>
+                      {formik.errors.password}
+                    </StyledTypography>
+                  )}
+                </PasswordError>
               </TextArea>
             </ParentInputBox>
             <ProgressBar1>
