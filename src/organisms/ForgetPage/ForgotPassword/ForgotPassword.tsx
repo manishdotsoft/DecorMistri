@@ -34,88 +34,83 @@ const ForgetPassword = () => {
       <MainFlex>
         <ChildFlex>
           {/* <StyledForm> */}
-            <StyledHeader>
-              <LogoImage
-                src={loginLogo}
-                alt="Decormistri Logo"
-                className="logo-image"
-              />
-              <Title>
-                <TitleOne>Forgot password</TitleOne>
-                <TitleTwo>
-                  No worries, We’ll send you instructions for reset
-                </TitleTwo>
-              </Title>
-            </StyledHeader>
-            <Formik
-              initialValues={initialValues}
-              validationSchema={ForgetPasswordValidationSchema}
-              onSubmit={(values, { resetForm }) => {
-                handleSubmit(values);
-                resetForm();
-              }}
-            >
-              {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                isValid,
-              }) => {
-                const isButtonDisabled = !values.email || !isValid;
+          <StyledHeader>
+            <LogoImage
+              src={loginLogo}
+              alt="Decormistri Logo"
+              className="logo-image"
+            />
+            <Title>
+              <TitleOne>Forgot password</TitleOne>
+              <TitleTwo>
+                No worries, We’ll send you instructions for reset
+              </TitleTwo>
+            </Title>
+          </StyledHeader>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={ForgetPasswordValidationSchema}
+            onSubmit={(values, { resetForm }) => {
+              handleSubmit(values);
+              resetForm();
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              isValid,
+            }) => {
+              const isButtonDisabled = !values.email || !isValid;
 
-                return (
-                  <Form>
-                    <ParentInputBox>
-                      <TextInput
-                        name="email"
-                        type="email"
-                        label="Email Address / Mobile Number"
-                        placeholder="Enter Your Email"
-                        value={values.email}
-                        onChange={handleChange}
-                        style={{
-                          width: '100%',
-                          borderRadius: '8px',
-                          height: '10px',
-                          marginBottom: '6px',
-                        }}
-                        onBlur={handleBlur}
-                        error={Boolean(touched.email && errors.email)}
-                        helperText={
-                          touched.email && errors.email
-                            ? errors.email
-                            : undefined
-                        }
-                      />
-                    </ParentInputBox>
-
-                    {/* <LoginLink to="/newpassword"> */}
-                      <Button
-                        title="Reset Password"
-                        type="submit"
-                        color="primary"
-                        variant="contained"
-                        onClick={() =>{}}
-                        backgroundColor={
-                          isButtonDisabled ? '#e432a9' : '#C7148A'
-                        }
-                        disabled={isButtonDisabled}
-                        style={{
-                          marginTop: '20px',
-                          color: '#ffffff',
-                          width: '100%',
-                          height: '50px',
-                          borderRadius: '5px',
-                          cursor: isButtonDisabled ? 'not-allowed' : 'pointer',
-                        }}
-                      />
-                    {/* </LoginLink> */}
-                  </Form>
-                );
-              }}
-            </Formik>
+              return (
+                <Form>
+                  <ParentInputBox>
+                    <TextInput
+                      name="email"
+                      type="email"
+                      label="Email Address / Mobile Number"
+                      placeholder="Enter Your Email"
+                      value={values.email}
+                      onChange={handleChange}
+                      style={{
+                        width: '100%',
+                        borderRadius: '8px',
+                        height: '10px',
+                        marginBottom: '6px',
+                      }}
+                      onBlur={handleBlur}
+                      error={Boolean(touched.email && errors.email)}
+                      helperText={
+                        touched.email && errors.email ? errors.email : undefined
+                      }
+                    />
+                  </ParentInputBox>
+                  {/* <LoginLink to="/newpassword"> */}
+                  <Button
+                    title="Reset Password"
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    onClick={() => {}}
+                    backgroundColor={isButtonDisabled ? '#e432a9' : '#C7148A'}
+                    disabled={isButtonDisabled}
+                    style={{
+                      marginTop: '20px',
+                      color: '#ffffff',
+                      width: '100%',
+                      height: '50px',
+                      borderRadius: '5px',
+                      cursor: isButtonDisabled ? 'not-allowed' : 'pointer',
+                    }}
+                  />
+                  {/* </LoginLink> */}
+                </Form>
+              );
+            }}
+          </Formik>
           {/* </StyledForm> */}
           <LoginLink to="/">
             <Button
@@ -124,7 +119,7 @@ const ForgetPassword = () => {
               color="primary"
               variant="contained"
               backgroundColor="#ffffff"
-              onClick={() => { }}
+              onClick={() => {}}
               style={{
                 borderRadius: '5px',
                 background: 'white',

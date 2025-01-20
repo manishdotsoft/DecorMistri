@@ -103,32 +103,46 @@ export const StyledContainer = styled('div')(() => ({
   minHeight: '92vh',
   backgroundColor: '#ffffff',
   padding: '16px',
+
   '@media (max-width: 468px)': {
     padding: '0px',
+    marginTop: '35px',
   },
 }));
 
-export const MainFlex = styled('div')(({ theme }) => ({
+export const MainFlex = styled('div')(() => ({
   display: 'flex',
-
   justifyContent: 'center',
   fontFamily: 'sans-serif',
-
-  maxWidth: '1400px',
+  // maxWidth: "1400px",
   backgroundColor: '#ffffff',
   borderRadius: '25px',
   boxShadow: '0px 0px 100px 10px rgba(0, 0, 0, 0.3)',
-  width: '100%',
+
   overflow: 'hidden',
-  [theme.breakpoints.down('lg')]: {
+  // [theme.breakpoints.down("lg")]: {
+  //   flexDirection: "column",
+  //   maxWidth: "1200px",
+  // },
+  // [theme.breakpoints.down("md")]: {
+  //   maxWidth: "700px",
+  // },
+  width: '80%',
+  '@media(max-width: 1310px)': {
     flexDirection: 'column',
-    maxWidth: '1200px',
+
+    width: '90%',
   },
-  [theme.breakpoints.down('md')]: {
-    maxWidth: '700px',
+  '@media(max-width: 1047px)': {
+    flexDirection: 'column',
+    padding: '16px',
+    width: '97%',
   },
-  '@media (max-width: 468px)': {
+
+  '@media(max-width: 468px)': {
+    width: '100%',
     boxShadow: 'none',
+    padding: '0',
   },
 }));
 
@@ -176,7 +190,10 @@ export const AllImg = styled('img')(() => ({
   width: '100%',
   height: '100%',
 
-  '@media (max-width: 768px)': {},
+  '@media (max-width: 768px)': {
+    borderTopLeftRadius: '20px',
+    borderBottomLeftRadius: '20px',
+  },
 
   '@media (max-width: 480px)': {
     display: 'none',
@@ -250,8 +267,16 @@ export const StyledLink = styled('span')(() => ({
 export const ImageBox = styled('div')(() => ({
   width: '50%',
   height: 'auto',
-  '@media (max-width: 1200px)': {
+
+  '@media (max-width: 1300px)': {
     width: '100%',
+  },
+  '@media (max-width: 800px)': {
+    width: '95%',
+    padding: '18px',
+    height: 'auto',
+    borderTopLeftRadius: '20px',
+    borderBottomLeftRadius: '20px',
   },
 }));
 
@@ -273,6 +298,6 @@ export const Collaboration = styled(Typography)(() => ({
 }));
 
 export const ParentInputBox = styled('div')(() => ({
-  marginRight: '40px',
+  marginRight: '49px',
   '@media (max-width: 480px)': {},
 }));
