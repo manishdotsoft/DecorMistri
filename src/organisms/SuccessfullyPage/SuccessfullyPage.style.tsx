@@ -59,9 +59,11 @@ export const ChildFlex = styled('div')(({ theme }) => ({
   flex: 1,
   padding: '35px 100px',
   display: 'flex',
+  marginBottom: 'auto',
   flexDirection: 'column',
   overflow: 'hidden',
   height: '100%',
+  marginTop: 'auto',
   [theme.breakpoints.down('md')]: {
     padding: '20px 16px',
   },
