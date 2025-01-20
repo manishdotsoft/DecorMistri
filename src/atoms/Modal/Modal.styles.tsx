@@ -25,3 +25,5 @@ export const ModalContent = styled(Box)(() => ({
 export const CloseButton = styled(IconButton)(() => ({
   cursor: 'pointer',
 }));
+
+export const ModalFooter = styled('div')(() => ({}));

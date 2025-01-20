@@ -169,6 +169,8 @@ export const ChildFlex = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   overflow: 'hidden',
   fontFamily: 'sans-serif',
+  marginTop: 'auto',
+  marginBottom: 'auto',
 
   height: '100%',
   [theme.breakpoints.down('md')]: {
@@ -190,8 +192,10 @@ export const AllImg = styled('img')(() => ({
   width: '100%',
   height: '100%',
 
-  '@media (max-width: 768px)': {},
-
+  '@media (max-width: 768px)': {
+    borderTopLeftRadius: '20px',
+    borderBottomLeftRadius: '20px',
+  },
   '@media (max-width: 480px)': {
     display: 'none',
   },
