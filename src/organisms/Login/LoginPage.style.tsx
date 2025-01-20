@@ -190,7 +190,10 @@ export const AllImg = styled('img')(() => ({
   width: '100%',
   height: '100%',
 
-  '@media (max-width: 768px)': {},
+  '@media (max-width: 768px)': {
+    borderTopLeftRadius: '20px',
+    borderBottomLeftRadius: '20px',
+  },
 
   '@media (max-width: 480px)': {
     display: 'none',
@@ -272,6 +275,8 @@ export const ImageBox = styled('div')(() => ({
     width: '95%',
     padding: '18px',
     height: 'auto',
+    borderTopLeftRadius: '20px',
+    borderBottomLeftRadius: '20px',
   },
 }));
 
