@@ -7,10 +7,10 @@ import { store } from "./store/store";
 
 createRoot(document.getElementById("root")!).render(
   // <StrictMode>
-    <Theme>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </Theme>
+  <Theme>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Theme>
   // </StrictMode>
 );
