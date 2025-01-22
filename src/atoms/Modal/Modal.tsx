@@ -1,47 +1,67 @@
-import React, { ReactNode } from 'react';
-import { Modal, Typography } from '@mui/material';
+import React from 'react';
+import { IconButton, Modal } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import {
-  ModalContainer,
-  ModalHeader,
-  ModalContent,
-  CloseButton,
-} from './Modal.styles';
+import { ModalBox, ModalTitle, ModalButtons } from './Modal.styles';
 
-export interface ModalProps {
-  open: boolean;
-  onClose: () => void;
-  title?: string;
-  children?: ReactNode;
-  actions?: {
-    label: string;
-    onClick: () => void;
-    color?: 'primary' | 'secondary';
-  }[];
+interface ButtonConfig {
+  label: string;
+  onClick: () => void;
+  style?: React.CSSProperties;
 }
 
-const CustomModal: React.FC<ModalProps> = ({
+interface ReusableModalProps {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  buttons?: ButtonConfig[];
+  showCloseIcon?: boolean;
+}
+
+const ReusableModal: React.FC<ReusableModalProps> = ({
   open,
   onClose,
   title,
-  children,
+  buttons = [],
+  showCloseIcon = true,
 }) => {
   return (
-    <Modal open={open} onClose={onClose}>
-      <ModalContainer>
-        {/* Modal Header */}
-        <ModalHeader>
-          {title && <Typography variant="h6">{title}</Typography>}
-          <CloseButton onClick={onClose}>
+    <Modal open={open} onClose={onClose} aria-labelledby="modal-title">
+      <ModalBox>
+        {showCloseIcon && (
+          <IconButton
+            onClick={onClose}
+            style={{
+              position: 'absolute',
+              top: '0px',
+              right: '0px',
+              color: '#333',
+            }}
+            aria-label="close"
+          >
             <CloseIcon />
-          </CloseButton>
-        </ModalHeader>
-
-        {/* Modal Content */}
-        <ModalContent>{children}</ModalContent>
-      </ModalContainer>
+          </IconButton>
+        )}
+        <ModalTitle id="modal-title">{title}</ModalTitle>
+        <ModalButtons>
+          {buttons.map((button, index) => (
+            <button
+              key={index}
+              onClick={button.onClick}
+              style={{
+                ...button.style,
+                padding: '8px 16px',
+                margin: '0 8px',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              {button.label}
+            </button>
+          ))}
+        </ModalButtons>
+      </ModalBox>
     </Modal>
   );
 };
 
-export default CustomModal;
+export default ReusableModal;

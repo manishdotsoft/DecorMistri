@@ -1,5 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export const HeadlineSpan = styled('span')`
@@ -11,6 +11,9 @@ export const Highlight = styled('span')`
   color: #c7148a;
   font-weight: 600;
   font-size: 28px;
+  @media (max-width: 480px) {
+    fontsize: '24px';
+  }
 `;
 
 export const ForgotPasswordLink = styled(RouterLink)`
@@ -283,9 +286,16 @@ export const ImageBox = styled('div')(() => ({
 export const TitleOne = styled(Typography)(() => ({
   fontSize: '28px',
   fontWeight: 300,
+
+  '@media (max-width: 480px)': {
+    fontSize: '24px',
+  },
 }));
 export const TitleTwo = styled(Typography)(() => ({
   fontSize: '13px',
+  '@media (max-width: 480px)': {
+    fontSize: '12px',
+  },
 }));
 
 export const LogoImage = styled('img')(() => ({
@@ -295,9 +305,40 @@ export const LogoImage = styled('img')(() => ({
 export const Collaboration = styled(Typography)(() => ({
   fontSize: '28px',
   fontWeight: 300,
+  '@media (max-width: 480px)': {
+    fontSize: '24px',
+  },
 }));
 
 export const ParentInputBox = styled('div')(() => ({
   marginRight: '49px',
   '@media (max-width: 480px)': {},
+}));
+
+export const ModalBox = styled(Box)(() => ({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '80%',
+  maxWidth: '400px',
+  backgroundColor: 'white',
+
+  borderRadius: '8px',
+  padding: '20px',
+  textAlign: 'center',
+  background: '#fff',
+}));
+export const ModalTitle = styled(Box)(() => ({
+  color: '#1e1e1e',
+  fontWeight: 700,
+  fontSize: '20px',
+  marginBottom: '20px',
+}));
+
+export const ModalButtons = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '20px',
+  marginTop: '20px',
 }));
