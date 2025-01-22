@@ -6,6 +6,7 @@ import { AppDispatch } from "../../store/store";
 import { setSignUpData } from "../../store/reducers/signUpSlice";
 import { signUpSchema } from "./SchemasSignup";
 import { createUserMutation } from "../../graphql/mutation/createUser";
+import palette from "../../thems/primitives/palette";
 
 export interface SignUpFormValues {
   name: string;
@@ -30,12 +31,14 @@ export const useSignUp = () => {
   const handleSubmit = async (values: SignUpFormValues, actions: any) => {
     try {
       dispatch(setSignUpData(values));
-      const response = await createUserMutation({ input: {
-        full_name:values.name,
-        email:values.email,
-        password:values.password,
-        phone:values.phone,
-      } });
+      const response = await createUserMutation({
+        input: {
+          full_name: values.name,
+          email: values.email,
+          password: values.password,
+          phone: values.phone,
+        },
+      });
       if (response.data) {
         setToasterOpen(true);
         actions.resetForm();
@@ -76,15 +79,15 @@ export const useSignUp = () => {
   const getStrengthLabel = (strength: number) => {
     switch (strength) {
       case 1:
-        return { label: "Weak", color: "#f44336" };
+        return { label: "Weak", color: palette.error.main };
       case 2:
-        return { label: "Fair", color: "#ff9800" };
+        return { label: "Fair", color: palette.warning.real };
       case 3:
-        return { label: "Good", color: "#ffc107" };
+        return { label: "Good", color: palette.success.midSuccess };
       case 4:
-        return { label: "Strong", color: "#4caf50" };
+        return { label: "Strong", color: palette.success.fullSuccess };
       default:
-        return { label: "Very Weak", color: "#9e9e9e" };
+        return { label: "Very Weak", color: palette.grey[500] };
     }
   };
 

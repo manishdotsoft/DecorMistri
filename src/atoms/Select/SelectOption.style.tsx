@@ -1,4 +1,7 @@
 import { styled } from "@mui/system";
+import typeset from "../../thems/primitives/typeset";
+import { theme } from "../../thems/primitives/theme";
+import { SELECT_BORDER } from "../../thems/primitives/colors";
 
 interface InputLabelItemProps {
   isFocused: boolean;
@@ -8,44 +11,46 @@ interface InputLabelItemProps {
 export const FullWidthFormControl = styled("div")({
   position: "relative",
   width: "100%",
-  // marginBottom: "16px",
 });
 
-export const InputLabelItem = styled("label")<InputLabelItemProps>();
-// ({ isFocused, hasValue }) => ({
-//   position: "absolute",
-//   left: "12px",
-//   top: hasValue || isFocused ? "-10px" : "50%",
-//   transform:
-//     hasValue || isFocused
-//       ? "translateY(-2px) scale(0.85)"
-//       : "translateY(-50%)",
-//   transition: "all 0.2s ease-in-out",
-//   fontSize: "16px",
-//   color: isFocused ? "#0fb34e" : hasValue ? "#757575" : "#757575",
-//   background: "white",
-//   pointerEvents: "none",
-//   padding: "2px",
-// })
+export const InputLabelItem = styled("label")<InputLabelItemProps>({
+  fontSize: "0.8rem",
+  marginBottom: "4px",
+  color: theme.palette.grey[600],
+  fontFamily: typeset.secondaryFontFamily,
+});
+
+export const SelectWrapper = styled("div")({
+  position: "relative",
+  width: "100%",
+});
 
 export const SelectItem = styled("select")({
   width: "100%",
-  padding: "20px",
+  padding: "12px 40px 12px 12px",
   borderRadius: "4px",
-  border: "1px solid #ccc",
+  border: `1px solid ${theme.palette.grey[300]}`,
+
   fontSize: "16px",
   appearance: "none",
-  backgroundColor: "#fff",
+  backgroundColor: theme.palette.primary.contrastText,
   outline: "none",
   "&:focus": {
-    borderColor: "#0fb34e",
-    border: "2px solid #0fb34e",
+    border: `2px solid ${SELECT_BORDER}`,
   },
   cursor: "pointer",
 });
 
+export const IconWrapper = styled("div")({
+  position: "absolute",
+  top: "50%",
+  right: "12px",
+  transform: "translateY(-50%)",
+  pointerEvents: "none",
+});
+
 export const OptionSelect = styled("option")({
-  fontSize: "16px",
+  fontSize: "14px",
 });
 
 export const ContainerMain = styled("div")({

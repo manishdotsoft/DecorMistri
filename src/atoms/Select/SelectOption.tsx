@@ -7,8 +7,10 @@ import {
   OptionSelect,
   ContainerMain,
   ErrorMe,
+  IconWrapper,
+  SelectWrapper,
 } from "./SelectOption.style";
-import { theme } from "../../thems/primitives/theme";
+import { FaCaretDown } from "react-icons/fa";
 
 interface SelectOptionProps {
   name: string;
@@ -33,40 +35,45 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   style,
   error,
   helperText,
-  labelFontSize,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <ContainerMain>
+      <InputLabelItem
+        htmlFor={name}
+        isFocused={isFocused}
+        hasValue={Boolean(value)}
+      >
+        {label}
+      </InputLabelItem>
       <FullWidthFormControl>
-        <InputLabelItem
-          htmlFor={name}
-          isFocused={isFocused}
-          hasValue={Boolean(value)}
-          style={{ fontSize: "0.8rem" }}
-        >
-          {label}
-        </InputLabelItem>
-        <SelectItem
-          id={name}
-          name={name}
-          value={value || ""}
-          onChange={onChange}
-          onBlur={(e) => {
-            setIsFocused(false);
-            if (onBlur) onBlur(e);
-          }}
-          onFocus={() => setIsFocused(true)}
-          style={{ ...style }}
-        >
-          <OptionSelect value="" disabled></OptionSelect>
-          {options.map((option) => (
-            <OptionSelect key={option.value} value={option.value}>
-              {option.label}
+        <SelectWrapper>
+          <SelectItem
+            id={name}
+            name={name}
+            value={value || ""}
+            onChange={onChange}
+            onBlur={(e) => {
+              setIsFocused(false);
+              if (onBlur) onBlur(e);
+            }}
+            onFocus={() => setIsFocused(true)}
+            style={{ ...style }}
+          >
+            <OptionSelect value="" disabled>
+              Select an option
             </OptionSelect>
-          ))}
-        </SelectItem>
+            {options.map((option) => (
+              <OptionSelect key={option.value} value={option.value}>
+                {option.label}
+              </OptionSelect>
+            ))}
+          </SelectItem>
+          <IconWrapper>
+            <FaCaretDown size={16} />
+          </IconWrapper>
+        </SelectWrapper>
       </FullWidthFormControl>
       <ErrorMe>
         {error && (
