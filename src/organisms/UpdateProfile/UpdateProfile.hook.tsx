@@ -9,10 +9,27 @@ import { createUserMutation } from "../../graphql/mutation/createUser";
 
 export interface SignUpFormValues {
   businessName: string;
+  professionalCategory: string;
+
+  designTypeExpertise: string;
+  styleTypeExpertise: string;
+  state: string;
+  city: string;
+  location: string;
+  // subcategories: string[];
 }
 
 const initialValues: SignUpFormValues = {
   businessName: "",
+  professionalCategory: "",
+  designTypeExpertise: "",
+  styleTypeExpertise: "",
+
+  state: "",
+  city: "",
+
+  location: "",
+  // subcategories: [],
 };
 
 export const useUpdateProfile = () => {
@@ -26,6 +43,12 @@ export const useUpdateProfile = () => {
       const response = await createUserMutation({
         input: {
           businessName: values.businessName,
+          professionalCategory: values.professionalCategory,
+          designTypeExpertise: values.designTypeExpertise,
+          styleTypeExpertise: values.styleTypeExpertise,
+          state: values.state,
+          city: values.city,
+          location: values.location,
         },
       });
       if (response.data) {

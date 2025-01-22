@@ -8,26 +8,25 @@ interface InputLabelItemProps {
 export const FullWidthFormControl = styled("div")({
   position: "relative",
   width: "100%",
-  marginBottom: "16px",
+  // marginBottom: "16px",
 });
 
-export const InputLabelItem = styled("label")<InputLabelItemProps>(
-  ({ isFocused, hasValue }) => ({
-    position: "absolute",
-    left: "12px",
-    top: hasValue || isFocused ? "-10px" : "50%",
-    transform:
-      hasValue || isFocused
-        ? "translateY(-2px) scale(0.85)"
-        : "translateY(-50%)",
-    transition: "all 0.2s ease-in-out",
-    fontSize: "16px",
-    color: isFocused ? "#0fb34e" : hasValue ? "#757575" : "#757575",
-    background: "white",
-    pointerEvents: "none",
-    padding: "2px",
-  })
-);
+export const InputLabelItem = styled("label")<InputLabelItemProps>();
+// ({ isFocused, hasValue }) => ({
+//   position: "absolute",
+//   left: "12px",
+//   top: hasValue || isFocused ? "-10px" : "50%",
+//   transform:
+//     hasValue || isFocused
+//       ? "translateY(-2px) scale(0.85)"
+//       : "translateY(-50%)",
+//   transition: "all 0.2s ease-in-out",
+//   fontSize: "16px",
+//   color: isFocused ? "#0fb34e" : hasValue ? "#757575" : "#757575",
+//   background: "white",
+//   pointerEvents: "none",
+//   padding: "2px",
+// })
 
 export const SelectItem = styled("select")({
   width: "100%",

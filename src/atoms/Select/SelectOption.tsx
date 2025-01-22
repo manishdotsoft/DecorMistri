@@ -39,12 +39,12 @@ const SelectOption: React.FC<SelectOptionProps> = ({
 
   return (
     <ContainerMain>
-      <FullWidthFormControl style={{ ...style }}>
+      <FullWidthFormControl>
         <InputLabelItem
           htmlFor={name}
           isFocused={isFocused}
           hasValue={Boolean(value)}
-          style={{ fontSize: labelFontSize ?? theme.typography.body2.fontSize }}
+          style={{ fontSize: "0.8rem" }}
         >
           {label}
         </InputLabelItem>
