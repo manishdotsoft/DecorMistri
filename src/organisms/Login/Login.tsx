@@ -28,6 +28,7 @@ import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
 import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 import googleLogo from '../../assets/images/logo/google.svg';
 import { useLoginLogic } from './Login.hook';
+import ReusableModal from '../../atoms/Modal/Modal';
 
 const LoginPage = () => {
   const {
@@ -37,8 +38,9 @@ const LoginPage = () => {
     showToaster,
     handleClose,
     severity,
+    openModal,
+    handleModalClose,
   } = useLoginLogic();
-
   return (
     <StyledContainer>
       <MainFlex>
@@ -137,7 +139,6 @@ const LoginPage = () => {
                   disabled={!values.email || !values.password || !isValid}
                   style={{
                     marginTop: '20px',
-
                     backgroundColor:
                       !values.email || !values.password || !isValid
                         ? '#565155'
@@ -155,7 +156,6 @@ const LoginPage = () => {
               </Form>
             )}
           </Formik>
-
           <Button
             title="Sign In with Google"
             color="primary"
@@ -172,7 +172,6 @@ const LoginPage = () => {
             }}
             onClick={() => console.log('Google Sign-In Clicked')}
           />
-
           <SignupContainer>
             <Typography component="span">
               New to <HeadlineSpan> Decormistri?</HeadlineSpan>
@@ -189,6 +188,35 @@ const LoginPage = () => {
               Create an account
             </Link>
           </SignupContainer>
+          <ReusableModal
+            open={openModal}
+            onClose={handleModalClose}
+            title="Are you want to Update Your Profile?"
+            buttons={[
+              {
+                label: 'Skip',
+                onClick: handleModalClose,
+                style: {
+                  backgroundColor: '#f0f0f0',
+                  color: '#333',
+                  width: '100px',
+                  borderRadius: '6px',
+                },
+              },
+              {
+                label: 'Update Now',
+                onClick: () => console.log('Confirmed'),
+                style: {
+                  backgroundColor: '#C7148A',
+                  color: '#fff',
+                  width: '160px',
+                  borderRadius: '6px',
+                },
+              },
+            ]}
+            showCloseIcon={true}
+          />
+          ;
         </ChildFlex>
         <ImageBox>
           <AllImg src={loginImage} alt="Login illustration" />
