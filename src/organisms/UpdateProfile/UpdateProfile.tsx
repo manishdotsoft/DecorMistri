@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 import {
   StyledContainer,
@@ -18,84 +18,84 @@ import {
   ProfileUploadImg,
   CameraBtn,
   InputImg,
-} from "./UpdateProfile.style";
+} from './UpdateProfile.style';
 
-import TextInput from "../../atoms/TextInput/TextInput";
+import TextInput from '../../atoms/TextInput/TextInput';
 
-import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
-import Button from "../../atoms/Button/Button";
-import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
-import { useUpdateProfile } from "./UpdateProfile.hook";
-import { Grid } from "@mui/material";
-import SelectOption from "../../atoms/Select/SelectOption";
+import SignUpImage from '../../assets/images/signUpLogImage/SignUpLog.png';
+import Button from '../../atoms/Button/Button';
+import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
+import { useUpdateProfile } from './UpdateProfile.hook';
+import { Grid } from '@mui/material';
+import SelectOption from '../../atoms/Select/SelectOption';
 
-import ProfileImage from "../../assets/images/updateProfile/man.svg";
-import uploadCamera from "../../assets/images/updateProfile/camera.svg";
+import ProfileImage from '../../assets/images/updateProfile/man.svg';
+import uploadCamera from '../../assets/images/updateProfile/camera.svg';
 
 const designOptions = [
   {
-    value: "commercial",
-    label: "Commercial Design",
+    value: 'commercial',
+    label: 'Commercial Design',
     subcategories: [
-      "Office Spaces",
-      "Retail Spaces",
-      "Hospitality Spaces",
-      "Entertainment Spaces",
+      'Office Spaces',
+      'Retail Spaces',
+      'Hospitality Spaces',
+      'Entertainment Spaces',
     ],
   },
   {
-    value: "residential",
-    label: "Residential Design",
+    value: 'residential',
+    label: 'Residential Design',
     subcategories: [
-      "Living Areas",
-      "Bedrooms",
-      "Dining Areas",
-      "Kitchens",
-      "Bathrooms",
-      "Outdoor Spaces",
+      'Living Areas',
+      'Bedrooms',
+      'Dining Areas',
+      'Kitchens',
+      'Bathrooms',
+      'Outdoor Spaces',
     ],
   },
   {
-    value: "industrial",
-    label: "Industrial Design",
+    value: 'industrial',
+    label: 'Industrial Design',
     subcategories: [
-      "Manufacturing Areas",
-      "Storage Areas",
-      "Service Areas",
-      "Admin Spaces",
-      "Specialized Areas",
+      'Manufacturing Areas',
+      'Storage Areas',
+      'Service Areas',
+      'Admin Spaces',
+      'Specialized Areas',
     ],
   },
   {
-    value: "institutional",
-    label: "Institutional Design",
+    value: 'institutional',
+    label: 'Institutional Design',
     subcategories: [
-      "Educational Spaces",
-      "Healthcare Spaces",
-      "Cultural Spaces",
-      "Religious Spaces",
-      "Government Spaces",
+      'Educational Spaces',
+      'Healthcare Spaces',
+      'Cultural Spaces',
+      'Religious Spaces',
+      'Government Spaces',
     ],
   },
   {
-    value: "mixed-use",
-    label: "Mixed-Use Design",
+    value: 'mixed-use',
+    label: 'Mixed-Use Design',
     subcategories: [
-      "Residential Components",
-      "Commercial Components",
-      "Shared Amenities",
-      "Public Spaces",
+      'Residential Components',
+      'Commercial Components',
+      'Shared Amenities',
+      'Public Spaces',
     ],
   },
   {
-    value: "landscape",
-    label: "Landscape Design",
+    value: 'landscape',
+    label: 'Landscape Design',
     subcategories: [
-      "Residential Landscaping",
-      "Commercial Landscaping",
-      "Urban Landscaping",
-      "Environmental Spaces",
-      "Specialized Areas",
+      'Residential Landscaping',
+      'Commercial Landscaping',
+      'Urban Landscaping',
+      'Environmental Spaces',
+      'Specialized Areas',
     ],
   },
 ];
@@ -164,10 +164,10 @@ const UpdateProfile: React.FC = () => {
                       Boolean(formik.errors.businessName)
                     }
                     style={{
-                      width: "91.5%",
-                      borderRadius: "5px",
-                      marginTop: "10px",
-                      padding: "15px",
+                      width: '91.5%',
+                      borderRadius: '5px',
+                      marginTop: '10px',
+                      padding: '15px',
                     }}
                     placeholder="Business Name"
                   />
@@ -191,10 +191,10 @@ const UpdateProfile: React.FC = () => {
                     value={formik.values.professionalCategory}
                     onChange={(e) => {
                       formik.setFieldValue(
-                        "professionalCategory",
+                        'professionalCategory',
                         e.target.value
                       );
-                      formik.setFieldValue("subcategories", []);
+                      formik.setFieldValue('subcategories', []);
                     }}
                     onBlur={formik.handleBlur}
                     error={
@@ -205,7 +205,7 @@ const UpdateProfile: React.FC = () => {
                       formik.touched.professionalCategory &&
                       formik.errors.professionalCategory
                     }
-                    style={{ width: "100%", padding: "15px" }}
+                    style={{ width: '100%', padding: '15px' }}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -219,10 +219,10 @@ const UpdateProfile: React.FC = () => {
                     value={formik.values.designTypeExpertise}
                     onChange={(e) => {
                       formik.setFieldValue(
-                        "designTypeExpertise",
+                        'designTypeExpertise',
                         e.target.value
                       );
-                      formik.setFieldValue("subcategories", []);
+                      formik.setFieldValue('subcategories', []);
                     }}
                     onBlur={formik.handleBlur}
                     error={
@@ -233,7 +233,7 @@ const UpdateProfile: React.FC = () => {
                       formik.touched.designTypeExpertise &&
                       formik.errors.designTypeExpertise
                     }
-                    style={{ width: "100%", padding: "15px" }}
+                    style={{ width: '100%', padding: '15px' }}
                   />
                 </Grid>
 
@@ -249,10 +249,10 @@ const UpdateProfile: React.FC = () => {
                     value={formik.values.styleTypeExpertise}
                     onChange={(e) => {
                       formik.setFieldValue(
-                        "styleTypeExpertise",
+                        'styleTypeExpertise',
                         e.target.value
                       );
-                      formik.setFieldValue("subcategories", []);
+                      formik.setFieldValue('subcategories', []);
                     }}
                     onBlur={formik.handleBlur}
                     error={
@@ -263,7 +263,7 @@ const UpdateProfile: React.FC = () => {
                       formik.touched.styleTypeExpertise &&
                       formik.errors.styleTypeExpertise
                     }
-                    style={{ width: "100%", padding: "15px" }}
+                    style={{ width: '100%', padding: '15px' }}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -276,13 +276,13 @@ const UpdateProfile: React.FC = () => {
                     }))}
                     value={formik.values.state}
                     onChange={(e) => {
-                      formik.setFieldValue("state", e.target.value);
-                      formik.setFieldValue("subcategories", []);
+                      formik.setFieldValue('state', e.target.value);
+                      formik.setFieldValue('subcategories', []);
                     }}
                     onBlur={formik.handleBlur}
                     error={formik.touched.state && Boolean(formik.errors.state)}
                     helperText={formik.touched.state && formik.errors.state}
-                    style={{ width: "100%", padding: "15px" }}
+                    style={{ width: '100%', padding: '15px' }}
                   />
                 </Grid>
 
@@ -296,10 +296,10 @@ const UpdateProfile: React.FC = () => {
                     onBlur={formik.handleBlur}
                     error={formik.touched.city && Boolean(formik.errors.city)}
                     style={{
-                      width: "83%",
-                      borderRadius: "5px",
-                      marginBottom: "6px",
-                      padding: "15px",
+                      width: '83%',
+                      borderRadius: '5px',
+                      marginBottom: '6px',
+                      padding: '15px',
                     }}
                     placeholder="City Name"
                   />
@@ -318,10 +318,10 @@ const UpdateProfile: React.FC = () => {
                       formik.touched.location && Boolean(formik.errors.location)
                     }
                     style={{
-                      width: "83%",
-                      borderRadius: "5px",
-                      marginBottom: "6px",
-                      padding: "15px",
+                      width: '83%',
+                      borderRadius: '5px',
+                      marginBottom: '6px',
+                      padding: '15px',
                     }}
                     placeholder="Location"
                   />
@@ -341,14 +341,14 @@ const UpdateProfile: React.FC = () => {
                     variant="contained"
                     disabled={isAnyFieldEmpty || formik.isSubmitting}
                     style={{
-                      backgroundColor: isAnyFieldEmpty ? "#5c5c5c" : "#C7148A",
+                      backgroundColor: isAnyFieldEmpty ? '#5c5c5c' : '#C7148A',
                       cursor:
                         isAnyFieldEmpty || formik.isSubmitting
-                          ? "not-allowed"
-                          : "pointer",
-                      width: "100%",
-                      borderRadius: "5px",
-                      padding: "25px",
+                          ? 'not-allowed'
+                          : 'pointer',
+                      width: '100%',
+                      borderRadius: '5px',
+                      padding: '25px',
                     }}
                     onClick={() => {}}
                   />
@@ -361,16 +361,16 @@ const UpdateProfile: React.FC = () => {
                     variant="contained"
                     disabled={isAnyFieldEmpty || formik.isSubmitting}
                     style={{
-                      backgroundColor: isAnyFieldEmpty ? "#5c5c5c" : "#C7148A",
+                      backgroundColor: isAnyFieldEmpty ? '#5c5c5c' : '#C7148A',
                       cursor:
                         isAnyFieldEmpty || formik.isSubmitting
-                          ? "not-allowed"
-                          : "pointer",
-                      width: "100%",
-                      borderRadius: "5px",
-                      padding: "25px",
+                          ? 'not-allowed'
+                          : 'pointer',
+                      width: '100%',
+                      borderRadius: '5px',
+                      padding: '25px',
                     }}
-                    onClick={() => {}}
+                    onClick={() => navigate('/updateProfile')} // Directly calling navigate
                   />
                 </Grid>
               </Grid>
