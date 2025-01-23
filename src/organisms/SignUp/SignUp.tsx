@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Divider, Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import {
   StyledContainer,
@@ -18,6 +18,11 @@ import {
   SignUpImageBox,
   ParentInputBox,
   PasswordError,
+  LogoImage,
+  DividerLine,
+  StrengthText,
+  HaveAccount1,
+  HaveAccount2,
 } from "./SignUp.style";
 
 import TextInput from "../../atoms/TextInput/TextInput";
@@ -27,6 +32,8 @@ import Button from "../../atoms/Button/Button";
 import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
 import { useSignUp } from "./SignUp.hook";
 import googleLogo from "../../assets/images/logo/google.svg";
+import { theme } from "../../thems/primitives/theme";
+import { DECOR_LOGO_COLOR } from "../../thems/primitives/colors";
 
 const SignUpForm: React.FC = () => {
   const {
@@ -54,7 +61,7 @@ const SignUpForm: React.FC = () => {
               backgroundColor:
                 segment <= strength
                   ? getStrengthLabel(segment).color
-                  : "#e0e0e0",
+                  : theme.palette.grey[200],
             }}
           />
         ))}
@@ -68,11 +75,7 @@ const SignUpForm: React.FC = () => {
         <ChildFlex>
           <StyledForm onSubmit={formik.handleSubmit}>
             <StyledHeader>
-              <img
-                src={LogoDecor}
-                alt="Decord-mistri Logo"
-                style={{ height: "50px" }}
-              />
+              <LogoImage src={LogoDecor} alt="Decord-mistri Logo" />
               <Title>Create your account</Title>
               <Title2>
                 Lorem ipsum is placeholder text commonly used in the graphic,
@@ -88,16 +91,19 @@ const SignUpForm: React.FC = () => {
               logo={googleLogo}
               style={{
                 borderRadius: "5px",
-                background: "white",
-                color: "black",
-                border: "1px solid #cccccc",
+                background:
+                  theme.palette.background.paper ||
+                  theme.palette.background.default,
+                color: theme.palette.text.primary,
+
+                border: `1px solid ${theme.palette.grey[300]}`,
                 width: "100%",
                 height: "50px",
               }}
               onClick={() => {}}
             />
 
-            <Divider style={{ margin: "10px 0", color: "#000000" }}>Or</Divider>
+            <DividerLine>Or</DividerLine>
 
             {/* Name Field */}
             <ParentInputBox>
@@ -210,17 +216,9 @@ const SignUpForm: React.FC = () => {
             <ProgressBar1>
               <SegmentedProgressBar strength={passwordStrength} />
             </ProgressBar1>
-            <Typography
-              variant="caption"
-              style={{
-                marginTop: "10px",
-                color: "#9e9e9e",
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
+            <StrengthText variant="caption">
               Password strength: {label}
-            </Typography>
+            </StrengthText>
 
             {/* Sign Up Button */}
             <Button
@@ -230,7 +228,9 @@ const SignUpForm: React.FC = () => {
               variant="contained"
               disabled={isAnyFieldEmpty || formik.isSubmitting}
               style={{
-                backgroundColor: isAnyFieldEmpty ? "#5c5c5c" : "#C7148A",
+                backgroundColor: isAnyFieldEmpty
+                  ? theme.palette.grey[500]
+                  : DECOR_LOGO_COLOR,
                 cursor:
                   isAnyFieldEmpty || formik.isSubmitting
                     ? "not-allowed"
@@ -244,27 +244,12 @@ const SignUpForm: React.FC = () => {
             />
 
             <StyledBoxCenter>
-              <Typography
-                variant="body2"
-                style={{
-                  textAlign: "center",
-                  fontWeight: "600",
-                  color: "#3f3f3f",
-                }}
-              >
+              <HaveAccount1 variant="body2">
                 Already have an account?
-              </Typography>
-              <Typography
-                component={RouterLink}
-                to="/"
-                sx={{
-                  color: "#C7148A",
-                  fontSize: "14px",
-                  textDecoration: "none",
-                }}
-              >
+              </HaveAccount1>
+              <HaveAccount2 component={RouterLink} to="/">
                 Sign in
-              </Typography>
+              </HaveAccount2>
             </StyledBoxCenter>
           </StyledForm>
         </ChildFlex>
