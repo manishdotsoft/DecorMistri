@@ -40,6 +40,7 @@ const LoginPage = () => {
     severity,
     openModal,
     handleModalClose,
+    handleUpdateprofile,
   } = useLoginLogic();
   return (
     <StyledContainer>
@@ -197,15 +198,15 @@ const LoginPage = () => {
                 label: 'Skip',
                 onClick: handleModalClose,
                 style: {
-                  backgroundColor: '#f0f0f0',
-                  color: '#333',
-                  width: '100px',
+                  backgroundColor: '#ccc9c9',
+                  color: '#020000',
+                  width: '160px',
                   borderRadius: '6px',
                 },
               },
               {
                 label: 'Update Now',
-                onClick: () => console.log('Confirmed'),
+                onClick: handleUpdateprofile,
                 style: {
                   backgroundColor: '#C7148A',
                   color: '#fff',

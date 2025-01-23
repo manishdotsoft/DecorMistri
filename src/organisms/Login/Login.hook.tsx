@@ -32,6 +32,10 @@ export const useLoginLogic = () => {
     navigate('/dashboard');
   };
 
+  const handleUpdateprofile = () => {
+    setOpenModal(true);
+    navigate('/updateProfile');
+  };
   const handleSubmit = async (values: LoginFormValues) => {
     try {
       const response = await loginUserMutation({
@@ -69,5 +73,6 @@ export const useLoginLogic = () => {
     severity,
     openModal,
     handleModalClose,
+    handleUpdateprofile,
   };
 };
