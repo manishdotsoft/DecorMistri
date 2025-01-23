@@ -1,5 +1,7 @@
-import { Typography } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { theme } from "../../thems/primitives/theme";
+import { DECOR_LOGO_COLOR } from "../../thems/primitives/colors";
 
 export const StyledContainer = styled("div")(() => ({
   display: "flex",
@@ -202,4 +204,33 @@ export const ProgressBar = styled("div")(() => ({
 
 export const PasswordError = styled("div")(() => ({
   width: "100%",
+}));
+
+export const LogoImage = styled("img")(() => ({
+  height: "50px",
+}));
+
+export const DividerLine = styled(Divider)(() => ({
+  margin: "10px 0",
+  color: theme.palette.text.primary,
+}));
+export const StrengthText = styled(Typography)(() => ({
+  color: theme.palette.grey[600],
+  fontFamily: theme.typography.fontFamily,
+  marginTop: "10px",
+
+  display: "flex",
+  justifyContent: "flex-end",
+}));
+
+export const HaveAccount1 = styled(Typography)(() => ({
+  textAlign: "center",
+  fontWeight: "600",
+  color: theme.palette.grey[700],
+}));
+
+export const HaveAccount2 = styled(Typography)(() => ({
+  color: DECOR_LOGO_COLOR,
+  fontSize: "14px",
+  textDecoration: "none",
 }));

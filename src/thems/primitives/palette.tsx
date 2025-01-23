@@ -10,6 +10,7 @@ export const GREY_200 = "#f0f0f0";
 export const GREY_400 = "rgba(115, 115, 114, 0.9)";
 export const GREY_300 = "#CACACA";
 export const GREY_500 = "rgba(158, 158, 158, 1)";
+export const BORDER_GREY = "#CCC";
 export const PRIMARY_500 = "#0B9A64";
 export const PRIMARY_400 = "#7bc67e";
 export const PRIMARY_200 = "#d6efdcbf";
@@ -40,6 +41,7 @@ export const RED_ALERT = "#f44336";
 
 // NEW COLOR ADD ACCORDINHG TO THE FIGMA
 export const PRIMARY_MAIN = "#0B9A64";
+
 export const PRIMARY_CARD = "#D6EFDC";
 export const PRIMARY_LIGHT = "#DDF0E2";
 
@@ -88,6 +90,7 @@ const palette = {
   },
   secondary: {
     main: SECONDARY_COLOR,
+
     contrastText: COMMON_DEFAULT,
     100: SECONDARY_COLOR_100,
   },
@@ -101,6 +104,7 @@ const palette = {
     300: GREY_300,
     400: GREY_400,
     500: GREY_500,
+    border: BORDER_GREY,
   },
   white: {
     main: WHITE,
@@ -120,11 +124,14 @@ const palette = {
   success: {
     main: SUCCESS_COLOR,
     contrastText: TEXT_SUCCESS,
+    midSuccess: PRIMARY_400,
+    fullSuccess: PRIMARY_500,
   },
   warning: {
     main: WARNING_COLOR,
     contrastText: TEXT_WARNING,
-    warning:TROPHY_ICON_COLOR,
+    warning: TROPHY_ICON_COLOR,
+    real: TROPHY_ICON_COLOR,
   },
   confirm: {
     main: CONFIRM_COLOR,

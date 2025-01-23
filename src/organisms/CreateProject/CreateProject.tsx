@@ -11,6 +11,7 @@ import FinancialDetails from "./Layout/FinancialDetails/FinancialDetails";
 
 import {
   CompletedStepIcon,
+  MainBox,
   StepIconContainer,
   StepNumber,
   StyledPageContent,
@@ -102,7 +103,7 @@ const CreateProject = () => {
   };
 
   return (
-    <Box display="flex" height="100vh">
+    <MainBox>
       {/* Sidebar */}
       <StyledSidebar>
         <Typography variant="h6" sx={{ marginBottom: 4 }}>
@@ -137,7 +138,7 @@ const CreateProject = () => {
         </Typography>
         {renderPageContent()}
       </StyledPageContent>
-    </Box>
+    </MainBox>
   );
 };
 

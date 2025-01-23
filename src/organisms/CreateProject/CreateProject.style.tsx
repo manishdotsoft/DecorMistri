@@ -62,3 +62,8 @@ export const CompletedStepIcon = styled(CheckCircleIcon)(() => ({
 export const IncompleteStepIcon = styled(RadioButtonUncheckedIcon)(() => ({
   color: "#ccc",
 }));
+
+export const MainBox = styled(Box)(() => ({
+  display: "flex",
+  height: "100vh",
+}));

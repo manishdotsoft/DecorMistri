@@ -26,11 +26,14 @@ import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
 import Button from "../../atoms/Button/Button";
 import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
 import { useUpdateProfile } from "./UpdateProfile.hook";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import SelectOption from "../../atoms/Select/SelectOption";
 
 import ProfileImage from "../../assets/images/updateProfile/man.svg";
 import uploadCamera from "../../assets/images/updateProfile/camera.svg";
+import { useNavigate } from "react-router-dom";
+import { theme } from "../../thems/primitives/theme";
+import { DECOR_LOGO_COLOR } from "../../thems/primitives/colors";
 
 const designOptions = [
   {
@@ -112,6 +115,8 @@ const UpdateProfile: React.FC = () => {
       setProfileImage(imageUrl);
     }
   };
+
+  const navigate = useNavigate();
 
   return (
     <StyledContainer>
@@ -331,7 +336,10 @@ const UpdateProfile: React.FC = () => {
                     </StyledTypography>
                   )}
                 </Grid>
-
+                {/* Spacing before Buttons */}
+                <Grid item xs={12}>
+                  <Box sx={{ marginTop: "20px" }} />
+                </Grid>
                 {/* Buttons */}
                 <Grid item xs={12} sm={6}>
                   <Button
@@ -339,18 +347,18 @@ const UpdateProfile: React.FC = () => {
                     type="button"
                     color="primary"
                     variant="contained"
-                    disabled={isAnyFieldEmpty || formik.isSubmitting}
                     style={{
-                      backgroundColor: isAnyFieldEmpty ? "#5c5c5c" : "#C7148A",
-                      cursor:
-                        isAnyFieldEmpty || formik.isSubmitting
-                          ? "not-allowed"
-                          : "pointer",
                       width: "100%",
-                      borderRadius: "5px",
-                      padding: "25px",
+                      borderRadius: theme.shape?.borderRadius || "5px",
+                      padding: theme.spacing(3),
+                      border: `1.8px solid ${DECOR_LOGO_COLOR}`,
+                      background: theme.palette.common.white,
+                      color: theme.palette.text.primary,
+                      fontSize: theme.typography.caption.fontSize,
                     }}
-                    onClick={() => {}}
+                    onClick={() => {
+                      navigate("/dashboard");
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -368,9 +376,11 @@ const UpdateProfile: React.FC = () => {
                           : "pointer",
                       width: "100%",
                       borderRadius: "5px",
-                      padding: "25px",
+                      padding: theme.spacing(3),
                     }}
-                    onClick={() => {}}
+                    onClick={() => {
+                      navigate("/dashboard");
+                    }}
                   />
                 </Grid>
               </Grid>
