@@ -373,7 +373,7 @@ const UpdateProfile: React.FC = () => {
                           : "pointer",
                       width: "100%",
                       borderRadius: "5px",
-                      padding: theme.spacing(3),
+                      padding: "25px",
                     }}
                     onClick={() => {
                       navigate("/dashboard");
