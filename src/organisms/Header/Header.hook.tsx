@@ -1,82 +1,82 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from "react";
 
 const useHeaderFilterHooks = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [selectedDesignType, setSelectedDesignType] = useState('');
-  const [selectedSubcategory, setSelectedSubcategory] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedDesignType, setSelectedDesignType] = useState("");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
 
   const designOptions = [
     {
-      value: 'commercial',
-      label: 'Commercial Design',
+      value: "commercial",
+      label: "Commercial Design",
       subcategories: [
-        'Office Spaces',
-        'Retail Spaces',
-        'Hospitality Spaces',
-        'Entertainment Spaces',
+        "Office Spaces",
+        "Retail Spaces",
+        "Hospitality Spaces",
+        "Entertainment Spaces",
       ],
     },
     {
-      value: 'residential',
-      label: 'Residential Design',
+      value: "residential",
+      label: "Residential Design",
       subcategories: [
-        'Living Areas',
-        'Bedrooms',
-        'Dining Areas',
-        'Kitchens',
-        'Bathrooms',
-        'Outdoor Spaces',
+        "Living Areas",
+        "Bedrooms",
+        "Dining Areas",
+        "Kitchens",
+        "Bathrooms",
+        "Outdoor Spaces",
       ],
     },
     {
-      value: 'industrial',
-      label: 'Industrial Design',
+      value: "industrial",
+      label: "Industrial Design",
       subcategories: [
-        'Manufacturing Areas',
-        'Storage Areas',
-        'Service Areas',
-        'Admin Spaces',
-        'Specialized Areas',
+        "Manufacturing Areas",
+        "Storage Areas",
+        "Service Areas",
+        "Admin Spaces",
+        "Specialized Areas",
       ],
     },
     {
-      value: 'institutional',
-      label: 'Institutional Design',
+      value: "institutional",
+      label: "Institutional Design",
       subcategories: [
-        'Educational Spaces',
-        'Healthcare Spaces',
-        'Cultural Spaces',
-        'Religious Spaces',
-        'Government Spaces',
+        "Educational Spaces",
+        "Healthcare Spaces",
+        "Cultural Spaces",
+        "Religious Spaces",
+        "Government Spaces",
       ],
     },
     {
-      value: 'mixed-use',
-      label: 'Mixed-Use Design',
+      value: "mixed-use",
+      label: "Mixed-Use Design",
       subcategories: [
-        'Residential Components',
-        'Commercial Components',
-        'Shared Amenities',
-        'Public Spaces',
+        "Residential Components",
+        "Commercial Components",
+        "Shared Amenities",
+        "Public Spaces",
       ],
     },
     {
-      value: 'landscape',
-      label: 'Landscape Design',
+      value: "landscape",
+      label: "Landscape Design",
       subcategories: [
-        'Residential Landscaping',
-        'Commercial Landscaping',
-        'Urban Landscaping',
-        'Environmental Spaces',
-        'Specialized Areas',
+        "Residential Landscaping",
+        "Commercial Landscaping",
+        "Urban Landscaping",
+        "Environmental Spaces",
+        "Specialized Areas",
       ],
     },
   ];
 
   const dateOptions = [
-    { value: 'start-date', label: 'Start Date' },
-    { value: 'end-date', label: 'End Date' },
+    { value: "start-date", label: "Start Date" },
+    { value: "end-date", label: "End Date" },
   ];
 
   const selectedDesignTypeObj = designOptions.find(
@@ -95,7 +95,7 @@ const useHeaderFilterHooks = () => {
 
   const handleDesignTypeChange = (event: ChangeEvent<{ value: unknown }>) => {
     setSelectedDesignType(event.target.value as string);
-    setSelectedSubcategory('');
+    setSelectedSubcategory("");
   };
 
   const handleSubcategoryChange = (event: ChangeEvent<{ value: unknown }>) => {

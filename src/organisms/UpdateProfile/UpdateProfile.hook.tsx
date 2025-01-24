@@ -10,13 +10,11 @@ import { createUserMutation } from "../../graphql/mutation/createUser";
 export interface SignUpFormValues {
   businessName: string;
   professionalCategory: string;
-
   designTypeExpertise: string;
   styleTypeExpertise: string;
   state: string;
   city: string;
   location: string;
-  // subcategories: string[];
 }
 
 const initialValues: SignUpFormValues = {
@@ -29,7 +27,6 @@ const initialValues: SignUpFormValues = {
   city: "",
 
   location: "",
-  // subcategories: [],
 };
 
 export const useUpdateProfile = () => {

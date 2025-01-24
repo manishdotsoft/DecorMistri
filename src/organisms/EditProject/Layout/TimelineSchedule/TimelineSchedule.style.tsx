@@ -1,5 +1,5 @@
 import { styled } from "@mui/system";
-import { Box, FormControl, InputLabel, Radio, Typography } from "@mui/material";
+import { Box, FormControl, InputLabel, Radio } from "@mui/material";
 import palette from "../../../../thems/primitives/palette";
 import typeset from "../../../../thems/primitives/typeset";
 import { COMMON_PAPER } from "../../../../thems/primitives/colors";
@@ -70,38 +70,3 @@ export const ButtonSection = styled(Box)({
   flexDirection: "row",
   justifyContent: "space-between",
 });
-
-export const Phashes = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: "70px",
-});
-
-export const SelectFile = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: "18px",
-});
-
-export const GridContainer = styled(Box)({
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  columnGap: "20px",
-  rowGap: "15px",
-  width: "100%",
-});
-export const GridContainerChild = styled(Box)({
-  display: "grid",
-  gridTemplateColumns: "1fr",
-  columnGap: "20px",
-  rowGap: "15px",
-  width: "100%",
-});
-
-export const StyledTypography = styled(Typography)(() => ({
-  fontSize: "12px",
-  color: "#d32f2f",
-  fontFamily: "sans-serif",
-
-  marginLeft: "15px",
-}));

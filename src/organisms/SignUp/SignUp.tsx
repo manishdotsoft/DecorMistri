@@ -120,10 +120,6 @@ const SignUpForm: React.FC = () => {
 
                   marginTop: "10px",
                   marginBottom: "6px",
-
-                  // "@media(max-width: 468px)": {
-                  //   boxShadow: "none",
-                  // },
                 }}
                 placeholder="Enter your name"
               />

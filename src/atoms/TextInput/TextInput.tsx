@@ -36,11 +36,11 @@ const TextInput: React.FC<TextInputProps> = ({
     usePasswordVisibility();
 
   const inputType =
-    type === "password" && !isPasswordVisible ? "password" : "text";
+    type === "password" && !isPasswordVisible ? "password" : type;
 
   return (
     <>
-      <FullWidthFormControl style={{ position: "relative" }}>
+      <FullWidthFormControl style={{ ...style }}>
         <TextInputField
           id={name}
           name={name}
