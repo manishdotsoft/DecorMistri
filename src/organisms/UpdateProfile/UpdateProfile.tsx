@@ -347,7 +347,7 @@ const UpdateProfile: React.FC = () => {
                     style={{
                       width: "100%",
                       borderRadius: theme.shape?.borderRadius || "5px",
-                      padding: theme.spacing(3),
+                      padding: "25px",
                       border: `1.8px solid ${DECOR_LOGO_COLOR}`,
                       background: theme.palette.common.white,
                       color: theme.palette.text.primary,

@@ -1,44 +1,41 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
+import Button from '../../atoms/Button/Button';
 
-export const CardContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px;
-`;
+export const Container = styled('div')({
+  display: 'flex',
+  justifyContent: 'space-between',
+});
 
-export const FilterBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+export const FilterSection = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '20px',
+  cursor: 'pointer',
+});
 
-export const SearchContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: 1px solid black;
-  width: 200px;
-  height: 35px;
-  border-radius: 4px;
-`;
+export const ActionsSection = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '40px',
+  alignItems: 'center',
+  padding: '20px',
+});
 
-export const StyledInput = styled.input`
-  border: none;
-  outline: none;
-  width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
-`;
+export const SearchContainer = styled('div')({
+  position: 'relative',
+  width: '90%',
+});
 
-export const ActionBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-`;
+export const StyledSearchIcon = styled(SearchIcon)({
+  color: '#757575',
+  position: 'absolute',
+  top: '10px',
+  right: '6px',
+});
 
-export const BoxItems = styled.div`
-  padding: 20px;
-`;
+export const StyledButton = styled(Button)({
+  width: '100%',
+  borderRadius: '10px',
+  padding: '15px',
+});

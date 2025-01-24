@@ -149,8 +149,8 @@ const PropertyDetails = ({
 
       <Box sx={{ p: 4 }}>
         <SelectOption
-          name="designType"
-          label="Design Type"
+          name="date"
+          label="Date"
           options={designOptions.map(({ value, label }) => ({ value, label }))}
           value={formik.values.designType}
           onChange={(e) => {
