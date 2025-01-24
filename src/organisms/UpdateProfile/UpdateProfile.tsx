@@ -151,8 +151,6 @@ const UpdateProfile: React.FC = () => {
               />
             </MainUploadImage>
 
-            {/* Upload Profile Picture/Logo */}
-
             {/* Name Field */}
             <ParentInputBox>
               <Grid container spacing={0.8}>
@@ -199,7 +197,6 @@ const UpdateProfile: React.FC = () => {
                         "professionalCategory",
                         e.target.value
                       );
-                      formik.setFieldValue("subcategories", []);
                     }}
                     onBlur={formik.handleBlur}
                     error={

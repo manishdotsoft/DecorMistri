@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from "react";
 
 interface DesignOption {
   value: string;
@@ -26,9 +26,9 @@ interface UseHeaderFilterReturn {
 const useHeaderFilter = ({
   designOptions,
 }: UseHeaderFilterProps): UseHeaderFilterReturn => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOption, setSelectedOption] = useState<string>("");
   const [values, setValues] = useState({
-    designType: '',
+    designType: "",
     subcategories: [] as string[],
   });
 

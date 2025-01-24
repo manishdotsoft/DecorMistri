@@ -83,10 +83,13 @@ export const useCreateProject = () => {
   };
 
   const updateFormData = (page: PageKey, data: Record<string, unknown>) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [page]: { ...prevData[page], ...data },
-    }));
+    setFormData((prevData) => {
+      const updatedPageData = { ...prevData[page], ...data };
+      if (JSON.stringify(updatedPageData) !== JSON.stringify(prevData[page])) {
+        return { ...prevData, [page]: updatedPageData };
+      }
+      return prevData;
+    });
   };
 
   return {

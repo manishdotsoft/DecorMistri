@@ -1,4 +1,4 @@
-import { Typography, TextField } from "@mui/material";
+import { Typography, TextField, Box } from "@mui/material";
 import usePropertyLocationDetails from "./PropertyLocationDetails.hook";
 import Button from "../../../../atoms/Button/Button";
 import SelectOption from "../../../../atoms/Select/SelectOption";
@@ -6,7 +6,9 @@ import {
   ButtonSection,
   Container,
   FlexRow,
+  StyledTypography,
 } from "./PropertyLocationDetails.style";
+import TextInput from "../../../../atoms/TextInput/TextInput";
 
 const PropertyLocationDetails = ({
   data,
@@ -90,34 +92,60 @@ const PropertyLocationDetails = ({
           style={{ width: "482px" }}
         />
 
-        <TextField
-          label="Zip/Postal Code"
-          variant="outlined"
-          fullWidth
-          name="zip"
-          value={formik.values.zip}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.zip && Boolean(formik.errors.zip)}
-          helperText={formik.touched.zip && formik.errors.zip}
-        />
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="zip"
+            label="ZIP/Code"
+            value={formik.values.zip}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.zip && Boolean(formik.errors.zip)}
+            helperText={formik.touched.zip && formik.errors.zip}
+            style={{
+              width: "95%",
+              borderRadius: "5px",
+            }}
+            placeholder="ZIP/Code"
+          />
+        </Box>
       </FlexRow>
 
-      <TextField
-        label="Address Line 1"
-        variant="outlined"
-        fullWidth
-        name="addressLine1"
-        value={formik.values.addressLine1}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={
-          formik.touched.addressLine1 && Boolean(formik.errors.addressLine1)
-        }
-        helperText={formik.touched.addressLine1 && formik.errors.addressLine1}
-      />
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <TextInput
+          name="addressLine1"
+          label="Address Line 1"
+          value={formik.values.addressLine1}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={
+            formik.touched.addressLine1 && Boolean(formik.errors.addressLine1)
+          }
+          style={{
+            width: "95%",
+            borderRadius: "5px",
+          }}
+          placeholder="addressLine1"
+        />
+        {formik.errors.addressLine1 && formik.touched.addressLine1 && (
+          <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
+        )}
+      </Box>
 
-      <TextField
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <TextInput
+          name="addressLine2"
+          label="Address Line 2 (Optional)"
+          value={formik.values.addressLine2}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          style={{
+            width: "95%",
+            borderRadius: "5px",
+          }}
+          placeholder="addressLine2"
+        />
+      </Box>
+      {/* <TextField
         label="Address Line 2 (Optional)"
         variant="outlined"
         fullWidth
@@ -125,7 +153,7 @@ const PropertyLocationDetails = ({
         value={formik.values.addressLine2}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-      />
+      /> */}
 
       <ButtonSection>
         <Button

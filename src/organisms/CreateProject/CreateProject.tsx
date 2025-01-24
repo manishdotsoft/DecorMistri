@@ -1,4 +1,4 @@
-import { Box, Typography, Stepper, Step, StepLabel } from "@mui/material";
+import { Typography, Stepper, Step, StepLabel } from "@mui/material";
 import { useCreateProject } from "./CreateProject.hook";
 
 import ProjectProviderInformation from "./Layout/ProjectProviderInformation/ProjectProviderInformation";

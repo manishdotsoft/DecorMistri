@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Checkbox,
@@ -6,9 +6,9 @@ import {
   ListItemText,
   MenuItem,
   Select,
-} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import ButtonProject from '../../atoms/Button/Button';
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import ButtonProject from "../../atoms/Button/Button";
 import {
   CardContainer,
   FilterBox,
@@ -16,9 +16,9 @@ import {
   StyledInput,
   ActionBox,
   BoxItems,
-} from './HeaderFilter.style';
-import SelectOption from '../../atoms/Select/SelectOption';
-import useHeaderFilter from './Header.hook';
+} from "./HeaderFilter.style";
+import SelectOption from "../../atoms/Select/SelectOption";
+import useHeaderFilter from "./Header.hook";
 
 interface DesignOption {
   value: string;
@@ -28,14 +28,14 @@ interface DesignOption {
 
 const designOptions: DesignOption[] = [
   {
-    value: 'commercial',
-    label: 'Commercial Design',
-    subcategories: ['Office Spaces', 'Retail Spaces'],
+    value: "commercial",
+    label: "Commercial Design",
+    subcategories: ["Office Spaces", "Retail Spaces"],
   },
   {
-    value: 'residential',
-    label: 'Residential Design',
-    subcategories: ['Living Areas', 'Bedrooms'],
+    value: "residential",
+    label: "Residential Design",
+    subcategories: ["Living Areas", "Bedrooms"],
   },
 ];
 
@@ -62,10 +62,10 @@ const HeaderFilter: React.FC = () => {
             value={selectedOption}
             onChange={handleOptionChange}
             style={{
-              width: '100%',
+              width: "100%",
               padding: 1,
               margin: 0,
-              color: 'black',
+              color: "black",
             }}
           />
           {values.designType && (
@@ -78,7 +78,7 @@ const HeaderFilter: React.FC = () => {
                 multiple
                 value={values.subcategories}
                 onChange={handleSubcategoriesChange}
-                renderValue={(selected) => (selected as string[]).join(', ')}
+                renderValue={(selected) => (selected as string[]).join(", ")}
                 aria-label="Select subcategories"
               >
                 {filteredSubcategories.map((subcategory) => (
@@ -106,11 +106,11 @@ const HeaderFilter: React.FC = () => {
             fontWeight="600"
             color="#fff"
             style={{
-              width: '180px',
-              borderRadius: '4px',
-              backgroundColor: 'primary.main',
+              width: "180px",
+              borderRadius: "4px",
+              backgroundColor: "primary.main",
             }}
-            onClick={() => console.log('Button clicked')}
+            onClick={() => console.log("Button clicked")}
           />
         </Box>
       </ActionBox>

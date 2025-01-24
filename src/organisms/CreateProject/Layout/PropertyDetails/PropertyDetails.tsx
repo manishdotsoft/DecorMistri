@@ -2,7 +2,6 @@ import {
   Typography,
   MenuItem,
   Select,
-  TextField,
   Box,
   InputLabel,
   FormHelperText,
@@ -12,13 +11,15 @@ import {
 import {
   ButtonSection,
   Container,
-  FlexRow,
-  Phashes,
+  GridContainer,
+  GridContainerChild,
   SelectFile,
+  StyledTypography,
 } from "./PropertyDetails.style";
 import Button from "../../../../atoms/Button/Button";
 import SelectOption from "../../../../atoms/Select/SelectOption";
 import usePropertyDetailsForm from "./PropertyDetails.hook";
+import TextInput from "../../../../atoms/TextInput/TextInput";
 
 const designOptions = [
   {
@@ -124,20 +125,27 @@ const PropertyDetails = ({
     <Container>
       <Typography variant="h6">Basic Information</Typography>
 
-      <FlexRow>
-        <TextField
-          label="Size (in sq. ft.)"
-          variant="outlined"
-          // fullWidth
-          name="size"
-          type="number"
-          value={formik.values.size}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.size && Boolean(formik.errors.size)}
-          helperText={formik.touched.size && formik.errors.size}
-        />
-      </FlexRow>
+      <GridContainerChild>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="size"
+            label="Size (in sq. ft.)"
+            type="number"
+            value={formik.values.size}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.size && Boolean(formik.errors.size)}
+            style={{
+              width: "95%",
+              borderRadius: "5px",
+            }}
+            placeholder="Size (in sq. ft.)"
+          />
+          {formik.errors.size && formik.touched.size && (
+            <StyledTypography>{formik.errors.size}</StyledTypography>
+          )}
+        </Box>
+      </GridContainerChild>
 
       <Box sx={{ p: 4 }}>
         <SelectOption
@@ -190,18 +198,26 @@ const PropertyDetails = ({
         )}
       </Box>
 
-      <Phashes>
-        <TextField
-          label="Number of Phases"
-          variant="outlined"
-          name="phases"
-          type="number"
-          value={formik.values.phases}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.phases && Boolean(formik.errors.phases)}
-          helperText={formik.touched.phases && formik.errors.phases}
-        />
+      <GridContainer>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="phases"
+            label="Number of Phases"
+            type="number"
+            value={formik.values.phases}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.phases && Boolean(formik.errors.phases)}
+            style={{
+              width: "95%",
+              borderRadius: "5px",
+            }}
+            placeholder="phases (in sq. ft.)"
+          />
+          {formik.errors.phases && formik.touched.phases && (
+            <StyledTypography>{formik.errors.phases}</StyledTypography>
+          )}
+        </Box>
         <SelectFile>
           <Typography variant="subtitle1">Floor Plans & 3D Designs</Typography>
           <Box>
@@ -238,19 +254,28 @@ const PropertyDetails = ({
             )}
           </Box>
         </SelectFile>
-      </Phashes>
+      </GridContainer>
 
-      <TextField
-        label="Additional Comments"
-        variant="outlined"
-        fullWidth
-        name="comments"
-        value={formik.values.comments}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={formik.touched.comments && Boolean(formik.errors.comments)}
-        helperText={formik.touched.comments && formik.errors.comments}
-      />
+      <GridContainerChild>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="comments"
+            label="Additional Comments"
+            value={formik.values.comments}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.comments && Boolean(formik.errors.comments)}
+            style={{
+              width: "95%",
+              borderRadius: "5px",
+            }}
+            placeholder="comments"
+          />
+          {formik.errors.comments && formik.touched.comments && (
+            <StyledTypography>{formik.errors.comments}</StyledTypography>
+          )}
+        </Box>
+      </GridContainerChild>
 
       <ButtonSection>
         <Button

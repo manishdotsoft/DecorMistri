@@ -1,14 +1,15 @@
-import { Typography, TextField } from "@mui/material";
-// Assuming the schema.tsx file exports the validation schema
+import { Typography, Box } from "@mui/material";
 import {
   ButtonSection,
   Container,
   FlexRow,
   FullWidthFormControl,
+  StyledTypography,
 } from "./FinancialDetails.style";
 import Button from "../../../../atoms/Button/Button";
-import RadioButton from "../../../../atoms/RadioButton/RadioButton"; // Import the RadioButton component
+import RadioButton from "../../../../atoms/RadioButton/RadioButton";
 import useFinancialDetails from "./FinancialDetails.hook";
+import TextInput from "../../../../atoms/TextInput/TextInput";
 
 const FinancialDetails = ({
   data,
@@ -46,23 +47,27 @@ const FinancialDetails = ({
       </Typography>
 
       <FlexRow>
-        <TextField
-          label="Estimated Budget"
-          variant="outlined"
-          fullWidth
-          type="number"
-          name="estimatedBudget"
-          value={formik.values.estimatedBudget}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={
-            formik.touched.estimatedBudget &&
-            Boolean(formik.errors.estimatedBudget)
-          }
-          helperText={
-            formik.touched.estimatedBudget && formik.errors.estimatedBudget
-          }
-        />
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="estimatedBudget"
+            label="Estimated Budget"
+            value={formik.values.estimatedBudget}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.estimatedBudget &&
+              Boolean(formik.errors.estimatedBudget)
+            }
+            style={{
+              width: "95%",
+              borderRadius: "5px",
+            }}
+            placeholder="Estimated Budget"
+          />
+          {formik.errors.estimatedBudget && formik.touched.estimatedBudget && (
+            <StyledTypography>{formik.errors.estimatedBudget}</StyledTypography>
+          )}
+        </Box>
       </FlexRow>
 
       <Typography variant="subtitle1" gutterBottom>

@@ -1,5 +1,5 @@
 import { styled } from "@mui/system";
-import { Box, FormControl } from "@mui/material";
+import { Box, FormControl, Typography } from "@mui/material";
 import palette from "../../../../thems/primitives/palette";
 import typeset from "../../../../thems/primitives/typeset";
 
@@ -13,6 +13,29 @@ export const Container = styled(Box)({
   color: palette.text.primary,
   fontFamily: typeset.fontFamily,
 });
+
+export const GridContainer = styled(Box)({
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  columnGap: "20px",
+  rowGap: "15px",
+  width: "100%",
+});
+export const GridContainerChild = styled(Box)({
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  columnGap: "20px",
+  rowGap: "15px",
+  width: "100%",
+});
+
+export const StyledTypography = styled(Typography)(() => ({
+  fontSize: "12px",
+  color: "#d32f2f",
+  fontFamily: "sans-serif",
+
+  marginLeft: "15px",
+}));
 
 export const FlexRow = styled(Box)({
   display: "flex",

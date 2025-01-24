@@ -1,8 +1,15 @@
-import { Typography, TextField } from "@mui/material";
-import { ButtonSection, Container, FlexRow } from "./ClientDetails.style";
+import { Typography, Box } from "@mui/material";
+import {
+  ButtonSection,
+  Container,
+  GridContainer,
+  GridContainerChild,
+  StyledTypography,
+} from "./ClientDetails.style";
 import Button from "../../../../atoms/Button/Button";
 import SelectOption from "../../../../atoms/Select/SelectOption";
-import useClientDetailsForm from "./ClientDetails.hook"; // Import the custom hook
+import useClientDetailsForm from "./ClientDetails.hook";
+import TextInput from "../../../../atoms/TextInput/TextInput";
 
 const ClientDetails = ({
   data,
@@ -46,55 +53,77 @@ const ClientDetails = ({
   return (
     <Container>
       <Typography variant="h6">Basic Information</Typography>
+      <GridContainerChild>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="clientName"
+            label="Client Name"
+            value={formik.values.clientName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.clientName && Boolean(formik.errors.clientName)
+            }
+            style={{
+              width: "97.5%",
+              borderRadius: "5px",
+            }}
+            placeholder="Clint Name"
+          />
+          {formik.errors.clientName && formik.touched.clientName && (
+            <StyledTypography>{formik.errors.clientName}</StyledTypography>
+          )}
+        </Box>
+      </GridContainerChild>
 
-      <FlexRow>
-        <TextField
-          label="Client Name"
-          variant="outlined"
-          fullWidth
-          name="clientName"
-          value={formik.values.clientName}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.clientName && Boolean(formik.errors.clientName)}
-          helperText={formik.touched.clientName && formik.errors.clientName}
-        />
-      </FlexRow>
+      <GridContainer>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="clientEmail"
+            label="Client Email ID"
+            value={formik.values.clientEmail}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.clientEmail && Boolean(formik.errors.clientEmail)
+            }
+            style={{
+              width: "95%",
+              borderRadius: "5px",
+            }}
+            placeholder="Client Email ID"
+          />
+          {formik.errors.clientEmail && formik.touched.clientEmail && (
+            <StyledTypography>{formik.errors.clientEmail}</StyledTypography>
+          )}
+        </Box>
 
-      <FlexRow>
-        <TextField
-          label="Client Email ID"
-          variant="outlined"
-          fullWidth
-          type="email"
-          name="clientEmail"
-          value={formik.values.clientEmail}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={
-            formik.touched.clientEmail && Boolean(formik.errors.clientEmail)
-          }
-          helperText={formik.touched.clientEmail && formik.errors.clientEmail}
-        />
-        <TextField
-          label="Phone Number"
-          variant="outlined"
-          fullWidth
-          type="number"
-          name="phoneNumber"
-          value={formik.values.phoneNumber}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={
-            formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
-          }
-          helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-        />
-      </FlexRow>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="phoneNumber"
+            label="Phone Number"
+            type="number"
+            value={formik.values.phoneNumber}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
+            }
+            style={{
+              width: "95%",
+              borderRadius: "5px",
+            }}
+            placeholder="Phone Number"
+          />
+          {formik.errors.phoneNumber && formik.touched.phoneNumber && (
+            <StyledTypography>{formik.errors.phoneNumber}</StyledTypography>
+          )}
+        </Box>
+      </GridContainer>
 
       <Typography variant="subtitle1">Address</Typography>
 
-      <FlexRow>
+      <GridContainer>
         <SelectOption
           name="country"
           label="Country"
@@ -107,7 +136,7 @@ const ClientDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.country && Boolean(formik.errors.country)}
           helperText={formik.touched.country && formik.errors.country}
-          style={{ width: "482px" }}
+          style={{ width: "100%" }}
         />
         <SelectOption
           name="state"
@@ -121,11 +150,9 @@ const ClientDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.state && Boolean(formik.errors.state)}
           helperText={formik.touched.state && formik.errors.state}
-          style={{ width: "482px" }}
+          style={{ width: "100%" }}
         />
-      </FlexRow>
 
-      <FlexRow>
         <SelectOption
           name="city"
           label="City"
@@ -138,43 +165,74 @@ const ClientDetails = ({
           onBlur={formik.handleBlur}
           error={formik.touched.city && Boolean(formik.errors.city)}
           helperText={formik.touched.city && formik.errors.city}
-          style={{ width: "482px" }}
+          style={{ width: "100%" }}
         />
-        <TextField
-          label="Zip/Postal code"
-          variant="outlined"
-          name="zipCode"
-          type="number"
-          value={formik.values.zipCode}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.zipCode && Boolean(formik.errors.zipCode)}
-          helperText={formik.touched.zipCode && formik.errors.zipCode}
-        />
-      </FlexRow>
 
-      <TextField
-        label="Address Line 1"
-        variant="outlined"
-        fullWidth
-        name="addressLine1"
-        value={formik.values.addressLine1}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={
-          formik.touched.addressLine1 && Boolean(formik.errors.addressLine1)
-        }
-        helperText={formik.touched.addressLine1 && formik.errors.addressLine1}
-      />
-      <TextField
-        label=" "
-        variant="outlined"
-        fullWidth
-        name="addressLine2"
-        value={formik.values.addressLine2}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      />
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="zipCode"
+            label="Zip/Postal Code"
+            type="number"
+            value={formik.values.zipCode}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.zipCode && Boolean(formik.errors.zipCode)}
+            style={{
+              width: "95%",
+              borderRadius: "5px",
+            }}
+            placeholder="Zip/Postal Code"
+          />
+          {formik.errors.zipCode && formik.touched.zipCode && (
+            <StyledTypography>{formik.errors.zipCode}</StyledTypography>
+          )}
+        </Box>
+      </GridContainer>
+
+      <GridContainerChild>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="addressLine1"
+            label="Address Line 1"
+            value={formik.values.addressLine1}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.addressLine1 && Boolean(formik.errors.addressLine1)
+            }
+            style={{
+              width: "98%",
+              borderRadius: "5px",
+            }}
+            placeholder="Address Line 1"
+          />
+          {formik.errors.addressLine1 && formik.touched.addressLine1 && (
+            <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
+          )}
+        </Box>
+      </GridContainerChild>
+      <GridContainerChild>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <TextInput
+            name="addressLine2"
+            label="Address Line 2 (Optional)"
+            value={formik.values.addressLine2}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.addressLine2 && Boolean(formik.errors.addressLine2)
+            }
+            style={{
+              width: "98%",
+              borderRadius: "5px",
+            }}
+            placeholder="Address Line 2 (Optional)"
+          />
+          {formik.errors.addressLine2 && formik.touched.addressLine2 && (
+            <StyledTypography>{formik.errors.addressLine2}</StyledTypography>
+          )}
+        </Box>
+      </GridContainerChild>
 
       <ButtonSection>
         <Button
