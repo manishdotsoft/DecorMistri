@@ -157,25 +157,6 @@ const LoginPage = () => {
               </Form>
             )}
           </Formik>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           <Button
             title="Sign In with Google"
             color="primary"
