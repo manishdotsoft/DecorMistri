@@ -9,6 +9,7 @@ import {
   Title,
   Title2,
   Logo,
+  ImageFlex,
 } from './SuccessfullyPage.style';
 
 import SignUpImage from '../../assets/images/signUpLogImage/SignUpLog.png';
@@ -16,7 +17,7 @@ import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
 import Button from '../../atoms/Button/Button';
 import { Link } from 'react-router-dom';
 import { useSuccessfullyPageLogic } from './SuccessfullyPage.hook';
-import { ImageFlex } from '../SignUp/SignUp.style';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 
 const SuccessfullyPage: React.FC = () => {
   const { handleClick } = useSuccessfullyPageLogic();
@@ -42,7 +43,7 @@ const SuccessfullyPage: React.FC = () => {
               type="button"
               variant="contained"
               style={{
-                backgroundColor: '#C7148A',
+                backgroundColor: `${DECOR_LOGO_COLOR}`,
                 width: '50%',
                 borderRadius: '5px',
                 padding: '25px',

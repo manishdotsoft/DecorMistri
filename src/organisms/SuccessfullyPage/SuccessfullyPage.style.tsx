@@ -1,18 +1,20 @@
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+import palette from '../../thems/primitives/palette';
+import { BOX_SHADOW } from '../../thems/primitives/colors';
+import fonts from '../../thems/primitives/fonts';
+import typeset from '../../thems/primitives/typeset';
+
 export const StyledContainer = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
-  fontFamily: 'sans-serif',
+  fontFamily: fonts.primary,
   alignItems: 'center',
   minHeight: '92vh',
-  backgroundColor: '#ffffff',
+  backgroundColor: palette.white.main,
   padding: '16px',
 
-  // width: "100%",
-
-  // flexDirection: "column",
   '@media(max-width: 468px)': {
     padding: '0px',
     marginTop: '35px',
@@ -22,11 +24,10 @@ export const StyledContainer = styled('div')(() => ({
 export const MainFlex = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
-  fontFamily: 'sans-serif',
-  // maxWidth: "1400px",
-  backgroundColor: '#ffffff',
+  fontFamily: fonts.primary,
+  backgroundColor: palette.white.main,
   borderRadius: '25px',
-  boxShadow: '0px 0px 100px 10px rgba(0, 0, 0, 0.3)',
+  boxShadow: `0px 0px 100px 10px ${BOX_SHADOW}`,
 
   overflow: 'hidden',
   // [theme.breakpoints.down("lg")]: {
@@ -70,11 +71,15 @@ export const ChildFlex = styled('div')(({ theme }) => ({
 }));
 
 export const ImageFlex = styled('div')(() => ({
-  flex: 1,
-  backgroundColor: '#f7f7f7',
-  width: '100%',
-  height: '100%',
-  borderRadius: '25px',
+  width: '50%',
+  height: 'auto',
+
+  '@media(max-width: 468px)': {
+    display: 'none',
+  },
+  '@media(max-width: 1338px)': {
+    width: '100%',
+  },
 }));
 
 export const AllImg = styled('img')(() => ({
@@ -97,22 +102,22 @@ export const Logo = styled('img')(() => ({
 }));
 
 export const Title = styled(Typography)(({ theme }) => ({
-  fontSize: '2.1rem',
+  fontSize: typeset.h4.fontSize,
   fontWeight: '300',
-  color: '#000000',
   lineHeight: '30px',
   marginBottom: '10px',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '32px',
+    fontSize: typeset.h5.fontSize,
   },
 }));
 
 export const Title2 = styled(Typography)(({ theme }) => ({
-  fontSize: '14px',
+  // fontSize: "14px",
+  fontSize: typeset.button.fontSize,
   fontWeight: '300',
-  color: '#363636',
+  color: palette.rateSheduleColors.colorB,
   margin: '0',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '12px',
+    fontSize: typeset.caption.fontSize,
   },
 }));

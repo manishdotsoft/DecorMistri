@@ -62,7 +62,8 @@ export const BACKGROUND_A = '#F0F4EF';
 export const BACKGROUND_B = '#F0F4EF';
 export const BACKGROUND_C = '#E9EEF8';
 export const COLOR_A = '#0B9A64';
-export const COLOR_B = '#49433D';
+export const COLOR_B = '#3c3a39';
+
 export const COLOR_C = '#005AA1';
 export const COLOR_HOLIDAY = '#0B9A64';
 export const REGULAR_A = '#D6EFDCBF';

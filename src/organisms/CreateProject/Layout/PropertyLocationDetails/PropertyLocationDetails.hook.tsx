@@ -1,6 +1,6 @@
-import { useEffect, useCallback } from "react";
-import { useFormik } from "formik";
-import { propertyLocationSchema } from "../../Schema";
+import { useCallback } from 'react';
+import { useFormik } from 'formik';
+import { propertyLocationSchema } from '../../Schema';
 
 interface PropertyLocationData {
   country?: string;
@@ -24,12 +24,12 @@ const usePropertyLocationDetails = ({
 }: UsePropertyLocationDetailsProps) => {
   const formik = useFormik({
     initialValues: {
-      country: data.country || "",
-      state: data.state || "",
-      city: data.city || "",
-      zip: data.zip || "",
-      addressLine1: data.addressLine1 || "",
-      addressLine2: data.addressLine2 || "",
+      country: data.country || '',
+      state: data.state || '',
+      city: data.city || '',
+      zip: data.zip || '',
+      addressLine1: data.addressLine1 || '',
+      addressLine2: data.addressLine2 || '',
     },
     validationSchema: propertyLocationSchema,
     validateOnBlur: true,
@@ -50,9 +50,9 @@ const usePropertyLocationDetails = ({
     );
   }, [formik.values]);
 
-  useEffect(() => {
-    updateData(formik.values);
-  }, [formik.values, updateData]);
+  // useEffect(() => {
+  //   updateData(formik.values);
+  // }, [formik.values, updateData]);
 
   return {
     formik,
