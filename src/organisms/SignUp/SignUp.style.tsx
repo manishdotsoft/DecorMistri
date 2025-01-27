@@ -1,20 +1,19 @@
 import { Divider, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { theme } from "../../thems/primitives/theme";
-import { DECOR_LOGO_COLOR } from "../../thems/primitives/colors";
+import { BOX_SHADOW, DECOR_LOGO_COLOR } from "../../thems/primitives/colors";
+import palette from "../../thems/primitives/palette";
+import fonts from "../../thems/primitives/fonts";
+import typeset from "../../thems/primitives/typeset";
 
 export const StyledContainer = styled("div")(() => ({
   display: "flex",
   justifyContent: "center",
-  fontFamily: "sans-serif",
+  fontFamily: fonts.primary,
   alignItems: "center",
   minHeight: "92vh",
-  backgroundColor: "#ffffff",
+  backgroundColor: palette.white.main,
   padding: "16px",
-
-  // width: "100%",
-
-  // flexDirection: "column",
   "@media(max-width: 468px)": {
     padding: "0px",
     marginTop: "35px",
@@ -24,11 +23,11 @@ export const StyledContainer = styled("div")(() => ({
 export const MainFlex = styled("div")(() => ({
   display: "flex",
   justifyContent: "center",
-  fontFamily: "sans-serif",
+  fontFamily: fonts.primary,
   // maxWidth: "1400px",
-  backgroundColor: "#ffffff",
+  backgroundColor: palette.white.main,
   borderRadius: "25px",
-  boxShadow: "0px 0px 100px 10px rgba(0, 0, 0, 0.3)",
+  boxShadow: `0px 0px 100px 10px ${BOX_SHADOW}`,
 
   overflow: "hidden",
   // [theme.breakpoints.down("lg")]: {
@@ -57,11 +56,11 @@ export const MainFlex = styled("div")(() => ({
   },
 }));
 export const StyledForm = styled("form")(() => ({
-  fontFamily: "sans-serif",
+  fontFamily: fonts.primary,
 }));
 
 export const ParentInputBox = styled("div")(() => ({
-  fontFamily: "sans-serif",
+  fontFamily: fonts.primary,
   marginRight: "49px",
   "@media(max-width: 468px)": {},
 }));
@@ -69,13 +68,9 @@ export const ParentInputBox = styled("div")(() => ({
 export const TextArea = styled("div")(() => ({
   display: "flex",
   alignItems: "center",
-  fontFamily: "sans-serif",
+  fontFamily: fonts.primary,
 
   gap: "10px",
-}));
-
-export const TextArea2 = styled("div")(() => ({
-  fontFamily: "sans-serif",
 }));
 
 export const ChildFlex = styled("div")(({ theme }) => ({
@@ -84,21 +79,11 @@ export const ChildFlex = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
-  fontFamily: "sans-serif",
+  fontFamily: fonts.primary,
   height: "100%",
   [theme.breakpoints.down("md")]: {
     padding: "20px 16px",
   },
-}));
-
-export const ImageFlex = styled("div")(() => ({
-  flex: 1,
-  backgroundColor: "#f7f7f7",
-  width: "100%",
-  height: "100%",
-  fontFamily: "sans-serif",
-
-  borderRadius: "25px",
 }));
 
 export const SignUpImageBox = styled("div")(() => ({
@@ -126,66 +111,43 @@ export const AllImg = styled("img")(({ theme }) => ({
 
 export const StyledHeader = styled("div")(() => ({
   marginBottom: "20px",
-  fontFamily: "sans-serif",
-}));
-
-export const Logo = styled("div")(() => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "10px",
-  marginBottom: "10px",
-  fontFamily: "sans-serif",
+  fontFamily: fonts.primary,
 }));
 
 export const Title = styled(Typography)(() => ({
-  fontSize: "2.3rem",
+  fontSize: typeset.h4.fontSize,
   fontWeight: "300",
-  fontFamily: "sans-serif",
-
-  color: "#000000",
+  fontFamily: fonts.primary,
   margin: "0",
   "@media(max-width: 1068px)": {
-    fontSize: "1.8rem",
+    fontSize: typeset.h5.fontSize,
   },
 }));
 
 export const Title2 = styled(Typography)(({ theme }) => ({
-  fontSize: "14px",
+  fontSize: typeset.button.fontSize,
   fontWeight: "300",
-  fontFamily: "sans-serif",
-
-  color: "##000000",
+  color: palette.rateSheduleColors.colorB,
+  fontFamily: fonts.primary,
   margin: "0",
   [theme.breakpoints.down("sm")]: {
-    fontSize: "12px",
+    fontSize: typeset.caption.fontSize,
   },
 }));
 
 export const StyledTypography = styled(Typography)(() => ({
-  fontSize: "12px",
-  color: "#d32f2f",
-  fontFamily: "sans-serif",
-
-  // marginTop: "5px",
+  fontSize: typeset.caption.fontSize,
+  color: palette.error.main,
+  fontFamily: fonts.primary,
 }));
 
 export const StyledBoxCenter = styled("div")(() => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  fontFamily: "sans-serif",
+  fontFamily: fonts.primary,
   gap: "10px",
   marginTop: "20px",
-}));
-
-export const StyledLink = styled("span")(() => ({
-  color: "#7d22c3",
-  fontWeight: "bold",
-  cursor: "pointer",
-  fontFamily: "sans-serif",
-
-  textDecoration: "none",
 }));
 
 export const ProgressBar1 = styled("div")(() => ({
@@ -231,6 +193,7 @@ export const HaveAccount1 = styled(Typography)(() => ({
 
 export const HaveAccount2 = styled(Typography)(() => ({
   color: DECOR_LOGO_COLOR,
-  fontSize: "14px",
+  // fontSize: "14px",
+  fontSize: typeset.button.fontSize,
   textDecoration: "none",
 }));

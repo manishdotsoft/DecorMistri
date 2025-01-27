@@ -6,7 +6,7 @@ interface PropertyDetailsFormProps {
   data: {
     size: string;
     phases: string;
-    file: File | null;
+    file: { name: string; size: number; type: string } | null;
     comments: string;
     designType: string;
     subcategories: string[];
@@ -14,7 +14,7 @@ interface PropertyDetailsFormProps {
   updateData: (data: {
     size: string;
     phases: string;
-    file: File | null;
+    file: { name: string; size: number; type: string } | null;
     comments: string;
     designType: string;
     subcategories: string[];
@@ -41,16 +41,23 @@ const usePropertyDetailsForm = ({
     validationSchema: propertyDetailsSchema,
     validateOnBlur: true,
     onSubmit: (values) => {
-      updateData(values);
-      console.log(values);
+      const { file, ...rest } = values;
+      const fileMetadata = file
+        ? { name: file.name, size: file.size, type: file.type }
+        : null;
+      updateData({
+        ...rest,
+        file: fileMetadata, // Send only serializable metadata
+      });
       handleNext();
     },
   });
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      formik.setFieldValue("file", event.target.files[0]);
-      setFileError(null); // Clear file error if a file is selected
+      const file = event.target.files[0];
+      formik.setFieldValue("file", file);
+      setFileError(null); // Clear error if a file is selected
     } else {
       setFileError("Please select a file.");
     }

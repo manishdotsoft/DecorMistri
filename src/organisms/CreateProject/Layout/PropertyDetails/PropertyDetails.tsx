@@ -99,7 +99,7 @@ const PropertyDetails = ({
   data: {
     size: string;
     phases: string;
-    file: File | null;
+    file: { name: string; size: number; type: string } | null;
     comments: string;
     designType: string;
     subcategories: string[];
@@ -107,7 +107,7 @@ const PropertyDetails = ({
   updateData: (data: {
     size: string;
     phases: string;
-    file: File | null;
+    file: { name: string; size: number; type: string } | null;
     comments: string;
     designType: string;
     subcategories: string[];
@@ -149,8 +149,8 @@ const PropertyDetails = ({
 
       <Box sx={{ p: 4 }}>
         <SelectOption
-          name="date"
-          label="Date"
+          name="designType"
+          label="Design Type"
           options={designOptions.map(({ value, label }) => ({ value, label }))}
           value={formik.values.designType}
           onChange={(e) => {
@@ -234,6 +234,7 @@ const PropertyDetails = ({
             />
             <input
               type="file"
+              name="file"
               id="fileInput"
               hidden
               onChange={handleFileChange}

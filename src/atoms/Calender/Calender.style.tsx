@@ -1,15 +1,15 @@
 import { styled } from "@mui/material/styles";
 import { Box, ListItem, Button } from "@mui/material";
+import palette from "../../thems/primitives/palette";
 
-export const StyledContainer = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(4),
+export const StyledContainer = styled(Box)(() => ({
   maxWidth: "800px",
   margin: "auto",
 }));
 
 export const StyledTodoContainer = styled(Box)(({ theme }) => ({
-  marginTop: theme.spacing(4),
-  padding: theme.spacing(2),
+  marginTop: "1rem",
+  padding: "20px",
   backgroundColor: theme.palette.background.paper,
   borderRadius: "8px",
   boxShadow: theme.shadows[1],
@@ -17,7 +17,6 @@ export const StyledTodoContainer = styled(Box)(({ theme }) => ({
 
 export const StyledListItem = styled(ListItem)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
-  marginBottom: theme.spacing(1),
   borderRadius: "4px",
   padding: theme.spacing(1),
   display: "flex",
@@ -25,19 +24,16 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
   alignItems: "center",
 }));
 
-export const StyledDateCalendar = styled(Box)(({ theme }) => ({
-  border: "1px solid #ddd",
+export const StyledDateCalendar = styled(Box)(() => ({
+  border: `1px solid ${palette.grey[100]}`,
   borderRadius: "8px",
-  marginTop: theme.spacing(2),
   width: "100%",
   maxWidth: "800px",
   height: "600px",
 }));
 
-export const StyledInputSection = styled(Box)(({ theme }) => ({
+export const StyledInputSection = styled(Box)(() => ({
   display: "flex",
-  gap: theme.spacing(2),
-  marginTop: theme.spacing(2),
 }));
 
 export const StyledButton = styled(Button)(() => ({

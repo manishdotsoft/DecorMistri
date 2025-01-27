@@ -21,3 +21,5 @@ export const QUATERARY_COLOR = "#f8d548";
 export const STATUS_BAR_COLOR = "#FFA500";
 export const DECOR_LOGO_COLOR = "#C7148A";
 export const SELECT_BORDER = "#16cf5d";
+export const BOX_SHADOW = "#0000004c";
+export const BOX_SHADOW2 = "#00000033";
