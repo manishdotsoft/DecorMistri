@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type PageKey =
-  | "projectProviderInformation"
-  | "clientDetails"
-  | "propertyDetails"
-  | "propertyLocationDetails"
-  | "timelineSchedule"
-  | "financialDetails";
+  | 'projectProviderInformation'
+  | 'clientDetails'
+  | 'propertyDetails'
+  | 'propertyLocationDetails'
+  | 'timelineSchedule'
+  | 'financialDetails';
 
 type ClientDetailsType = {
   clientName: string;
@@ -37,15 +37,15 @@ const initialState = {
   formData: {
     projectProviderInformation: {},
     clientDetails: {
-      clientName: "",
-      clientEmail: "",
-      phoneNumber: "",
-      city: "",
-      country: "",
-      state: "",
-      zipCode: "",
-      addressLine1: "",
-      addressLine2: "",
+      clientName: '',
+      clientEmail: '',
+      phoneNumber: '',
+      city: '',
+      country: '',
+      state: '',
+      zipCode: '',
+      addressLine1: '',
+      addressLine2: '',
     },
     propertyDetails: {},
     propertyLocationDetails: {},
@@ -57,17 +57,17 @@ const initialState = {
   } as FormDataType,
   completedSteps: Array(6).fill(false),
   pages: [
-    "Project & Provider Information",
-    "Client Details",
-    "Property Details",
-    "Property Location Details",
-    "Timeline & Schedule",
-    "Financial Details",
+    'Project & Provider Information',
+    'Client Details',
+    'Property Details',
+    'Property Location Details',
+    'Timeline & Schedule',
+    'Financial Details',
   ] as const,
 };
 
 const createProjectSlice = createSlice({
-  name: "createProject",
+  name: 'createProject',
   initialState,
   reducers: {
     nextPage(state) {

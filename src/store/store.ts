@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import signUpReducer from "./reducers/signUpSlice";
-import logInReducer from "./reducers/loginSlice";
-import updateProfileReducer from "./reducers/updateProfileSlice";
-import createProjectReducer from "./reducers/createProjectSlice.ts";
+import { configureStore } from '@reduxjs/toolkit';
+import signUpReducer from './reducers/signUpSlice';
+import logInReducer from './reducers/loginSlice';
+import updateProfileReducer from './reducers/updateProfileSlice';
+import createProjectReducer from './reducers/createProjectSlice.ts';
 
 export const store = configureStore({
   reducer: {

@@ -1,10 +1,10 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { updateFormData } from "./createProjectSlice";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { updateFormData } from './createProjectSlice';
 
 export const updateFormDataAsync = createAsyncThunk(
-  "createProject/updateFormDataAsync",
+  'createProject/updateFormDataAsync',
   async (
-    payload: { page: string; data: any },
+    payload: { page: string; data: string },
     { dispatch, rejectWithValue }
   ) => {
     try {
@@ -12,8 +12,8 @@ export const updateFormDataAsync = createAsyncThunk(
       const validatedData = payload.data; // Replace with actual API logic if required
       dispatch(updateFormData({ page: payload.page, data: validatedData }));
     } catch (error) {
-      console.error("Error updating form data:", error);
-      return rejectWithValue("Failed to update form data");
+      console.error('Error updating form data:', error);
+      return rejectWithValue('Failed to update form data');
     }
   }
 );

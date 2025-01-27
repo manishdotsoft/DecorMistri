@@ -1,6 +1,6 @@
-import React from "react";
-import { Typography, Box } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import React from 'react';
+import { Typography, Box } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   StyledContainer,
   StyledForm,
@@ -23,17 +23,17 @@ import {
   StrengthText,
   HaveAccount1,
   HaveAccount2,
-} from "./SignUp.style";
+} from './SignUp.style';
 
-import TextInput from "../../atoms/TextInput/TextInput";
+import TextInput from '../../atoms/TextInput/TextInput';
 
-import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
-import Button from "../../atoms/Button/Button";
-import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
-import { useSignUp } from "./SignUp.hook";
-import googleLogo from "../../assets/images/logo/google.svg";
-import { theme } from "../../thems/primitives/theme";
-import { DECOR_LOGO_COLOR } from "../../thems/primitives/colors";
+import SignUpImage from '../../assets/images/signUpLogImage/SignUpLog.png';
+import Button from '../../atoms/Button/Button';
+import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
+import { useSignUp } from './SignUp.hook';
+import googleLogo from '../../assets/images/logo/google.svg';
+import { theme } from '../../thems/primitives/theme';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 
 const SignUpForm: React.FC = () => {
   const {
@@ -90,15 +90,15 @@ const SignUpForm: React.FC = () => {
               variant="contained"
               logo={googleLogo}
               style={{
-                borderRadius: "5px",
+                borderRadius: '5px',
                 background:
                   theme.palette.background.paper ||
                   theme.palette.background.default,
                 color: theme.palette.text.primary,
 
                 border: `1px solid ${theme.palette.grey[300]}`,
-                width: "100%",
-                height: "50px",
+                width: '100%',
+                height: '50px',
               }}
               onClick={() => {}}
             />
@@ -115,11 +115,11 @@ const SignUpForm: React.FC = () => {
                 onBlur={formik.handleBlur}
                 error={formik.touched.name && Boolean(formik.errors.name)}
                 style={{
-                  width: "100%",
-                  borderRadius: "8px",
+                  width: '100%',
+                  borderRadius: '8px',
 
-                  marginTop: "10px",
-                  marginBottom: "6px",
+                  marginTop: '10px',
+                  marginBottom: '6px',
                 }}
                 placeholder="Enter your name"
               />
@@ -141,11 +141,11 @@ const SignUpForm: React.FC = () => {
                 onBlur={formik.handleBlur}
                 error={formik.touched.phone && Boolean(formik.errors.phone)}
                 style={{
-                  width: "100%",
-                  borderRadius: "8px",
+                  width: '100%',
+                  borderRadius: '8px',
 
-                  marginTop: "10px",
-                  marginBottom: "6px",
+                  marginTop: '10px',
+                  marginBottom: '6px',
                 }}
                 inputProps={{
                   maxLength: 10,
@@ -166,11 +166,11 @@ const SignUpForm: React.FC = () => {
                 onBlur={formik.handleBlur}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 style={{
-                  width: "100%",
-                  borderRadius: "8px",
+                  width: '100%',
+                  borderRadius: '8px',
 
-                  marginTop: "10px",
-                  marginBottom: "6px",
+                  marginTop: '10px',
+                  marginBottom: '6px',
                 }}
                 placeholder="Enter your email address"
               />
@@ -180,7 +180,7 @@ const SignUpForm: React.FC = () => {
 
               {/* Password Field */}
               <TextArea>
-                <Typography sx={{ marginBottom: "7px" }}>Password</Typography>
+                <Typography sx={{ marginBottom: '7px' }}>Password</Typography>
                 <PasswordError>
                   <TextInput
                     name="password"
@@ -194,11 +194,11 @@ const SignUpForm: React.FC = () => {
                       formik.touched.password && Boolean(formik.errors.password)
                     }
                     style={{
-                      width: "100%",
-                      borderRadius: "8px",
+                      width: '100%',
+                      borderRadius: '8px',
 
-                      marginTop: "10px",
-                      marginBottom: "6px",
+                      marginTop: '10px',
+                      marginBottom: '6px',
                     }}
                   />
                   {formik.errors.password && formik.touched.password && (
@@ -229,12 +229,12 @@ const SignUpForm: React.FC = () => {
                   : DECOR_LOGO_COLOR,
                 cursor:
                   isAnyFieldEmpty || formik.isSubmitting
-                    ? "not-allowed"
-                    : "pointer",
+                    ? 'not-allowed'
+                    : 'pointer',
 
-                width: "100%",
-                borderRadius: "5px",
-                padding: "25px",
+                width: '100%',
+                borderRadius: '5px',
+                padding: '25px',
               }}
               onClick={() => {}}
             />

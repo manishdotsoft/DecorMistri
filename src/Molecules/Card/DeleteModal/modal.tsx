@@ -1,8 +1,12 @@
 import React from 'react';
 import { IconButton, Modal } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { ModalBox, ModalTitle, ModalButtons } from './Modal.styles';
-import palette from '../../thems/primitives/palette';
+import {
+  ModalBox,
+  ModalTitle,
+  ModalButtons,
+} from '../../../atoms/Modal/Modal.styles';
+import palette from '../../../thems/primitives/palette';
 
 interface ButtonConfig {
   label: string;

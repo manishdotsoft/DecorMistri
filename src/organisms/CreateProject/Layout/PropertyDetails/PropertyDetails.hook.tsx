@@ -1,6 +1,6 @@
-import { useFormik } from "formik";
-import { useState } from "react";
-import { propertyDetailsSchema } from "../../Schema";
+import { useFormik } from 'formik';
+import { useState } from 'react';
+import { propertyDetailsSchema } from '../../Schema';
 
 interface PropertyDetailsFormProps {
   data: {
@@ -31,11 +31,11 @@ const usePropertyDetailsForm = ({
 
   const formik = useFormik({
     initialValues: {
-      size: data.size || "",
-      phases: data.phases || "",
+      size: data.size || '',
+      phases: data.phases || '',
       file: data.file || null,
-      comments: data.comments || "",
-      designType: data.designType || "",
+      comments: data.comments || '',
+      designType: data.designType || '',
       subcategories: data.subcategories || [],
     },
     validationSchema: propertyDetailsSchema,
@@ -56,10 +56,10 @@ const usePropertyDetailsForm = ({
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      formik.setFieldValue("file", file);
+      formik.setFieldValue('file', file);
       setFileError(null); // Clear error if a file is selected
     } else {
-      setFileError("Please select a file.");
+      setFileError('Please select a file.');
     }
   };
 

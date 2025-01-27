@@ -18,6 +18,8 @@ import {
   TitleOne,
   TitleTwo,
 } from '../../Login/LoginPage.style';
+import { DECOR_LOGO_COLOR } from '../../../thems/primitives/colors';
+import { theme } from '../../../thems/primitives/theme';
 
 const ResetPassword = () => {
   return (
@@ -42,16 +44,15 @@ const ResetPassword = () => {
                 title="Start your Journey with us"
                 type="submit"
                 color="primary"
-                backgroundColor={'#C7148A'}
                 variant="contained"
                 onClick={() => {}}
                 style={{
-                  marginTop: '20px',
-                  backgroundColor: '#C7148A',
-                  color: '#ffffff',
+                  marginTop: '10px',
+                  backgroundColor: DECOR_LOGO_COLOR,
+                  color: theme.palette.background.paper,
                   width: '100%',
                   height: '50px',
-                  borderRadius: '5px',
+                  borderRadius: '6px',
                 }}
               />
             </LoginLink>

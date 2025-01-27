@@ -1,9 +1,11 @@
-import { Link, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { LoginSchema } from './LoginSchema';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Button from '../../atoms/Button/Button';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+
 import {
   StyledContainer,
   StyledHeader,
@@ -22,6 +24,7 @@ import {
   LogoImage,
   Collaboration,
   ParentInputBox,
+  LinkSignup,
 } from './LoginPage.style';
 import Toaster from '../../atoms/Toaster/Toaster';
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
@@ -29,6 +32,7 @@ import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 import googleLogo from '../../assets/images/logo/google.svg';
 import { useLoginLogic } from './Login.hook';
 import ReusableModal from '../../atoms/Modal/Modal';
+import { theme } from '../../thems/primitives/theme';
 
 const LoginPage = () => {
   const {
@@ -91,8 +95,7 @@ const LoginPage = () => {
                     onChange={handleChange}
                     style={{
                       width: '100%',
-                      borderRadius: '8px',
-                      marginBottom: '6px',
+                      borderRadius: '6px',
                     }}
                     onBlur={handleBlur}
                     error={Boolean(touched.email && errors.email)}
@@ -109,9 +112,9 @@ const LoginPage = () => {
                     onChange={handleChange}
                     style={{
                       width: '100%',
-                      borderRadius: '8px',
-                      marginTop: '15px',
-                      marginBottom: '6px',
+                      borderRadius: '6px',
+                      marginTop: '20px',
+                      marginBottom: '10px',
                     }}
                     onBlur={handleBlur}
                     error={Boolean(touched.password && errors.password)}
@@ -142,12 +145,11 @@ const LoginPage = () => {
                     marginTop: '20px',
                     backgroundColor:
                       !values.email || !values.password || !isValid
-                        ? '#565155'
-                        : '#C7148A',
-                    color: '#ffffff',
+                        ? theme.palette.grey[500]
+                        : DECOR_LOGO_COLOR,
                     width: '100%',
                     height: '50px',
-                    borderRadius: '5px',
+                    borderRadius: '6px',
                     cursor:
                       !values.email || !values.password || !isValid
                         ? 'not-allowed'
@@ -163,13 +165,13 @@ const LoginPage = () => {
             logo={googleLogo}
             variant="contained"
             style={{
-              borderRadius: '5px',
-              background: 'white',
-              color: 'black',
-              border: '1px solid #cccccc',
+              borderRadius: '10px',
+              backgroundColor: theme.palette.background.paper,
+              color: theme.palette.text.primary,
+              border: `1px solid ${theme.palette.grey[500]}`,
               width: '100%',
               height: '50px',
-              marginTop: '15px',
+              marginTop: '20px',
             }}
             onClick={() => console.log('Google Sign-In Clicked')}
           />
@@ -177,17 +179,10 @@ const LoginPage = () => {
             <Typography component="span">
               New to <HeadlineSpan> Decormistri?</HeadlineSpan>
             </Typography>
-            <Link
-              sx={{
-                fontSize: '16px',
-                color: '#c7148a',
-                textDecoration: 'none',
-              }}
-              component={RouterLink}
-              to="/signup"
-            >
+
+            <LinkSignup component={RouterLink} to="/signup">
               Create an account
-            </Link>
+            </LinkSignup>
           </SignupContainer>
           <ReusableModal
             open={openModal}
@@ -198,26 +193,25 @@ const LoginPage = () => {
                 label: 'Skip',
                 onClick: handleModalClose,
                 style: {
-                  backgroundColor: '#ccc9c9',
-                  color: '#020000',
+                  backgroundColor: theme.palette.grey[300],
+                  color: theme.palette.text.primary,
+                  borderRadius: '5px',
                   width: '160px',
-                  borderRadius: '6px',
                 },
               },
               {
                 label: 'Update Now',
                 onClick: handleUpdateprofile,
                 style: {
-                  backgroundColor: '#C7148A',
-                  color: '#fff',
+                  backgroundColor: DECOR_LOGO_COLOR,
+                  color: theme.palette.common.white,
+                  borderRadius: '5px',
                   width: '160px',
-                  borderRadius: '6px',
                 },
               },
             ]}
             showCloseIcon={true}
           />
-          ;
         </ChildFlex>
         <ImageBox>
           <AllImg src={loginImage} alt="Login illustration" />
