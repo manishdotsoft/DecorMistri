@@ -28,6 +28,7 @@ const menuItems = [
   'Add Phase',
   'Add Task',
   'Delete Project',
+  'delete',
 ];
 
 const UpcomingProjectCard: React.FC = () => {
