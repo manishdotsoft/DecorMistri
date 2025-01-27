@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import palette from "../../thems/primitives/palette";
 import fonts from "../../thems/primitives/fonts";
 import typeset from "../../thems/primitives/typeset";
+import { BOX_SHADOW, BOX_SHADOW2 } from "../../thems/primitives/colors";
 
 export const StyledContainer = styled("div")(() => ({
   display: "flex",
@@ -10,7 +11,8 @@ export const StyledContainer = styled("div")(() => ({
   fontFamily: fonts.primary,
   alignItems: "center",
   minHeight: "92vh",
-  backgroundColor: palette.background.default,
+  backgroundColor: palette.white.main,
+
   padding: "16px",
   "@media(max-width: 468px)": {
     padding: "0px",
@@ -24,7 +26,7 @@ export const MainFlex = styled("div")(() => ({
   fontFamily: fonts.primary,
   backgroundColor: palette.white.main,
   borderRadius: "25px",
-  boxShadow: "0px 0px 100px 10px rgba(0, 0, 0, 0.3)",
+  boxShadow: `0px 0px 100px 10px ${BOX_SHADOW}`,
   overflow: "hidden",
   width: "80%",
   "@media(max-width: 1310px)": {
@@ -104,25 +106,24 @@ export const StyledHeader = styled("div")(() => ({
   fontFamily: fonts.primary,
 }));
 
-export const Title = styled(Typography)(({ theme }) => ({
+export const Title = styled(Typography)(() => ({
   fontSize: typeset.h4.fontSize,
-  fontWeight: 300,
+  fontWeight: "300",
   fontFamily: fonts.primary,
-  color: palette.text.primary,
   margin: "0",
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "32px",
+  "@media(max-width: 1068px)": {
+    fontSize: typeset.h5.fontSize,
   },
 }));
 
 export const Title2 = styled(Typography)(({ theme }) => ({
-  fontSize: typeset.subtitle2.fontSize,
-  fontWeight: 300,
+  fontSize: typeset.button.fontSize,
+  fontWeight: "300",
+  color: palette.rateSheduleColors.colorB,
   fontFamily: fonts.primary,
-  color: palette.text.secondary,
   margin: "0",
   [theme.breakpoints.down("sm")]: {
-    fontSize: "12px",
+    fontSize: typeset.caption.fontSize,
   },
 }));
 
@@ -142,7 +143,7 @@ export const LabelProfile = styled("label")(() => ({
   borderRadius: "50%",
   padding: "4px",
   cursor: "pointer",
-  boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
+  boxShadow: `0 2px 5px ${BOX_SHADOW2}`,
 }));
 
 export const MainUploadImage = styled(Box)(({ theme }) => ({

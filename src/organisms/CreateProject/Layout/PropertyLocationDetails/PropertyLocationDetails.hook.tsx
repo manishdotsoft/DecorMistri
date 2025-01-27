@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useCallback } from "react";
 import { useFormik } from "formik";
 import { propertyLocationSchema } from "../../Schema";
 
@@ -50,9 +50,9 @@ const usePropertyLocationDetails = ({
     );
   }, [formik.values]);
 
-  useEffect(() => {
-    updateData(formik.values);
-  }, [formik.values, updateData]);
+  // useEffect(() => {
+  //   updateData(formik.values);
+  // }, [formik.values, updateData]);
 
   return {
     formik,

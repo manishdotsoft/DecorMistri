@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   StyledContainer,
@@ -9,14 +9,15 @@ import {
   Title,
   Title2,
   Logo,
-} from './SuccessfullyPage.style';
+  ImageFlex,
+} from "./SuccessfullyPage.style";
 
-import SignUpImage from '../../assets/images/signUpLogImage/SignUpLog.png';
-import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
-import Button from '../../atoms/Button/Button';
-import { Link } from 'react-router-dom';
-import { useSuccessfullyPageLogic } from './SuccessfullyPage.hook';
-import { ImageFlex } from '../SignUp/SignUp.style';
+import SignUpImage from "../../assets/images/signUpLogImage/SignUpLog.png";
+import LogoDecor from "../../assets/images/logo/Layer_x0020_1.svg";
+import Button from "../../atoms/Button/Button";
+import { Link } from "react-router-dom";
+import { useSuccessfullyPageLogic } from "./SuccessfullyPage.hook";
+import { DECOR_LOGO_COLOR } from "../../thems/primitives/colors";
 
 const SuccessfullyPage: React.FC = () => {
   const { handleClick } = useSuccessfullyPageLogic();
@@ -28,7 +29,7 @@ const SuccessfullyPage: React.FC = () => {
             <Logo
               src={LogoDecor}
               alt="Decord-mistri Logo"
-              style={{ height: '40px' }}
+              style={{ height: "40px" }}
             />
             <Title>Successfully Create your account</Title>
             <Title2 color="textSecondary">
@@ -36,16 +37,16 @@ const SuccessfullyPage: React.FC = () => {
               print, and publishing industries
             </Title2>
           </StyledHeader>
-          <Link to="/" style={{ textDecoration: 'none' }}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             <Button
               title="Login now"
               type="button"
               variant="contained"
               style={{
-                backgroundColor: '#C7148A',
-                width: '50%',
-                borderRadius: '5px',
-                padding: '25px',
+                backgroundColor: `${DECOR_LOGO_COLOR}`,
+                width: "50%",
+                borderRadius: "5px",
+                padding: "25px",
               }}
               onClick={handleClick}
             />

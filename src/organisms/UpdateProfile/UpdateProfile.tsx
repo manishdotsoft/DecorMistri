@@ -366,7 +366,9 @@ const UpdateProfile: React.FC = () => {
                     variant="contained"
                     disabled={isAnyFieldEmpty || formik.isSubmitting}
                     style={{
-                      backgroundColor: isAnyFieldEmpty ? "#5c5c5c" : "#C7148A",
+                      backgroundColor: isAnyFieldEmpty
+                        ? theme.palette.grey[500]
+                        : DECOR_LOGO_COLOR,
                       cursor:
                         isAnyFieldEmpty || formik.isSubmitting
                           ? "not-allowed"
