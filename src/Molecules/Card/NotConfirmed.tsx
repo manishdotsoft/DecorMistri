@@ -1,23 +1,16 @@
-import { CardContent, Typography, IconButton } from '@mui/material';
-import Button from '../../atoms/Button/Button';
-import {
-  CardContainer,
-  HeadingTitle,
-  ButtonBox,
-  TiteleStatus,
-} from './Card.styel';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import React, { useState } from 'react';
 import { useProjectMenu } from './card.hook';
+import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
 
-const projectData = [
+const initialProjectData = [
   {
     value: 'Not Confirmed',
     designType: 'Mixed-Use',
     location: 'India',
     startDate: 'TBD',
     endDate: 'TBD',
-    completionPercentage: 100,
+    completionPercentage: 0,
   },
   {
     value: 'Not Confirmed',
@@ -25,88 +18,59 @@ const projectData = [
     location: 'India',
     startDate: 'TBD',
     endDate: 'TBD',
-    completionPercentage: 100,
-  },
-  {
-    value: 'Not Confirmed',
-    designType: 'Mixed-Use',
-    location: 'India',
-    startDate: 'TBD',
-    endDate: 'TBD',
-    completionPercentage: 100,
-  },
-  {
-    value: 'Not Confirmed',
-    designType: 'Mixed-Use',
-    location: 'India',
-    startDate: 'TBD',
-    endDate: 'TBD',
-    completionPercentage: 100,
+    completionPercentage: 0,
   },
 ];
+const menuItems = [
+  'Edit',
+  'Change Status',
+  'Add Phase',
+  'Add Task',
+  'Delete Project',
+];
+const NotConfirmedCard: React.FC = () => {
+  const [projectData, setProjectData] = useState(initialProjectData);
+  const {
+    anchorEl,
+    currentProject,
+    showDropdown,
+    handleMenuOpen,
+    handleMenuClose,
+    handleOptionClick,
+  } = useProjectMenu();
 
-const NotConfirmedCard = () => {
-  const { anchorEl, handleMenuOpen, handleMenuClose, handleOptionClick } =
-    useProjectMenu();
-
-  const menuItems = [
-    'Edit',
-    'Change Status',
-    'Add Phase',
-    'Add Task',
-    'Delete Project',
-  ];
+  const handleDeleteProject = (projectValue: string) => {
+    setProjectData((prevData) =>
+      prevData.filter((project) => project.value !== projectValue)
+    );
+  };
 
   return (
     <>
       {projectData.map((project, index) => (
-        <CardContainer key={index}>
-          <CardContent>
-            <HeadingTitle variant="h6">
-              {project.value}
-              <IconButton
-                sx={{ cursor: 'pointer' }}
-                onClick={(e) => handleMenuOpen(e, project.value)}
-              >
-                <MoreHorizIcon />
-              </IconButton>
-            </HeadingTitle>
-            <Typography variant="body2" color="text.secondary">
-              Design Type: {project.designType}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Location: {project.location}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Start Date: {project.startDate}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              End Date: {project.endDate}
-            </Typography>
-            <TiteleStatus>Status: Not Confirmed</TiteleStatus>
-          </CardContent>
-          <ButtonBox>
-            <Button
-              title="Update Status"
-              color="secondary"
-              variant="contained"
-              style={{
-                width: '180px',
-                borderRadius: '4px',
-              }}
-              onClick={() => console.log('Update Status button clicked')}
-            />
-          </ButtonBox>
-        </CardContainer>
+        <ProjectCard
+          key={index}
+          project={project}
+          menuItems={menuItems}
+          onMenuOpen={handleMenuOpen}
+          onMenuClose={handleMenuClose}
+          onMenuOptionClick={handleOptionClick}
+          menuAnchorEl={anchorEl}
+          buttonTitle="Move to Live"
+          buttonColor="secondary"
+          buttonAction={() => console.log(`Moving ${project.value} to Live`)}
+        />
       ))}
 
-      {/* Use the reusable ProjectMenu component */}
       <ProjectMenu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
         onOptionClick={handleOptionClick}
         menuItems={menuItems}
+        showDropdown={showDropdown}
+        onDeleteProject={handleDeleteProject}
+        currentProject={currentProject}
       />
     </>
   );

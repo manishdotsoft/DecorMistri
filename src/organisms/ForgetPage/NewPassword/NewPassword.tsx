@@ -3,12 +3,10 @@ import TextInput from '../../../atoms/TextInput/TextInput';
 import Button from '../../../atoms/Button/Button';
 import {
   StyledContainer,
-  // StyledForm,
   StyledHeader,
   MainFlex,
   ChildFlex,
   AllImg,
-  // LoginLink,
   Title,
   StyledTypography,
   LoginLink,
@@ -25,6 +23,8 @@ import {
 } from '../../Login/LoginPage.style';
 import { useNewPasswordLogic } from './NewPassword.hook';
 import Toaster from '../../../atoms/Toaster/Toaster';
+import { theme } from '../../../thems/primitives/theme';
+import { DECOR_LOGO_COLOR } from '../../../thems/primitives/colors';
 
 const NewPassword = () => {
   const {
@@ -129,14 +129,17 @@ const NewPassword = () => {
                     <Button
                       title="Reset Password"
                       type="submit"
-                      color="#e432a9"
                       onClick={() => {}}
-                      backgroundColor={isButtonDisabled ? '#e432a9' : '#C7148A'}
+                      backgroundColor={
+                        isButtonDisabled
+                          ? theme.palette.grey[300]
+                          : DECOR_LOGO_COLOR
+                      }
                       variant="contained"
                       disabled={isButtonDisabled}
                       style={{
                         marginTop: '20px',
-                        color: '#ffffff',
+                        color: theme.palette.grey[50],
                         width: '100%',
                         height: '50px',
                         borderRadius: '5px',

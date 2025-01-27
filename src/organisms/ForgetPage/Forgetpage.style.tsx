@@ -1,176 +1,105 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { theme } from './../../thems/primitives/theme';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+import palette from '../../thems/primitives/palette';
+import typeset from '../../thems/primitives/typeset';
+import fonts from '../../thems/primitives/fonts';
 
-export const HeadlineSpan = styled('span')`
-  font-weight: 600;
-  color: black;
-`;
+export const SignupContainer = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'row',
+  gap: '10px',
+  marginTop: '20px',
+  fontSize: typeset.body1.fontSize,
+  color: theme.palette.text.secondary,
+  width: '100%',
+  '.signup-link': {
+    marginLeft: '5px',
+    fontSize: typeset.body1.fontSize,
+    color: theme.palette.primary.main,
+    textDecoration: 'none',
+  },
+}));
 
-export const Highlight = styled('span')`
-  color: #c7148a;
-  font-weight: 600;
-  font-size: 28px;
-`;
-
-export const ForgotPasswordLink = styled(RouterLink)`
-  display: block;
-  margin-top: 10px;
-  text-align: right;
-  color: #c7148a;
-  text-decoration: none;
-  font-size: 15px;
-`;
-
-export const ForgetPaswordContainer = styled('div')`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  label {
-    font-size: 18px;
-    color: #000000;
-    font-weight: 400;
-  }
-
-  input[type='checkbox'] {
-    display: none;
-  }
-
-  input[type='checkbox'] + label {
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  input[type='checkbox'] + label::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 15px;
-    height: 15px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-  }
-
-  input[type='checkbox']:checked + label::before {
-    background-color: pink;
-    border-color: pink;
-  }
-
-  input[type='checkbox']:checked + label::after {
-    content: '✔';
-    position: absolute;
-    left: 4px;
-    top: 0;
-    font-size: 14px;
-    color: #000000;
-  }
-`;
-
-export const SignupContainer = styled('div')`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 10px;
-  margin-top: 15px;
-  font-size: 6px;
-  color: #666;
-  width: 100%;
-  .signup-link {
-    margin-left: 5px;
-    font-size: 20px;
-    color: #c7148a;
-    text-decoration: none;
-  }
-`;
-
-export const LoginLink = styled(RouterLink)`
-  text-decoration: none;
-`;
+export const LoginLink = styled(RouterLink)(() => ({
+  textDecoration: 'none',
+  color: theme.palette.primary.main,
+  fontSize: theme.typography.body1.fontSize,
+  '&:hover': {
+    color: theme.palette.primary.dark,
+  },
+}));
 
 export const StyledContainer = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
-  fontFamily: 'sans-serif',
   alignItems: 'center',
-  minHeight: '92vh',
-  backgroundColor: '#ffffff',
-  padding: '16px',
 
-  // flexDirection: "column",
-  '@media(max-width: 468px)': {
-    padding: '0px',
-    marginTop: '35px',
+  minHeight: '92vh',
+  fontFamily: theme.typography.fontFamily,
+  backgroundColor: palette.white.main,
+  padding: '20px',
+  color: theme.palette.text.primary,
+
+  '@media (max-width: 468px)': {
+    padding: '0',
+    marginTop: '40px',
   },
 }));
 
 export const MainFlex = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
-  fontFamily: 'sans-serif',
-  // maxWidth: "1400px",
-  backgroundColor: '#ffffff',
-  borderRadius: '25px',
-  boxShadow: '0px 0px 100px 10px rgba(0, 0, 0, 0.3)',
-
+  fontFamily: theme.typography.fontFamily,
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: '20px',
+  boxShadow: `0px 0px 100px 10px ${theme.palette.grey[300]}`,
   overflow: 'hidden',
-  // [theme.breakpoints.down("lg")]: {
-  //   flexDirection: "column",
-  //   maxWidth: "1200px",
-  // },
-  // [theme.breakpoints.down("md")]: {
-  //   maxWidth: "700px",
-  // },
   width: '80%',
-  '@media(max-width: 1310px)': {
-    flexDirection: 'column',
 
+  '@media (max-width: 1310px)': {
+    flexDirection: 'column',
     width: '90%',
   },
-  '@media(max-width: 1047px)': {
+  '@media (max-width: 1047px)': {
     flexDirection: 'column',
-    padding: '16px',
+    padding: '20px',
     width: '97%',
   },
-
-  '@media(max-width: 468px)': {
+  '@media (max-width: 468px)': {
     width: '100%',
     boxShadow: 'none',
-    padding: '0',
   },
 }));
 
 export const StyledForm = styled('form')(() => ({
-  fontFamily: 'sans-serif',
+  fontFamily: fonts.primary,
 }));
 
 export const TextArea = styled('div')(() => ({
   display: 'flex',
   alignItems: 'center',
-  fontFamily: 'sans-serif',
-
-  gap: '10px',
+  fontFamily: fonts.primary,
+  gap: '8px',
 }));
 
 export const TextArea2 = styled('div')(() => ({
-  fontFamily: 'sans-serif',
+  fontFamily: fonts.primary,
 }));
 
-export const ChildFlex = styled('div')(({ theme }) => ({
+export const ChildFlex = styled('div')(() => ({
   flex: 1,
   padding: '35px 100px',
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden',
-  fontFamily: 'sans-serif',
   marginTop: 'auto',
   marginBottom: 'auto',
+  fontFamily: fonts.primary,
 
   height: '100%',
   [theme.breakpoints.down('md')]: {
@@ -178,32 +107,67 @@ export const ChildFlex = styled('div')(({ theme }) => ({
   },
 }));
 
+export const HeadlineSpan = styled('span')(() => ({
+  fontWeight: 600,
+  color: theme.palette.text.primary,
+  fontFamily: fonts.primary,
+}));
+
+export const Highlight = styled('span')(() => ({
+  fontWeight: 600,
+  color: DECOR_LOGO_COLOR,
+
+  fontSize: typeset.A4.fontSize,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: typeset.h5.fontSize,
+  },
+}));
+
+export const ForgotPasswordLink = styled(RouterLink)(() => ({
+  display: 'block',
+  marginTop: '10px',
+  textAlign: 'right',
+  color: DECOR_LOGO_COLOR,
+  textDecoration: 'none',
+  fontSize: typeset.body2.fontSize,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: typeset.subtitle2.fontSize,
+  },
+}));
+
+export const ForgetPaswordContainer = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginTop: '10px',
+  marginBottom: '10px',
+}));
+
 export const ImageFlex = styled('div')(() => ({
   flex: 1,
-  backgroundColor: '#f7f7f7',
+  backgroundColor: theme.palette.background.default,
   width: '100%',
   height: '100%',
-  fontFamily: 'sans-serif',
-
-  borderRadius: '25px',
+  borderRadius: '6px',
 }));
 
 export const AllImg = styled('img')(() => ({
   width: '100%',
   height: '100%',
 
-  '@media (max-width: 768px)': {
-    borderTopLeftRadius: '20px',
-    borderBottomLeftRadius: '20px',
+  [theme.breakpoints.down('md')]: {
+    borderTopLeftRadius: '6px',
+    borderBottomLeftRadius: '6px',
   },
-  '@media (max-width: 480px)': {
+
+  [theme.breakpoints.down('sm')]: {
     display: 'none',
   },
 }));
 
 export const StyledHeader = styled('div')(() => ({
-  marginBottom: '20px',
-  fontFamily: 'sans-serif',
+  marginBottom: '10px',
+  color: theme.palette.text.primary,
 }));
 
 export const Logo = styled('div')(() => ({
@@ -212,55 +176,140 @@ export const Logo = styled('div')(() => ({
   justifyContent: 'center',
   gap: '10px',
   marginBottom: '10px',
-  fontFamily: 'sans-serif',
 }));
 
-export const Title = styled(Typography)(({ theme }) => ({
-  fontSize: '44px',
-  fontWeight: '300',
-  fontFamily: 'sans-serif',
+export const Title = styled(Typography)(() => ({
+  fontSize: typeset.h3.fontSize,
+  fontWeight: 'bold',
+  fontFamily: fonts.primary,
 
-  color: '#000000',
-  margin: '0',
+  color: theme.palette.text.primary,
+  margin: 0,
   [theme.breakpoints.down('sm')]: {
-    fontSize: '32px',
+    fontSize: typeset.h4.fontSize,
   },
 }));
 
-export const Title2 = styled(Typography)(({ theme }) => ({
-  fontSize: '14px',
-  fontWeight: '300',
-  fontFamily: 'sans-serif',
+export const Title2 = styled(Typography)(() => ({
+  fontSize: typeset.body2.fontSize,
+  fontWeight: 'bold',
+  fontFamily: fonts.primary,
 
-  color: '#363636',
-  margin: '0',
+  color: theme.palette.text.secondary,
+  margin: 0,
   [theme.breakpoints.down('sm')]: {
-    fontSize: '12px',
+    fontSize: theme.typography.body1.fontSize,
   },
 }));
 
 export const StyledTypography = styled('p')(() => ({
-  fontSize: '12px',
-  color: '#d32f2f',
-  fontFamily: 'sans-serif',
-
-  marginTop: '5px',
+  fontSize: typeset.body2.fontSize,
+  color: theme.palette.error.main,
+  fontFamily: fonts.primary,
+  marginTop: '10px',
 }));
 
 export const StyledBoxCenter = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontFamily: 'sans-serif',
-  gap: '10px',
-  marginTop: '20px',
+  gap: '8px',
+  marginTop: '10px',
 }));
 
 export const StyledLink = styled('span')(() => ({
-  color: '#7d22c3',
+  color: theme.palette.primary.main,
   fontWeight: 'bold',
   cursor: 'pointer',
-  fontFamily: 'sans-serif',
+  fontFamily: fonts.primary,
 
+  textDecoration: 'none',
+}));
+
+export const ImageBox = styled('div')(() => ({
+  width: '50%',
+  height: 'auto',
+
+  [theme.breakpoints.down('lg')]: {
+    width: '100%',
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '95%',
+    padding: '20px',
+    height: 'auto',
+    borderTopLeftRadius: '10px',
+    borderBottomLeftRadius: '10px',
+  },
+}));
+
+export const TitleOne = styled(Typography)(() => ({
+  fontSize: typeset.A4.fontSize,
+  fontWeight: 300,
+
+  [theme.breakpoints.down('sm')]: {
+    fontSize: typeset.h5.fontSize,
+  },
+}));
+
+export const TitleTwo = styled(Typography)(() => ({
+  fontSize: typeset.body1.fontSize,
+
+  [theme.breakpoints.down('sm')]: {
+    fontSize: typeset.body2.fontSize,
+  },
+}));
+
+export const LogoImage = styled('img')(() => ({
+  height: '40px',
+}));
+
+export const Collaboration = styled(Typography)(() => ({
+  fontSize: typeset.A4.fontSize,
+  fontWeight: 300,
+
+  [theme.breakpoints.down('sm')]: {
+    fontSize: typeset.h5.fontSize,
+  },
+}));
+
+export const ParentInputBox = styled('div')(() => ({
+  marginRight: '49px',
+
+  [theme.breakpoints.down('sm')]: {
+    marginRight: '20px',
+  },
+}));
+
+export const ModalBox = styled(Box)(() => ({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '80%',
+  maxWidth: '400px',
+  backgroundColor: theme.palette.background.paper,
+
+  borderRadius: '8px',
+  padding: '20px',
+  textAlign: 'center',
+}));
+
+export const ModalTitle = styled(Box)(() => ({
+  color: theme.palette.text.primary,
+  fontWeight: 700,
+  fontSize: typeset.h6.fontSize,
+  marginBottom: '20px',
+}));
+
+export const ModalButtons = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '20px',
+  marginTop: '20px',
+}));
+
+export const LinkSignup = styled(Typography)(() => ({
+  color: DECOR_LOGO_COLOR,
+  fontSize: typeset.body1.fontSize,
   textDecoration: 'none',
 }));

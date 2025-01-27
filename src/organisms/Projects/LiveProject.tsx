@@ -1,11 +1,15 @@
 import { Box } from '@mui/material';
-
+import LiveProject from '../../Molecules/Card/LiveProjectCard';
 const LiveProjects = () => {
   return (
-    <Box m="20px">
-      <Box height="75vh">
-        <h1>liveProjects</h1>
-      </Box>
+    <Box
+      sx={{
+        display: 'flex',
+        gap: '20px',
+        flexWrap: 'wrap',
+      }}
+    >
+      <LiveProject />
     </Box>
   );
 };
