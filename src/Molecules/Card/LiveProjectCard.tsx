@@ -1,124 +1,67 @@
-import {
-  CardContent,
-  Typography,
-  LinearProgress,
-  IconButton,
-} from '@mui/material';
-import Button from '../../atoms/Button/Button';
-import {
-  ButtonBox,
-  CardContainer,
-  HeadingTitle,
-  SuccessStatus,
-} from './Card.styel';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import React, { useState } from 'react';
 import { useProjectMenu } from './card.hook';
+import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
 
-interface Project {
-  value: string;
-  designType: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  completionPercentage: number;
-}
-
-const projectData: Project[] = [
+const initialProjectData = [
   {
     value: 'Live Project 1',
     designType: 'Residential',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
-    completionPercentage: 25,
+    completionPercentage: 75,
   },
   {
     value: 'Live Project 2',
     designType: 'Commercial',
     location: 'India',
-    startDate: '2025-02-01',
-    endDate: '2025-11-30',
-    completionPercentage: 50,
-  },
-  {
-    value: 'Live Project 3',
-    designType: 'Commercial',
-    location: 'India',
-    startDate: '2025-02-01',
-    endDate: '2025-11-30',
-    completionPercentage: 50,
-  },
-  {
-    value: 'Live Project 4',
-    designType: 'Commercial',
-    location: 'India',
-    startDate: '2025-02-01',
-    endDate: '2025-11-30',
-    completionPercentage: 50,
+    startDate: '2025-01-01',
+    endDate: '2025-12-31',
+    completionPercentage: 25,
   },
 ];
 
-const LiveProjectCard = () => {
-  const { anchorEl, handleMenuOpen, handleMenuClose, handleOptionClick } =
-    useProjectMenu();
+const menuItems = [
+  'Edit',
+  'Change Status',
+  'Add Phase',
+  'Add Task',
+  'Delete Project',
+];
 
-  const menuItems = [
-    'Edit',
-    'Change Status',
-    'Add Phase',
-    'Add Task',
-    'Delete Project',
-  ];
+const LiveProject: React.FC = () => {
+  const [projectData, setProjectData] = useState(initialProjectData);
+  const {
+    anchorEl,
+    currentProject,
+    showDropdown,
+    handleMenuOpen,
+    handleMenuClose,
+    handleOptionClick,
+  } = useProjectMenu();
+
+  const handleDeleteProject = (projectValue: string) => {
+    setProjectData((prevData) =>
+      prevData.filter((project) => project.value !== projectValue)
+    );
+  };
 
   return (
     <>
       {projectData.map((project, index) => (
-        <CardContainer key={index}>
-          <CardContent>
-            <HeadingTitle variant="h6">
-              {project.value}
-              <IconButton
-                sx={{ cursor: 'pointer' }}
-                onClick={(e) => handleMenuOpen(e, project.value)}
-              >
-                <MoreHorizIcon />
-              </IconButton>
-            </HeadingTitle>
-            <Typography variant="body2" color="text.secondary">
-              Design Type: {project.designType}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Location: {project.location}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Start Date: {project.startDate}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              End Date: {project.endDate}
-            </Typography>
-            <LinearProgress
-              variant="determinate"
-              value={project.completionPercentage}
-              sx={{ marginTop: 2 }}
-            />
-            <SuccessStatus>
-              {project.completionPercentage}% Completed
-            </SuccessStatus>
-          </CardContent>
-          <ButtonBox>
-            <Button
-              title="Open Project"
-              color="secondary"
-              style={{
-                width: '180px',
-                borderRadius: '4px',
-              }}
-              variant="contained"
-              onClick={() => console.log('Button clicked')}
-            />
-          </ButtonBox>
-        </CardContainer>
+        <ProjectCard
+          key={index}
+          project={project}
+          menuItems={menuItems}
+          onMenuOpen={handleMenuOpen}
+          onMenuClose={handleMenuClose}
+          onMenuOptionClick={handleOptionClick}
+          menuAnchorEl={anchorEl}
+          buttonTitle="Move to Live"
+          buttonColor="secondary"
+          buttonAction={() => console.log(`Moving ${project.value} to Live`)}
+        />
       ))}
 
       <ProjectMenu
@@ -127,9 +70,11 @@ const LiveProjectCard = () => {
         onClose={handleMenuClose}
         onOptionClick={handleOptionClick}
         menuItems={menuItems}
+        showDropdown={showDropdown}
+        onDeleteProject={handleDeleteProject}
+        currentProject={currentProject}
       />
     </>
   );
 };
-
-export default LiveProjectCard;
+export default LiveProject;

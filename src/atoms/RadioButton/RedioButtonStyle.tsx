@@ -1,20 +1,21 @@
 import { styled } from '@mui/material/styles';
 import { FormControl, FormLabel, RadioGroup } from '@mui/material';
-import { theme as customTheme } from '../../thems/primitives/theme';
+import fonts from '../../thems/primitives/fonts';
+import typeset from '../../thems/primitives/typeset';
 
-export const StyledFormControl = styled(FormControl)(({ theme }) => ({
-  marginBottom: customTheme.spacing(2),
+export const StyledFormControl = styled(FormControl)(() => ({
+  marginBottom: '20px',
 }));
 
-export const StyledFormLabel = styled(FormLabel)(({ theme }) => ({
-  fontSize: customTheme.typography.body1.fontSize,
-  fontWeight: customTheme.typography.fontWeightBold,
-  fontFamily: customTheme.typography.fontFamily,
-  marginBottom: customTheme.spacing(1),
+export const StyledFormLabel = styled(FormLabel)(() => ({
+  fontSize: typeset.body1.fontSize,
+  fontWeight: 'bold',
+  fontFamily: fonts.primary,
+  marginBottom: '10px',
 }));
 
-export const StyledRadioGroup = styled(RadioGroup)(({ theme }) => ({
+export const StyledRadioGroup = styled(RadioGroup)(() => ({
   display: 'flex',
   flexDirection: 'row',
-  gap: customTheme.spacing(1),
+  gap: '10px',
 }));

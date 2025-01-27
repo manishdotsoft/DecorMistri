@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '../../atoms/Button/Button';
+import { theme } from '../../thems/primitives/theme';
 
 export const Container = styled('div')({
   display: 'flex',
@@ -28,7 +29,7 @@ export const SearchContainer = styled('div')({
 });
 
 export const StyledSearchIcon = styled(SearchIcon)({
-  color: '#757575',
+  color: theme.palette.grey[700],
   position: 'absolute',
   top: '10px',
   right: '6px',

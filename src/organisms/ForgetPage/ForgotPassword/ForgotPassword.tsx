@@ -22,6 +22,8 @@ import {
   TitleOne,
   TitleTwo,
 } from '../../Login/LoginPage.style';
+import { DECOR_LOGO_COLOR } from '../../../thems/primitives/colors';
+import { theme } from '../../../thems/primitives/theme';
 const ForgetPassword = () => {
   const { handleSubmit } = useForgetPassword();
 
@@ -95,11 +97,15 @@ const ForgetPassword = () => {
                     color="primary"
                     variant="contained"
                     onClick={() => {}}
-                    backgroundColor={isButtonDisabled ? '#e432a9' : '#C7148A'}
+                    backgroundColor={
+                      isButtonDisabled
+                        ? theme.palette.grey[300]
+                        : DECOR_LOGO_COLOR
+                    }
                     disabled={isButtonDisabled}
                     style={{
                       marginTop: '20px',
-                      color: '#ffffff',
+                      color: theme.palette.grey[50],
                       width: '100%',
                       height: '50px',
                       borderRadius: '5px',
@@ -118,13 +124,12 @@ const ForgetPassword = () => {
               type="submit"
               color="primary"
               variant="contained"
-              backgroundColor="#ffffff"
               onClick={() => {}}
               style={{
                 borderRadius: '5px',
-                background: 'white',
-                color: 'black',
-                border: '1px solid #cccccc',
+                background: theme.palette.background.paper,
+                color: theme.palette.text.primary,
+                border: `1px solid ${theme.palette.grey[500]}`,
                 width: '100%',
                 height: '50px',
                 marginTop: '15px',

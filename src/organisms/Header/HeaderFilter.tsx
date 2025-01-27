@@ -1,14 +1,17 @@
-import TextInput from "../../atoms/TextInput/TextInput";
-import SelectOption from "../../atoms/Select/SelectOption";
-import useHeaderFilterHooks from "./Header.hook";
+import TextInput from '../../atoms/TextInput/TextInput';
+import SelectOption from '../../atoms/Select/SelectOption';
+import useHeaderFilterHooks from './Header.hook';
 import {
   Container,
   FilterSection,
   ActionsSection,
   SearchContainer,
   StyledSearchIcon,
-} from "./HeaderFilter.style";
-import Button from "../../atoms/Button/Button";
+} from './HeaderFilter.style';
+import Button from '../../atoms/Button/Button';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+// import { theme } from '../../thems/primitives/theme';
+import palette from '../../thems/primitives/palette';
 
 const HeaderFilter = () => {
   const {
@@ -69,7 +72,7 @@ const HeaderFilter = () => {
             value={searchValue}
             onChange={handleSearchChange}
             placeholder="Search..."
-            style={{ padding: "10px" }}
+            style={{ padding: '10px' }}
           />
           <StyledSearchIcon />
         </SearchContainer>
@@ -80,12 +83,12 @@ const HeaderFilter = () => {
           color="primary"
           variant="contained"
           style={{
-            backgroundColor: "#C7148A",
-            color: "#ffffff",
-            borderRadius: "5px",
-            width: "160px",
+            backgroundColor: DECOR_LOGO_COLOR,
+            color: palette.white.main,
+            borderRadius: '5px',
+            width: '160px',
           }}
-          onClick={() => console.log("Create new project clicked")}
+          onClick={() => console.log('Create new project clicked')}
         />
       </ActionsSection>
     </Container>

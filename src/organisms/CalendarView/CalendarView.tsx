@@ -1,11 +1,10 @@
 import { Box } from '@mui/material';
+import { Calender } from '../../atoms/Calender/Calender';
 
 const CalenderView = () => {
   return (
     <Box m="20px">
-      <Box height="75vh">
-        <h1>Calendar View</h1>
-      </Box>
+      <Calender />
     </Box>
   );
 };

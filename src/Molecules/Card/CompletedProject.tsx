@@ -1,21 +1,9 @@
-import {
-  CardContent,
-  Typography,
-  LinearProgress,
-  IconButton,
-} from '@mui/material';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import Button from '../../atoms/Button/Button';
-import {
-  ButtonBox,
-  CardContainer,
-  HeadingTitle,
-  SuccessStatus,
-} from './Card.styel';
+import React, { useState } from 'react';
 import { useProjectMenu } from './card.hook';
+import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
 
-const projectData = [
+const initialProjectData = [
   {
     value: 'Complete Project 1',
     designType: 'Residential',
@@ -26,91 +14,54 @@ const projectData = [
   },
   {
     value: 'Complete Project 2',
-    designType: 'Residential',
+    designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
-    completionPercentage: 75,
-  },
-  {
-    value: 'Complete Project 3',
-    designType: 'Residential',
-    location: 'India',
-    startDate: '2025-01-01',
-    endDate: '2025-12-31',
-    completionPercentage: 75,
-  },
-  {
-    value: 'Complete Project 4',
-    designType: 'Residential',
-    location: 'India',
-    startDate: '2025-01-01',
-    endDate: '2025-12-31',
-    completionPercentage: 75,
+    completionPercentage: 25,
   },
 ];
 
-const CompleteProjectCard: React.FC = () => {
-  const { anchorEl, handleMenuOpen, handleMenuClose, handleOptionClick } =
-    useProjectMenu();
-  const menuItems = [
-    'Edit',
-    'Change Status',
-    'Add Phase',
-    'Add Task',
-    'Delete Project',
-  ];
+const menuItems = [
+  'Edit',
+  'Change Status',
+  'Add Phase',
+  'Add Task',
+  'Delete Project',
+];
+
+const CompliteProject: React.FC = () => {
+  const [projectData, setProjectData] = useState(initialProjectData);
+  const {
+    anchorEl,
+    currentProject,
+    showDropdown,
+    handleMenuOpen,
+    handleMenuClose,
+    handleOptionClick,
+  } = useProjectMenu();
+
+  const handleDeleteProject = (projectValue: string) => {
+    setProjectData((prevData) =>
+      prevData.filter((project) => project.value !== projectValue)
+    );
+  };
 
   return (
     <>
       {projectData.map((project, index) => (
-        <CardContainer key={index}>
-          <CardContent>
-            <HeadingTitle variant="h6">
-              {project.value}
-              <IconButton
-                sx={{ cursor: 'pointer' }}
-                onClick={(e) => handleMenuOpen(e, project.value)}
-              >
-                <MoreHorizIcon />
-              </IconButton>
-            </HeadingTitle>
-
-            <Typography variant="body2" color="text.secondary">
-              Design Type: {project.designType}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Location: {project.location}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Start Date: {project.startDate}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              End Date: {project.endDate}
-            </Typography>
-            <LinearProgress
-              variant="determinate"
-              value={project.completionPercentage}
-              sx={{ marginTop: 2 }}
-            />
-            <SuccessStatus>
-              {project.completionPercentage}% Completed
-            </SuccessStatus>
-          </CardContent>
-
-          <ButtonBox>
-            <Button
-              title="Detail View"
-              color="primary"
-              variant="contained"
-              style={{
-                width: '180px',
-                borderRadius: '4px',
-              }}
-              onClick={() => console.log('Detail View clicked')}
-            />
-          </ButtonBox>
-        </CardContainer>
+        <ProjectCard
+          key={index}
+          project={project}
+          menuItems={menuItems}
+          onMenuOpen={handleMenuOpen}
+          onMenuClose={handleMenuClose}
+          onMenuOptionClick={handleOptionClick}
+          menuAnchorEl={anchorEl}
+          buttonTitle="Move to Live"
+          buttonColor="secondary"
+          buttonAction={() => console.log(`Moving ${project.value} to Live`)}
+        />
       ))}
 
       <ProjectMenu
@@ -119,9 +70,12 @@ const CompleteProjectCard: React.FC = () => {
         onClose={handleMenuClose}
         onOptionClick={handleOptionClick}
         menuItems={menuItems}
+        showDropdown={showDropdown}
+        onDeleteProject={handleDeleteProject}
+        currentProject={currentProject}
       />
     </>
   );
 };
 
-export default CompleteProjectCard;
+export default CompliteProject;

@@ -1,4 +1,7 @@
-import { Menu, MenuItem } from '@mui/material';
+import React, { useState } from 'react';
+import { StyledMenu, StyledMenuItem, StatusButton } from './Menu.style';
+import { Collapse, Box } from '@mui/material';
+import ReusableModal from '../../../atoms/Modal/Modal';
 
 interface ProjectMenuProps {
   anchorEl: null | HTMLElement;
@@ -6,17 +9,41 @@ interface ProjectMenuProps {
   onClose: () => void;
   onOptionClick: (option: string) => void;
   menuItems: string[];
+  showDropdown: boolean;
+  onDeleteProject: (projectValue: string) => void;
+  currentProject: string | null;
 }
 
-const ProjectMenu = ({
+const ProjectMenu: React.FC<ProjectMenuProps> = ({
   anchorEl,
   open,
   onClose,
   onOptionClick,
   menuItems,
-}: ProjectMenuProps) => {
+  showDropdown,
+  onDeleteProject,
+  currentProject,
+}) => {
+  const statusOptions = ['Live', 'Complete', 'Upcoming', 'Not confirmed'];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDeleteClick = () => {
+    setIsModalOpen(true); // Show modal when "Delete Project" is clicked
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close modal
+  };
+
+  const confirmDelete = () => {
+    if (currentProject) {
+      onDeleteProject(currentProject); // Call parent function to delete project
+    }
+    closeModal(); // Close modal after deletion
+  };
+
   return (
-    <Menu
+    <StyledMenu
       anchorEl={anchorEl}
       open={open}
       onClose={onClose}
@@ -28,34 +55,55 @@ const ProjectMenu = ({
         vertical: 'top',
         horizontal: 'left',
       }}
-      PaperProps={{
-        style: {
-          borderRadius: 8,
-          padding: '8px 0',
-          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-          minWidth: 150,
-          backgroundColor: '#f9f9f9',
-        },
-      }}
     >
       {menuItems.map((item, index) => (
-        <MenuItem
-          key={index}
-          onClick={() => onOptionClick(item)}
-          sx={{
-            fontSize: '14px',
-            fontWeight: 500,
-            color: '#333',
-            padding: '10px 16px',
-            '&:hover': {
-              backgroundColor: '#e0e0e0',
-            },
-          }}
-        >
-          {item}
-        </MenuItem>
+        <React.Fragment key={index}>
+          <StyledMenuItem
+            onClick={() =>
+              item === 'Delete Project'
+                ? handleDeleteClick()
+                : onOptionClick(item)
+            }
+          >
+            {item}
+          </StyledMenuItem>
+          {item === 'Change Status' && showDropdown && (
+            <Collapse in={showDropdown} timeout="auto" unmountOnExit>
+              <Box sx={{ padding: 2, backgroundColor: '#f9f9f9' }}>
+                {statusOptions.map((status, idx) => (
+                  <StatusButton
+                    key={idx}
+                    variant="outlined"
+                    onClick={() => console.log(`Status changed to: ${status}`)}
+                  >
+                    {status}
+                  </StatusButton>
+                ))}
+              </Box>
+            </Collapse>
+          )}
+        </React.Fragment>
       ))}
-    </Menu>
+
+      {/* Delete Confirmation Modal */}
+      <ReusableModal
+        open={isModalOpen}
+        onClose={closeModal}
+        title="Are you sure you want to delete this project?"
+        buttons={[
+          {
+            label: 'Cancel',
+            onClick: closeModal,
+            style: { backgroundColor: '#f5f5f5', color: '#333' },
+          },
+          {
+            label: 'Delete',
+            onClick: confirmDelete,
+            style: { backgroundColor: '#d32f2f', color: '#fff' },
+          },
+        ]}
+      />
+    </StyledMenu>
   );
 };
 

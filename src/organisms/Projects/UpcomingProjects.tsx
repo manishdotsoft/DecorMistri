@@ -1,11 +1,16 @@
 import { Box } from '@mui/material';
+import UpcomingProjectCard from '../../Molecules/Card/UpcomingProject';
 
 const UpcomeingProjets = () => {
   return (
-    <Box m="20px">
-      <Box height="75vh">
-        <h1> upcoming Projects</h1>
-      </Box>
+    <Box
+      sx={{
+        display: 'flex',
+        gap: '20px',
+        flexWrap: 'wrap',
+      }}
+    >
+      <UpcomingProjectCard />
     </Box>
   );
 };

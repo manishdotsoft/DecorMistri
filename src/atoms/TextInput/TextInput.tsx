@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   FormHelp,
   FullWidthFormControl,
   TextInputField,
-} from "./TextInput.style";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import usePasswordVisibility from "./customHooks";
+} from './TextInput.style';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import usePasswordVisibility from './customHooks';
 
 interface TextInputProps {
   name: string;
@@ -29,18 +29,18 @@ const TextInput: React.FC<TextInputProps> = ({
   style,
   error = false,
   helperText,
-  type = "text",
+  type = 'text',
   placeholder,
 }) => {
   const { isPasswordVisible, togglePasswordVisibility } =
     usePasswordVisibility();
 
   const inputType =
-    type === "password" && !isPasswordVisible ? "password" : type;
+    type === 'password' && !isPasswordVisible ? 'password' : 'text';
 
   return (
     <>
-      <FullWidthFormControl style={{ ...style }}>
+      <FullWidthFormControl>
         <TextInputField
           id={name}
           name={name}
@@ -50,23 +50,23 @@ const TextInput: React.FC<TextInputProps> = ({
           type={inputType}
           style={{
             ...style,
-            paddingRight: "30px",
+            paddingRight: '30px',
           }}
           placeholder={placeholder}
         />
-        {type === "password" && (
+        {type === 'password' && (
           <button
             type="button"
             onClick={togglePasswordVisibility}
             aria-label="Toggle password visibility"
             style={{
-              position: "absolute",
-              right: "-40px",
-              top: "55%",
-              transform: "translateY(-50%)",
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
+              position: 'absolute',
+              right: '-40px',
+              top: '55%',
+              transform: 'translateY(-50%)',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
             }}
           >
             {isPasswordVisible ? <Visibility /> : <VisibilityOff />}
