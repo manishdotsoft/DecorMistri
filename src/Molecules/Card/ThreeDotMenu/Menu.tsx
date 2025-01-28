@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyledMenu, StyledMenuItem, StatusButton } from './Menu.style';
 import { Collapse, Box } from '@mui/material';
 import ReusableModal from '../../../atoms/Modal/Modal';
+import palette from '../../../thems/primitives/palette';
 
 interface ProjectMenuProps {
   anchorEl: null | HTMLElement;
@@ -12,6 +13,7 @@ interface ProjectMenuProps {
   showDropdown: boolean;
   onDeleteProject: (projectValue: string) => void;
   currentProject: string | null;
+  onUpdateStatus: (projectValue: string, newStatus: string) => void;
 }
 
 const ProjectMenu: React.FC<ProjectMenuProps> = ({
@@ -23,23 +25,32 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
   showDropdown,
   onDeleteProject,
   currentProject,
+  onUpdateStatus,
 }) => {
   const statusOptions = ['Live', 'Complete', 'Upcoming', 'Not confirmed'];
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDeleteClick = () => {
-    setIsModalOpen(true); // Show modal when "Delete Project" is clicked
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); // Close modal
+    setIsModalOpen(false);
   };
 
   const confirmDelete = () => {
     if (currentProject) {
-      onDeleteProject(currentProject); // Call parent function to delete project
+      onDeleteProject(currentProject);
     }
-    closeModal(); // Close modal after deletion
+    closeModal();
+    onClose();
+  };
+
+  const handleStatusChange = (status: string) => {
+    if (currentProject) {
+      onUpdateStatus(currentProject, status);
+    }
+    onClose();
   };
 
   return (
@@ -69,12 +80,12 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
           </StyledMenuItem>
           {item === 'Change Status' && showDropdown && (
             <Collapse in={showDropdown} timeout="auto" unmountOnExit>
-              <Box sx={{ padding: 2, backgroundColor: '#f9f9f9' }}>
+              <Box sx={{ padding: 2, backgroundColor: palette.white[300] }}>
                 {statusOptions.map((status, idx) => (
                   <StatusButton
                     key={idx}
                     variant="outlined"
-                    onClick={() => console.log(`Status changed to: ${status}`)}
+                    onClick={() => handleStatusChange(status)}
                   >
                     {status}
                   </StatusButton>
@@ -84,8 +95,6 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
           )}
         </React.Fragment>
       ))}
-
-      {/* Delete Confirmation Modal */}
       <ReusableModal
         open={isModalOpen}
         onClose={closeModal}
@@ -94,12 +103,20 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
           {
             label: 'Cancel',
             onClick: closeModal,
-            style: { backgroundColor: '#f5f5f5', color: '#333' },
+            style: {
+              backgroundColor: palette.grey[400],
+              color: palette.black[800],
+              borderRadius: '6px',
+            },
           },
           {
             label: 'Delete',
             onClick: confirmDelete,
-            style: { backgroundColor: '#d32f2f', color: '#fff' },
+            style: {
+              backgroundColor: palette.error.alert,
+              color: palette.white.main,
+              borderRadius: '6px',
+            },
           },
         ]}
       />

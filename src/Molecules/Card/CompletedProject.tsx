@@ -2,36 +2,11 @@ import React, { useState } from 'react';
 import { useProjectMenu } from './card.hook';
 import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
-
-const initialProjectData = [
-  {
-    value: 'Complete Project 1',
-    designType: 'Residential',
-    location: 'India',
-    startDate: '2025-01-01',
-    endDate: '2025-12-31',
-    completionPercentage: 75,
-  },
-  {
-    value: 'Complete Project 2',
-    designType: 'Commercial',
-    location: 'India',
-    startDate: '2025-01-01',
-    endDate: '2025-12-31',
-    completionPercentage: 25,
-  },
-];
-
-const menuItems = [
-  'Edit',
-  'Change Status',
-  'Add Phase',
-  'Add Task',
-  'Delete Project',
-];
+import { menuItems } from '../../Data/CardData';
+import { CompleteProjectData } from '../../Data/CardData';
 
 const CompliteProject: React.FC = () => {
-  const [projectData, setProjectData] = useState(initialProjectData);
+  const [projectData, setProjectData] = useState(CompleteProjectData);
   const {
     anchorEl,
     currentProject,
@@ -73,6 +48,7 @@ const CompliteProject: React.FC = () => {
         showDropdown={showDropdown}
         onDeleteProject={handleDeleteProject}
         currentProject={currentProject}
+        onUpdateStatus={handleOptionClick}
       />
     </>
   );
