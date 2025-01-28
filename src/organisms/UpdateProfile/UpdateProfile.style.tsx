@@ -1,9 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import palette from '../../thems/primitives/palette';
+import palette, { ICON_COLOR } from '../../thems/primitives/palette';
 import fonts from '../../thems/primitives/fonts';
 import typeset from '../../thems/primitives/typeset';
-import { BOX_SHADOW, BOX_SHADOW2 } from '../../thems/primitives/colors';
+import {
+  BOX_SHADOW3,
+  DECOR_LOGO_COLOR,
+  SHADE_COLOR,
+} from '../../thems/primitives/colors';
 import { theme } from '../../thems/primitives/theme';
 
 export const StyledContainer = styled('div')(() => ({
@@ -25,7 +29,7 @@ export const MainFlex = styled('div')(() => ({
   fontFamily: fonts.primary,
   backgroundColor: palette.white.main,
   borderRadius: '25px',
-  boxShadow: `0px 0px 100px 0.5px ${BOX_SHADOW}`,
+  boxShadow: `0px 0px 20px 5px ${BOX_SHADOW3}`,
   overflow: 'hidden',
   width: '95%',
   '@media(max-width: 1310px)': {
@@ -44,18 +48,65 @@ export const MainFlex = styled('div')(() => ({
   },
 }));
 
+// header
+export const Header = styled(Box)(() => ({
+  fontFamily: fonts.primary,
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  borderBottom: `1px solid ${SHADE_COLOR}`,
+  padding: '20px',
+}));
+
+export const Line = styled(Box)(() => ({
+  fontFamily: fonts.primary,
+  width: '1px',
+  display: 'flex',
+  flexDirection: 'row',
+  background: palette.grey[500],
+  height: '30px',
+}));
+
+export const HeaderTitle = styled(Typography)(() => ({
+  fontWeight: '600',
+}));
+export const A = styled(Typography)(() => ({
+  fontSize: '1.1rem',
+}));
+
+export const HeaderProfileIcon = styled(Box)(() => ({
+  height: '40px',
+  width: '40px',
+  background: DECOR_LOGO_COLOR,
+  color: palette.white.main,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: '50%',
+}));
+
+export const FirstTitleSec = styled(Box)(() => ({
+  marginBottom: '60px',
+  display: 'flex',
+  justifyContent: 'space-between',
+}));
+
+export const TitleSec = styled(Box)(() => ({
+  width: '60%',
+}));
+
 export const StyledForm = styled('form')(() => ({
   fontFamily: fonts.primary,
+}));
+export const SetFormikError = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2px',
 }));
 
 export const Logo = styled('img')(() => ({
   height: '40px',
 }));
-
-// export const ParentInputBox = styled('div')(() => ({
-//   fontFamily: fonts.primary,
-//   width: '100%',
-// }));
 
 export const ChildFlex = styled('div')(({ theme }) => ({
   padding: '35px',
@@ -159,37 +210,26 @@ export const Title2 = styled(Typography)(({ theme }) => ({
   },
 }));
 
-// export const StyledTypography = styled(Typography)(() => ({
-//   fontSize: typeset.caption.fontSize,
-//   color: palette.error.main,
-//   fontFamily: fonts.primary,
-// }));
-
 // Profile picture
 
 export const LabelProfile = styled('label')(() => ({
-  position: 'absolute',
-  bottom: '5px',
-  right: '10px',
-  backgroundColor: palette.white.main,
-  borderRadius: '50%',
-  padding: '4px',
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  height: '100px',
+  borderRadius: '8px',
+  overflow: 'hidden',
+  border: `1px solid ${ICON_COLOR}`,
+  borderStyle: 'dashed',
   cursor: 'pointer',
-  boxShadow: `0 2px 5px ${BOX_SHADOW2}`,
 }));
 
 export const MainUploadImage = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  display: 'inline-block',
-  width: '90px',
-  height: '90px',
-  borderRadius: '50%',
-  overflow: 'hidden',
-  boxShadow: theme.shadows[2],
+  marginTop: '3px',
 }));
 
 export const ProfileUploadImg = styled('img')(() => ({
-  width: '100%',
+  width: '100px',
   height: '100%',
   objectFit: 'cover',
 }));
@@ -201,4 +241,13 @@ export const CameraBtn = styled('img')(() => ({
 
 export const InputImg = styled('input')(() => ({
   display: 'none',
+}));
+
+export const ButtonSec = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+  justifyContent: 'center',
+  width: '100%',
+  marginTop: '10px',
 }));
