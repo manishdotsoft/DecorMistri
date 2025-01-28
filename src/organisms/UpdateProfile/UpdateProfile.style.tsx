@@ -4,6 +4,7 @@ import palette from '../../thems/primitives/palette';
 import fonts from '../../thems/primitives/fonts';
 import typeset from '../../thems/primitives/typeset';
 import { BOX_SHADOW, BOX_SHADOW2 } from '../../thems/primitives/colors';
+import { theme } from '../../thems/primitives/theme';
 
 export const StyledContainer = styled('div')(() => ({
   display: 'flex',
@@ -14,21 +15,19 @@ export const StyledContainer = styled('div')(() => ({
   backgroundColor: palette.white.main,
 
   padding: '16px',
-  '@media(max-width: 468px)': {
-    padding: '0px',
-    marginTop: '35px',
-  },
+  '@media(max-width: 468px)': {},
 }));
 
 export const MainFlex = styled('div')(() => ({
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   fontFamily: fonts.primary,
   backgroundColor: palette.white.main,
   borderRadius: '25px',
-  boxShadow: `0px 0px 100px 10px ${BOX_SHADOW}`,
+  boxShadow: `0px 0px 100px 0.5px ${BOX_SHADOW}`,
   overflow: 'hidden',
-  width: '80%',
+  width: '95%',
   '@media(max-width: 1310px)': {
     flexDirection: 'column',
     width: '90%',
@@ -50,25 +49,55 @@ export const StyledForm = styled('form')(() => ({
 }));
 
 export const Logo = styled('img')(() => ({
-  height: '50px',
+  height: '40px',
 }));
 
-export const ParentInputBox = styled('div')(() => ({
-  fontFamily: fonts.primary,
-  width: '100%',
-}));
+// export const ParentInputBox = styled('div')(() => ({
+//   fontFamily: fonts.primary,
+//   width: '100%',
+// }));
 
 export const ChildFlex = styled('div')(({ theme }) => ({
-  flex: 1,
-  padding: '35px 100px',
+  padding: '35px',
   display: 'flex',
+  margin: '0 auto',
+  width: '55%',
   flexDirection: 'column',
   overflow: 'hidden',
   fontFamily: fonts.primary,
   height: '100%',
   [theme.breakpoints.down('md')]: {
-    padding: '20px 16px',
+    width: '85%',
   },
+}));
+export const GridContainer = styled(Box)({
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  columnGap: '20px',
+  rowGap: '15px',
+  width: '100%',
+});
+export const GridContainerChild = styled(Box)({
+  display: 'grid',
+  gridTemplateColumns: '1fr',
+  columnGap: '20px',
+  rowGap: '15px',
+  width: '100%',
+});
+
+export const StyledTypography = styled(Typography)(() => ({
+  fontSize: typeset.caption.fontSize,
+  color: palette.error.main,
+  fontFamily: 'sans-serif',
+
+  marginLeft: '15px',
+}));
+
+export const InputLabelItem = styled('label')(() => ({
+  fontSize: '0.8rem',
+  marginBottom: '1px',
+  color: theme.palette.grey[600],
+  fontFamily: typeset.secondaryFontFamily,
 }));
 
 export const ImageFlex = styled('div')(() => ({
@@ -101,9 +130,12 @@ export const AllImg = styled('img')(({ theme }) => ({
   },
 }));
 
-export const StyledHeader = styled('div')(() => ({
-  marginBottom: '20px',
+export const StyledHeader = styled(Box)(() => ({
   fontFamily: fonts.primary,
+  display: 'flex',
+  // justifyContent: 'center',
+  gap: '15px',
+  alignItems: 'center',
 }));
 
 export const Title = styled(Typography)(() => ({
@@ -127,11 +159,11 @@ export const Title2 = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const StyledTypography = styled(Typography)(() => ({
-  fontSize: typeset.caption.fontSize,
-  color: palette.error.main,
-  fontFamily: fonts.primary,
-}));
+// export const StyledTypography = styled(Typography)(() => ({
+//   fontSize: typeset.caption.fontSize,
+//   color: palette.error.main,
+//   fontFamily: fonts.primary,
+// }));
 
 // Profile picture
 

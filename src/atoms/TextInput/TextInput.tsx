@@ -29,14 +29,18 @@ const TextInput: React.FC<TextInputProps> = ({
   style,
   error = false,
   helperText,
-  type = 'text',
+  type,
   placeholder,
 }) => {
   const { isPasswordVisible, togglePasswordVisibility } =
     usePasswordVisibility();
 
   const inputType =
-    type === 'password' && !isPasswordVisible ? 'password' : 'text';
+    type === 'password' && !isPasswordVisible
+      ? 'password'
+      : type === 'number'
+        ? 'number'
+        : 'text';
 
   return (
     <>

@@ -24,6 +24,7 @@ interface ProjectCardProps {
     startDate: string;
     endDate: string;
     completionPercentage: number;
+    status: string;
   };
   menuItems: string[];
   onMenuOpen: (
@@ -109,6 +110,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         onClose={onMenuClose}
         onOptionClick={onMenuOptionClick}
         menuItems={menuItems}
+        onDeleteProject={onMenuClose}
       />
     </CardContainer>
   );

@@ -1,15 +1,16 @@
-import { Typography, Box } from "@mui/material";
+import { Typography, Box } from '@mui/material';
 import {
   ButtonSection,
   Container,
   FlexRow,
   FullWidthFormControl,
   StyledTypography,
-} from "./FinancialDetails.style";
-import Button from "../../../../atoms/Button/Button";
-import RadioButton from "../../../../atoms/RadioButton/RadioButton";
-import useFinancialDetails from "./FinancialDetails.hook";
-import TextInput from "../../../../atoms/TextInput/TextInput";
+} from './FinancialDetails.style';
+import Button from '../../../../atoms/Button/Button';
+import RadioButton from '../../../../atoms/RadioButton/RadioButton';
+import useFinancialDetails from './FinancialDetails.hook';
+import TextInput from '../../../../atoms/TextInput/TextInput';
+import { useNavigate } from 'react-router-dom';
 
 const FinancialDetails = ({
   data,
@@ -29,16 +30,18 @@ const FinancialDetails = ({
   handleNext: () => void;
   handlePrevious: () => void;
 }) => {
-  const { formik, isFormValid } = useFinancialDetails({
+  const { formik } = useFinancialDetails({
     data,
     updateData,
     handleNext,
   });
 
   const paymentOptions = [
-    { label: "Yes", value: "yes" },
-    { label: "No", value: "no" },
+    { label: 'Yes', value: 'yes' },
+    { label: 'No', value: 'no' },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -47,7 +50,7 @@ const FinancialDetails = ({
       </Typography>
 
       <FlexRow>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <TextInput
             name="estimatedBudget"
             label="Estimated Budget"
@@ -59,8 +62,8 @@ const FinancialDetails = ({
               Boolean(formik.errors.estimatedBudget)
             }
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '95%',
+              borderRadius: '5px',
             }}
             placeholder="Estimated Budget"
           />
@@ -77,8 +80,8 @@ const FinancialDetails = ({
         <RadioButton
           label="Payment Received"
           options={paymentOptions}
-          selectedValue={formik.values.paymentReceived || ""}
-          onChange={(value) => formik.setFieldValue("paymentReceived", value)}
+          selectedValue={formik.values.paymentReceived || ''}
+          onChange={(value) => formik.setFieldValue('paymentReceived', value)}
           name="paymentReceived"
           direction="row"
         />
@@ -96,13 +99,21 @@ const FinancialDetails = ({
           onClick={handlePrevious}
           variant="contained"
         />
+        {/* <Link to={'/dashboard'}> */}
         <Button
           title="Submit"
           color="primary"
-          onClick={() => formik.handleSubmit()}
+          onClick={() => {
+            formik.handleSubmit();
+            if (formik.isValid && formik.dirty) {
+              navigate('/dashboard');
+            }
+          }}
           variant="contained"
           disabled={!formik.isValid || !formik.dirty}
         />
+
+        {/* </Link> */}
       </ButtonSection>
     </Container>
   );

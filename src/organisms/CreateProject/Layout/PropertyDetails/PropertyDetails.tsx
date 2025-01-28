@@ -20,6 +20,8 @@ import Button from '../../../../atoms/Button/Button';
 import SelectOption from '../../../../atoms/Select/SelectOption';
 import usePropertyDetailsForm from './PropertyDetails.hook';
 import TextInput from '../../../../atoms/TextInput/TextInput';
+import fonts from '../../../../thems/primitives/fonts';
+import typeset from '../../../../thems/primitives/typeset';
 
 const designOptions = [
   {
@@ -136,7 +138,7 @@ const PropertyDetails = ({
             onBlur={formik.handleBlur}
             error={formik.touched.size && Boolean(formik.errors.size)}
             style={{
-              width: '95%',
+              width: '50%',
               borderRadius: '5px',
             }}
             placeholder="Size (in sq. ft.)"
@@ -147,20 +149,29 @@ const PropertyDetails = ({
         </Box>
       </GridContainerChild>
 
-      <Box sx={{ p: 4 }}>
-        <SelectOption
-          name="designType"
-          label="Design Type"
-          options={designOptions.map(({ value, label }) => ({ value, label }))}
-          value={formik.values.designType}
-          onChange={(e) => {
-            // Clear subcategories when designType is changed
-            formik.setFieldValue('designType', e.target.value);
-            formik.setFieldValue('subcategories', []); // Reset subcategories
-          }}
-          error={formik.touched.designType && Boolean(formik.errors.designType)}
-          helperText={formik.touched.designType && formik.errors.designType}
-        />
+      <Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <SelectOption
+            name="designType"
+            label="Design Type"
+            options={designOptions.map(({ value, label }) => ({
+              value,
+              label,
+            }))}
+            value={formik.values.designType}
+            onChange={(e) => {
+              // Clear subcategories when designType is changed
+              formik.setFieldValue('designType', e.target.value);
+              formik.setFieldValue('subcategories', []); // Reset subcategories
+            }}
+            error={
+              formik.touched.designType && Boolean(formik.errors.designType)
+            }
+          />
+        </Box>
+        {formik.errors.designType && formik.touched.designType && (
+          <StyledTypography>{formik.errors.designType}</StyledTypography>
+        )}
 
         {/* Subcategories */}
         {formik.values.designType && (
@@ -209,7 +220,7 @@ const PropertyDetails = ({
             onBlur={formik.handleBlur}
             error={formik.touched.phases && Boolean(formik.errors.phases)}
             style={{
-              width: '95%',
+              width: '70%',
               borderRadius: '5px',
             }}
             placeholder="phases (in sq. ft.)"
@@ -219,7 +230,15 @@ const PropertyDetails = ({
           )}
         </Box>
         <SelectFile>
-          <Typography variant="subtitle1">Floor Plans & 3D Designs</Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              fontFamily: fonts.primary,
+              fontSize: typeset.button.fontSize,
+            }}
+          >
+            Floor Plans & 3D Designs
+          </Typography>
           <Box>
             <Button
               variant="outlined"
