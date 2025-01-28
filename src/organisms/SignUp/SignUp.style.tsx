@@ -24,7 +24,7 @@ export const MainFlex = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
   fontFamily: fonts.primary,
-  // maxWidth: "1400px",
+
   backgroundColor: palette.white.main,
   borderRadius: '25px',
   boxShadow: `0px 0px 100px 10px ${BOX_SHADOW}`,

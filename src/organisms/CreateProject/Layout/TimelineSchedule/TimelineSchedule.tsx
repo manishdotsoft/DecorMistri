@@ -11,28 +11,25 @@ import Button from '../../../../atoms/Button/Button';
 import useTimelineSchedule from './TimelineSchedule.hook';
 
 // Import validation schema
+interface timelineScheduleProps {
+  data: {
+    startDate: Date | null;
+    endDate: Date | null;
+  };
+  updateData: (values: timelineScheduleProps['data']) => void;
+  currentPageIndex: number;
+  handleNext: () => void;
+  handlePrevious: () => void;
+}
 
-const TimelineSchedule = ({
+const TimelineSchedule: React.FC<timelineScheduleProps> = ({
   data,
   updateData,
   handleNext,
   handlePrevious,
-}: {
-  currentPageIndex: number;
-  data: {
-    startDate?: string | null; // Receive ISO string format
-    endDate?: string | null;
-  };
-  updateData: (data: { page: string; data: Record<string, unknown> }) => void;
-  handleNext: () => void;
-  handlePrevious: () => void;
 }) => {
-  const timelineData = {
-    startDate: data.startDate ? new Date(data.startDate) : null,
-    endDate: data.endDate ? new Date(data.endDate) : null,
-  };
   const { formik, isFormValid } = useTimelineSchedule({
-    data: timelineData,
+    data,
     updateData,
     handleNext,
   });
