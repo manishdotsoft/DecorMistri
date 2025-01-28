@@ -1,3 +1,4 @@
+// src/components/ProjectMenu.tsx
 import React, { useState } from 'react';
 import { StyledMenu, StyledMenuItem, StatusButton } from './Menu.style';
 import { Collapse, Box } from '@mui/material';
@@ -48,9 +49,9 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
 
   const handleStatusChange = (status: string) => {
     if (currentProject) {
-      onUpdateStatus(currentProject, status);
+      onUpdateStatus(currentProject, status); // Update the status here
     }
-    onClose();
+    onClose(); // Close the menu
   };
 
   return (

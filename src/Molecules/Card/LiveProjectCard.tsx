@@ -3,10 +3,13 @@ import { useProjectMenu } from './card.hook';
 import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
 import { menuItems } from '../../Data/CardData';
-import { LiveProjectData } from '../../Data/CardData';
+import { ProjectData } from '../../Data/CardData';
 
 const LiveProject: React.FC = () => {
-  const [projectData, setProjectData] = useState(LiveProjectData);
+  const [projectData, setProjectData] = useState(
+    ProjectData.filter((project) => project.status === 'Live')
+  );
+
   const {
     anchorEl,
     currentProject,
@@ -17,8 +20,20 @@ const LiveProject: React.FC = () => {
   } = useProjectMenu();
 
   const handleDeleteProject = (projectValue: string) => {
+    // Filter out the project from live data and update the state
     setProjectData((prevData) =>
       prevData.filter((project) => project.value !== projectValue)
+    );
+  };
+
+  const handleUpdateStatus = (projectValue: string, newStatus: string) => {
+    // Update the status and move the project to the corresponding section
+    setProjectData((prevData) =>
+      prevData.map((project) =>
+        project.value === projectValue
+          ? { ...project, status: newStatus } // Update project status
+          : project
+      )
     );
   };
 
@@ -33,9 +48,9 @@ const LiveProject: React.FC = () => {
           onMenuClose={handleMenuClose}
           onMenuOptionClick={handleOptionClick}
           menuAnchorEl={anchorEl}
-          buttonTitle="Move to Live"
-          buttonColor="secondary"
-          buttonAction={() => console.log(`Moving ${project.value} to Live`)}
+          buttonTitle="Move to Complete" // Change title based on the action
+          buttonColor="primary" // You can change color based on action
+          buttonAction={() => handleUpdateStatus(project.value, 'Complete')} // Update project status
         />
       ))}
 
@@ -48,9 +63,10 @@ const LiveProject: React.FC = () => {
         showDropdown={showDropdown}
         onDeleteProject={handleDeleteProject}
         currentProject={currentProject}
-        onUpdateStatus={handleOptionClick}
+        onUpdateStatus={handleUpdateStatus}
       />
     </>
   );
 };
+
 export default LiveProject;

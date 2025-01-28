@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useProjectMenu } from './card.hook';
 import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
-import { UpcomingProjectData } from '../../Data/CardData';
+import { ProjectData } from '../../Data/CardData';
 import { menuItems } from '../../Data/CardData';
 
 const UpcomingProjectCard: React.FC = () => {
-  const [projectData, setProjectData] = useState(UpcomingProjectData);
+  const [projectData, setProjectData] = useState(
+    ProjectData.filter((project) => project.status === 'Upcoming')
+  );
   const {
     anchorEl,
     currentProject,

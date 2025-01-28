@@ -3,10 +3,12 @@ import { useProjectMenu } from './card.hook';
 import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
 import { menuItems } from '../../Data/CardData';
-import { NotConfirmedProjectData } from '../../Data/CardData';
+import { ProjectData } from '../../Data/CardData';
 
 const NotConfirmedCard: React.FC = () => {
-  const [projectData, setProjectData] = useState(NotConfirmedProjectData);
+  const [projectData, setProjectData] = useState(
+    ProjectData.filter((project) => project.status === 'NotConfirmed')
+  );
   const {
     anchorEl,
     currentProject,

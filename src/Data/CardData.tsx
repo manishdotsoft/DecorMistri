@@ -1,4 +1,22 @@
-export const CompleteProjectData = [
+export enum ProjectStatus {
+  Complete = 'Complete',
+  NotConfirmed = 'NotConfirmed',
+  Upcoming = 'Upcoming',
+  Live = 'Live',
+}
+
+export interface ProjectDataType {
+  id: number;
+  value: string;
+  designType: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  completionPercentage: number;
+  status: string;
+}
+
+export const ProjectData: ProjectDataType[] = [
   {
     id: 1,
 
@@ -32,8 +50,7 @@ export const CompleteProjectData = [
     completionPercentage: 25,
     status: 'Complete',
   },
-];
-export const NotConfirmedProjectData = [
+
   {
     id: 4,
 
@@ -67,9 +84,7 @@ export const NotConfirmedProjectData = [
     completionPercentage: 0,
     status: 'NotConfirmed',
   },
-];
 
-export const UpcomingProjectData = [
   {
     id: 7,
     value: 'Upcoming Project 1',
@@ -102,8 +117,7 @@ export const UpcomingProjectData = [
     completionPercentage: 25,
     status: 'Upcoming',
   },
-];
-export const LiveProjectData = [
+
   {
     id: 10,
 
