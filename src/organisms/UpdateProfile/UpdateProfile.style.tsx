@@ -216,7 +216,7 @@ export const LabelProfile = styled('label')(() => ({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
-  height: '100px',
+  height: '140px',
   borderRadius: '8px',
   overflow: 'hidden',
   border: `1px solid ${ICON_COLOR}`,

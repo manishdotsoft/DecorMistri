@@ -170,7 +170,7 @@ const UpdateProfile: React.FC = () => {
                     borderRadius: '8px',
                     padding: '15px',
                   }}
-                  placeholder="Business Name"
+                  placeholder="Enter your business name"
                 />
                 {formik.errors.businessName && formik.touched.businessName && (
                   <StyledTypography>
@@ -199,6 +199,7 @@ const UpdateProfile: React.FC = () => {
                     formik.touched.professionalCategory &&
                     Boolean(formik.errors.professionalCategory)
                   }
+                  defaultOption={'Select Category you are belong to'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -230,6 +231,7 @@ const UpdateProfile: React.FC = () => {
                     formik.touched.designTypeExpertise &&
                     Boolean(formik.errors.designTypeExpertise)
                   }
+                  defaultOption={'Select your expertise in design type'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -262,6 +264,7 @@ const UpdateProfile: React.FC = () => {
                     formik.touched.styleTypeExpertise &&
                     Boolean(formik.errors.styleTypeExpertise)
                   }
+                  defaultOption={'Select Style type'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -291,6 +294,7 @@ const UpdateProfile: React.FC = () => {
                   }}
                   onBlur={formik.handleBlur}
                   error={formik.touched.state && Boolean(formik.errors.state)}
+                  defaultOption={'Select State'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -317,6 +321,7 @@ const UpdateProfile: React.FC = () => {
                   }}
                   onBlur={formik.handleBlur}
                   error={formik.touched.city && Boolean(formik.errors.city)}
+                  defaultOption={'Select City'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -343,7 +348,7 @@ const UpdateProfile: React.FC = () => {
                     borderRadius: '8px',
                     padding: '15px',
                   }}
-                  placeholder="Location"
+                  placeholder="Share your google map location"
                 />
                 {formik.errors.location && formik.touched.location && (
                   <StyledTypography>{formik.errors.location}</StyledTypography>
@@ -354,7 +359,19 @@ const UpdateProfile: React.FC = () => {
                 <MainUploadImage>
                   {/* Profile Image */}
                   <LabelProfile htmlFor="profile-upload">
-                    <ProfileUploadImg src={profileImage} alt="Profile" />
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <ProfileUploadImg src={profileImage} alt="Profile" />
+                      <InputLabelItem>
+                        Upload formats JPG, PNG, BMP and GIF
+                      </InputLabelItem>
+                    </Box>
                     <InputImg
                       id="profile-upload"
                       type="file"
