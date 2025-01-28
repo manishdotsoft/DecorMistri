@@ -20,18 +20,16 @@ const LiveProject: React.FC = () => {
   } = useProjectMenu();
 
   const handleDeleteProject = (projectValue: string) => {
-    // Filter out the project from live data and update the state
     setProjectData((prevData) =>
       prevData.filter((project) => project.value !== projectValue)
     );
   };
 
   const handleUpdateStatus = (projectValue: string, newStatus: string) => {
-    // Update the status and move the project to the corresponding section
     setProjectData((prevData) =>
       prevData.map((project) =>
         project.value === projectValue
-          ? { ...project, status: newStatus } // Update project status
+          ? { ...project, status: newStatus }
           : project
       )
     );
@@ -48,9 +46,9 @@ const LiveProject: React.FC = () => {
           onMenuClose={handleMenuClose}
           onMenuOptionClick={handleOptionClick}
           menuAnchorEl={anchorEl}
-          buttonTitle="Move to Complete" // Change title based on the action
-          buttonColor="primary" // You can change color based on action
-          buttonAction={() => handleUpdateStatus(project.value, 'Complete')} // Update project status
+          buttonTitle="OPEN PROJECT"
+          buttonColor="primary"
+          buttonAction={() => handleUpdateStatus(project.value, 'Complete')}
         />
       ))}
 

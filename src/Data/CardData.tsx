@@ -151,6 +151,50 @@ export const ProjectData: ProjectDataType[] = [
     completionPercentage: 25,
     status: 'Live',
   },
+  {
+    id: 13,
+
+    value: 'Live Project 2',
+    designType: 'Commercial',
+    location: 'India',
+    startDate: '2025-01-01',
+    endDate: '2025-12-31',
+    completionPercentage: 25,
+    status: 'Live',
+  },
+  {
+    id: 14,
+
+    value: 'Complete Project 4',
+    designType: 'Commercial',
+    location: 'India',
+    startDate: '2025-01-01',
+    endDate: '2025-12-31',
+    completionPercentage: 25,
+    status: 'Complete',
+  },
+  {
+    id: 15,
+
+    value: 'Not Confirmed',
+    designType: 'Mixed-Use',
+    location: 'India',
+    startDate: 'TBD',
+    endDate: 'TBD',
+    completionPercentage: 0,
+    status: 'NotConfirmed',
+  },
+  {
+    id: 16,
+
+    value: 'Upcoming Project 4',
+    designType: 'Commercial',
+    location: 'India',
+    startDate: '2025-01-01',
+    endDate: '2025-12-31',
+    completionPercentage: 25,
+    status: 'Upcoming',
+  },
 ];
 export const menuItems = [
   'Edit',

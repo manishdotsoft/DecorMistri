@@ -2,7 +2,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { theme } from './../../thems/primitives/theme';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+import { BOX_SHADOW, DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 import palette from '../../thems/primitives/palette';
 import typeset from '../../thems/primitives/typeset';
 import fonts from '../../thems/primitives/fonts';
@@ -37,45 +37,46 @@ export const LoginLink = styled(RouterLink)(() => ({
 export const StyledContainer = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
+  fontFamily: fonts.primary,
   alignItems: 'center',
-
   minHeight: '92vh',
-  fontFamily: theme.typography.fontFamily,
   backgroundColor: palette.white.main,
-  padding: '20px',
-  color: theme.palette.text.primary,
-
-  '@media (max-width: 468px)': {
-    padding: '0',
-    marginTop: '40px',
+  padding: '16px',
+  '@media(max-width: 468px)': {
+    padding: '0px',
+    marginTop: '35px',
   },
 }));
 
 export const MainFlex = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'center',
-  fontFamily: theme.typography.fontFamily,
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: '20px',
-  boxShadow: `0px 0px 100px 10px ${theme.palette.grey[300]}`,
-  overflow: 'hidden',
-  width: '80%',
+  fontFamily: fonts.primary,
 
-  '@media (max-width: 1310px)': {
+  backgroundColor: palette.white.main,
+  borderRadius: '25px',
+  boxShadow: `0px 0px 100px 10px ${BOX_SHADOW}`,
+
+  overflow: 'hidden',
+
+  width: '80%',
+  '@media(max-width: 1310px)': {
     flexDirection: 'column',
+
     width: '90%',
   },
-  '@media (max-width: 1047px)': {
+  '@media(max-width: 1047px)': {
     flexDirection: 'column',
-    padding: '20px',
+    padding: '16px',
     width: '97%',
   },
-  '@media (max-width: 468px)': {
+
+  '@media(max-width: 468px)': {
     width: '100%',
     boxShadow: 'none',
+    padding: '0',
   },
 }));
-
 export const StyledForm = styled('form')(() => ({
   fontFamily: fonts.primary,
 }));
@@ -275,10 +276,6 @@ export const Collaboration = styled(Typography)(() => ({
 
 export const ParentInputBox = styled('div')(() => ({
   marginRight: '49px',
-
-  [theme.breakpoints.down('sm')]: {
-    marginRight: '20px',
-  },
 }));
 
 export const ModalBox = styled(Box)(() => ({

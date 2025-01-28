@@ -9,6 +9,7 @@ const UpcomingProjectCard: React.FC = () => {
   const [projectData, setProjectData] = useState(
     ProjectData.filter((project) => project.status === 'Upcoming')
   );
+
   const {
     anchorEl,
     currentProject,
@@ -35,7 +36,7 @@ const UpcomingProjectCard: React.FC = () => {
           onMenuClose={handleMenuClose}
           onMenuOptionClick={handleOptionClick}
           menuAnchorEl={anchorEl}
-          buttonTitle="Move to Live"
+          buttonTitle="Detail View"
           buttonColor="secondary"
           buttonAction={() => console.log(`Moving ${project.value} to Live`)}
         />

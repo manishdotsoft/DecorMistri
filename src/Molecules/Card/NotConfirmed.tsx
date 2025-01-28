@@ -24,6 +24,16 @@ const NotConfirmedCard: React.FC = () => {
     );
   };
 
+  const handleStatusChange = (projectValue: string, newStatus: string) => {
+    setProjectData((prevData) =>
+      prevData.map((project) =>
+        project.value === projectValue
+          ? { ...project, status: newStatus }
+          : project
+      )
+    );
+  };
+
   return (
     <>
       {projectData.map((project, index) => (
@@ -35,9 +45,11 @@ const NotConfirmedCard: React.FC = () => {
           onMenuClose={handleMenuClose}
           onMenuOptionClick={handleOptionClick}
           menuAnchorEl={anchorEl}
-          buttonTitle="Move to Live"
+          buttonTitle="Update Status"
           buttonColor="secondary"
-          buttonAction={() => console.log(`Moving ${project.value} to Live`)}
+          buttonAction={() =>
+            handleStatusChange(project.value, 'UpdatedStatus')
+          }
         />
       ))}
 

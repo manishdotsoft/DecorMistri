@@ -5,7 +5,7 @@ const LiveProjects = () => {
     <Box
       sx={{
         display: 'flex',
-        gap: '20px',
+        gap: '40px',
         flexWrap: 'wrap',
       }}
     >

@@ -12,6 +12,7 @@ import Button from '../../atoms/Button/Button';
 import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 // import { theme } from '../../thems/primitives/theme';
 import palette from '../../thems/primitives/palette';
+import { Link } from 'react-router-dom';
 
 const HeaderFilter = () => {
   const {
@@ -76,20 +77,21 @@ const HeaderFilter = () => {
           />
           <StyledSearchIcon />
         </SearchContainer>
-
-        <Button
-          title="Create Project"
-          type="submit"
-          color="primary"
-          variant="contained"
-          style={{
-            backgroundColor: DECOR_LOGO_COLOR,
-            color: palette.white.main,
-            borderRadius: '5px',
-            width: '160px',
-          }}
-          onClick={() => console.log('Create new project clicked')}
-        />
+        <Link style={{ textDecoration: 'none' }} to={'/create-project'}>
+          <Button
+            title="Create Project"
+            type="submit"
+            color="primary"
+            variant="contained"
+            style={{
+              backgroundColor: DECOR_LOGO_COLOR,
+              color: palette.white.main,
+              borderRadius: '5px',
+              width: '160px',
+            }}
+            onClick={() => console.log('Create new project clicked')}
+          />
+        </Link>
       </ActionsSection>
     </Container>
   );

@@ -49,9 +49,9 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
 
   const handleStatusChange = (status: string) => {
     if (currentProject) {
-      onUpdateStatus(currentProject, status); // Update the status here
+      onUpdateStatus(currentProject, status);
     }
-    onClose(); // Close the menu
+    onClose();
   };
 
   return (

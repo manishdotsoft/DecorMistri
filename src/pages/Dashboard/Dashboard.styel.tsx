@@ -10,6 +10,7 @@ export const Divider = () => (
       width: '0.1rem',
       marginTop: '80px',
       marginBottom: '20px ',
+      marginLeft: '20px',
     }}
   />
 );
@@ -32,7 +33,7 @@ export const BoxItem = styled(Box)({
 
 export const BoxContainer = styled(Box)({
   display: 'flex',
-  flexWrap: 'nowrap',
+  flexWrap: 'wrap',
   justifyContent: 'space-between',
   gap: '10px',
 });
@@ -53,4 +54,5 @@ export const Titel = styled(Typography)({
 
 export const Cards = styled(Box)({
   marginBottom: '20px',
+  marginLeft: '15px',
 });
