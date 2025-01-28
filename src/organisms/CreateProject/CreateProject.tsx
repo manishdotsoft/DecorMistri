@@ -38,13 +38,12 @@ const CreateProject = () => {
     const page = pages[currentPageIndex];
     const currentPageData = formData[page];
 
-    // Only dispatch if the specific form data for this page has changed
     if (
       JSON.stringify(previousFormData.current[page]) !==
       JSON.stringify(currentPageData)
     ) {
       dispatch(updateFormDataAsync({ page, data: currentPageData }));
-      previousFormData.current[page] = currentPageData; // Update the ref
+      previousFormData.current[page] = currentPageData;
     }
   }, [currentPageIndex, formData, dispatch, pages]);
 

@@ -8,6 +8,21 @@ type PageKey =
   | 'timelineSchedule'
   | 'financialDetails';
 
+type ProjectProviderInformation = {
+  projectNumber: string;
+  dateOfIssue: string;
+  designerName: string;
+  email: string;
+  phoneNumber: string;
+  website: string;
+  country: string;
+  state: string;
+  city: string;
+  zipCode: string;
+  addressLine1: string;
+  addressLine2?: string;
+};
+
 type ClientDetailsType = {
   clientName: string;
   clientEmail: string;
@@ -20,22 +35,60 @@ type ClientDetailsType = {
   addressLine2?: string;
 };
 
+type PropertyDetails = {
+  size: string;
+  designType: string;
+  subcategories: string;
+  phases: string;
+  file: string;
+  comments: string;
+};
+
+type PropertyLocationDetails = {
+  country: string;
+  state: string;
+  city: string;
+  zip: string;
+  addressLine1: string;
+  addressLine2: string;
+};
+
+type TimelineSchedule = {
+  startDate?: string | null;
+  endDate?: string | null;
+};
+
+type FinancialDetails = {
+  estimatedBudget: '';
+  paymentReceived: '';
+};
+
 type FormDataType = {
-  projectProviderInformation: Record<string, unknown>;
+  projectProviderInformation: ProjectProviderInformation;
   clientDetails: ClientDetailsType;
-  propertyDetails: Record<string, unknown>;
-  propertyLocationDetails: Record<string, unknown>;
-  timelineSchedule: {
-    startDate?: string | null; // Use ISO string format in Redux state
-    endDate?: string | null;
-  };
-  financialDetails: Record<string, unknown>;
+  propertyDetails: PropertyDetails;
+  propertyLocationDetails: PropertyLocationDetails;
+  timelineSchedule: TimelineSchedule;
+  financialDetails: FinancialDetails;
 };
 
 const initialState = {
   currentPageIndex: 0,
   formData: {
-    projectProviderInformation: {},
+    projectProviderInformation: {
+      projectNumber: '',
+      dateOfIssue: '',
+      designerName: '',
+      email: '',
+      phoneNumber: '',
+      website: '',
+      country: '',
+      state: '',
+      city: '',
+      zipCode: '',
+      addressLine1: '',
+      addressLine2: '',
+    },
     clientDetails: {
       clientName: '',
       clientEmail: '',
@@ -47,13 +100,30 @@ const initialState = {
       addressLine1: '',
       addressLine2: '',
     },
-    propertyDetails: {},
-    propertyLocationDetails: {},
+    propertyDetails: {
+      size: '',
+      designType: '',
+      subcategories: '',
+      phases: '',
+      file: '',
+      comments: '',
+    },
+    propertyLocationDetails: {
+      country: '',
+      state: '',
+      city: '',
+      zip: '',
+      addressLine1: '',
+      addressLine2: '',
+    },
     timelineSchedule: {
       startDate: null,
       endDate: null,
     },
-    financialDetails: {},
+    financialDetails: {
+      estimatedBudget: '',
+      paymentReceived: '',
+    },
   } as FormDataType,
   completedSteps: Array(6).fill(false),
   pages: [
@@ -71,7 +141,7 @@ const createProjectSlice = createSlice({
   initialState,
   reducers: {
     nextPage(state) {
-      if (state.currentPageIndex < state.pages.length - 1) {
+      if (state.currentPageIndex < state.pages.length) {
         state.completedSteps[state.currentPageIndex] = true;
         state.currentPageIndex += 1;
       }

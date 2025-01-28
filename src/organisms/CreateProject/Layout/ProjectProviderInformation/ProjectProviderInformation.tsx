@@ -1,22 +1,22 @@
-import { Typography, Box } from "@mui/material";
+import { Typography, Box } from '@mui/material';
 import {
   ButtonSection,
   Container,
   GridContainer,
   GridContainerChild,
   StyledTypography,
-} from "./ProjectProviderInformation.style";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import Button from "../../../../atoms/Button/Button";
-import SelectOption from "../../../../atoms/Select/SelectOption";
-import { useProjectProviderForm } from "./ProjectProviderInformation.hook";
-import TextInput from "../../../../atoms/TextInput/TextInput";
+} from './ProjectProviderInformation.style';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import Button from '../../../../atoms/Button/Button';
+import SelectOption from '../../../../atoms/Select/SelectOption';
+import { useProjectProviderForm } from './ProjectProviderInformation.hook';
+import TextInput from '../../../../atoms/TextInput/TextInput';
 
 interface ProjectProviderInformationProps {
   data: {
     projectNumber: string;
-    dateOfIssue: Date | null;
+    dateOfIssue: Date | string | null;
     designerName: string;
     email: string;
     phoneNumber: string;
@@ -28,7 +28,7 @@ interface ProjectProviderInformationProps {
     country: string;
     state: string;
   };
-  updateData: (values: ProjectProviderInformationProps["data"]) => void;
+  updateData: (values: ProjectProviderInformationProps['data']) => void;
   currentPageIndex: number;
   handleNext: () => void;
   handlePrevious: () => void;
@@ -52,7 +52,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
     <Container>
       <Typography variant="h6">Basic Information</Typography>
       <GridContainer>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <TextInput
             name="projectNumber"
             label="Project Number/ID"
@@ -65,8 +65,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               Boolean(formik.errors.projectNumber)
             }
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '90%',
+              borderRadius: '5px',
             }}
             placeholder="Project Number/ID"
           />
@@ -77,10 +77,11 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
 
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
+            name="dateOfIssue"
             label="Date of Issue"
             value={formik.values.dateOfIssue}
             onChange={(value: Date | null) =>
-              formik.setFieldValue("dateOfIssue", value)
+              formik.setFieldValue('dateOfIssue', value)
             }
             slotProps={{
               textField: {
@@ -94,7 +95,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           />
         </LocalizationProvider>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <TextInput
             name="designerName"
             label="Interior Designer Name"
@@ -105,8 +106,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               formik.touched.designerName && Boolean(formik.errors.designerName)
             }
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '90%',
+              borderRadius: '5px',
             }}
             placeholder="Enter Designer Name"
           />
@@ -115,7 +116,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           )}
         </Box>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <TextInput
             name="email"
             label="Email"
@@ -124,8 +125,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
             onBlur={formik.handleBlur}
             error={formik.touched.email && Boolean(formik.errors.email)}
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '90%',
+              borderRadius: '5px',
             }}
             placeholder="Enter Your Email Name"
           />
@@ -134,7 +135,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           )}
         </Box>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <TextInput
             name="phoneNumber"
             label="Phone Number"
@@ -146,8 +147,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
             }
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '90%',
+              borderRadius: '5px',
             }}
             placeholder="Phone Number"
           />
@@ -163,59 +164,72 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           style={{
-            width: "95%",
-            borderRadius: "5px",
+            width: '90%',
+            borderRadius: '5px',
           }}
           placeholder="Input here website name"
         />
       </GridContainer>
       <Typography variant="subtitle1">Office Address</Typography>
       <GridContainer>
-        <SelectOption
-          name="country"
-          label="Country"
-          options={[
-            { value: "country1", label: "Country 1" },
-            { value: "country2", label: "Country 2" },
-          ]}
-          value={formik.values.country}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
-          error={formik.touched.country && Boolean(formik.errors.country)}
-          helperText={formik.touched.country && formik.errors.country}
-        />
-        <SelectOption
-          name="state"
-          label="Province/State"
-          options={[
-            { value: "state1", label: "State 1" },
-            { value: "state2", label: "State 2" },
-          ]}
-          value={formik.values.state}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
-          error={formik.touched.state && Boolean(formik.errors.state)}
-          helperText={formik.touched.state && formik.errors.state}
-        />
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <SelectOption
+            name="country"
+            label="Country"
+            options={[
+              { value: 'country1', label: 'Country 1' },
+              { value: 'country2', label: 'Country 2' },
+            ]}
+            value={formik.values.country}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            style={{ width: '100%', padding: '16px' }}
+            error={formik.touched.country && Boolean(formik.errors.country)}
+          />
+          {formik.errors.country && formik.touched.country && (
+            <StyledTypography>{formik.errors.country}</StyledTypography>
+          )}
+        </Box>
 
-        <SelectOption
-          name="city"
-          label="City"
-          options={[
-            { value: "city1", label: "City 1" },
-            { value: "city2", label: "City 2" },
-          ]}
-          value={formik.values.city}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
-          error={formik.touched.city && Boolean(formik.errors.city)}
-          helperText={formik.touched.city && formik.errors.city}
-        />
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <SelectOption
+            name="state"
+            label="Province/State"
+            options={[
+              { value: 'state1', label: 'State 1' },
+              { value: 'state2', label: 'State 2' },
+            ]}
+            value={formik.values.state}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            style={{ width: '100%', padding: '16px' }}
+            error={formik.touched.state && Boolean(formik.errors.state)}
+          />
+          {formik.errors.state && formik.touched.state && (
+            <StyledTypography>{formik.errors.state}</StyledTypography>
+          )}
+        </Box>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <SelectOption
+            name="city"
+            label="City"
+            options={[
+              { value: 'city1', label: 'City 1' },
+              { value: 'city2', label: 'City 2' },
+            ]}
+            value={formik.values.city}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            style={{ width: '100%', padding: '16px' }}
+            error={formik.touched.city && Boolean(formik.errors.city)}
+          />
+          {formik.errors.city && formik.touched.city && (
+            <StyledTypography>{formik.errors.city}</StyledTypography>
+          )}
+        </Box>
+
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <TextInput
             name="zipCode"
             label="Zip/Postal Code"
@@ -225,8 +239,9 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
             onBlur={formik.handleBlur}
             error={formik.touched.zipCode && Boolean(formik.errors.zipCode)}
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '90%',
+              borderRadius: '5px',
+              marginTop: '18px',
             }}
             placeholder="Zip/Postal Code"
           />
@@ -236,7 +251,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
         </Box>
       </GridContainer>
       <GridContainerChild>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <TextInput
             name="addressLine1"
             label="Address Line 1"
@@ -247,8 +262,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               formik.touched.addressLine1 && Boolean(formik.errors.addressLine1)
             }
             style={{
-              width: "97.5%",
-              borderRadius: "5px",
+              width: '95.5%',
+              borderRadius: '5px',
             }}
             placeholder="Address Line 1"
           />
@@ -258,7 +273,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
         </Box>
       </GridContainerChild>
       <GridContainerChild>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <TextInput
             name="addressLine2"
             label="Address Line 2 (Optional)"
@@ -269,8 +284,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               formik.touched.addressLine2 && Boolean(formik.errors.addressLine2)
             }
             style={{
-              width: "97.5%",
-              borderRadius: "5px",
+              width: '95.5%',
+              borderRadius: '5px',
             }}
             placeholder="Address Line 2 (Optional)"
           />
