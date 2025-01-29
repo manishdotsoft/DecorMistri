@@ -1,17 +1,15 @@
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { updateFormDataAsync } from '../../store/reducers/action';
-
 import { Typography, Stepper, Step, StepLabel } from '@mui/material';
 import { useCreateProject } from './CreateProject.hook';
-
 import ProjectProviderInformation from './Layout/ProjectProviderInformation/ProjectProviderInformation';
 import PropertyDetails from './Layout/PropertyDetails/PropertyDetails';
 import PropertyLocationDetails from './Layout/PropertyLocationDetails/PropertyLocationDetails';
 import ClientDetails from './Layout/ClientDetails/ClientDetails';
 import TimelineSchedule from './Layout/TimelineSchedule/TimelineSchedule';
 import FinancialDetails from './Layout/FinancialDetails/FinancialDetails';
-
 import {
   CompletedStepIcon,
   MainBox,
@@ -20,7 +18,7 @@ import {
   StyledPageContent,
   StyledSidebar,
 } from './CreateProject.style';
-import { useEffect, useRef } from 'react';
+import Toaster from '../../atoms/Toaster/Toaster';
 
 const CreateProject = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,6 +29,9 @@ const CreateProject = () => {
     handleNext,
     handlePrevious,
     pages,
+    handleSubmit,
+    showToast,
+    handleToasterClose,
   } = useCreateProject();
   const previousFormData = useRef(formData);
 
@@ -149,12 +150,13 @@ const CreateProject = () => {
             }
             handleNext={handleNext}
             handlePrevious={handlePrevious}
+            handleSubmit={() => handleSubmit(formData)}
           />
         );
-      default:
-        return (
-          <Typography>Please select a valid page from the sidebar.</Typography>
-        );
+      // default:
+      //   return (
+      //     <Typography>Please select a valid page from the sidebar.</Typography>
+      //   );
     }
   };
 
@@ -194,6 +196,16 @@ const CreateProject = () => {
         </Typography>
         {renderPageContent()}
       </StyledPageContent>
+      {showToast ? (
+        <Toaster
+          message={'Project Created SuccessFully'}
+          severity={'success'}
+          open={showToast}
+          onClose={handleToasterClose}
+        />
+      ) : (
+        ''
+      )}
     </MainBox>
   );
 };

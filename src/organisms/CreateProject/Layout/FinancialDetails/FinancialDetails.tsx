@@ -10,13 +10,13 @@ import Button from '../../../../atoms/Button/Button';
 import RadioButton from '../../../../atoms/RadioButton/RadioButton';
 import useFinancialDetails from './FinancialDetails.hook';
 import TextInput from '../../../../atoms/TextInput/TextInput';
-import { useNavigate } from 'react-router-dom';
 
 const FinancialDetails = ({
   data,
   updateData,
   handleNext,
   handlePrevious,
+  handleSubmit,
 }: {
   currentPageIndex: number;
   data: {
@@ -29,6 +29,7 @@ const FinancialDetails = ({
   }) => void;
   handleNext: () => void;
   handlePrevious: () => void;
+  handleSubmit: () => void; // Accept handleSubmit as a prop
 }) => {
   const { formik } = useFinancialDetails({
     data,
@@ -40,8 +41,6 @@ const FinancialDetails = ({
     { label: 'Yes', value: 'yes' },
     { label: 'No', value: 'no' },
   ];
-
-  const navigate = useNavigate();
 
   return (
     <Container>
@@ -99,21 +98,18 @@ const FinancialDetails = ({
           onClick={handlePrevious}
           variant="contained"
         />
-        {/* <Link to={'/dashboard'}> */}
         <Button
           title="Submit"
           color="primary"
           onClick={() => {
             formik.handleSubmit();
             if (formik.isValid && formik.dirty) {
-              navigate('/dashboard');
+              handleSubmit();
             }
           }}
           variant="contained"
           disabled={!formik.isValid || !formik.dirty}
         />
-
-        {/* </Link> */}
       </ButtonSection>
     </Container>
   );

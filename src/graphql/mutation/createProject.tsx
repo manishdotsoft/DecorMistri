@@ -12,11 +12,11 @@ interface IAddressData {
 
 interface IPropertyData {
   size: number;
-  type: string;
-  category: string;
+  designType: string;
+  subCategory: string;
   phases: number;
   comments: string;
-  address_data: IAddressData;
+  property_address: IAddressData;
 }
 
 interface IClientData {
@@ -29,12 +29,12 @@ interface IClientData {
   state: string;
   country: string;
   zip_code: string;
-  property_data: IPropertyData;
+  property_info: IPropertyData;
 }
 
 interface ICreateProjectInput {
-  project_id: number;
-  interior_designer_name: string;
+  projectId: number;
+  interiorDesignerName: string;
   email: string;
   phone: string;
   website: string;
@@ -44,11 +44,11 @@ interface ICreateProjectInput {
   zip_code: string;
   address1: string;
   address2?: string;
-  start_date: string;
-  end_date: string;
+  startDate: string;
+  endDate: string;
   budget: number;
-  payment: boolean;
-  client_data: IClientData;
+  paymentReceived: boolean;
+  client_info: IClientData;
 }
 
 interface ICreateProjectProps {
@@ -59,8 +59,8 @@ export const CREATE_PROJECT = gql`
   mutation CreateProject($input: CreateProjectInput!) {
     createProject(input: $input) {
       _id
-      project_id
-      interior_designer_name
+      projectId
+      interiorDesignerName
       email
       phone
       website
@@ -70,11 +70,11 @@ export const CREATE_PROJECT = gql`
       zip_code
       address1
       address2
-      start_date
-      end_date
+      startDate
+      endDate
       budget
-      payment
-      client_data {
+      paymentReceived
+      client_info {
         name
         email
         phone
@@ -84,13 +84,13 @@ export const CREATE_PROJECT = gql`
         state
         country
         zip_code
-        property_data {
+        property_info {
           size
-          type
-          category
+          designType
+          subCategory
           phases
           comments
-          address_data {
+          property_address {
             address1
             address2
             city
@@ -105,14 +105,24 @@ export const CREATE_PROJECT = gql`
 `;
 
 export const createProjectMutation = async (params: ICreateProjectProps) => {
+  const token = localStorage.getItem('authTocken');
   try {
-    const { data } = await client.mutate({
+    const { data, errors } = await client.mutate({
       mutation: CREATE_PROJECT,
       variables: params,
+      context: {
+        headers: {
+          Authorization: `${token}`,
+        },
+      },
     });
+
+    if (errors) {
+      console.error('GraphQL Errors:', errors);
+    }
     return { data };
   } catch (error) {
-    console.error('Error in createProjectMutation', error);
+    console.error('Error in createProjectMutation:', error);
     return { error };
   }
 };
