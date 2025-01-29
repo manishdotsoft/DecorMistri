@@ -6,6 +6,7 @@ const LiveProjects = () => {
       sx={{
         display: 'flex',
         gap: '20px',
+        justifyContent: 'center',
         flexWrap: 'wrap',
       }}
     >

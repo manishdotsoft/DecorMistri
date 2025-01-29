@@ -23,3 +23,4 @@ export const DECOR_LOGO_COLOR = '#C7148A';
 export const SELECT_BORDER = '#16cf5d';
 export const BOX_SHADOW = '#0000004c';
 export const BOX_SHADOW2 = '#00000033';
+export const BOX_SHADOW3 = '#91919133';

@@ -9,14 +9,22 @@ import {
   StyledTypography,
   Title,
   Title2,
-  // LabelProfile,
+  LabelProfile,
   Logo,
   GridContainer,
   InputLabelItem,
-  // MainUploadImage,
-  // ProfileUploadImg,
-  // CameraBtn,
-  // InputImg,
+  MainUploadImage,
+  ProfileUploadImg,
+  InputImg,
+  Header,
+  Line,
+  HeaderTitle,
+  A,
+  HeaderProfileIcon,
+  FirstTitleSec,
+  TitleSec,
+  SetFormikError,
+  ButtonSec,
 } from './UpdateProfile.style';
 
 import TextInput from '../../atoms/TextInput/TextInput';
@@ -24,14 +32,15 @@ import TextInput from '../../atoms/TextInput/TextInput';
 import Button from '../../atoms/Button/Button';
 import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
 import { useUpdateProfile } from './UpdateProfile.hook';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import SelectOption from '../../atoms/Select/SelectOption';
 
-// import ProfileImage from '../../assets/images/updateProfile/man.svg';
-// import uploadCamera from '../../assets/images/updateProfile/camera.svg';
+import ProfileImage from '../../assets/images/updateProfile/man.svg';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '../../thems/primitives/theme';
 import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+import fonts from '../../thems/primitives/fonts';
+import ProgressBar from './ProgressBar';
 
 const designOptions = [
   {
@@ -102,68 +111,49 @@ const designOptions = [
 ];
 
 const UpdateProfile: React.FC = () => {
-  const { formik, isAnyFieldEmpty } = useUpdateProfile();
+  const { formik, isAnyFieldEmpty, progress } = useUpdateProfile();
+
+  const [profileImage, setProfileImage] = useState<string>(ProfileImage);
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
+    }
+  };
 
   const navigate = useNavigate();
 
   return (
     <StyledContainer>
       <MainFlex>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderBottom: '1px solid #dfdfdf',
-            padding: '20px',
-          }}
-        >
+        <Header>
           <StyledHeader>
             <Logo src={LogoDecor} alt="Decord-mistri Logo" />
-            <Box
-              sx={{
-                width: '1px',
-                display: 'flex',
-                flexDirection: 'row',
-                background: '#a8a8a8',
-                height: '30px',
-              }}
-            ></Box>
-            <Typography sx={{ fontWeight: '600' }}>Update Profile</Typography>
+            <Line />
+            <HeaderTitle>Update Profile</HeaderTitle>
           </StyledHeader>
-          <Box
-            sx={{
-              height: '40px',
-              width: '40px',
-              background: '#e82295',
-              color: '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '50%',
-            }}
-          >
-            <Typography variant="h6" sx={{ fontSize: '1.1rem' }}>
-              A
-            </Typography>
-          </Box>
-        </Box>
+          <HeaderProfileIcon>
+            <A>A</A>
+          </HeaderProfileIcon>
+        </Header>
         <ChildFlex>
-          <Box sx={{ marginBottom: '50px' }}>
-            <Title>Update your Profile</Title>
-            <Title2>
-              Lorem ipsum is placeholder text commonly used in the graphic,
-              print, and publishing industries
-            </Title2>
-          </Box>
+          <FirstTitleSec>
+            <TitleSec>
+              <Title>Update your Account</Title>
+              <Title2>
+                Lorem ipsum is placeholder text commonly used in the graphic,
+                print, and publishing industries
+              </Title2>
+            </TitleSec>
+            <Box>
+              <ProgressBar progress={progress} />
+            </Box>
+          </FirstTitleSec>
           <StyledForm onSubmit={formik.handleSubmit}>
-            {/* Name Field */}
-            {/* <ParentInputBox> */}
             <GridContainer>
-              {/* Business Name Field */}
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}
-              >
+              <SetFormikError>
                 <InputLabelItem>Business Name</InputLabelItem>
                 <TextInput
                   name="businessName"
@@ -180,18 +170,16 @@ const UpdateProfile: React.FC = () => {
                     borderRadius: '8px',
                     padding: '15px',
                   }}
-                  placeholder="Business Name"
+                  placeholder="Enter your business name"
                 />
                 {formik.errors.businessName && formik.touched.businessName && (
                   <StyledTypography>
                     {formik.errors.businessName}
                   </StyledTypography>
                 )}
-              </Box>
+              </SetFormikError>
               {/* Professional Category and Design Type Expertise Fields */}
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}
-              >
+              <SetFormikError>
                 <SelectOption
                   name="professionalCategory"
                   label="Professional Category"
@@ -211,6 +199,7 @@ const UpdateProfile: React.FC = () => {
                     formik.touched.professionalCategory &&
                     Boolean(formik.errors.professionalCategory)
                   }
+                  defaultOption={'Select Category you are belong to'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -223,10 +212,8 @@ const UpdateProfile: React.FC = () => {
                       {formik.errors.professionalCategory}
                     </StyledTypography>
                   )}
-              </Box>
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}
-              >
+              </SetFormikError>
+              <SetFormikError>
                 <SelectOption
                   name="designTypeExpertise"
                   label="Design Type"
@@ -244,6 +231,7 @@ const UpdateProfile: React.FC = () => {
                     formik.touched.designTypeExpertise &&
                     Boolean(formik.errors.designTypeExpertise)
                   }
+                  defaultOption={'Select your expertise in design type'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -256,12 +244,9 @@ const UpdateProfile: React.FC = () => {
                       {formik.errors.designTypeExpertise}
                     </StyledTypography>
                   )}
-              </Box>
+              </SetFormikError>
 
-              {/* Style Type Expertise and State Fields */}
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}
-              >
+              <SetFormikError>
                 <SelectOption
                   name="styleTypeExpertise"
                   label="Style Type"
@@ -279,6 +264,7 @@ const UpdateProfile: React.FC = () => {
                     formik.touched.styleTypeExpertise &&
                     Boolean(formik.errors.styleTypeExpertise)
                   }
+                  defaultOption={'Select Style type'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -291,11 +277,9 @@ const UpdateProfile: React.FC = () => {
                       {formik.errors.styleTypeExpertise}
                     </StyledTypography>
                   )}
-              </Box>
+              </SetFormikError>
 
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}
-              >
+              <SetFormikError>
                 <SelectOption
                   name="state"
                   label="State"
@@ -310,6 +294,7 @@ const UpdateProfile: React.FC = () => {
                   }}
                   onBlur={formik.handleBlur}
                   error={formik.touched.state && Boolean(formik.errors.state)}
+                  defaultOption={'Select State'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -319,11 +304,9 @@ const UpdateProfile: React.FC = () => {
                 {formik.errors.state && formik.touched.state && (
                   <StyledTypography>{formik.errors.state}</StyledTypography>
                 )}
-              </Box>
+              </SetFormikError>
               {/* City and Location Fields */}
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}
-              >
+              <SetFormikError>
                 {/* <InputLabelItem>City Name</InputLabelItem> */}
                 <SelectOption
                   name="city"
@@ -338,6 +321,7 @@ const UpdateProfile: React.FC = () => {
                   }}
                   onBlur={formik.handleBlur}
                   error={formik.touched.city && Boolean(formik.errors.city)}
+                  defaultOption={'Select City'}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -347,10 +331,8 @@ const UpdateProfile: React.FC = () => {
                 {formik.errors.city && formik.touched.city && (
                   <StyledTypography>{formik.errors.city}</StyledTypography>
                 )}
-              </Box>
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}
-              >
+              </SetFormikError>
+              <SetFormikError>
                 <InputLabelItem>Google Map link</InputLabelItem>
                 <TextInput
                   name="location"
@@ -366,62 +348,92 @@ const UpdateProfile: React.FC = () => {
                     borderRadius: '8px',
                     padding: '15px',
                   }}
-                  placeholder="Location"
+                  placeholder="Share your google map location"
                 />
                 {formik.errors.location && formik.touched.location && (
                   <StyledTypography>{formik.errors.location}</StyledTypography>
                 )}
+              </SetFormikError>
+              <Box>
+                <InputLabelItem>Upload photo / your firm logo</InputLabelItem>
+                <MainUploadImage>
+                  {/* Profile Image */}
+                  <LabelProfile htmlFor="profile-upload">
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <ProfileUploadImg src={profileImage} alt="Profile" />
+                      <InputLabelItem>
+                        Upload formats JPG, PNG, BMP and GIF
+                      </InputLabelItem>
+                    </Box>
+                    <InputImg
+                      id="profile-upload"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      aria-label="Upload Profile Picture"
+                    />
+                  </LabelProfile>
+                </MainUploadImage>
+                <ButtonSec>
+                  <Button
+                    title="Skip"
+                    type="button"
+                    color="primary"
+                    variant="contained"
+                    style={{
+                      width: '100%',
+                      fontFamily: fonts.primary,
+                      borderRadius: '8px',
+                      padding: '25px',
+                      background: theme.palette.grey[300],
+                      color: theme.palette.grey[700],
+                      fontSize: theme.typography.caption.fontSize,
+                      fontWeight: 'bold',
+                    }}
+                    buttonWarraparStyle={{
+                      width: '50%',
+                    }}
+                    onClick={() => {
+                      navigate('/dashboard');
+                    }}
+                  />
+
+                  <Button
+                    title="Continue"
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    disabled={isAnyFieldEmpty || formik.isSubmitting}
+                    style={{
+                      backgroundColor: isAnyFieldEmpty
+                        ? theme.palette.grey[500]
+                        : DECOR_LOGO_COLOR,
+                      cursor:
+                        isAnyFieldEmpty || formik.isSubmitting
+                          ? 'not-allowed'
+                          : 'pointer',
+                      width: '100%',
+
+                      borderRadius: '8px',
+                      padding: '25px',
+                    }}
+                    buttonWarraparStyle={{
+                      width: '50%',
+                    }}
+                    onClick={() => {
+                      navigate('/dashboard');
+                    }}
+                  />
+                </ButtonSec>
               </Box>
-              <Box></Box>
             </GridContainer>
-            {/* Spacing before Buttons */}
-
-            <Box sx={{ marginTop: '20px' }} />
-
-            {/* Buttons */}
-
-            <Button
-              title="Skip for Later"
-              type="button"
-              color="primary"
-              variant="contained"
-              style={{
-                width: '100%',
-                borderRadius: theme.shape?.borderRadius || '5px',
-                padding: '25px',
-                border: `1.8px solid ${DECOR_LOGO_COLOR}`,
-                background: theme.palette.common.white,
-                color: theme.palette.text.primary,
-                fontSize: theme.typography.caption.fontSize,
-              }}
-              onClick={() => {
-                navigate('/dashboard');
-              }}
-            />
-
-            <Button
-              title="Update now"
-              type="submit"
-              color="primary"
-              variant="contained"
-              disabled={isAnyFieldEmpty || formik.isSubmitting}
-              style={{
-                backgroundColor: isAnyFieldEmpty
-                  ? theme.palette.grey[500]
-                  : DECOR_LOGO_COLOR,
-                cursor:
-                  isAnyFieldEmpty || formik.isSubmitting
-                    ? 'not-allowed'
-                    : 'pointer',
-                width: '100%',
-                borderRadius: '5px',
-                padding: '25px',
-              }}
-              onClick={() => {
-                navigate('/dashboard');
-              }}
-            />
-            {/* </ParentInputBox> */}
           </StyledForm>
         </ChildFlex>
       </MainFlex>

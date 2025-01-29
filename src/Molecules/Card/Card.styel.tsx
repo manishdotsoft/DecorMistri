@@ -14,6 +14,7 @@ export const Button = styled('button')({
 export const CardContainer = styled('div')({
   marginBottom: '30px',
   boxShadow: `0 0 10px 1px ${theme.palette.grey[400]}`,
+  minWidth: '280px',
 });
 
 export const HeadingTitle = styled(Typography)({

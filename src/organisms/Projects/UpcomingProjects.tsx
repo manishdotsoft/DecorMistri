@@ -7,6 +7,7 @@ const UpcomeingProjets = () => {
       sx={{
         display: 'flex',
         gap: '20px',
+        justifyContent: 'center',
         flexWrap: 'wrap',
       }}
     >
