@@ -274,10 +274,6 @@ export const Collaboration = styled(Typography)(() => ({
 
 export const ParentInputBox = styled('div')(() => ({
   marginRight: '49px',
-
-  [theme.breakpoints.down('sm')]: {
-    marginRight: '20px',
-  },
 }));
 
 export const ModalBox = styled(Box)(() => ({

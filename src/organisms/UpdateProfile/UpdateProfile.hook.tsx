@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { setUpdateProfile } from '../../store/reducers/updateProfileSlice';
 import { updateProfileSchema } from './SchemasUpdateProfile';
-import { createUserMutation } from '../../graphql/mutation/createUser';
+import { updateProfileMutation } from '../../graphql/mutation/updateProfile';
 
-export interface SignUpFormValues {
+export interface UpdateProfileFormValues {
   businessName: string;
   professionalCategory: string;
   designTypeExpertise: string;
@@ -17,7 +17,7 @@ export interface SignUpFormValues {
   location: string;
 }
 
-const initialValues: SignUpFormValues = {
+const initialValues: UpdateProfileFormValues = {
   businessName: '',
   professionalCategory: '',
   designTypeExpertise: '',
@@ -35,10 +35,13 @@ export const useUpdateProfile = () => {
   const [toasterOpen, setToasterOpen] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  const handleSubmit = async (values: SignUpFormValues, actions: any) => {
+  const handleSubmit = async (
+    values: UpdateProfileFormValues,
+    actions: FormikHelpers<UpdateProfileFormValues>
+  ) => {
     try {
       dispatch(setUpdateProfile(values));
-      const response = await createUserMutation({
+      const response = await updateProfileMutation({
         input: {
           businessName: values.businessName,
           professionalCategory: values.professionalCategory,
@@ -63,7 +66,7 @@ export const useUpdateProfile = () => {
     }
   };
 
-  const formik = useFormik<SignUpFormValues>({
+  const formik = useFormik<UpdateProfileFormValues>({
     initialValues,
     validationSchema: updateProfileSchema,
     onSubmit: handleSubmit,

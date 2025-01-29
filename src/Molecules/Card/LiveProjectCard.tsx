@@ -3,10 +3,13 @@ import { useProjectMenu } from './card.hook';
 import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
 import { menuItems } from '../../Data/CardData';
-import { LiveProjectData } from '../../Data/CardData';
+import { ProjectData } from '../../Data/CardData';
 
 const LiveProject: React.FC = () => {
-  const [projectData, setProjectData] = useState(LiveProjectData);
+  const [projectData, setProjectData] = useState(
+    ProjectData.filter((project) => project.status === 'Live')
+  );
+
   const {
     anchorEl,
     currentProject,
@@ -22,6 +25,16 @@ const LiveProject: React.FC = () => {
     );
   };
 
+  const handleUpdateStatus = (projectValue: string, newStatus: string) => {
+    setProjectData((prevData) =>
+      prevData.map((project) =>
+        project.value === projectValue
+          ? { ...project, status: newStatus }
+          : project
+      )
+    );
+  };
+
   return (
     <>
       {projectData.map((project, index) => (
@@ -33,9 +46,9 @@ const LiveProject: React.FC = () => {
           onMenuClose={handleMenuClose}
           onMenuOptionClick={handleOptionClick}
           menuAnchorEl={anchorEl}
-          buttonTitle="Move to Live"
-          buttonColor="secondary"
-          buttonAction={() => console.log(`Moving ${project.value} to Live`)}
+          buttonTitle="OPEN PROJECT"
+          buttonColor="primary"
+          buttonAction={() => handleUpdateStatus(project.value, 'Complete')}
         />
       ))}
 
@@ -48,9 +61,10 @@ const LiveProject: React.FC = () => {
         showDropdown={showDropdown}
         onDeleteProject={handleDeleteProject}
         currentProject={currentProject}
-        onUpdateStatus={handleOptionClick}
+        onUpdateStatus={handleUpdateStatus}
       />
     </>
   );
 };
+
 export default LiveProject;

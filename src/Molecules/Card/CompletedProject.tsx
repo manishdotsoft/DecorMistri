@@ -3,10 +3,13 @@ import { useProjectMenu } from './card.hook';
 import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
 import { menuItems } from '../../Data/CardData';
-import { CompleteProjectData } from '../../Data/CardData';
+import { ProjectData } from '../../Data/CardData';
 
 const CompliteProject: React.FC = () => {
-  const [projectData, setProjectData] = useState(CompleteProjectData);
+  const [projectData, setProjectData] = useState(
+    ProjectData.filter((project) => project.status === 'Complete')
+  );
+
   const {
     anchorEl,
     currentProject,
@@ -22,6 +25,15 @@ const CompliteProject: React.FC = () => {
     );
   };
 
+  const handleUpdateStatus = (projectValue: string, newStatus: string) => {
+    setProjectData((prevData) =>
+      prevData.map((project) =>
+        project.value === projectValue
+          ? { ...project, status: newStatus }
+          : project
+      )
+    );
+  };
   return (
     <>
       {projectData.map((project, index) => (
@@ -48,7 +60,7 @@ const CompliteProject: React.FC = () => {
         showDropdown={showDropdown}
         onDeleteProject={handleDeleteProject}
         currentProject={currentProject}
-        onUpdateStatus={handleOptionClick}
+        onUpdateStatus={handleUpdateStatus}
       />
     </>
   );
