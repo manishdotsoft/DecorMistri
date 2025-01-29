@@ -1,7 +1,8 @@
 import { Box } from '@mui/material';
-import UpcomingProjectCard from '../../Molecules/Card/UpcomingProject';
-import LiveProject from '../../Molecules/Card/LiveProjectCard';
+
 import CompletedProjects from './CompletedProjects';
+import LiveProjects from './LiveProject';
+import UpcomeingProjets from './UpcomingProjects';
 const AllProjects = () => {
   return (
     <Box
@@ -9,11 +10,12 @@ const AllProjects = () => {
         display: 'flex',
         gap: '20px',
         flexWrap: 'wrap',
+        justifyContent: 'center',
       }}
     >
-      <LiveProject />
+      <LiveProjects />
       <CompletedProjects />
-      <UpcomingProjectCard />
+      <UpcomeingProjets />
     </Box>
   );
 };

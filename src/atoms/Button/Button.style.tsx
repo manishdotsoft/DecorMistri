@@ -1,7 +1,8 @@
 import { styled } from '@mui/material';
 import { theme as customTheme } from '../../thems/primitives/theme';
+import palette from '../../thems/primitives/palette';
 
-const theme: any = customTheme;
+const theme = customTheme;
 
 interface StyledButtonProps {
   loading?: boolean;
@@ -21,7 +22,7 @@ const StyledButton = styled('button')<StyledButtonProps>(
     color:
       variant === 'outlined'
         ? color || theme.palette.primary.main
-        : theme.palette.white.main,
+        : palette.white.main,
     border:
       variant === 'outlined'
         ? `1px solid ${color || theme.palette.primary.main}`
@@ -46,7 +47,7 @@ const DisabledButton = styled('button')({
   width: 240,
   height: 40,
   backgroundColor: theme.palette.grey[400],
-  color: theme.palette.white.main,
+  color: palette.white.main,
   borderRadius: 24,
   display: 'flex',
   justifyContent: 'center',

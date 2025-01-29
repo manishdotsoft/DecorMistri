@@ -224,7 +224,7 @@ export const LabelProfile = styled('label')(() => ({
   cursor: 'pointer',
 }));
 
-export const MainUploadImage = styled(Box)(({ theme }) => ({
+export const MainUploadImage = styled(Box)(() => ({
   marginTop: '3px',
 }));
 

@@ -8,6 +8,7 @@ const CompletedProjects = () => {
         display: 'flex',
         gap: '20px',
         flexWrap: 'wrap',
+        justifyContent: 'center',
       }}
     >
       <CompletedProject />
