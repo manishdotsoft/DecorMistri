@@ -6,7 +6,8 @@ const UpcomeingProjets = () => {
     <Box
       sx={{
         display: 'flex',
-        gap: '40px',
+        gap: '20px',
+        justifyContent: 'center',
         flexWrap: 'wrap',
       }}
     >

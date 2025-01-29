@@ -17,6 +17,7 @@ interface ButtonProps {
   fontWeight?: string;
   letterSpacing?: string;
   type?: 'button' | 'reset' | 'submit';
+  buttonWarraparStyle?: React.CSSProperties;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -33,11 +34,17 @@ const Button: React.FC<ButtonProps> = ({
   buttonFontSize,
   fontWeight,
   letterSpacing,
+  buttonWarraparStyle,
 }: ButtonProps) => {
   const theme = useTheme();
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      sx={{ ...buttonWarraparStyle }}
+    >
       {disabled ? (
         <DisabledButton style={{ ...style }} disabled>
           <Typography

@@ -13,8 +13,4 @@ export const updateProfileSchema = Yup.object({
   state: Yup.string().required('Please select a state'),
   city: Yup.string().required('Please select a city'),
   location: Yup.string().required('Please select a location'),
-  // subcategories: Yup.array()
-  //   .of(Yup.string())
-  //   .min(1, "Please select at least one subcategory")
-  //   .required("Subcategories are required"),
 });

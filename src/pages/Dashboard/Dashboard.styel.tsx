@@ -33,7 +33,7 @@ export const BoxItem = styled(Box)({
 
 export const BoxContainer = styled(Box)({
   display: 'flex',
-  flexWrap: 'wrap',
+  flexWrap: 'nowrap',
   justifyContent: 'space-between',
   gap: '10px',
 });

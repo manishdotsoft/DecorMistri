@@ -10,7 +10,7 @@ const AllProjects = () => {
         display: 'flex',
         gap: '20px',
         flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
       }}
     >
       <LiveProjects />
