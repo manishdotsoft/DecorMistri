@@ -358,6 +358,7 @@ const UpdateProfile: React.FC = () => {
                 <InputLabelItem>Upload photo / your firm logo</InputLabelItem>
                 <MainUploadImage>
                   {/* Profile Image */}
+
                   <LabelProfile htmlFor="profile-upload">
                     <Box
                       sx={{
