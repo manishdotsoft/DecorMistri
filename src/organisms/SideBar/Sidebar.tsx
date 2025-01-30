@@ -22,7 +22,6 @@ const Sidebar = () => {
     <SidebarContainer>
       <SidebarSection>
         <TitleTypography variant="h6">DECORDMISTRI</TitleTypography>
-
         <LinkBox>
           <LinkTypography onClick={() => handleClick('dashboard')}>
             Dashboard
@@ -31,7 +30,6 @@ const Sidebar = () => {
             Calendar View
           </LinkTypography>
         </LinkBox>
-
         {/* Dropdown for Create & Manage */}
         <StyledAccordion>
           <StyledAccordionSummary expandIcon={<ExpandIconStyled />}>

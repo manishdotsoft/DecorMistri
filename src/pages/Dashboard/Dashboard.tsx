@@ -18,11 +18,8 @@ const Dashboard = () => {
   return (
     <Box sx={{ padding: 4 }}>
       <Titel variant="h4">Project Dashboard</Titel>
-
       <HeaderFilter />
-
-      <Drivider></Drivider>
-
+      <Drivider />
       <BoxContainer>
         <BoxItem>
           <Cards>
