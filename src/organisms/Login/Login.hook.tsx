@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { loginUserMutation } from '../../graphql/mutation/loginUser';
@@ -36,6 +36,7 @@ export const useLoginLogic = () => {
     setOpenModal(true);
     navigate('/updateProfile');
   };
+  let token = '';
   const handleSubmit = async (values: LoginFormValues) => {
     try {
       const response = await loginUserMutation({
@@ -46,6 +47,8 @@ export const useLoginLogic = () => {
       });
 
       if (response && response?.data?.loginUser?.token) {
+        token = response?.data?.loginUser?.token;
+        localStorage.setItem('authTocken', token);
         setMessage(response?.data?.loginUser?.message || 'Login successful!');
         setOpenModal(true);
       } else {
@@ -62,6 +65,13 @@ export const useLoginLogic = () => {
       setShowToaster(true);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      navigate('/dashboard');
+    }
+  }, [token]);
 
   return {
     dispatch,
