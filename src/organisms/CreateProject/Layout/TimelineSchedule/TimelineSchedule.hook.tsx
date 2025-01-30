@@ -101,11 +101,11 @@ const useTimelineSchedule = ({
     onSubmit: (values) => {
       updateData({
         page: 'timelineSchedule',
-        data: {
-          ...values,
-          startDate: values.startDate ? values.startDate.toISOString() : null,
-          endDate: values.endDate ? values.endDate.toISOString() : null,
-        },
+        // data: {
+        ...values,
+        startDate: values.startDate ? values.startDate.toISOString() : null,
+        endDate: values.endDate ? values.endDate.toISOString() : null,
+        // },
       });
       handleNext();
     },

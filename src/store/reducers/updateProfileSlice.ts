@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UpdateProfileState {
   businessName: string;
 }
 
 const initialState: UpdateProfileState = {
-  businessName: '',
+  businessName: "",
 };
 
 const updateProfileSlice = createSlice({
-  name: 'updateProfile',
+  name: "updateProfile",
   initialState,
   reducers: {
     setUpdateProfile: (state, action: PayloadAction<UpdateProfileState>) => {

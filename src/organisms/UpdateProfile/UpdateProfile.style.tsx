@@ -213,6 +213,19 @@ export const Title2 = styled(Typography)(({ theme }) => ({
 // Profile picture
 
 export const LabelProfile = styled('label')(() => ({
+  // display: 'flex',
+  // justifyContent: 'center',
+  // width: '100%',
+  // height: '140px',
+  // borderRadius: '8px',
+  // overflow: 'hidden',
+  // border: `1px solid ${ICON_COLOR}`,
+  // borderStyle: 'dashed',
+  cursor: 'pointer',
+}));
+
+export const MainUploadImage = styled(Box)(() => ({
+  marginTop: '3px',
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
@@ -222,10 +235,6 @@ export const LabelProfile = styled('label')(() => ({
   border: `1px solid ${ICON_COLOR}`,
   borderStyle: 'dashed',
   cursor: 'pointer',
-}));
-
-export const MainUploadImage = styled(Box)(() => ({
-  marginTop: '3px',
 }));
 
 export const ProfileUploadImg = styled('img')(() => ({

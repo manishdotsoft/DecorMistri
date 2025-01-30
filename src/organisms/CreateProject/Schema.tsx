@@ -10,8 +10,10 @@ export const projectProviderSchema = Yup.object({
     .required('Interior Designer Name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   phoneNumber: Yup.string()
-    .min(10)
-    .max(25)
+    .matches(
+      /^[6-9]\d{9}$/,
+      'Phone number must be 10 digits and start with 6, 7, 8, or 9'
+    )
     .required('Phone Number is required'),
   city: Yup.string().required('City is required'),
   country: Yup.string().required('Country is required'),
@@ -27,8 +29,10 @@ export const clientDetailsSchema = Yup.object().shape({
     .email('Invalid email')
     .required('Client Email ID is required'),
   phoneNumber: Yup.string()
-    .min(10)
-    .max(25)
+    .matches(
+      /^[6-9]\d{9}$/,
+      'Phone number must be 10 digits and start with 6, 7, 8, or 9'
+    )
     .required('Phone Number is required'),
   city: Yup.string().required('City is required'),
   country: Yup.string().required('Country is required'),

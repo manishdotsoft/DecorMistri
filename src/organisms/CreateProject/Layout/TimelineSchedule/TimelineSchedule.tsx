@@ -33,7 +33,7 @@ const TimelineSchedule: React.FC<timelineScheduleProps> = ({
     updateData,
     handleNext,
   });
-
+  console.log(formik.values, 'value');
   return (
     <Container>
       <Typography variant="h6">Timeline Schedule</Typography>
