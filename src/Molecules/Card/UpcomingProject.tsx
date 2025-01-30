@@ -1,14 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setProjects,
+  updateProjectStatus,
+} from '../../store/reducers/projectDataSlice';
+import { RootState } from '../../store/store';
+
 import { useProjectMenu } from './card.hook';
 import ProjectCard from './ProjectCard/projectCard';
 import ProjectMenu from './ThreeDotMenu/Menu';
-import { ProjectData } from '../../Data/CardData';
 import { menuItems } from '../../Data/CardData';
 
+import { ProjectData } from '../../Data/CardData';
+import { ProjectStatus } from '../../store/reducers/projectDataSlice';
+
 const UpcomingProjectCard: React.FC = () => {
-  const [projectData, setProjectData] = useState(
-    ProjectData.filter((project) => project.status === 'Upcoming')
+  const dispatch = useDispatch();
+  const projects = useSelector((state: RootState) =>
+    state.projects.projects.filter(
+      (project) => project.status === ProjectStatus.Upcoming
+    )
   );
+  useEffect(() => {
+    dispatch(setProjects(ProjectData));
+  }, [dispatch]);
 
   const {
     anchorEl,
@@ -18,27 +34,37 @@ const UpcomingProjectCard: React.FC = () => {
     handleMenuClose,
     handleOptionClick,
   } = useProjectMenu();
+  const handleUpdateStatus = (
+    projectValue: string,
+    newStatus: ProjectStatus
+  ) => {
+    dispatch(updateProjectStatus({ projectValue, newStatus }));
+  };
 
   const handleDeleteProject = (projectValue: string) => {
-    setProjectData((prevData) =>
-      prevData.filter((project) => project.value !== projectValue)
-    );
+    console.log('Delete project:', projectValue);
   };
 
   return (
     <>
-      {projectData.map((project, index) => (
+      {projects.map((project, index) => (
         <ProjectCard
           key={index}
           project={project}
-          menuItems={menuItems}
+          menuItems={['Change Status', 'Delete Project']}
           onMenuOpen={handleMenuOpen}
           onMenuClose={handleMenuClose}
-          onMenuOptionClick={handleOptionClick}
+          onMenuOptionClick={(option) => {
+            if (option === 'Change Status') {
+              handleUpdateStatus(project.value, ProjectStatus.Live);
+            }
+          }}
           menuAnchorEl={anchorEl}
-          buttonTitle="Detail View"
-          buttonColor="secondary"
-          buttonAction={() => console.log(`Moving ${project.value} to Live`)}
+          buttonTitle="OPEN PROJECT"
+          buttonColor="primary"
+          buttonAction={() =>
+            handleUpdateStatus(project.value, ProjectStatus.Live)
+          }
         />
       ))}
 
@@ -51,7 +77,9 @@ const UpcomingProjectCard: React.FC = () => {
         showDropdown={showDropdown}
         onDeleteProject={handleDeleteProject}
         currentProject={currentProject}
-        onUpdateStatus={handleOptionClick}
+        onUpdateStatus={(projectValue, newStatus) =>
+          handleUpdateStatus(projectValue, newStatus as ProjectStatus)
+        }
       />
     </>
   );

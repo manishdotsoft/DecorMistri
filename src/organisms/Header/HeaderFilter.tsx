@@ -10,7 +10,7 @@ import {
 } from './HeaderFilter.style';
 import Button from '../../atoms/Button/Button';
 import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
-// import { theme } from '../../thems/primitives/theme';
+
 import palette from '../../thems/primitives/palette';
 import { Link } from 'react-router-dom';
 
@@ -36,6 +36,7 @@ const HeaderFilter = () => {
         <SelectOption
           name="designType"
           label="Design Type"
+          defaultOption="Select Design"
           options={designOptions.map(({ value, label }) => ({
             value,
             label,
@@ -47,6 +48,7 @@ const HeaderFilter = () => {
           <SelectOption
             name="subcategory"
             label="Subcategory"
+            defaultOption="Select Category"
             options={subcategoryOptions}
             value={selectedSubcategory}
             onChange={handleSubcategoryChange}
@@ -55,6 +57,7 @@ const HeaderFilter = () => {
         <SelectOption
           name="date"
           label="Date"
+          defaultOption=" Date"
           options={dateOptions.map(({ value, label }) => ({
             value,
             label,
