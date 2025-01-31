@@ -19,6 +19,7 @@ interface TextInputProps {
   helperText?: string;
   type?: React.HTMLInputTypeAttribute;
   placeholder?: string;
+  eyePadding?: React.CSSProperties;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -31,6 +32,7 @@ const TextInput: React.FC<TextInputProps> = ({
   helperText,
   type,
   placeholder,
+  eyePadding,
 }) => {
   const { isPasswordVisible, togglePasswordVisibility } =
     usePasswordVisibility();
@@ -54,7 +56,7 @@ const TextInput: React.FC<TextInputProps> = ({
           type={inputType}
           style={{
             ...style,
-            paddingRight: '30px',
+            ...eyePadding,
           }}
           placeholder={placeholder}
         />

@@ -141,7 +141,11 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
             label="Phone Number"
             type="number"
             value={formik.values.phoneNumber}
-            onChange={formik.handleChange}
+            onChange={(e) => {
+              if (e.target.value.length <= 10) {
+                formik.handleChange(e);
+              }
+            }}
             onBlur={formik.handleBlur}
             error={
               formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
@@ -180,6 +184,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               { value: 'country1', label: 'Country 1' },
               { value: 'country2', label: 'Country 2' },
             ]}
+            defaultOption={'Select Country'}
             value={formik.values.country}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -199,6 +204,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               { value: 'state1', label: 'State 1' },
               { value: 'state2', label: 'State 2' },
             ]}
+            defaultOption={'Select State'}
             value={formik.values.state}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -218,6 +224,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               { value: 'city1', label: 'City 1' },
               { value: 'city2', label: 'City 2' },
             ]}
+            defaultOption={'Select City'}
             value={formik.values.city}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}

@@ -275,7 +275,7 @@ export const Collaboration = styled(Typography)(() => ({
 }));
 
 export const ParentInputBox = styled('div')(() => ({
-  marginRight: '49px',
+  // marginRight: '49px',
 }));
 
 export const ModalBox = styled(Box)(() => ({

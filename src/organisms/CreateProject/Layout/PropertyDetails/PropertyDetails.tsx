@@ -158,6 +158,7 @@ const PropertyDetails = ({
               value,
               label,
             }))}
+            defaultOption={'Select Design Type'}
             value={formik.values.designType}
             onChange={(e) => {
               // Clear subcategories when designType is changed

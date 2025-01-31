@@ -54,6 +54,7 @@ const PropertyLocationDetails = ({
               { value: 'country1', label: 'Country 1' },
               { value: 'country2', label: 'Country 2' },
             ]}
+            defaultOption={'Select Count'}
             value={formik.values.country}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -73,6 +74,7 @@ const PropertyLocationDetails = ({
               { value: 'state1', label: 'State 1' },
               { value: 'state2', label: 'State 2' },
             ]}
+            defaultOption={'Select State'}
             value={formik.values.state}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -93,6 +95,7 @@ const PropertyLocationDetails = ({
               { value: 'city1', label: 'City 1' },
               { value: 'city2', label: 'City 2' },
             ]}
+            defaultOption={'Select City'}
             value={formik.values.city}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}

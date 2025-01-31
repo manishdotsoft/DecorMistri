@@ -17,7 +17,10 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
       backgroundColor: DECOR_LOGO_COLOR,
     },
     width: '230px',
-    margin: '5px 0',
+
+    '@media(max-width: 744px)': {
+      width: '100%',
+    },
   };
 
   return (
