@@ -1,18 +1,15 @@
-import { Box } from '@mui/material';
-import LiveProjectCard from '../../Molecules/Card/LiveProjectCard';
-import NotConfirmedCard from '../../Molecules/Card/NotConfirmed';
-import UpcomeingProjetsCard from '../../Molecules/Card/UpcomingProject';
-import CompleteProjectCard from '../../Molecules/Card/CompletedProject';
+import { Box, Divider } from '@mui/material';
 import {
-  Divider,
+  Divider as Drivider,
   HeadingItem,
   BoxItem,
   BoxContainer,
-  Drivider,
   Titel,
   Cards,
 } from './Dashboard.styel';
 import HeaderFilter from '../../organisms/Header/HeaderFilter';
+import ProjectCard from '../../Molecules/Card/ProjectCard/Card';
+import { ProjectStatus } from '../../store/reducers/projectDataSlice';
 
 const Dashboard = () => {
   return (
@@ -25,28 +22,37 @@ const Dashboard = () => {
           <Cards>
             <HeadingItem variant="h6">Live Project</HeadingItem>
           </Cards>
-          <LiveProjectCard />
+          <ProjectCard status={ProjectStatus.Live} buttonTitle="OPEN PROJECT" />
         </BoxItem>
         <Divider />
         <BoxItem>
           <Cards>
             <HeadingItem variant="h6">Upcoming Project</HeadingItem>
           </Cards>
-          <UpcomeingProjetsCard />
+          <ProjectCard
+            status={ProjectStatus.Upcoming}
+            buttonTitle="Move to Live"
+          />
         </BoxItem>
         <Divider />
         <BoxItem>
           <Cards>
             <HeadingItem variant="h6">Completed Project</HeadingItem>
           </Cards>
-          <CompleteProjectCard />
+          <ProjectCard
+            status={ProjectStatus.Complete}
+            buttonTitle="Detail View"
+          />
         </BoxItem>
         <Divider />
         <BoxItem>
           <Cards>
             <HeadingItem variant="h6">Not Confirmed</HeadingItem>
           </Cards>
-          <NotConfirmedCard />
+          <ProjectCard
+            status={ProjectStatus.NotConfirmed}
+            buttonTitle="Update Status"
+          />
         </BoxItem>
       </BoxContainer>
     </Box>

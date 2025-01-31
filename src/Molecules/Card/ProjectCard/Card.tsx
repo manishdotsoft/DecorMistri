@@ -1,25 +1,26 @@
 import React, { useEffect } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setProjects,
   updateProjectStatus,
-} from '../../store/reducers/projectDataSlice';
-import { RootState } from '../../store/store';
+} from '../../../store/reducers/projectDataSlice';
+import { RootState } from '../../../store/store';
+import { useProjectMenu } from '../card.hook';
+import ProjectCard from '../ProjectCard/projectCard';
+import ProjectMenu from '../ThreeDotMenu/Menu';
+import { menuItems } from '../../../Data/CardData';
+import { ProjectData } from '../../../Data/CardData';
+import { ProjectStatus } from '../../../store/reducers/projectDataSlice';
 
-import { useProjectMenu } from './card.hook';
-import ProjectCard from './ProjectCard/projectCard';
-import ProjectMenu from './ThreeDotMenu/Menu';
-import { menuItems } from '../../Data/CardData';
-import { ProjectData } from '../../Data/CardData';
-import { ProjectStatus } from '../../store/reducers/projectDataSlice';
+interface ProjectCardProps {
+  status: ProjectStatus;
+  buttonTitle: 'string';
+}
 
-const LiveProject: React.FC = () => {
+const Card: React.FC<ProjectCardProps> = ({ status, buttonTitle }) => {
   const dispatch = useDispatch();
   const projects = useSelector((state: RootState) =>
-    state.projects.projects.filter(
-      (project) => project.status === ProjectStatus.Live
-    )
+    state.projects.projects.filter((project) => project.status === status)
   );
 
   useEffect(() => {
@@ -40,11 +41,7 @@ const LiveProject: React.FC = () => {
     handleMenuOpen,
     handleMenuClose,
     handleOptionClick,
-  } = useProjectMenu();
-
-  const handleDeleteProject = (projectValue: string) => {
-    console.log('Delete project:', projectValue);
-  };
+  } = useProjectMenu(handleUpdateStatus);
 
   return (
     <>
@@ -55,13 +52,9 @@ const LiveProject: React.FC = () => {
           menuItems={['Change Status', 'Delete Project']}
           onMenuOpen={handleMenuOpen}
           onMenuClose={handleMenuClose}
-          onMenuOptionClick={(option) => {
-            if (option === 'Change Status') {
-              handleUpdateStatus(project.value, ProjectStatus.Complete);
-            }
-          }}
+          onMenuOptionClick={handleOptionClick}
           menuAnchorEl={anchorEl}
-          buttonTitle="OPEN PROJECT"
+          buttonTitle={buttonTitle}
           buttonColor="primary"
           buttonAction={() =>
             handleUpdateStatus(project.value, ProjectStatus.Complete)
@@ -76,14 +69,12 @@ const LiveProject: React.FC = () => {
         onOptionClick={handleOptionClick}
         menuItems={menuItems}
         showDropdown={showDropdown}
-        onDeleteProject={handleDeleteProject}
+        onDeleteProject={() => console.log('Delete project:', currentProject)}
         currentProject={currentProject}
-        onUpdateStatus={(projectValue, newStatus) =>
-          handleUpdateStatus(projectValue, newStatus as ProjectStatus)
-        }
+        onUpdateStatus={handleUpdateStatus}
       />
     </>
   );
 };
 
-export default LiveProject;
+export default Card;

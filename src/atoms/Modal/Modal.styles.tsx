@@ -22,11 +22,12 @@ export const ModalTitle = styled(Typography)(() => ({
   fontSize: typeset.h6?.fontSize || '20px',
   marginBottom: '20px',
   fontFamily: fonts.primary,
+  width: '300px',
 }));
 
 export const ModalButtons = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'center',
-  gap: '20px',
+
   marginTop: '20px',
 }));

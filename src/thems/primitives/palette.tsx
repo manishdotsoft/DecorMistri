@@ -88,6 +88,7 @@ const palette = {
     500: PRIMARY_500,
     hover: PRIMARY_HOVER,
     card: PRIMARY_CARD,
+    cardLight: PRIMARY_LIGHT,
   },
   secondary: {
     main: SECONDARY_COLOR,

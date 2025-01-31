@@ -120,7 +120,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         onOptionClick={onMenuOptionClick}
         menuItems={menuItems}
         onDeleteProject={onMenuClose}
-        onStatusChange={handleStatusChange} // Pass the status change handler to ProjectMenu
+        onStatusChange={handleStatusChange}
       />
     </CardContainer>
   );

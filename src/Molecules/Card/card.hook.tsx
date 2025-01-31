@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { ProjectStatus } from '../../store/reducers/projectDataSlice';
 
-export const useProjectMenu = () => {
+export const useProjectMenu = (
+  handleUpdateStatus: (projectValue: string, newStatus: ProjectStatus) => void
+) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [currentProject, setCurrentProject] = useState<string | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -11,6 +14,7 @@ export const useProjectMenu = () => {
   ) => {
     setAnchorEl(event.currentTarget);
     setCurrentProject(projectValue);
+    setShowDropdown(true);
   };
 
   const handleMenuClose = () => {
@@ -22,8 +26,13 @@ export const useProjectMenu = () => {
   const handleOptionClick = (option: string) => {
     if (option === 'Change Status') {
       setShowDropdown((prev) => !prev);
+    } else if (option === 'Delete Project') {
+      console.log(`Delete project: ${currentProject}`);
     } else {
-      console.log(`${option} selected for project: ${currentProject}`);
+      const newStatus = option as ProjectStatus;
+      if (currentProject) {
+        handleUpdateStatus(currentProject, newStatus);
+      }
       setShowDropdown(false);
     }
   };
