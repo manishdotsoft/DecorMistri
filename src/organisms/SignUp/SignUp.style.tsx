@@ -61,7 +61,7 @@ export const StyledForm = styled('form')(() => ({
 
 export const ParentInputBox = styled('div')(() => ({
   fontFamily: fonts.primary,
-  marginRight: '49px',
+  // marginRight: '49px',
   '@media(max-width: 468px)': {},
 }));
 

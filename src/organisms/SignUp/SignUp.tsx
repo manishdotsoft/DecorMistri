@@ -121,6 +121,7 @@ const SignUpForm: React.FC = () => {
                   marginTop: '10px',
                   marginBottom: '6px',
                 }}
+                eyePadding={{ paddingRight: '30px' }}
                 placeholder="Enter your name"
               />
               {formik.errors.name && formik.touched.name && (
@@ -147,9 +148,10 @@ const SignUpForm: React.FC = () => {
                   marginTop: '10px',
                   marginBottom: '6px',
                 }}
-                inputProps={{
-                  maxLength: 10,
-                }}
+                // inputProps={{
+                //   maxLength: 10,
+                // }}
+                eyePadding={{ paddingRight: '30px' }}
                 placeholder="Enter your phone number"
               />
 
@@ -172,6 +174,7 @@ const SignUpForm: React.FC = () => {
                   marginTop: '10px',
                   marginBottom: '6px',
                 }}
+                eyePadding={{ paddingRight: '30px' }}
                 placeholder="Enter your email address"
               />
               {formik.errors.email && formik.touched.email && (
@@ -200,6 +203,7 @@ const SignUpForm: React.FC = () => {
                       marginTop: '10px',
                       marginBottom: '6px',
                     }}
+                    eyePadding={{ paddingRight: '30px' }}
                   />
                   {formik.errors.password && formik.touched.password && (
                     <StyledTypography>

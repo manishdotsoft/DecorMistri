@@ -25,6 +25,7 @@ import {
   TitleSec,
   SetFormikError,
   ButtonSec,
+  ButtonContainer,
 } from './UpdateProfile.style';
 
 import TextInput from '../../atoms/TextInput/TextInput';
@@ -166,7 +167,7 @@ const UpdateProfile: React.FC = () => {
                     Boolean(formik.errors.businessName)
                   }
                   style={{
-                    width: '90%',
+                    width: '100%',
                     borderRadius: '8px',
                     padding: '15px',
                   }}
@@ -344,7 +345,7 @@ const UpdateProfile: React.FC = () => {
                     formik.touched.location && Boolean(formik.errors.location)
                   }
                   style={{
-                    width: '90%',
+                    width: '100%',
                     borderRadius: '8px',
                     padding: '15px',
                   }}
@@ -354,7 +355,7 @@ const UpdateProfile: React.FC = () => {
                   <StyledTypography>{formik.errors.location}</StyledTypography>
                 )}
               </SetFormikError>
-              <Box>
+              <ButtonContainer>
                 <InputLabelItem>Upload photo / your firm logo</InputLabelItem>
                 <MainUploadImage>
                   {/* Profile Image */}
@@ -392,7 +393,7 @@ const UpdateProfile: React.FC = () => {
                       width: '100%',
                       fontFamily: fonts.primary,
                       borderRadius: '8px',
-                      padding: '25px',
+                      padding: '26px',
                       background: theme.palette.grey[300],
                       color: theme.palette.grey[700],
                       fontSize: theme.typography.caption.fontSize,
@@ -433,7 +434,7 @@ const UpdateProfile: React.FC = () => {
                     }}
                   />
                 </ButtonSec>
-              </Box>
+              </ButtonContainer>
             </GridContainer>
           </StyledForm>
         </ChildFlex>

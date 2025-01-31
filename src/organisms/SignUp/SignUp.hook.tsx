@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/store";
-import { setSignUpData } from "../../store/reducers/signUpSlice";
-import { signUpSchema } from "./SchemasSignup";
-import { createUserMutation } from "../../graphql/mutation/createUser";
-import palette from "../../thems/primitives/palette";
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { setSignUpData } from '../../store/reducers/signUpSlice';
+import { signUpSchema } from './SchemasSignup';
+import { createUserMutation } from '../../graphql/mutation/createUser';
+import palette from '../../thems/primitives/palette';
 
 export interface SignUpFormValues {
   name: string;
@@ -16,10 +16,10 @@ export interface SignUpFormValues {
 }
 
 const initialValues: SignUpFormValues = {
-  name: "",
-  email: "",
-  password: "",
-  phone: "",
+  name: '',
+  email: '',
+  password: '',
+  phone: '',
 };
 
 export const useSignUp = () => {
@@ -42,12 +42,12 @@ export const useSignUp = () => {
       if (response.data) {
         setToasterOpen(true);
         actions.resetForm();
-        navigate("/success");
+        navigate('/success');
       } else if (response.error) {
-        console.error("Error creating user:", response.error);
+        console.error('Error creating user:', response.error);
       }
     } catch (error) {
-      console.error("Unexpected error:", error);
+      console.error('Unexpected error:', error);
     } finally {
       actions.setSubmitting(false);
     }
@@ -64,7 +64,7 @@ export const useSignUp = () => {
   };
 
   const isAnyFieldEmpty = Object.values(formik.values).some(
-    (value) => typeof value === "string" && value.trim() === ""
+    (value) => typeof value === 'string' && value.trim() === ''
   );
 
   const calculatePasswordStrength = (password: string): number => {
@@ -79,15 +79,15 @@ export const useSignUp = () => {
   const getStrengthLabel = (strength: number) => {
     switch (strength) {
       case 1:
-        return { label: "Weak", color: palette.error.main };
+        return { label: 'Weak', color: palette.error.main };
       case 2:
-        return { label: "Fair", color: palette.warning.real };
+        return { label: 'Fair', color: palette.warning.real };
       case 3:
-        return { label: "Good", color: palette.success.midSuccess };
+        return { label: 'Good', color: palette.success.midSuccess };
       case 4:
-        return { label: "Strong", color: palette.success.fullSuccess };
+        return { label: 'Strong', color: palette.success.fullSuccess };
       default:
-        return { label: "Very Weak", color: palette.grey[500] };
+        return { label: 'Very Weak', color: palette.grey[500] };
     }
   };
 

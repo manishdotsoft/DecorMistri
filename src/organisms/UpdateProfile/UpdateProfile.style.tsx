@@ -17,9 +17,6 @@ export const StyledContainer = styled('div')(() => ({
   alignItems: 'center',
   minHeight: '92vh',
   backgroundColor: palette.white.main,
-
-  padding: '16px',
-  '@media(max-width: 468px)': {},
 }));
 
 export const MainFlex = styled('div')(() => ({
@@ -85,14 +82,25 @@ export const HeaderProfileIcon = styled(Box)(() => ({
   borderRadius: '50%',
 }));
 
-export const FirstTitleSec = styled(Box)(() => ({
+export const FirstTitleSec = styled(Box)(({ theme }) => ({
   marginBottom: '60px',
   display: 'flex',
   justifyContent: 'space-between',
+
+  [theme.breakpoints.down('sm')]: {
+    display: 'block',
+    marginBottom: '30px',
+  },
 }));
 
-export const TitleSec = styled(Box)(() => ({
+export const TitleSec = styled(Box)(({ theme }) => ({
   width: '60%',
+
+  [theme.breakpoints.down('sm')]: {
+    marginTop: '25px',
+    width: '100%',
+    marginBottom: '20px',
+  },
 }));
 
 export const StyledForm = styled('form')(() => ({
@@ -102,6 +110,7 @@ export const SetFormikError = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   gap: '2px',
+  width: '100%',
 }));
 
 export const Logo = styled('img')(() => ({
@@ -114,20 +123,32 @@ export const ChildFlex = styled('div')(({ theme }) => ({
   margin: '0 auto',
   width: '55%',
   flexDirection: 'column',
-  overflow: 'hidden',
   fontFamily: fonts.primary,
   height: '100%',
+  [theme.breakpoints.down('lg')]: {
+    width: '70%',
+  },
   [theme.breakpoints.down('md')]: {
-    width: '85%',
+    width: '90%',
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    padding: '0px',
   },
 }));
-export const GridContainer = styled(Box)({
+
+export const GridContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
   columnGap: '20px',
   rowGap: '15px',
+  gridTemplateColumns: '1fr 1fr',
   width: '100%',
-});
+
+  [theme.breakpoints.down('sm')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
+
 export const GridContainerChild = styled(Box)({
   display: 'grid',
   gridTemplateColumns: '1fr',
@@ -213,14 +234,6 @@ export const Title2 = styled(Typography)(({ theme }) => ({
 // Profile picture
 
 export const LabelProfile = styled('label')(() => ({
-  // display: 'flex',
-  // justifyContent: 'center',
-  // width: '100%',
-  // height: '140px',
-  // borderRadius: '8px',
-  // overflow: 'hidden',
-  // border: `1px solid ${ICON_COLOR}`,
-  // borderStyle: 'dashed',
   cursor: 'pointer',
 }));
 
@@ -259,4 +272,11 @@ export const ButtonSec = styled(Box)(() => ({
   justifyContent: 'center',
   width: '100%',
   marginTop: '10px',
+}));
+export const ButtonContainer = styled(Box)(() => ({
+  marginBottom: '0px',
+
+  [theme.breakpoints.down('sm')]: {
+    marginBottom: '40px',
+  },
 }));
