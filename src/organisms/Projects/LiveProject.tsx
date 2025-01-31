@@ -1,5 +1,7 @@
 import { Box } from '@mui/material';
-import LiveProject from '../../Molecules/Card/LiveProjectCard';
+import Card from '../../Molecules/Card/ProjectCard/Card';
+import { ProjectStatus } from '../../store/reducers/projectDataSlice';
+
 const LiveProjects = () => {
   return (
     <Box
@@ -10,7 +12,7 @@ const LiveProjects = () => {
         flexWrap: 'wrap',
       }}
     >
-      <LiveProject />
+      <Card status={ProjectStatus.Live} buttonTitle="OPEN PROJECT" />
     </Box>
   );
 };

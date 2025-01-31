@@ -1,32 +1,17 @@
-export enum ProjectStatus {
-  Complete = 'Complete',
-  NotConfirmed = 'NotConfirmed',
-  Upcoming = 'Upcoming',
-  Live = 'Live',
-}
-
-export interface ProjectDataType {
-  id: number;
-  value: string;
-  designType: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  completionPercentage: number;
-  status: string;
-}
-
+import {
+  ProjectStatus,
+  ProjectDataType,
+} from '../store/reducers/projectDataSlice';
 export const ProjectData: ProjectDataType[] = [
   {
     id: 1,
-
     value: 'Complete Project 1',
     designType: 'Residential',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 75,
-    status: 'Complete',
+    status: ProjectStatus.Complete,
   },
   {
     id: 2,
@@ -37,7 +22,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: 'Complete',
+    status: ProjectStatus.Complete,
   },
   {
     id: 3,
@@ -48,7 +33,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: 'Complete',
+    status: ProjectStatus.Complete,
   },
 
   {
@@ -60,7 +45,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: 'NotConfirmed',
+    status: ProjectStatus.NotConfirmed,
   },
   {
     id: 5,
@@ -71,7 +56,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: 'NotConfirmed',
+    status: ProjectStatus.NotConfirmed,
   },
   {
     id: 6,
@@ -82,7 +67,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: 'NotConfirmed',
+    status: ProjectStatus.NotConfirmed,
   },
 
   {
@@ -93,7 +78,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 75,
-    status: 'Upcoming',
+    status: ProjectStatus.Upcoming,
   },
   {
     id: 8,
@@ -104,7 +89,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: 'Upcoming',
+    status: ProjectStatus.Upcoming,
   },
   {
     id: 9,
@@ -115,7 +100,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: 'Upcoming',
+    status: ProjectStatus.Upcoming,
   },
 
   {
@@ -127,7 +112,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 75,
-    status: 'Live',
+    status: ProjectStatus.Live,
   },
   {
     id: 11,
@@ -138,7 +123,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: 'Live',
+    status: ProjectStatus.Live,
   },
   {
     id: 12,
@@ -149,7 +134,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: 'Live',
+    status: ProjectStatus.Live,
   },
   {
     id: 13,
@@ -160,7 +145,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: 'Live',
+    status: ProjectStatus.Live,
   },
   {
     id: 14,
@@ -171,7 +156,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: 'Complete',
+    status: ProjectStatus.Complete,
   },
   {
     id: 15,
@@ -182,7 +167,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: 'NotConfirmed',
+    status: ProjectStatus.NotConfirmed,
   },
   {
     id: 16,
@@ -193,7 +178,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: 'Upcoming',
+    status: ProjectStatus.Upcoming,
   },
 ];
 export const menuItems = [

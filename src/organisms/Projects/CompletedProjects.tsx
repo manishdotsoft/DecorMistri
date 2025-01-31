@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
-import CompletedProject from '../../Molecules/Card/CompletedProject';
+import Card from '../../Molecules/Card/ProjectCard/Card';
+import { ProjectStatus } from '../../store/reducers/projectDataSlice';
 
 const CompletedProjects = () => {
   return (
@@ -11,7 +12,7 @@ const CompletedProjects = () => {
         justifyContent: 'center',
       }}
     >
-      <CompletedProject />
+      <Card status={ProjectStatus.Complete} buttonTitle="Detail View" />
     </Box>
   );
 };

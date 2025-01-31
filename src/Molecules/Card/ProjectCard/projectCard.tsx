@@ -15,6 +15,7 @@ import {
   SuccessStatus,
 } from '../Card.styel';
 import ProjectMenu from '../ThreeDotMenu/Menu';
+import { ProjectStatus } from '../../../store/reducers/projectDataSlice';
 
 interface ProjectCardProps {
   project: {
@@ -37,6 +38,7 @@ interface ProjectCardProps {
   buttonTitle: string;
   buttonColor?: 'primary' | 'secondary' | 'default';
   buttonAction: () => void;
+  onUpdateStatus?: (projectValue: string, newStatus: ProjectStatus) => void; // Added onUpdateStatus prop
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -49,11 +51,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   buttonTitle,
   buttonColor = 'primary',
   buttonAction,
+  onUpdateStatus, // Destructuring onUpdateStatus prop
 }) => {
   const progressLabel =
     project.completionPercentage === 0
       ? 'Not Started'
       : `${project.completionPercentage}% Completed`;
+
+  const handleStatusChange = (status: ProjectStatus) => {
+    if (onUpdateStatus) {
+      onUpdateStatus(project.value, status); // Call onUpdateStatus function to update status
+    }
+  };
 
   return (
     <CardContainer>
@@ -111,6 +120,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         onOptionClick={onMenuOptionClick}
         menuItems={menuItems}
         onDeleteProject={onMenuClose}
+        onStatusChange={handleStatusChange}
       />
     </CardContainer>
   );
