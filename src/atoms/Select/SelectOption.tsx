@@ -24,6 +24,7 @@ interface SelectOptionProps {
   helperText?: string;
   labelFontSize?: string;
   defaultOption?: string;
+  containerMainStyle?: React.CSSProperties;
 }
 
 const SelectOption: React.FC<SelectOptionProps> = ({
@@ -37,11 +38,12 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   error,
   helperText,
   defaultOption,
+  containerMainStyle,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <ContainerMain>
+    <ContainerMain style={{ ...containerMainStyle }}>
       <InputLabelItem
         htmlFor={name}
         isFocused={isFocused}

@@ -29,7 +29,7 @@ export const StyledDateCalendar = styled(Box)(() => ({
   borderRadius: '8px',
   width: '100%',
   maxWidth: '800px',
-  height: '600px',
+  height: '500px',
 }));
 
 export const StyledInputSection = styled(Box)(() => ({

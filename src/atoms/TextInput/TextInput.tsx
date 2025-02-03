@@ -67,7 +67,7 @@ const TextInput: React.FC<TextInputProps> = ({
             aria-label="Toggle password visibility"
             style={{
               position: 'absolute',
-              right: '-40px',
+              right: '6px',
               top: '55%',
               transform: 'translateY(-50%)',
               background: 'transparent',
