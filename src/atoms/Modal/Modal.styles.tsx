@@ -14,6 +14,10 @@ export const ModalBox = styled(Box)(() => ({
   padding: '40px 20px',
   textAlign: 'center',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
 }));
 
 export const ModalTitle = styled(Typography)(() => ({

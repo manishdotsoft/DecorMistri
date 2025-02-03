@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setProjects,
@@ -11,16 +11,20 @@ import ProjectMenu from '../ThreeDotMenu/Menu';
 import { menuItems } from '../../../Data/CardData';
 import { ProjectData } from '../../../Data/CardData';
 import { ProjectStatus } from '../../../store/reducers/projectDataSlice';
+import { deleteProject } from '../../../store/reducers/projectDataSlice';
 
 interface ProjectCardProps {
   status: ProjectStatus;
-  buttonTitle: 'string';
+  buttonTitle: string;
 }
 
 const Card: React.FC<ProjectCardProps> = ({ status, buttonTitle }) => {
   const dispatch = useDispatch();
-  const projects = useSelector((state: RootState) =>
-    state.projects.projects.filter((project) => project.status === status)
+  const projects = useSelector((state: RootState) => state.projects.projects);
+
+  const filteredProjects = useMemo(
+    () => projects.filter((project) => project.status === status),
+    [projects, status]
   );
 
   useEffect(() => {
@@ -32,6 +36,9 @@ const Card: React.FC<ProjectCardProps> = ({ status, buttonTitle }) => {
     newStatus: ProjectStatus
   ) => {
     dispatch(updateProjectStatus({ projectValue, newStatus }));
+  };
+  const handleDeleteProject = (projectValue: string) => {
+    dispatch(deleteProject(projectValue));
   };
 
   const {
@@ -45,7 +52,7 @@ const Card: React.FC<ProjectCardProps> = ({ status, buttonTitle }) => {
 
   return (
     <>
-      {projects.map((project, index) => (
+      {filteredProjects.map((project, index) => (
         <ProjectCard
           key={index}
           project={project}
@@ -69,7 +76,7 @@ const Card: React.FC<ProjectCardProps> = ({ status, buttonTitle }) => {
         onOptionClick={handleOptionClick}
         menuItems={menuItems}
         showDropdown={showDropdown}
-        onDeleteProject={() => console.log('Delete project:', currentProject)}
+        onDeleteProject={handleDeleteProject}
         currentProject={currentProject}
         onUpdateStatus={handleUpdateStatus}
       />

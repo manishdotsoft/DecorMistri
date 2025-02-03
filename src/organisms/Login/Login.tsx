@@ -187,7 +187,7 @@ const LoginPage = () => {
           <ReusableModal
             open={openModal}
             onClose={handleModalClose}
-            title="Do you want to Update Your Profile?"
+            title="Do you want to update your profile?"
             buttons={[
               {
                 label: 'Skip',

@@ -12,7 +12,7 @@ const LiveProjects = () => {
         flexWrap: 'wrap',
       }}
     >
-      <Card status={ProjectStatus.Live} buttonTitle="OPEN PROJECT" />
+      <Card status={ProjectStatus.Live} buttonTitle=" Open  project" />
     </Box>
   );
 };

@@ -1,205 +1,141 @@
+import { JSX, useState } from 'react';
+
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import LayersIcon from '@mui/icons-material/Layers';
+import MarkunreadIcon from '@mui/icons-material/Markunread';
+import PersonIcon from '@mui/icons-material/Person';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import ArrowRightAltOutlinedIcon from '@mui/icons-material/ArrowRightAltOutlined';
+import SideBarHooks from './SideBar.Hooks';
 import {
   SidebarContainer,
   SidebarSection,
   ContentSection,
   LinkBox,
-  TitleTypography,
-  StyledAccordion,
-  StyledAccordionSummary,
-  StyledAccordionDetails,
   StyledTypography,
-  ExpandIconStyled,
   LinkTypography,
-} from './Sidebar.styel';
-import { Typography } from '@mui/material';
-import SideBarHooks from './SideBar.Hooks';
+  ToggleDiv,
+  IconsDiv,
+  AccordionBox,
+} from './Sidebar.style';
+import palette from '../../thems/primitives/palette';
+
+interface SidebarData {
+  title: string;
+  icon: JSX.Element;
+  options: string[];
+}
 
 const Sidebar = () => {
   const { content, handleClick, handleOptionClick, activeOption } =
     SideBarHooks();
 
+  const [openSection, setOpenSection] = useState<number | null>(null);
+  const [activeSection, setActiveSection] = useState<number | null>(null);
+  const SidebarData: SidebarData[] = [
+    {
+      title: 'Create & Manage',
+      icon: <EditCalendarIcon />,
+      options: ['Create Project', 'Create Task'],
+    },
+
+    {
+      title: 'Projects',
+      icon: <LayersIcon />,
+      options: [
+        'Live Projects',
+        'Upcoming Projects',
+        'Completed Projects',
+        'All Projects & Quotes',
+      ],
+    },
+    {
+      title: 'Chat & Inbox',
+      icon: <MarkunreadIcon />,
+      options: ['Core Chat Functionality', 'Inbox Management'],
+    },
+    {
+      title: 'User Management',
+      icon: <ManageAccountsIcon />,
+      options: ['Create User', 'Manage Users', 'User Permissions'],
+    },
+    {
+      title: 'My Profile',
+      icon: <PersonIcon />,
+      options: ['Profile Information', 'Business Details', 'Advanced Settings'],
+    },
+  ];
+
+  const toggleSection = (index: number) => {
+    setOpenSection(openSection === index ? null : index);
+    setActiveSection(index);
+  };
+
   return (
     <SidebarContainer>
       <SidebarSection>
-        <TitleTypography variant="h6">DECORDMISTRI</TitleTypography>
         <LinkBox>
           <LinkTypography onClick={() => handleClick('dashboard')}>
-            Dashboard
+            <DashboardIcon /> Dashboard
           </LinkTypography>
           <LinkTypography onClick={() => handleClick('Calendar View')}>
-            Calendar View
+            <CalendarMonthIcon /> Calendar View
           </LinkTypography>
         </LinkBox>
-        {/* Dropdown for Create & Manage */}
-        <StyledAccordion>
-          <StyledAccordionSummary expandIcon={<ExpandIconStyled />}>
-            <Typography>Create & Manage</Typography>
-          </StyledAccordionSummary>
-          <StyledAccordionDetails>
-            <StyledTypography
-              onClick={() => handleOptionClick('Create Project')}
-              style={{
-                fontWeight:
-                  activeOption === 'Create Project' ? 'bold' : 'normal',
-              }}
-            >
-              Create Project
-            </StyledTypography>
-            <StyledTypography
-              onClick={() => handleOptionClick('Create Task')}
-              style={{
-                fontWeight: activeOption === 'Create Task' ? 'bold' : 'normal',
-              }}
-            >
-              Create Task
-            </StyledTypography>
-          </StyledAccordionDetails>
-        </StyledAccordion>
 
-        <StyledAccordion>
-          <StyledAccordionSummary expandIcon={<ExpandIconStyled />}>
-            <Typography>Projects</Typography>
-          </StyledAccordionSummary>
-          <StyledAccordionDetails>
-            <StyledTypography
-              onClick={() => handleOptionClick('Live Projects')}
+        {SidebarData.map((section, index) => (
+          <div key={index}>
+            <ToggleDiv
+              onClick={() => toggleSection(index)}
               style={{
-                fontWeight:
-                  activeOption === 'Live Projects' ? 'bold' : 'normal',
+                fontWeight: activeSection === index ? 'bold' : 'normal',
+                color: activeSection === index ? 'black' : 'grey',
               }}
             >
-              Live Projects
-            </StyledTypography>
-            <StyledTypography
-              onClick={() => handleOptionClick('Upcoming Projects')}
-              style={{
-                fontWeight:
-                  activeOption === 'Upcoming Projects' ? 'bold' : 'normal',
-              }}
-            >
-              Upcoming Projects
-            </StyledTypography>
-            <StyledTypography
-              onClick={() => handleOptionClick('Completed Projects')}
-              style={{
-                fontWeight:
-                  activeOption === 'Completed Projects' ? 'bold' : 'normal',
-              }}
-            >
-              Completed Projects
-            </StyledTypography>
-            <StyledTypography
-              onClick={() => handleOptionClick('All Projects & Quotes')}
-              style={{
-                fontWeight:
-                  activeOption === 'All Projects & Quotes' ? 'bold' : 'normal',
-              }}
-            >
-              All Projects & Quotes
-            </StyledTypography>
-          </StyledAccordionDetails>
-        </StyledAccordion>
+              <IconsDiv>
+                {section.icon}
+                <div style={{ fontSize: '20px' }}>{section.title}</div>
+              </IconsDiv>
+              <KeyboardArrowDownIcon
+                style={{
+                  transform:
+                    openSection === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.3s ease',
+                }}
+              />
+            </ToggleDiv>
 
-        {/* Dropdown for Chat & Inbox */}
-        <StyledAccordion>
-          <StyledAccordionSummary expandIcon={<ExpandIconStyled />}>
-            <Typography>Chat & Inbox</Typography>
-          </StyledAccordionSummary>
-          <StyledAccordionDetails>
-            <StyledTypography
-              onClick={() => handleOptionClick('Core Chat Functionality')}
-              style={{
-                fontWeight:
-                  activeOption === 'Core Chat Functionality'
-                    ? 'bold'
-                    : 'normal',
-              }}
-            >
-              Core Chat Functionality
-            </StyledTypography>
-            <StyledTypography
-              onClick={() => handleOptionClick('Inbox Management')}
-              style={{
-                fontWeight:
-                  activeOption === 'Inbox Management' ? 'bold' : 'normal',
-              }}
-            >
-              Inbox Management
-            </StyledTypography>
-          </StyledAccordionDetails>
-        </StyledAccordion>
+            {openSection === index && (
+              <div style={{ paddingLeft: '20px' }}>
+                {section.options.map((option) => (
+                  <StyledTypography
+                    key={option}
+                    onClick={() => handleOptionClick(option)}
+                    style={{
+                      fontWeight: activeOption === option ? 'bold' : 'normal',
 
-        {/* Dropdown for User Management */}
-        <StyledAccordion>
-          <StyledAccordionSummary expandIcon={<ExpandIconStyled />}>
-            <Typography>User Management</Typography>
-          </StyledAccordionSummary>
-          <StyledAccordionDetails>
-            <StyledTypography
-              onClick={() => handleOptionClick('Create User')}
-              style={{
-                fontWeight: activeOption === 'Create User' ? 'bold' : 'normal',
-              }}
-            >
-              Create User
-            </StyledTypography>
-            <StyledTypography
-              onClick={() => handleOptionClick('Manage Users')}
-              style={{
-                fontWeight: activeOption === 'Manage Users' ? 'bold' : 'normal',
-              }}
-            >
-              Manage Users
-            </StyledTypography>
-            <StyledTypography
-              onClick={() => handleOptionClick('User Permissions')}
-              style={{
-                fontWeight:
-                  activeOption === 'User Permissions' ? 'bold' : 'normal',
-              }}
-            >
-              User Permissions
-            </StyledTypography>
-          </StyledAccordionDetails>
-        </StyledAccordion>
-
-        {/* Dropdown for My Profile */}
-        <StyledAccordion>
-          <StyledAccordionSummary expandIcon={<ExpandIconStyled />}>
-            <Typography>My Profile</Typography>
-          </StyledAccordionSummary>
-          <StyledAccordionDetails>
-            <StyledTypography
-              onClick={() => handleOptionClick('Profile Information')}
-              style={{
-                fontWeight:
-                  activeOption === 'Profile Information' ? 'bold' : 'normal',
-              }}
-            >
-              Profile Information
-            </StyledTypography>
-            <StyledTypography
-              onClick={() => handleOptionClick('Business Details')}
-              style={{
-                fontWeight:
-                  activeOption === 'Business Details' ? 'bold' : 'normal',
-              }}
-            >
-              Business Details
-            </StyledTypography>
-            <StyledTypography
-              onClick={() => handleOptionClick('Advanced Settings')}
-              style={{
-                fontWeight:
-                  activeOption === 'Advanced Settings' ? 'bold' : 'normal',
-              }}
-            >
-              Advanced Settings
-            </StyledTypography>
-          </StyledAccordionDetails>
-        </StyledAccordion>
+                      color:
+                        activeOption === option
+                          ? palette.decor.main
+                          : palette.grey.main,
+                    }}
+                  >
+                    <AccordionBox>
+                      <AddCircleOutlineOutlinedIcon sx={{ height: '20px' }} />
+                      {option}
+                    </AccordionBox>
+                    {activeOption === option && <ArrowRightAltOutlinedIcon />}
+                  </StyledTypography>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
       </SidebarSection>
-
       <ContentSection>{content}</ContentSection>
     </SidebarContainer>
   );

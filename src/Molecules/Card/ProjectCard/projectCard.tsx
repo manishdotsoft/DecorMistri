@@ -16,6 +16,7 @@ import {
 } from '../Card.styel';
 import ProjectMenu from '../ThreeDotMenu/Menu';
 import { ProjectStatus } from '../../../store/reducers/projectDataSlice';
+import palette from '../../../thems/primitives/palette';
 
 interface ProjectCardProps {
   project: {
@@ -38,7 +39,7 @@ interface ProjectCardProps {
   buttonTitle: string;
   buttonColor?: 'primary' | 'secondary' | 'default';
   buttonAction: () => void;
-  onUpdateStatus?: (projectValue: string, newStatus: ProjectStatus) => void; // Added onUpdateStatus prop
+  onUpdateStatus?: (projectValue: string, newStatus: ProjectStatus) => void;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -49,9 +50,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   onMenuOptionClick,
   menuAnchorEl,
   buttonTitle,
-  buttonColor = 'primary',
+
   buttonAction,
-  onUpdateStatus, // Destructuring onUpdateStatus prop
+  onUpdateStatus,
 }) => {
   const progressLabel =
     project.completionPercentage === 0
@@ -60,7 +61,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   const handleStatusChange = (status: ProjectStatus) => {
     if (onUpdateStatus) {
-      onUpdateStatus(project.value, status); // Call onUpdateStatus function to update status
+      onUpdateStatus(project.value, status);
     }
   };
 
@@ -102,11 +103,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <ButtonBox>
         <Button
           title={buttonTitle}
-          color={buttonColor}
           variant="contained"
           style={{
             width: '180px',
             borderRadius: '6px',
+            backgroundColor: palette.decor.main,
           }}
           onClick={buttonAction}
         />
