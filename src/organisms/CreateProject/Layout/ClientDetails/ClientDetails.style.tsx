@@ -9,7 +9,7 @@ export const Container = styled(Box)({
   padding: '20px',
   display: 'flex',
   flexDirection: 'column',
-  gap: '20px',
+  gap: '8px',
   color: palette.text.primary,
   fontFamily: typeset.fontFamily,
 });
@@ -57,7 +57,7 @@ export const GridContainer = styled(Box)({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   columnGap: '20px',
-  rowGap: '15px',
+  // rowGap: '15px',
   width: '100%',
 });
 export const GridContainerChild = styled(Box)({
@@ -67,3 +67,9 @@ export const GridContainerChild = styled(Box)({
   rowGap: '15px',
   width: '100%',
 });
+
+export const InputSection = styled(Typography)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2px',
+}));

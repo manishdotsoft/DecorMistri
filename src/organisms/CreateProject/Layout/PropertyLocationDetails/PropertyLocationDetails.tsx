@@ -6,7 +6,7 @@ import {
   ButtonSection,
   Container,
   GridContainer,
-  GridContainerChild,
+  // GridContainerChild,
   StyledTypography,
 } from './PropertyLocationDetails.style';
 import TextInput from '../../../../atoms/TextInput/TextInput';
@@ -69,7 +69,7 @@ const PropertyLocationDetails = ({
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <SelectOption
             name="state"
-            label="Province/State"
+            label="State"
             options={[
               { value: 'state1', label: 'State 1' },
               { value: 'state2', label: 'State 2' },
@@ -85,8 +85,7 @@ const PropertyLocationDetails = ({
             <StyledTypography>{formik.errors.state}</StyledTypography>
           )}
         </Box>
-      </GridContainer>
-      <GridContainer>
+
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <SelectOption
             name="city"
@@ -107,6 +106,7 @@ const PropertyLocationDetails = ({
           )}
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <label>Zip Code</label>
           <TextInput
             name="zip"
             label="ZIP/Code"
@@ -117,17 +117,16 @@ const PropertyLocationDetails = ({
             style={{
               width: '90%',
               borderRadius: '5px',
-              marginTop: '17px',
             }}
-            placeholder="ZIP/Code"
+            placeholder="Enter Zip Code"
           />
           {formik.errors.zip && formik.touched.zip && (
             <StyledTypography>{formik.errors.zip}</StyledTypography>
           )}
         </Box>
-      </GridContainer>
-      <GridContainerChild>
+
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <label>Address 1</label>
           <TextInput
             name="addressLine1"
             label="Address Line 1"
@@ -141,15 +140,15 @@ const PropertyLocationDetails = ({
               width: '95%',
               borderRadius: '5px',
             }}
-            placeholder="addressLine1"
+            placeholder="Enter your address"
           />
           {formik.errors.addressLine1 && formik.touched.addressLine1 && (
             <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
           )}
         </Box>
-      </GridContainerChild>
-      <GridContainerChild>
+
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <label>Address 2</label>
           <TextInput
             name="addressLine2"
             label="Address Line 2 (Optional)"
@@ -160,10 +159,11 @@ const PropertyLocationDetails = ({
               width: '95%',
               borderRadius: '5px',
             }}
-            placeholder="addressLine2"
+            placeholder="Enter your address"
           />
         </Box>
-      </GridContainerChild>
+      </GridContainer>
+
       {/* <TextField
         label="Address Line 2 (Optional)"
         variant="outlined"

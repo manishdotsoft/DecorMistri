@@ -309,7 +309,7 @@ const PropertyDetails = ({
           title="Next"
           color="primary"
           variant="contained"
-          disabled={!isFormValid() || formik.isSubmitting}
+          disabled={!isFormValid()}
           onClick={formik.submitForm}
         />
       </ButtonSection>

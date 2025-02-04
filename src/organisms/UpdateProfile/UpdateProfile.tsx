@@ -393,7 +393,7 @@ const UpdateProfile: React.FC = () => {
                       width: '100%',
                       fontFamily: fonts.primary,
                       borderRadius: '8px',
-                      padding: '26px',
+                      padding: '25px',
                       background: theme.palette.grey[300],
                       color: theme.palette.grey[700],
                       fontSize: theme.typography.caption.fontSize,

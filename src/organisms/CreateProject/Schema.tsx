@@ -15,11 +15,11 @@ export const projectProviderSchema = Yup.object({
       'Phone number must be 10 digits and start with 6, 7, 8, or 9'
     )
     .required('Phone Number is required'),
-  city: Yup.string().required('City is required'),
-  country: Yup.string().required('Country is required'),
+  // city: Yup.string().required('City is required'),
+  // country: Yup.string().required('Country is required'),
   state: Yup.string().required('Province/State is required'),
   addressLine1: Yup.string().required('Address Line 1 is required'),
-  zipCode: Yup.string().min(6).required('Zip/Postal Code is required'),
+  // zipCode: Yup.string().min(6).required('Zip/Postal Code is required'),
 });
 
 // ClientDetails Schema
@@ -35,7 +35,7 @@ export const clientDetailsSchema = Yup.object().shape({
     )
     .required('Phone Number is required'),
   city: Yup.string().required('City is required'),
-  country: Yup.string().required('Country is required'),
+  // country: Yup.string().required('Country is required'),
   state: Yup.string().required('Province/State is required'),
   zipCode: Yup.string().min(6).required('Zip/Postal Code is required'),
   addressLine1: Yup.string().required('Address Line 1 is required'),
