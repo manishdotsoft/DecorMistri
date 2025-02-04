@@ -1,11 +1,11 @@
-import { Box, Divider } from '@mui/material';
+import { Box } from '@mui/material';
 import {
-  Divider as Drivider,
+  Divider,
   HeadingItem,
   BoxItem,
   BoxContainer,
-  Titel,
   Cards,
+  DividerColumn,
 } from './Dashboard.styel';
 import HeaderFilter from '../../organisms/Header/HeaderFilter';
 import ProjectCard from '../../Molecules/Card/ProjectCard/Card';
@@ -13,38 +13,39 @@ import { ProjectStatus } from '../../store/reducers/projectDataSlice';
 
 const Dashboard = () => {
   return (
-    <Box sx={{ padding: 4 }}>
-      <Titel variant="h4">Project Dashboard</Titel>
+    <Box>
       <HeaderFilter />
-      <Drivider />
+      <Divider />
       <BoxContainer>
         <BoxItem>
           <Cards>
-            <HeadingItem variant="h6">Live Project</HeadingItem>
+            <HeadingItem variant="h6">Live </HeadingItem>
           </Cards>
-          <ProjectCard status={ProjectStatus.Live} buttonTitle="OPEN PROJECT" />
+          <ProjectCard status={ProjectStatus.Live} buttonTitle="Open Project" />
         </BoxItem>
-        <Divider />
+        <DividerColumn />
         <BoxItem>
           <Cards>
-            <HeadingItem variant="h6">Upcoming Project</HeadingItem>
+            <HeadingItem variant="h6">Upcoming </HeadingItem>
           </Cards>
           <ProjectCard
             status={ProjectStatus.Upcoming}
             buttonTitle="Move to Live"
           />
         </BoxItem>
-        <Divider />
+        <DividerColumn />
+
         <BoxItem>
           <Cards>
-            <HeadingItem variant="h6">Completed Project</HeadingItem>
+            <HeadingItem variant="h6">Completed </HeadingItem>
           </Cards>
           <ProjectCard
             status={ProjectStatus.Complete}
             buttonTitle="Detail View"
           />
         </BoxItem>
-        <Divider />
+        <DividerColumn />
+
         <BoxItem>
           <Cards>
             <HeadingItem variant="h6">Not Confirmed</HeadingItem>

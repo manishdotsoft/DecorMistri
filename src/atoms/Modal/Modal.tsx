@@ -50,10 +50,11 @@ const ReusableModal: React.FC<ReusableModalProps> = ({
               onClick={button.onClick}
               style={{
                 ...button.style,
-                padding: '8px 16px',
+                padding: '12px 16px',
                 margin: '0 8px',
                 border: 'none',
                 cursor: 'pointer',
+                textTransform: 'uppercase',
               }}
             >
               {button.label}

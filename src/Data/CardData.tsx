@@ -5,7 +5,7 @@ import {
 export const ProjectData: ProjectDataType[] = [
   {
     id: 1,
-    value: 'Complete Project 1',
+    value: 'Complete 1',
     designType: 'Residential',
     location: 'India',
     startDate: '2025-01-01',
@@ -16,7 +16,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 2,
 
-    value: 'Complete Project 2',
+    value: 'Complete 2',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
@@ -27,7 +27,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 3,
 
-    value: 'Complete Project 3',
+    value: 'Complete 3',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
@@ -72,7 +72,7 @@ export const ProjectData: ProjectDataType[] = [
 
   {
     id: 7,
-    value: 'Upcoming Project 1',
+    value: 'Upcoming  1',
     designType: 'Residential',
     location: 'India',
     startDate: '2025-01-01',
@@ -83,7 +83,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 8,
 
-    value: 'Upcoming Project 2',
+    value: 'Upcoming 2',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
@@ -94,7 +94,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 9,
 
-    value: 'Upcoming Project 3',
+    value: 'Upcoming 3',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
@@ -106,7 +106,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 10,
 
-    value: 'Live Project 1',
+    value: 'Live 1',
     designType: 'Residential',
     location: 'India',
     startDate: '2025-01-01',
@@ -117,7 +117,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 11,
 
-    value: 'Live Project 2',
+    value: 'Live 2',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
@@ -128,7 +128,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 12,
 
-    value: 'Live Project 3',
+    value: 'Live 3',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
@@ -139,7 +139,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 13,
 
-    value: 'Live Project 2',
+    value: 'Live 2',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
@@ -150,7 +150,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 14,
 
-    value: 'Complete Project 4',
+    value: 'Complete 4',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
@@ -172,7 +172,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 16,
 
-    value: 'Upcoming Project 4',
+    value: 'Upcoming 4',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',

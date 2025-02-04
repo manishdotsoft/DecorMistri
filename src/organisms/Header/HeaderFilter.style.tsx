@@ -18,9 +18,10 @@ export const FilterSection = styled('div')({
 export const ActionsSection = styled('div')({
   display: 'flex',
   justifyContent: 'center',
+  flexDirection: 'column',
   gap: '40px',
   alignItems: 'center',
-  padding: '20px',
+  padding: '20px 0px',
 });
 
 export const SearchContainer = styled('div')({
@@ -32,7 +33,7 @@ export const StyledSearchIcon = styled(SearchIcon)({
   color: theme.palette.grey[700],
   position: 'absolute',
   top: '10px',
-  right: '6px',
+  left: '6px',
 });
 
 export const StyledButton = styled(Button)({

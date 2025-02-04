@@ -13,7 +13,7 @@ const AllProjects = () => {
       }}
     >
       {/* Correct the prop name to 'status' */}
-      <Card status={ProjectStatus.Live} buttonTitle="OPEN PROJECT" />
+      <Card status={ProjectStatus.Live} buttonTitle="Open project" />
       <Card status={ProjectStatus.Complete} buttonTitle="Detail View" />
       <Card status={ProjectStatus.Upcoming} buttonTitle="Move to Live" />
     </Box>

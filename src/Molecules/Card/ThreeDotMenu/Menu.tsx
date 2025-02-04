@@ -5,6 +5,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ReusableModal from '../../../atoms/Modal/Modal';
 import palette from '../../../thems/primitives/palette';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { useDispatch } from 'react-redux';
+import { deleteProject } from '../../../store/reducers/projectDataSlice';
 
 interface ProjectMenuProps {
   anchorEl: null | HTMLElement;
@@ -22,13 +24,14 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
   open,
   onClose,
   menuItems,
-  onDeleteProject,
+
   currentProject,
   onUpdateStatus,
 }) => {
   const statusOptions = ['Live', 'Complete', 'Upcoming', 'Not confirmed'];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
@@ -44,7 +47,7 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
 
   const confirmDelete = () => {
     if (currentProject) {
-      onDeleteProject(currentProject);
+      dispatch(deleteProject(currentProject));
     }
     closeModal();
     onClose();
@@ -74,7 +77,9 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
     >
       {menuItems.map((item, index) => (
         <React.Fragment key={index}>
-          {item !== 'Change Status' && <StyledMenuItem>{item}</StyledMenuItem>}
+          {item !== 'Change Status' && item !== 'Delete Project' && (
+            <StyledMenuItem>{item}</StyledMenuItem>
+          )}
 
           {item === 'Delete Project' && (
             <>

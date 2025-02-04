@@ -3,12 +3,16 @@ import { Menu, MenuItem } from '@mui/material';
 import { theme } from '../../../thems/primitives/theme';
 import fonts from '../../../thems/primitives/fonts';
 
+import typeset from '../../../thems/primitives/typeset';
+import palette from '../../../thems/primitives/palette';
+
 export const StyledMenu = styled(Menu)(() => ({
   '& .MuiPaper-root': {
     borderRadius: '8px',
     padding: '8px 0',
-    minWidth: '200px',
+    minWidth: '232px',
     backgroundColor: theme.palette.background.paper,
+    boxShadow: 'none',
   },
 }));
 
@@ -17,6 +21,7 @@ export const StyledMenuItem = styled(MenuItem)(() => ({
   fontWeight: 'bold',
   color: theme.palette.text.primary,
   fontFamily: fonts.primary,
+
   padding: '10px 16px',
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
@@ -29,6 +34,17 @@ export const StatusButton = styled(Button)(() => ({
   border: 'none',
   marginBottom: '5px',
   fontWeight: 'bold',
+  padding: '0',
   fontFamily: fonts.primary,
   color: theme.palette.text.primary,
+  textTransform: 'inherit',
+  fontSize: typeset.body2.fontSize,
+  transition: 'all 0.3s ease-in-out',
+  width: '200px',
+  paddingLeft: '5px',
+  '&:hover': {
+    transform: 'scale(1.05)',
+    color: theme.palette.grey[50],
+    backgroundColor: palette.decor.main,
+  },
 }));
