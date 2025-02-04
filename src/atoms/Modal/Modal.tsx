@@ -13,9 +13,10 @@ interface ButtonConfig {
 interface ReusableModalProps {
   open: boolean;
   onClose: () => void;
-  title: string;
+  title?: string;
   buttons?: ButtonConfig[];
   showCloseIcon?: boolean;
+  children?: React.ReactNode;
 }
 
 const ReusableModal: React.FC<ReusableModalProps> = ({
@@ -24,6 +25,7 @@ const ReusableModal: React.FC<ReusableModalProps> = ({
   title,
   buttons = [],
   showCloseIcon = true,
+  children,
 }) => {
   return (
     <Modal open={open} onClose={onClose} aria-labelledby="modal-title">
@@ -43,6 +45,10 @@ const ReusableModal: React.FC<ReusableModalProps> = ({
           </IconButton>
         )}
         <ModalTitle id="modal-title">{title}</ModalTitle>
+
+        {/* Render the custom content passed through children */}
+        <div>{children}</div>
+
         <ModalButtons>
           {buttons.map((button, index) => (
             <button

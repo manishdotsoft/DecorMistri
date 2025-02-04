@@ -93,7 +93,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           value={project.completionPercentage}
           sx={{ marginTop: 2 }}
         />
-
         <SuccessStatus isStarted={project.completionPercentage > 0}>
           {progressLabel}
         </SuccessStatus>

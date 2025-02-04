@@ -14,7 +14,7 @@ import { ProjectStatus } from '../../../store/reducers/projectDataSlice';
 
 interface ProjectCardProps {
   status: ProjectStatus;
-  buttonTitle: 'string';
+  buttonTitle: string;
 }
 
 const Card: React.FC<ProjectCardProps> = ({ status, buttonTitle }) => {
