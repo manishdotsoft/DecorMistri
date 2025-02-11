@@ -1,47 +1,49 @@
+// import { styled } from '@mui/material/styles';
+// import { Box, ListItem, Button } from '@mui/material';
+// import palette from '../../thems/primitives/palette';
+
+// export const StyledContainer = styled(Box)(() => ({
+//   maxWidth: '800px',
+//   margin: 'auto',
+// }));
+
+// export const StyledTodoContainer = styled(Box)(({ theme }) => ({
+//   marginTop: '1rem',
+//   padding: '20px',
+//   backgroundColor: theme.palette.background.paper,
+//   borderRadius: '8px',
+//   boxShadow: theme.shadows[1],
+// }));
+
+// export const StyledListItem = styled(ListItem)(({ theme }) => ({
+//   backgroundColor: theme.palette.background.paper,
+//   borderRadius: '4px',
+//   padding: theme.spacing(1),
+//   display: 'flex',
+//   justifyContent: 'space-between',
+//   alignItems: 'center',
+// }));
+
+// export const StyledDateCalendar = styled(Box)(() => ({
+//   border: `1px solid ${palette.grey[100]}`,
+//   borderRadius: '8px',
+//   width: '100%',
+//   maxWidth: '800px',
+//   height: '500px',
+// }));
+
+// export const StyledInputSection = styled(Box)(() => ({
+//   display: 'flex',
+// }));
+
+// export const StyledButton = styled(Button)(() => ({
+//   minWidth: '120px',
+// }));
+
+// ----------------------
+
 import { styled } from '@mui/material/styles';
-import { Box, ListItem, Button } from '@mui/material';
-import palette from '../../thems/primitives/palette';
-
-export const StyledContainer = styled(Box)(() => ({
-  maxWidth: '800px',
-  margin: 'auto',
-}));
-
-export const StyledTodoContainer = styled(Box)(({ theme }) => ({
-  marginTop: '1rem',
-  padding: '20px',
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: '8px',
-  boxShadow: theme.shadows[1],
-}));
-
-export const StyledListItem = styled(ListItem)(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: '4px',
-  padding: theme.spacing(1),
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-}));
-
-export const StyledDateCalendar = styled(Box)(() => ({
-  border: `1px solid ${palette.grey[100]}`,
-  borderRadius: '8px',
-  width: '100%',
-  maxWidth: '800px',
-  height: '500px',
-}));
-
-export const StyledInputSection = styled(Box)(() => ({
-  display: 'flex',
-}));
-
-export const StyledButton = styled(Button)(() => ({
-  minWidth: '120px',
-}));
-
-/*import { styled } from "@mui/material/styles";
-import { Box, ListItem, Typography } from "@mui/material";
+import { Box, ListItem, Typography } from '@mui/material';
 
 export const StyledContainer = styled(Box)(({ theme }) => ({
   margin: theme.spacing(2.5),
@@ -51,30 +53,30 @@ export const StyledTodoContainer = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(4),
   padding: theme.spacing(2),
   backgroundColor: theme.palette.background.paper,
-  borderRadius: "8px",
+  borderRadius: '8px',
   boxShadow: theme.shadows[1],
 }));
 
 export const StyledListItem = styled(ListItem)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   marginBottom: theme.spacing(1),
-  borderRadius: "4px",
+  borderRadius: '4px',
   padding: theme.spacing(1),
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 }));
 
 export const CalendarContainer = styled(Box)(() => ({
-  display: "flex",
-  justifyContent: "space-between",
+  display: 'flex',
+  justifyContent: 'space-between',
 }));
 
 export const EventsBox = styled(Box)(({ theme }) => ({
-  flex: "1 1 20%",
+  flex: '1 1 20%',
   backgroundColor: theme.palette.primary.main,
   padding: theme.spacing(2),
-  borderRadius: "4px",
+  borderRadius: '4px',
   boxShadow: `0 4px 10px ${theme.palette.primary.dark}`,
 }));
 
@@ -83,12 +85,12 @@ export const EventsTitle = styled(Typography)(({ theme }) => ({
 }));
 
 export const FullCalendarContainer = styled(Box)(({ theme }) => ({
-  flex: "1 1 100%",
+  flex: '1 1 100%',
   marginLeft: theme.spacing(2),
 }));
 
 export const ToDoActionsBox = styled(Box)(({ theme }) => ({
-  display: "flex",
+  display: 'flex',
   gap: theme.spacing(2),
   marginTop: theme.spacing(2),
 }));
@@ -100,4 +102,3 @@ export const CalendarEventStyles = `
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 `;
-*/

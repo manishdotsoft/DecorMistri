@@ -28,7 +28,7 @@ export const SidebarSection = styled(Box)({
 
 export const ContentSection = styled(Box)({
   flex: 1,
-  padding: '20px',
+  // padding: '20px',
 });
 
 export const TitleTypography = styled(Typography)({

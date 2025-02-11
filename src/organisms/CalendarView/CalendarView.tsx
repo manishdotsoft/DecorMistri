@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { Calender } from '../../atoms/Calender/Calender';
+import Calender from '../../atoms/Calender/Calender';
 
 const CalenderView = () => {
   return (

@@ -1,18 +1,20 @@
 import { styled } from '@mui/system';
-import { Box, FormControl, InputLabel, Radio, Typography } from '@mui/material';
+import { Box, FormControl, Radio, Typography } from '@mui/material';
 import palette from '../../../../thems/primitives/palette';
 import typeset from '../../../../thems/primitives/typeset';
 import { COMMON_PAPER } from '../../../../thems/primitives/colors';
+import { theme } from '../../../../thems/primitives/theme';
 
 export const Container = styled(Box)({
-  maxWidth: '1000px',
+  maxWidth: '1200px',
   margin: 'auto',
-  padding: '20px',
+  // padding: '20px',
   display: 'flex',
   flexDirection: 'column',
   gap: '20px',
   color: palette.text.primary,
   fontFamily: typeset.fontFamily,
+  backgroundColor: theme.palette.background.paper,
 });
 
 export const FlexRow = styled(Box)({
@@ -22,16 +24,18 @@ export const FlexRow = styled(Box)({
   color: palette.text.secondary,
 });
 
+export const InputLabelItem = styled('label')(() => ({
+  fontFamily: typeset.secondaryFontFamily,
+  fontSize: typeset.body2.fontSize,
+  marginBottom: '4px',
+  color: theme.palette.grey[700],
+}));
+
 export const FullWidthFormControl = styled(FormControl)({
   width: '100%',
   backgroundColor: palette.white.main,
   color: palette.text.primary,
   borderColor: palette.primary.main,
-});
-
-export const InputLabelItem = styled(InputLabel)({
-  backgroundColor: palette.white.main,
-  padding: '0 8px',
 });
 
 interface StyledLabelProps {
@@ -68,16 +72,24 @@ export const StyledRadio = styled(Radio)(() => ({
 export const ButtonSection = styled(Box)({
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-end',
+  gap: '20px',
 });
 
 export const GridContainer = styled(Box)({
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
+  gridTemplateColumns: '1fr 1fr 1fr',
   columnGap: '20px',
   rowGap: '15px',
   width: '100%',
 });
+export const CreateProjectHeader = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  cursor: 'pointer',
+}));
+
 export const GridContainerChild = styled(Box)({
   display: 'grid',
   gridTemplateColumns: '1fr',
