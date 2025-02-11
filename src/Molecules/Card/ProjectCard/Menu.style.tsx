@@ -12,8 +12,8 @@ export const StyledMenu = styled(Menu)(() => ({
     padding: '8px 0',
     minWidth: '232px',
     backgroundColor: theme.palette.background.paper,
-    boxShadow: 'none',
-    fontFamily: fonts.primary,
+    boxShadow:
+      '0px 3px 3px - 2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12)',
   },
 }));
 

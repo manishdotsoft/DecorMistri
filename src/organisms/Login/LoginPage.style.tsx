@@ -311,3 +311,11 @@ export const LinkSignup = styled(Typography)(() => ({
   fontSize: typeset.body2.fontSize,
   textDecoration: 'none',
 }));
+
+export const ButtonWrapper = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginTop: '24px',
+  gap: '20px',
+});

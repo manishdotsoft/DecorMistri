@@ -35,3 +35,10 @@ export const ModalButtons = styled(Box)(() => ({
 
   marginTop: '20px',
 }));
+
+export const ModalChildWrapper = styled(Box)({
+  height: 'auto',
+  maxHeight: '70vh',
+  overflowY: 'auto',
+  scrollbarWidth: 'none',
+});

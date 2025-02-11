@@ -1,109 +1,92 @@
-import React from 'react';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import Button from '../../../atoms/Button/Button';
+// /* eslint-disable @typescript-eslint/no-explicit-any */
+// import React, { useState } from "react";
+// import {
+//   Box,
+//   Typography,
+//   Card,
+//   CardContent,
+//   IconButton,
+//   Menu,
+//   MenuItem,
+// } from "@mui/material";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import {
-  CardContent,
-  Typography,
-  LinearProgress,
-  IconButton,
-} from '@mui/material';
-import {
-  ButtonBox,
-  CardContainer,
-  HeadingTitle,
-  SuccessStatus,
-} from './Card.styel';
+// interface Project {
+//   id: number;
+//   completionPercentage: number;
+//   designType: string;
+//   endDate: string;
+//   location: string;
+//   startDate: string;
+//   status: string;
+//   value: string;
+// }
 
-import { ProjectStatus } from '../../../store/reducers/projectDataSlice';
-import palette from '../../../thems/primitives/palette';
+// interface ProjectCardProps {
+//   data: Project[];
+//   cardStyle?: React.CSSProperties;
+// }
 
-interface ProjectCardProps {
-  project: {
-    value: string;
-    designType: string;
-    location: string;
-    startDate: string;
-    endDate: string;
-    completionPercentage: number;
-    status: string;
-  };
-  menuItems: string[];
-  onMenuOpen: (
-    event: React.MouseEvent<HTMLButtonElement>,
-    projectValue: string
-  ) => void;
-  onMenuClose: () => void;
-  onMenuOptionClick: (option: string) => void;
-  menuAnchorEl: HTMLElement | null;
-  buttonTitle: string;
-  buttonColor?: 'primary' | 'secondary' | 'default';
-  buttonAction: () => void;
-  onUpdateStatus?: (projectValue: string, newStatus: ProjectStatus) => void;
-}
+// const CardGrid: React.FC<ProjectCardProps> = ({ data, cardStyle }) => {
+//   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+//   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
-  project,
-  onMenuOpen,
+//   const handleMenuClick = (event: React.MouseEvent<HTMLElement>, projectId: number) => {
+//     setAnchorEl(event.currentTarget);
+//     setSelectedProjectId(projectId);
+//   };
 
-  buttonTitle,
+//   const handleClose = () => {
+//     setAnchorEl(null);
+//     setSelectedProjectId(null);
+//   };
 
-  buttonAction,
-}) => {
-  const progressLabel =
-    project.completionPercentage === 0
-      ? 'Not Started'
-      : `${project.completionPercentage}% Completed`;
+//   return (
+//     <Box display="flex" gap={2} justifyContent="space-between" alignItems="stretch">
+//       {data.length > 0 ? (
+//         data.map((project) => (
+//           <Card key={project.id} sx={{ minWidth: 275, position: "relative", ...cardStyle }}>
+//             <IconButton
+//               aria-label="more"
+//               aria-controls="menu"
+//               aria-haspopup="true"
+//               onClick={(event) => handleMenuClick(event, project.id)}
+//               sx={{ position: "absolute", top: 8, right: 8 }}
+//             >
+//               <MoreVertIcon />
+//             </IconButton>
 
-  return (
-    <CardContainer>
-      <CardContent>
-        <HeadingTitle variant="h6">
-          {project.value}
-          <IconButton
-            sx={{ cursor: 'pointer' }}
-            onClick={(e) => onMenuOpen(e, project.value)}
-          >
-            <MoreHorizIcon />
-          </IconButton>
-        </HeadingTitle>
-        <Typography variant="body2" color="text.secondary">
-          Design Type: {project.designType}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Location: {project.location}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Start Date: {project.startDate}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          End Date: {project.endDate}
-        </Typography>
-        <LinearProgress
-          variant="determinate"
-          value={project.completionPercentage}
-          sx={{ marginTop: 2 }}
-        />
+//             <Menu
+//               anchorEl={anchorEl}
+//               open={Boolean(anchorEl) && selectedProjectId === project.id}
+//               onClose={handleClose}
+//             >
+//               <MenuItem onClick={handleClose}>Edit</MenuItem>
+//               <MenuItem onClick={handleClose}>Delete</MenuItem>
+//             </Menu>
 
-        <SuccessStatus isStarted={project.completionPercentage > 0}>
-          {progressLabel}
-        </SuccessStatus>
-      </CardContent>
+//             <CardContent>
+//               <Typography variant="h6" sx={{ mb: 1 }}>
+//                 {project.designType}
+//               </Typography>
+//               <Typography variant="body2">Location: {project.location}</Typography>
+//               <Typography variant="body2">Status: {project.status}</Typography>
+//               <Typography variant="body2">Start Date: {project.startDate}</Typography>
+//               <Typography variant="body2">End Date: {project.endDate}</Typography>
+//               <Typography variant="body2">Value: {project.value}</Typography>
+//               <Typography variant="body2">
+//                 Completion: {project.completionPercentage}%
+//               </Typography>
+//             </CardContent>
+//           </Card>
+//         ))
+//       ) : (
+//         <Typography variant="body2" sx={{ textAlign: "center", color: "gray" }}>
+//           No data available
+//         </Typography>
+//       )}
+//     </Box>
+//   );
+// };
 
-      <ButtonBox>
-        <Button
-          title={buttonTitle}
-          variant="contained"
-          style={{
-            width: '180px',
-            borderRadius: '6px',
-            backgroundColor: palette.decor.main,
-          }}
-          onClick={buttonAction}
-        />
-      </ButtonBox>
-    </CardContainer>
-  );
-};
-
-export default ProjectCard;
+// export default CardGrid;

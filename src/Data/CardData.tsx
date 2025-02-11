@@ -1,8 +1,4 @@
-import {
-  ProjectStatus,
-  ProjectDataType,
-} from '../store/reducers/projectDataSlice';
-export const ProjectData: ProjectDataType[] = [
+export const ProjectData = [
   {
     id: 1,
     value: 'Complete 1',
@@ -11,7 +7,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 75,
-    status: ProjectStatus.Complete,
+    status: 'Completed',
   },
   {
     id: 2,
@@ -22,7 +18,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Complete,
+    status: 'Completed',
   },
   {
     id: 3,
@@ -33,7 +29,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Complete,
+    status: 'Completed',
   },
 
   {
@@ -45,7 +41,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: ProjectStatus.NotConfirmed,
+    status: 'Not Confirmed',
   },
   {
     id: 5,
@@ -56,7 +52,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: ProjectStatus.NotConfirmed,
+    status: 'Not Confirmed',
   },
   {
     id: 6,
@@ -67,7 +63,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: ProjectStatus.NotConfirmed,
+    status: 'Not Confirmed',
   },
 
   {
@@ -78,7 +74,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 75,
-    status: ProjectStatus.Upcoming,
+    status: 'Upcoming',
   },
   {
     id: 8,
@@ -89,7 +85,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Upcoming,
+    status: 'Upcoming',
   },
   {
     id: 9,
@@ -100,7 +96,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Upcoming,
+    status: 'Upcoming',
   },
 
   {
@@ -112,7 +108,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 75,
-    status: ProjectStatus.Live,
+    status: 'Live',
   },
   {
     id: 11,
@@ -123,7 +119,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Live,
+    status: 'Live',
   },
   {
     id: 12,
@@ -134,7 +130,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Live,
+    status: 'Live',
   },
   {
     id: 13,
@@ -145,7 +141,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Live,
+    status: 'Live',
   },
   {
     id: 14,
@@ -156,7 +152,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Complete,
+    status: 'Completed',
   },
   {
     id: 15,
@@ -167,7 +163,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: ProjectStatus.NotConfirmed,
+    status: 'Not Confirmed',
   },
   {
     id: 16,
@@ -178,7 +174,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Upcoming,
+    status: 'Upcoming',
   },
 ];
 export const menuItems = [

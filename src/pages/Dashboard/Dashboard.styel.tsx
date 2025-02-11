@@ -26,9 +26,9 @@ export const BoxItem = styled(Box)({
 });
 
 export const BoxContainer = styled(Box)({
-  display: 'flex',
-  flexWrap: 'nowrap',
-  justifyContent: 'space-between',
+  // display: 'flex',
+  // flexWrap: 'nowrap',
+  // justifyContent: 'space-between',
   gap: '16px',
 });
 
