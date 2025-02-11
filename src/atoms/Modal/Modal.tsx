@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton, Modal } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { ModalBox, ModalTitle, ModalButtons } from './Modal.styles';
+import { ModalBox, ModalChildWrapper } from './Modal.styles';
 import palette from '../../thems/primitives/palette';
 
 interface ButtonConfig {
@@ -13,17 +13,17 @@ interface ButtonConfig {
 interface ReusableModalProps {
   open: boolean;
   onClose: () => void;
-  title: string;
+  title?: string;
   buttons?: ButtonConfig[];
   showCloseIcon?: boolean;
+  children?: React.ReactNode;
 }
 
 const ReusableModal: React.FC<ReusableModalProps> = ({
   open,
   onClose,
-  title,
-  buttons = [],
   showCloseIcon = true,
+  children,
 }) => {
   return (
     <Modal open={open} onClose={onClose} aria-labelledby="modal-title">
@@ -33,8 +33,8 @@ const ReusableModal: React.FC<ReusableModalProps> = ({
             onClick={onClose}
             style={{
               position: 'absolute',
-              top: '0px',
-              right: '0px',
+              top: '10px',
+              right: '10px',
               color: palette.grey[400],
             }}
             aria-label="close"
@@ -42,25 +42,9 @@ const ReusableModal: React.FC<ReusableModalProps> = ({
             <CloseIcon />
           </IconButton>
         )}
-        <ModalTitle id="modal-title">{title}</ModalTitle>
-        <ModalButtons>
-          {buttons.map((button, index) => (
-            <button
-              key={index}
-              onClick={button.onClick}
-              style={{
-                ...button.style,
-                padding: '12px 16px',
-                margin: '0 8px',
-                border: 'none',
-                cursor: 'pointer',
-                textTransform: 'uppercase',
-              }}
-            >
-              {button.label}
-            </button>
-          ))}
-        </ModalButtons>
+        <ModalChildWrapper>
+          <div>{children}</div>
+        </ModalChildWrapper>
       </ModalBox>
     </Modal>
   );

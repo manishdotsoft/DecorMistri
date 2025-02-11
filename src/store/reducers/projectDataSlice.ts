@@ -16,6 +16,7 @@ export interface ProjectDataType {
   endDate: string;
   completionPercentage: number;
   status: ProjectStatus;
+  ProjectId: null | number;
 }
 
 interface ProjectState {
