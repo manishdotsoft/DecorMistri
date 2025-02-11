@@ -30,16 +30,33 @@ export const useCreateProject = () => {
   );
   const pages = useSelector((state: RootState) => state.createProject.pages);
   const [showToast, setShowToast] = useState(false);
-
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activePage, setActivePage] = useState(0);
 
   const handleNext = () => {
     if (currentPageIndex < pages.length) {
       dispatch(nextPage());
       setActivePage(currentPageIndex + 1);
-      console.log(currentPageIndex);
       setNextClickedPageIndex(currentPageIndex);
-      // setShowToast(true);
+
+      // Set different toaster messages based on the current page using if-else
+      if (pages[currentPageIndex] === 'Project & Provider Information') {
+        setToastMessage('Project Provider Information Saved');
+      } else if (pages[currentPageIndex] === 'Client Details') {
+        setToastMessage('Client Details Saved');
+      } else if (pages[currentPageIndex] === 'Property Details') {
+        setToastMessage('Property Details Saved');
+      } else if (pages[currentPageIndex] === 'Property Location Details') {
+        setToastMessage('Property Location Details Saved');
+      } else if (pages[currentPageIndex] === 'Timeline & Schedule') {
+        setToastMessage('Timeline & Schedule Saved');
+      } else if (pages[currentPageIndex] === 'Financial Details') {
+        setToastMessage('Financial Details Saved');
+      } else {
+        setToastMessage('Data Saved Successfully');
+      }
+
+      setShowToast(true);
     }
   };
 
@@ -103,17 +120,21 @@ export const useCreateProject = () => {
     try {
       const response = await createProjectMutation({ input: mutationInput });
       if (response) {
+        setToastMessage('Project Created Successfully');
         setShowToast(true);
         navigate('/dashboard');
         return;
       }
     } catch (err) {
+      setToastMessage('Error while creating project');
+      setShowToast(true);
       console.error('Unexpected error:', err);
     }
   };
 
   const handleToasterClose = () => {
     setShowToast(false);
+    setToastMessage(null);
   };
 
   return {
@@ -130,6 +151,7 @@ export const useCreateProject = () => {
     activePage,
     setActivePage,
     nextClickedPageIndex,
-    setShowToast,
+    toastMessage,
+    // setShowToast,
   };
 };

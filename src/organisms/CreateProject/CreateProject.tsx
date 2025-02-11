@@ -40,7 +40,8 @@ const CreateProject = () => {
     handleToasterClose,
     activePage,
     completedSteps,
-    setShowToast,
+    toastMessage,
+    // setShowToast,
   } = useCreateProject();
   const previousFormData = useRef(formData);
 
@@ -107,9 +108,9 @@ const CreateProject = () => {
                     }
                     handleNext={handleNext}
                     handlePrevious={handlePrevious}
-                    showToast={showToast}
-                    handleToasterClose={handleToasterClose}
-                    setShowToast={setShowToast}
+                    // showToast={showToast}
+                    // handleToasterClose={handleToasterClose}
+                    // setShowToast={setShowToast}
                   />
                 )}
                 {page === 'Client Details' && (
@@ -199,7 +200,7 @@ const CreateProject = () => {
       <StyledPageContent>{renderPages()}</StyledPageContent>
       {showToast && (
         <Toaster
-          message={'Project Created Successfully'}
+          message={toastMessage}
           severity={'success'}
           open={showToast}
           onClose={handleToasterClose}

@@ -22,7 +22,7 @@ import { DatePicker } from '../../../../atoms/DatePicker/DatePicker';
 import EmailIcon from '../../../../assets/images/createProject/Email.svg';
 import LocationIcon from '../../../../assets/images/createProject/Location.svg';
 import WebsiteIcon from '../../../../assets/images/createProject/WebsiteIcon.svg';
-import Toaster from '../../../../atoms/Toaster/Toaster';
+// import Toaster from '../../../../atoms/Toaster/Toaster';
 
 interface ProjectProviderInformationProps {
   currentPageIndex: number;
@@ -39,9 +39,9 @@ interface ProjectProviderInformationProps {
   updateData: (values: ProjectProviderInformationProps['data']) => void;
   handleNext: () => void;
   handlePrevious: () => void;
-  showToast: boolean;
-  handleToasterClose: () => void;
-  setShowToast: (value: boolean) => void;
+  // showToast: boolean;
+  // handleToasterClose: () => void;
+  // setShowToast: (value: boolean) => void;
 }
 
 const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
@@ -49,18 +49,18 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
   updateData,
   handleNext,
   handlePrevious,
-  showToast,
-  handleToasterClose,
-  setShowToast,
+  // showToast,
+  // handleToasterClose,
+  // setShowToast,
 }) => {
   const { formik, isFormValid } = useProjectProviderForm({
     data,
     updateData,
     handleNext,
     handlePrevious,
-    showToast,
-    handleToasterClose,
-    setShowToast,
+    // showToast,
+    // handleToasterClose,
+    // setShowToast,
   });
 
   const [isPageVisible, setIsPageVisible] = useState(true);
@@ -68,24 +68,24 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
   const handleNextClick = () => {
     setIsPageVisible(false);
     formik.handleSubmit();
-    setShowToast(true);
-    setTimeout(() => {
-      if (showToast) {
-        handleToasterClose();
-      }
-    }, 3000);
+    // setShowToast(true);
+    // setTimeout(() => {
+    //   if (showToast) {
+    //     handleToasterClose();
+    //   }
+    // }, 3000);
   };
 
   return isPageVisible ? (
     <Container>
-      {showToast && (
+      {/* {showToast && (
         <Toaster
           message={'Project Provider Information Created Successfully'}
           severity={'success'}
           open={showToast}
           onClose={handleToasterClose}
         />
-      )}
+      )} */}
       <GridContainer>
         <InputSection>
           <InputLabelItem>Project ID</InputLabelItem>
