@@ -13,8 +13,8 @@ import {
   CardContainer,
   HeadingTitle,
   SuccessStatus,
-} from '../Card.styel';
-import ProjectMenu from '../ThreeDotMenu/Menu';
+} from './Card.styel';
+
 import { ProjectStatus } from '../../../store/reducers/projectDataSlice';
 import palette from '../../../thems/primitives/palette';
 
@@ -44,26 +44,16 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
-  menuItems,
   onMenuOpen,
-  onMenuClose,
-  onMenuOptionClick,
-  menuAnchorEl,
+
   buttonTitle,
 
   buttonAction,
-  onUpdateStatus,
 }) => {
   const progressLabel =
     project.completionPercentage === 0
       ? 'Not Started'
       : `${project.completionPercentage}% Completed`;
-
-  const handleStatusChange = (status: ProjectStatus) => {
-    if (onUpdateStatus) {
-      onUpdateStatus(project.value, status);
-    }
-  };
 
   return (
     <CardContainer>
@@ -112,17 +102,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           onClick={buttonAction}
         />
       </ButtonBox>
-
-      <ProjectMenu
-        anchorEl={menuAnchorEl}
-        open={Boolean(menuAnchorEl)}
-        showDropdown={false}
-        onClose={onMenuClose}
-        onOptionClick={onMenuOptionClick}
-        menuItems={menuItems}
-        onDeleteProject={onMenuClose}
-        onStatusChange={handleStatusChange}
-      />
     </CardContainer>
   );
 };

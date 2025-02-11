@@ -5,9 +5,9 @@ import {
   updateProjectStatus,
 } from '../../../store/reducers/projectDataSlice';
 import { RootState } from '../../../store/store';
-import { useProjectMenu } from '../card.hook';
+import { useProjectMenu } from './card.hook';
 import ProjectCard from '../ProjectCard/projectCard';
-import ProjectMenu from '../ThreeDotMenu/Menu';
+import ProjectMenu from './Menu';
 import { menuItems } from '../../../Data/CardData';
 import { ProjectData } from '../../../Data/CardData';
 import { ProjectStatus } from '../../../store/reducers/projectDataSlice';
@@ -44,7 +44,7 @@ const Card: React.FC<ProjectCardProps> = ({ status, buttonTitle }) => {
   const {
     anchorEl,
     currentProject,
-    showDropdown,
+
     handleMenuOpen,
     handleMenuClose,
     handleOptionClick,
@@ -75,7 +75,6 @@ const Card: React.FC<ProjectCardProps> = ({ status, buttonTitle }) => {
         onClose={handleMenuClose}
         onOptionClick={handleOptionClick}
         menuItems={menuItems}
-        showDropdown={showDropdown}
         onDeleteProject={handleDeleteProject}
         currentProject={currentProject}
         onUpdateStatus={handleUpdateStatus}

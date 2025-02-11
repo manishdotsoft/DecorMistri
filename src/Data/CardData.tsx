@@ -128,7 +128,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 12,
 
-    value: 'Live 3',
+    value: 'Live 2',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
@@ -139,7 +139,7 @@ export const ProjectData: ProjectDataType[] = [
   {
     id: 13,
 
-    value: 'Live 2',
+    value: 'Live 4',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',

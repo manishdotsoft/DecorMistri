@@ -7,14 +7,13 @@ import {
   Cards,
   DividerColumn,
 } from './Dashboard.styel';
-import HeaderFilter from '../../organisms/Header/HeaderFilter';
+
 import ProjectCard from '../../Molecules/Card/ProjectCard/Card';
 import { ProjectStatus } from '../../store/reducers/projectDataSlice';
 
 const Dashboard = () => {
   return (
     <Box>
-      <HeaderFilter />
       <Divider />
       <BoxContainer>
         <BoxItem>

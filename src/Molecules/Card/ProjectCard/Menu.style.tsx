@@ -13,6 +13,7 @@ export const StyledMenu = styled(Menu)(() => ({
     minWidth: '232px',
     backgroundColor: theme.palette.background.paper,
     boxShadow: 'none',
+    fontFamily: fonts.primary,
   },
 }));
 

@@ -24,13 +24,13 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
   open,
   onClose,
   menuItems,
-
   currentProject,
   onUpdateStatus,
 }) => {
   const statusOptions = ['Live', 'Complete', 'Upcoming', 'Not confirmed'];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   const toggleDropdown = () => {
@@ -96,8 +96,6 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
               </StyledMenuItem>
             </>
           )}
-
-          {/* Change Status Item with Dropdown */}
 
           {item === 'Change Status' && (
             <>
