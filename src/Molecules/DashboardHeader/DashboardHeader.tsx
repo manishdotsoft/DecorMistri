@@ -23,6 +23,7 @@ import TextInput from '../../atoms/TextInput/TextInput';
 import palette from '../../thems/primitives/palette';
 import typeset from '../../thems/primitives/typeset';
 import Button from '../../atoms/Button/Button';
+import { Box } from '@mui/material';
 
 interface DashboardHeaderProps {
   title: string;
@@ -49,12 +50,17 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   return (
     <Container>
       {/* Title Section */}
-      <ActionsSection>
-        <TitelBox>{title}</TitelBox>
-      </ActionsSection>
-
-      <FilterSection>
-        {/* Search Input */}
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '60px',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <ActionsSection>
+          <TitelBox>{title}</TitelBox>
+        </ActionsSection>
         <SearchContainer>
           <TextInput
             name="search"
@@ -72,6 +78,9 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           />
           <StyledSearchIcon />
         </SearchContainer>
+      </Box>
+      <FilterSection>
+        {/* Search Input */}
         <DateBox>
           {/* Start Date Picker */}
           <StartDateBox>

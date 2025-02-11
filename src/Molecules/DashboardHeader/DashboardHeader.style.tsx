@@ -7,7 +7,7 @@ import fonts from '../../thems/primitives/fonts';
 import palette from '../../thems/primitives/palette';
 export const Container = styled('div')({
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'space-around',
   fontFamily: fonts.primary,
 });
 
