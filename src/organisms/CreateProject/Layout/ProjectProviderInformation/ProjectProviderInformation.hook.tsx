@@ -9,10 +9,7 @@ interface ProjectProviderData {
   phoneNumber: string;
   website?: string;
   addressLine1: string;
-  // addressLine2?: string;
-  // zipCode: string;
-  // city: string;
-  // country: string;
+
   state: string;
 }
 
@@ -21,6 +18,9 @@ interface UseProjectProviderFormProps {
   updateData: (values: ProjectProviderData) => void;
   handleNext: () => void;
   handlePrevious: () => void;
+  showToast: boolean;
+  handleToasterClose: () => void;
+  setShowToast: (value: boolean) => void;
 }
 
 export const useProjectProviderForm = ({
@@ -28,31 +28,33 @@ export const useProjectProviderForm = ({
   updateData,
   handleNext,
   handlePrevious,
+  showToast,
+  handleToasterClose,
+  setShowToast,
 }: UseProjectProviderFormProps) => {
   const formik = useFormik({
     initialValues: {
       projectNumber: data.projectNumber || '',
-      dateOfIssue: data.dateOfIssue ? new Date(data.dateOfIssue) : null, // Convert ISO string to Date
+      dateOfIssue: data.dateOfIssue ? new Date(data.dateOfIssue) : null,
       designerName: data.designerName || '',
       email: data.email || '',
       phoneNumber: data.phoneNumber || '',
       website: data.website || '',
       addressLine1: data.addressLine1 || '',
-      // city: data.city || '',
+
       state: data.state || '',
-      // addressLine2: data.addressLine2 || '',
-      // zipCode: data.zipCode || '',
-      // country: data.country || '',
     },
     validationSchema: projectProviderSchema,
     validateOnBlur: true,
     onSubmit: (values) => {
       updateData({
         ...values,
-        dateOfIssue: values.dateOfIssue
-          ? values.dateOfIssue.toISOString()
-          : null, // Convert Date to ISO string
+        dateOfIssue:
+          values.dateOfIssue instanceof Date
+            ? values.dateOfIssue.toISOString()
+            : null,
       });
+
       handleNext();
       console.log(values);
     },
@@ -63,10 +65,7 @@ export const useProjectProviderForm = ({
       formik.values.projectNumber &&
       formik.values.dateOfIssue &&
       formik.values.email &&
-      // formik.values.city &&
-      // formik.values.country &&
       formik.values.state &&
-      // formik.values.zipCode &&
       formik.values.addressLine1 &&
       formik.values.designerName &&
       formik.values.phoneNumber
@@ -78,5 +77,8 @@ export const useProjectProviderForm = ({
     isFormValid,
     handlePrevious,
     handleNext,
+    showToast,
+    handleToasterClose,
+    setShowToast,
   };
 };

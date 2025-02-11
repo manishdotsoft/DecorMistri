@@ -11,17 +11,22 @@ import {
 import {
   ButtonSection,
   Container,
+  FileText,
   GridContainer,
-  GridContainerChild,
+  InputLabelItem,
+  InputSection,
   SelectFile,
+  SelectFileParent,
+  SelectSection,
   StyledTypography,
+  TextArea,
 } from './PropertyDetails.style';
 import Button from '../../../../atoms/Button/Button';
 import SelectOption from '../../../../atoms/Select/SelectOption';
 import usePropertyDetailsForm from './PropertyDetails.hook';
 import TextInput from '../../../../atoms/TextInput/TextInput';
-import fonts from '../../../../thems/primitives/fonts';
-import typeset from '../../../../thems/primitives/typeset';
+
+import { useState } from 'react';
 
 const designOptions = [
   {
@@ -123,197 +128,188 @@ const PropertyDetails = ({
     handleNext,
   });
 
+  const [isPageVisible, setIsPageVisible] = useState(true);
+  const handleNextClick = () => {
+    setIsPageVisible(false);
+    formik.handleSubmit();
+  };
+
   return (
-    <Container>
-      <Typography variant="h6">Basic Information</Typography>
-
-      <GridContainerChild>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <TextInput
-            name="size"
-            label="Size (in sq. ft.)"
-            type="number"
-            value={formik.values.size}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.size && Boolean(formik.errors.size)}
-            style={{
-              width: '50%',
-              borderRadius: '5px',
-            }}
-            placeholder="Size (in sq. ft.)"
-          />
-          {formik.errors.size && formik.touched.size && (
-            <StyledTypography>{formik.errors.size}</StyledTypography>
-          )}
-        </Box>
-      </GridContainerChild>
-
-      <Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <SelectOption
-            name="designType"
-            label="Design Type"
-            options={designOptions.map(({ value, label }) => ({
-              value,
-              label,
-            }))}
-            defaultOption={'Select Design Type'}
-            value={formik.values.designType}
-            onChange={(e) => {
-              // Clear subcategories when designType is changed
-              formik.setFieldValue('designType', e.target.value);
-              formik.setFieldValue('subcategories', []); // Reset subcategories
-            }}
-            error={
-              formik.touched.designType && Boolean(formik.errors.designType)
-            }
-          />
-        </Box>
-        {formik.errors.designType && formik.touched.designType && (
-          <StyledTypography>{formik.errors.designType}</StyledTypography>
-        )}
-
-        {/* Subcategories */}
-        {formik.values.designType && (
-          <Box sx={{ mt: 4 }}>
-            <InputLabel id="subcategory-label">Subcategories</InputLabel>
-            <Select
-              labelId="subcategory-label"
-              id="subcategories"
-              fullWidth
-              name="subcategories"
-              multiple
-              value={formik.values.subcategories}
-              onChange={(e) =>
-                formik.setFieldValue('subcategories', e.target.value)
-              }
-              renderValue={(selected) => selected.join(', ')}
-            >
-              {designOptions
-                .find((option) => option.value === formik.values.designType)
-                ?.subcategories.map((subcategory) => (
-                  <MenuItem key={subcategory} value={subcategory}>
-                    <Checkbox
-                      checked={formik.values.subcategories.includes(
-                        subcategory
-                      )}
-                    />
-                    <ListItemText primary={subcategory} />
-                  </MenuItem>
-                ))}
-            </Select>
-            {formik.touched.subcategories && formik.errors.subcategories && (
-              <FormHelperText>{formik.errors.subcategories}</FormHelperText>
-            )}
-          </Box>
-        )}
-      </Box>
-
-      <GridContainer>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <TextInput
-            name="phases"
-            label="Number of Phases"
-            type="number"
-            value={formik.values.phases}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.phases && Boolean(formik.errors.phases)}
-            style={{
-              width: '70%',
-              borderRadius: '5px',
-            }}
-            placeholder="phases (in sq. ft.)"
-          />
-          {formik.errors.phases && formik.touched.phases && (
-            <StyledTypography>{formik.errors.phases}</StyledTypography>
-          )}
-        </Box>
-        <SelectFile>
-          <Typography
-            variant="subtitle1"
-            sx={{
-              fontFamily: fonts.primary,
-              fontSize: typeset.button.fontSize,
-            }}
-          >
-            Floor Plans & 3D Designs
-          </Typography>
+    isPageVisible && (
+      <Container>
+        <GridContainer>
           <Box>
-            <Button
-              variant="outlined"
-              title="Select File"
-              color="#000"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                padding: '8px 16px',
-              }}
-              onClick={() => document.getElementById('fileInput')?.click()}
-            />
-            <input
-              type="file"
-              name="file"
-              id="fileInput"
-              hidden
-              onChange={handleFileChange}
-            />
-            {formik.values.file && (
-              <p
-                style={{
-                  marginTop: '8px',
-                  fontSize: '14px',
-                  color: '#555555',
+            <InputSection>
+              <SelectOption
+                name="designType"
+                label="Design Type"
+                options={designOptions.map(({ value, label }) => ({
+                  value,
+                  label,
+                }))}
+                defaultOption={'Select Design Type'}
+                value={formik.values.designType}
+                onChange={(e) => {
+                  formik.setFieldValue('designType', e.target.value);
+                  formik.setFieldValue('subcategories', []);
                 }}
-              >
-                Selected File: {formik.values.file.name}
-              </p>
-            )}
-            {formik.touched.file && formik.errors.file && (
-              <Typography color="error">{formik.errors.file}</Typography>
+                style={{
+                  padding: '17px',
+                  borderRadius: '8px',
+                  marginTop: '3px',
+                }}
+                error={
+                  formik.touched.designType && Boolean(formik.errors.designType)
+                }
+              />
+              {formik.errors.designType && formik.touched.designType && (
+                <StyledTypography>{formik.errors.designType}</StyledTypography>
+              )}
+            </InputSection>
+            {/* Subcategories */}
+            {formik.values.designType && (
+              <Box sx={{ mt: 4 }}>
+                <InputLabel id="subcategory-label">Subcategories</InputLabel>
+                <Select
+                  labelId="subcategory-label"
+                  id="subcategories"
+                  fullWidth
+                  name="subcategories"
+                  multiple
+                  value={formik.values.subcategories}
+                  onChange={(e) =>
+                    formik.setFieldValue('subcategories', e.target.value)
+                  }
+                  renderValue={(selected) => selected.join(', ')}
+                >
+                  {designOptions
+                    .find((option) => option.value === formik.values.designType)
+                    ?.subcategories.map((subcategory) => (
+                      <MenuItem key={subcategory} value={subcategory}>
+                        <Checkbox
+                          checked={formik.values.subcategories.includes(
+                            subcategory
+                          )}
+                        />
+                        <ListItemText primary={subcategory} />
+                      </MenuItem>
+                    ))}
+                </Select>
+                {formik.touched.subcategories &&
+                  formik.errors.subcategories && (
+                    <FormHelperText>
+                      {formik.errors.subcategories}
+                    </FormHelperText>
+                  )}
+              </Box>
             )}
           </Box>
-        </SelectFile>
-      </GridContainer>
+          <InputSection>
+            <InputLabelItem>Size (in sq. ft)</InputLabelItem>
+            <TextInput
+              name="size"
+              label="Size (in sq. ft.)"
+              type="number"
+              value={formik.values.size}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.size && Boolean(formik.errors.size)}
+              style={{
+                width: '100%',
+                borderRadius: '8px',
+              }}
+              placeholder="Size (in sq. ft.)"
+            />
+            {formik.errors.size && formik.touched.size && (
+              <StyledTypography>{formik.errors.size}</StyledTypography>
+            )}
+          </InputSection>
 
-      <GridContainerChild>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <TextInput
+          <InputSection>
+            {/* ---------new */}
+
+            <SelectOption
+              name="phases"
+              label="Number of Phases"
+              options={[
+                { value: 'Phases 1', label: 'Phases 1' },
+                { value: 'Phases 2', label: 'Phases 2' },
+                { value: 'Phases 3', label: 'Phases 3' },
+                { value: 'Phases 4', label: 'Phases 4' },
+                { value: 'Phases 5', label: 'Phases 5' },
+                { value: 'Phases 6', label: 'Phases 6' },
+              ]}
+              defaultOption={'Enter no of phases'}
+              value={formik.values.phases}
+              onChange={formik.handleChange}
+              style={{
+                padding: '17px',
+                borderRadius: '8px',
+                marginTop: '3px',
+              }}
+              error={formik.touched.phases && Boolean(formik.errors.phases)}
+            />
+            {formik.errors.phases && formik.touched.phases && (
+              <StyledTypography>{formik.errors.phases}</StyledTypography>
+            )}
+          </InputSection>
+          <SelectFile>
+            <InputLabelItem>Floor Plans & 3D Designs</InputLabelItem>
+            <SelectFileParent>
+              <SelectSection
+                title="Select File"
+                onClick={() => document.getElementById('fileInput')?.click()}
+              >
+                Select plans
+              </SelectSection>
+              <input
+                type="file"
+                name="file"
+                id="fileInput"
+                hidden
+                onChange={handleFileChange}
+              />
+              {formik.values.file && (
+                <FileText>Selected File: {formik.values.file.name}</FileText>
+              )}
+              {formik.touched.file && formik.errors.file && (
+                <Typography color="error">{formik.errors.file}</Typography>
+              )}
+            </SelectFileParent>
+          </SelectFile>
+        </GridContainer>
+
+        <InputSection>
+          <InputLabelItem>Additional Comments</InputLabelItem>
+          <TextArea
             name="comments"
-            label="Additional Comments"
             value={formik.values.comments}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.comments && Boolean(formik.errors.comments)}
-            style={{
-              width: '95%',
-              borderRadius: '5px',
-            }}
-            placeholder="comments"
           />
           {formik.errors.comments && formik.touched.comments && (
             <StyledTypography>{formik.errors.comments}</StyledTypography>
           )}
-        </Box>
-      </GridContainerChild>
-
-      <ButtonSection>
-        <Button
-          title="Previous"
-          color="secondary"
-          onClick={handlePrevious}
-          variant="contained"
-        />
-        <Button
-          title="Next"
-          color="primary"
-          variant="contained"
-          disabled={!isFormValid()}
-          onClick={formik.submitForm}
-        />
-      </ButtonSection>
-    </Container>
+        </InputSection>
+        <ButtonSection>
+          <Button
+            title="Previous"
+            color="primary"
+            variant="contained"
+            onClick={handlePrevious}
+            style={{ borderRadius: '8px', width: '150px' }}
+          />
+          <Button
+            title="Save"
+            color="primary"
+            variant="contained"
+            disabled={!isFormValid()}
+            onClick={handleNextClick}
+            style={{ borderRadius: '8px', width: '150px' }}
+          />
+        </ButtonSection>
+      </Container>
+    )
   );
 };
 

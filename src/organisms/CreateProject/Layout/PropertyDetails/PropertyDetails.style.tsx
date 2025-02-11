@@ -1,86 +1,38 @@
 import { styled } from '@mui/system';
-import { Box, FormControl, InputLabel, Radio, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import palette from '../../../../thems/primitives/palette';
 import typeset from '../../../../thems/primitives/typeset';
-import { COMMON_PAPER } from '../../../../thems/primitives/colors';
+import { theme } from '../../../../thems/primitives/theme';
 
 export const Container = styled(Box)({
-  maxWidth: '800px',
+  maxWidth: '1200px',
   margin: 'auto',
-  padding: '20px',
   display: 'flex',
   flexDirection: 'column',
   gap: '20px',
   color: palette.text.primary,
   fontFamily: typeset.fontFamily,
+  backgroundColor: theme.palette.background.paper,
 });
-
-export const FlexRow = styled(Box)({
-  display: 'flex',
-  justifyContent: 'space-between',
-  gap: '20px',
-  color: palette.text.secondary,
-});
-
-export const FullWidthFormControl = styled(FormControl)({
-  width: '100%',
-  backgroundColor: palette.white.main,
-  color: palette.text.primary,
-  borderColor: palette.primary.main,
-});
-
-export const InputLabelItem = styled(InputLabel)({
-  backgroundColor: palette.white.main,
-  padding: '0 8px',
-});
-
-interface StyledLabelProps {
-  selected: boolean;
-}
-
-export const StyledLabel = styled('label')<StyledLabelProps>(
-  ({ theme, selected }) => ({
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '8px 16px',
-
-    border: `3px solid ${
-      selected ? theme.palette.primary.main : theme.palette.grey[900]
-    }`,
-    borderRadius: '8px',
-    borderColor: selected ? theme.palette.primary.light : COMMON_PAPER,
-    color: selected ? theme.palette.primary.main : theme.palette.text.secondary,
-    fontWeight: selected ? '600' : '400',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    marginRight: '8px',
-    gap: '8px',
-    fontSize: '14px',
-    marginLeft: '12px',
-  })
-);
-
-export const StyledRadio = styled(Radio)(() => ({
-  display: 'none',
-}));
 
 export const ButtonSection = styled(Box)({
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-end',
+  gap: '20px',
 });
 
-export const Phashes = styled(Box)({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '70px',
-});
+export const InputLabelItem = styled('label')(() => ({
+  fontFamily: typeset.secondaryFontFamily,
+  fontSize: typeset.body2.fontSize,
+  marginBottom: '4px',
+  color: theme.palette.grey[700],
+}));
 
 export const SelectFile = styled(Box)({
   display: 'flex',
-  alignItems: 'center',
-  gap: '18px',
+  flexDirection: 'column',
+  marginTop: '3px',
 });
 
 export const GridContainer = styled(Box)({
@@ -90,18 +42,42 @@ export const GridContainer = styled(Box)({
   rowGap: '15px',
   width: '100%',
 });
-export const GridContainerChild = styled(Box)({
-  display: 'grid',
-  gridTemplateColumns: '1fr',
-  columnGap: '20px',
-  rowGap: '15px',
-  width: '100%',
-});
 
 export const StyledTypography = styled(Typography)(() => ({
-  fontSize: '12px',
+  fontSize: typeset.caption.fontSize,
   color: palette.error.main,
   fontFamily: 'sans-serif',
 
   marginLeft: '15px',
+}));
+export const InputSection = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2px',
+}));
+
+export const SelectFileParent = styled(Box)(() => ({}));
+export const SelectSection = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '8px 16px',
+  width: '93.7%',
+  height: '35px',
+  justifyContent: 'center',
+  border: `1px solid ${theme.palette.grey[500]}`,
+  borderRadius: '6px',
+  color: '',
+}));
+
+export const FileText = styled(Typography)(() => ({
+  marginTop: '8px',
+  fontSize: typeset.subtitle2.fontSize,
+  color: theme.palette.grey[700],
+}));
+
+export const TextArea = styled('textarea')(() => ({
+  width: '100%',
+  borderRadius: '6px',
+  height: '120px',
+  borderColor: theme.palette.grey[600],
 }));

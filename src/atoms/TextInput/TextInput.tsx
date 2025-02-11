@@ -45,7 +45,7 @@ const TextInput: React.FC<TextInputProps> = ({
         : 'text';
 
   return (
-    <>
+    <div>
       <FullWidthFormControl>
         <TextInputField
           id={name}
@@ -80,7 +80,7 @@ const TextInput: React.FC<TextInputProps> = ({
         )}
       </FullWidthFormControl>
       {error && <FormHelp>{helperText}</FormHelp>}
-    </>
+    </div>
   );
 };
 
