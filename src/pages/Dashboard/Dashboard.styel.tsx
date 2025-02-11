@@ -30,6 +30,7 @@ export const BoxContainer = styled(Box)({
   // flexWrap: 'nowrap',
   // justifyContent: 'space-between',
   gap: '16px',
+  padding: '32px',
 });
 
 export const Divider = styled(Box)({
