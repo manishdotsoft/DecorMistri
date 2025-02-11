@@ -8,7 +8,7 @@ import {
   // DividerColumn,
 } from './Dashboard.styel';
 
-import ProjectCard from '../../Molecules/Card/ProjectCard/Card';
+import Card from '../../Molecules/Card/Card';
 // import { ProjectStatus } from '../../store/reducers/projectDataSlice';
 import Loader from '../../atoms/Loader/Loader';
 import { useDashboardLogic } from './Dashboard.hook';
@@ -23,7 +23,7 @@ const Dashboard = () => {
         <Loader message="" size={'large'} />
       ) : (
         <BoxContainer>
-          <ProjectCard data={projects} />
+          <Card data={projects} buttonTitle={'Move to live'} />
         </BoxContainer>
       )}
     </Box>

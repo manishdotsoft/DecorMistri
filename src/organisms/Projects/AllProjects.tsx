@@ -1,12 +1,12 @@
 import { Box } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import Card from '../../Molecules/Card/ProjectCard/Card';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '../../store/store';
+// import Card from '../../Molecules/Card/Card';
 
 // import { Divider } from '../../pages/Dashboard/Dashboard.styel';
 
 const AllProjects = () => {
-  const projects = useSelector((state: RootState) => state.projects.projects);
+  // const projects = useSelector((state: RootState) => state.projects.projects);
   return (
     <Box
       sx={{
@@ -16,7 +16,7 @@ const AllProjects = () => {
         justifyContent: 'center',
       }}
     >
-      <Card data={projects} />
+      {/* <Card data={projects} buttonTitle='' /> */}
     </Box>
   );
 };

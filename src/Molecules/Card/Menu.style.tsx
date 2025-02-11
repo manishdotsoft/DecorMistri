@@ -1,10 +1,10 @@
 import { Button, styled } from '@mui/material';
 import { Menu, MenuItem } from '@mui/material';
-import { theme } from '../../../thems/primitives/theme';
-import fonts from '../../../thems/primitives/fonts';
+import { theme } from '../../thems/primitives/theme';
+import fonts from '../../thems/primitives/fonts';
 
-import typeset from '../../../thems/primitives/typeset';
-import palette from '../../../thems/primitives/palette';
+import typeset from '../../thems/primitives/typeset';
+import palette from '../../thems/primitives/palette';
 
 export const StyledMenu = styled(Menu)(() => ({
   '& .MuiPaper-root': {

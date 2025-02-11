@@ -2,11 +2,11 @@ import React from 'react';
 import { StyledMenu, StyledMenuItem, StatusButton } from './Menu.style';
 import { Collapse, Box } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import Modal from '../../../atoms/Modal/Modal';
-import palette from '../../../thems/primitives/palette';
+import Modal from '../../atoms/Modal/Modal';
+import palette from '../../thems/primitives/palette';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useMenuLogic } from './Menu.hook';
-import EditProject from '../../../organisms/EditProject/CreateProject';
+import EditProject from '../../organisms/EditProject/CreateProject';
 
 interface ProjectMenuProps {
   anchorEl: null | HTMLElement;

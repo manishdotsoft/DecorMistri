@@ -1,8 +1,8 @@
 import { Box, styled, Typography } from '@mui/material';
-import { theme } from '../../../thems/primitives/theme';
-import palette from '../../../thems/primitives/palette';
-import typeset from '../../../thems/primitives/typeset';
-import fonts from '../../../thems/primitives/fonts';
+import { theme } from '../../thems/primitives/theme';
+import palette from '../../thems/primitives/palette';
+import typeset from '../../thems/primitives/typeset';
+import fonts from '../../thems/primitives/fonts';
 
 interface SuccessStatusProps {
   isStarted: boolean;
@@ -61,3 +61,5 @@ export const SuccessStatus = styled(Typography, {
   fontSize: typeset.body2.fontSize,
   fontFamily: fonts.primary,
 }));
+
+export const ButtonWrapper = styled(Box)({});
