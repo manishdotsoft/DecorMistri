@@ -7,7 +7,7 @@ import {
   // Cards,
   // DividerColumn,
 } from './Dashboard.styel';
-import HeaderFilter from '../../organisms/Header/HeaderFilter';
+
 import ProjectCard from '../../Molecules/Card/ProjectCard/Card';
 // import { ProjectStatus } from '../../store/reducers/projectDataSlice';
 import Loader from '../../atoms/Loader/Loader';
@@ -18,7 +18,6 @@ const Dashboard = () => {
 
   return (
     <Box>
-      <HeaderFilter />
       <Divider />
       {loading ? (
         <Loader message="" size={'large'} />

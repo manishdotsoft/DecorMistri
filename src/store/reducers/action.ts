@@ -4,13 +4,11 @@ import { updateFormData } from './createProjectSlice';
 export const updateFormDataAsync = createAsyncThunk(
   'createProject/updateFormDataAsync',
   async (
-    payload: { page: string; data: string },
+    payload: { page: string; data: Record<string, unknown> },
     { dispatch, rejectWithValue }
   ) => {
     try {
-      // Simulate API validation or async processing
-      const validatedData = payload.data; // Replace with actual API logic if required
-      dispatch(updateFormData({ page: payload.page, data: validatedData }));
+      dispatch(updateFormData({ page: payload.page, data: payload.data }));
     } catch (error) {
       console.error('Error updating form data:', error);
       return rejectWithValue('Failed to update form data');

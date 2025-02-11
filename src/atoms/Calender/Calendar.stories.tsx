@@ -1,8 +1,8 @@
-import { StoryFn, Meta } from "@storybook/react";
-import { Calender } from "./Calender";
+import { StoryFn, Meta } from '@storybook/react';
+import Calender from './Calender';
 
 export default {
-  title: "atoms/Calender",
+  title: 'atoms/Calender',
   component: Calender,
 } as Meta<typeof Calender>;
 

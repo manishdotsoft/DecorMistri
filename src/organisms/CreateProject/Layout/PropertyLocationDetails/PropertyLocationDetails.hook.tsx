@@ -50,10 +50,6 @@ const usePropertyLocationDetails = ({
     );
   }, [formik.values]);
 
-  // useEffect(() => {
-  //   updateData(formik.values);
-  // }, [formik.values, updateData]);
-
   return {
     formik,
     isFormValid,

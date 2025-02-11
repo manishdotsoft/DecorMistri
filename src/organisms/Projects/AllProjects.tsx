@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import Card from '../../Molecules/Card/ProjectCard/Card';
 
+// import { Divider } from '../../pages/Dashboard/Dashboard.styel';
+
 const AllProjects = () => {
   const projects = useSelector((state: RootState) => state.projects.projects);
   return (

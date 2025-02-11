@@ -1,15 +1,17 @@
-import { Typography, Box } from '@mui/material';
+import { Typography } from '@mui/material';
 import {
   ButtonSection,
   Container,
-  FullWidthFormControl,
   GridContainer,
+  InputLabelItem,
+  InputSection,
   StyledTypography,
 } from './FinancialDetails.style';
 import Button from '../../../../atoms/Button/Button';
 import RadioButton from '../../../../atoms/RadioButton/RadioButton';
 import useFinancialDetails from './FinancialDetails.hook';
 import TextInput from '../../../../atoms/TextInput/TextInput';
+import { useState } from 'react';
 
 const FinancialDetails = ({
   data,
@@ -29,7 +31,7 @@ const FinancialDetails = ({
   }) => void;
   handleNext: () => void;
   handlePrevious: () => void;
-  handleSubmit: () => void; // Accept handleSubmit as a prop
+  handleSubmit: () => void;
 }) => {
   const { formik } = useFinancialDetails({
     data,
@@ -42,36 +44,46 @@ const FinancialDetails = ({
     { label: 'No', value: 'no' },
   ];
 
+  const [isPageVisible, setIsPageVisible] = useState(true);
+  const handleNextClick = () => {
+    setIsPageVisible(false);
+    formik.handleSubmit();
+  };
+
+  // const handlePreviousClick = () => {
+  //   setIsPageVisible(true);
+  // };
+
   return (
-    <Container>
-      <Typography variant="h6" gutterBottom>
-        Financial Details
-      </Typography>
+    isPageVisible && (
+      <Container>
+        <GridContainer>
+          <InputSection>
+            <InputLabelItem></InputLabelItem>
+            <TextInput
+              name="estimatedBudget"
+              label="Estimated Budget"
+              value={formik.values.estimatedBudget}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={
+                formik.touched.estimatedBudget &&
+                Boolean(formik.errors.estimatedBudget)
+              }
+              style={{
+                width: '100%',
+                borderRadius: '5px',
+              }}
+              placeholder="Estimated Budget"
+            />
+            {formik.errors.estimatedBudget &&
+              formik.touched.estimatedBudget && (
+                <StyledTypography>
+                  {formik.errors.estimatedBudget}
+                </StyledTypography>
+              )}
+          </InputSection>
 
-      <GridContainer>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <TextInput
-            name="estimatedBudget"
-            label="Estimated Budget"
-            value={formik.values.estimatedBudget}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.estimatedBudget &&
-              Boolean(formik.errors.estimatedBudget)
-            }
-            style={{
-              width: '100%',
-              borderRadius: '5px',
-            }}
-            placeholder="Estimated Budget"
-          />
-          {formik.errors.estimatedBudget && formik.touched.estimatedBudget && (
-            <StyledTypography>{formik.errors.estimatedBudget}</StyledTypography>
-          )}
-        </Box>
-
-        <FullWidthFormControl>
           <RadioButton
             label="Payment Received"
             options={paymentOptions}
@@ -85,30 +97,31 @@ const FinancialDetails = ({
               {formik.errors.paymentReceived}
             </Typography>
           )}
-        </FullWidthFormControl>
-      </GridContainer>
-
-      <ButtonSection>
-        <Button
-          title="Previous"
-          color="secondary"
-          onClick={handlePrevious}
-          variant="contained"
-        />
-        <Button
-          title="Submit"
-          color="primary"
-          onClick={() => {
-            formik.handleSubmit();
-            if (formik.isValid && formik.dirty) {
-              handleSubmit();
-            }
-          }}
-          variant="contained"
-          disabled={!formik.isValid || !formik.dirty}
-        />
-      </ButtonSection>
-    </Container>
+        </GridContainer>
+        <ButtonSection>
+          <Button
+            title="Previous"
+            color="primary"
+            variant="contained"
+            onClick={handlePrevious}
+            style={{ borderRadius: '8px', width: '150px' }}
+          />
+          <Button
+            title="Submit"
+            color="primary"
+            variant="contained"
+            disabled={!formik.isValid || !formik.dirty}
+            style={{ borderRadius: '8px', width: '150px' }}
+            onClick={() => {
+              handleNextClick();
+              if (formik.isValid && formik.dirty) {
+                handleSubmit();
+              }
+            }}
+          />
+        </ButtonSection>
+      </Container>
+    )
   );
 };
 

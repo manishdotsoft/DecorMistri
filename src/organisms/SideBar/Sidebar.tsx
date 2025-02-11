@@ -1,14 +1,12 @@
-import { JSX, useState } from 'react';
-
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import EditCalendarIcon from '@mui/icons-material/EditCalendar';
-import LayersIcon from '@mui/icons-material/Layers';
-import MarkunreadIcon from '@mui/icons-material/Markunread';
-import PersonIcon from '@mui/icons-material/Person';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import DashboardIcon from '../../assets/images/sidebar/dashboard.svg';
+import calender from '../../assets/images/sidebar/calender.svg';
+import createmanage from '../../assets/images/sidebar/createmanage.svg';
+import projects from '../../assets/images/sidebar/projects.svg';
+import chatInbox from '../../assets/images/sidebar/chatInbox.svg';
+import userManage from '../../assets/images/sidebar/userManage.svg';
+import profile from '../../assets/images/sidebar/profile.svg';
+import dropdownArrow from '../../assets/images/sidebar/dropdownArrow.svg';
+import plusIcon from '../../assets/images/sidebar/plusIcon.svg';
 import ArrowRightAltOutlinedIcon from '@mui/icons-material/ArrowRightAltOutlined';
 import SideBarHooks from './SideBar.Hooks';
 import {
@@ -21,31 +19,33 @@ import {
   ToggleDiv,
   IconsDiv,
   AccordionBox,
+  AccordionContainer,
+  ContantBox,
 } from './Sidebar.style';
 import palette from '../../thems/primitives/palette';
-
-interface SidebarData {
-  title: string;
-  icon: JSX.Element;
-  options: string[];
-}
+import DashboardHeader from '../../Molecules/DashboardHeader/DashboardHeader';
+import CreateProject from '../CreateProject/CreateProject';
 
 const Sidebar = () => {
-  const { content, handleClick, handleOptionClick, activeOption } =
-    SideBarHooks();
+  const {
+    content,
+    handleLinkClick,
+    activeLink,
+    toggleSection,
+    openSection,
+    selectedOption,
+    setSelectedOption,
+  } = SideBarHooks();
 
-  const [openSection, setOpenSection] = useState<number | null>(null);
-  const [activeSection, setActiveSection] = useState<number | null>(null);
-  const SidebarData: SidebarData[] = [
+  const SidebarData = [
     {
       title: 'Create & Manage',
-      icon: <EditCalendarIcon />,
+      icon: <img src={createmanage} alt="img" />,
       options: ['Create Project', 'Create Task'],
     },
-
     {
       title: 'Projects',
-      icon: <LayersIcon />,
+      icon: <img src={projects} alt="img" />,
       options: [
         'Live Projects',
         'Upcoming Projects',
@@ -55,88 +55,150 @@ const Sidebar = () => {
     },
     {
       title: 'Chat & Inbox',
-      icon: <MarkunreadIcon />,
+      icon: <img src={chatInbox} alt="img" />,
       options: ['Core Chat Functionality', 'Inbox Management'],
     },
     {
       title: 'User Management',
-      icon: <ManageAccountsIcon />,
+      icon: <img src={userManage} alt="img" />,
       options: ['Create User', 'Manage Users', 'User Permissions'],
     },
     {
       title: 'My Profile',
-      icon: <PersonIcon />,
+      icon: <img src={profile} alt="img" />,
       options: ['Profile Information', 'Business Details', 'Advanced Settings'],
     },
   ];
 
-  const toggleSection = (index: number) => {
-    setOpenSection(openSection === index ? null : index);
-    setActiveSection(index);
+  const handleLinkSelection = (option: string) => {
+    setSelectedOption(option);
+    handleLinkClick(option);
   };
 
   return (
     <SidebarContainer>
       <SidebarSection>
         <LinkBox>
-          <LinkTypography onClick={() => handleClick('dashboard')}>
-            <DashboardIcon /> Dashboard
+          <LinkTypography
+            style={{
+              color:
+                activeLink === 'Dashboard'
+                  ? palette.decor.main
+                  : palette.grey.main,
+            }}
+            onClick={() => handleLinkSelection('Dashboard')}
+          >
+            <img src={DashboardIcon} alt="img" />
+            Dashboard
+            {selectedOption === 'Dashboard' && <ArrowRightAltOutlinedIcon />}
           </LinkTypography>
-          <LinkTypography onClick={() => handleClick('Calendar View')}>
-            <CalendarMonthIcon /> Calendar View
+
+          <LinkTypography
+            style={{
+              color:
+                activeLink === 'Calendar View'
+                  ? palette.decor.main
+                  : palette.grey.main,
+            }}
+            onClick={() => handleLinkSelection('Calendar View')}
+          >
+            <img src={calender} alt="img" /> Calendar View
+            {selectedOption === 'Calendar View' && (
+              <ArrowRightAltOutlinedIcon />
+            )}
           </LinkTypography>
         </LinkBox>
 
         {SidebarData.map((section, index) => (
-          <div key={index}>
+          <AccordionContainer key={index}>
             <ToggleDiv
               onClick={() => toggleSection(index)}
               style={{
-                fontWeight: activeSection === index ? 'bold' : 'normal',
-                color: activeSection === index ? 'black' : 'grey',
+                fontWeight: openSection === index ? 'bold' : 'normal',
+                color: openSection === index ? 'black' : palette.grey[400],
               }}
             >
-              <IconsDiv>
+              <IconsDiv
+                style={
+                  {
+                    // filter:
+                    //   selectedOption === section.title
+                    //     ? 'invert(53%) sepia(6%) saturate(241%) hue-rotate(180deg) brightness(20%) contrast(50%)'
+                    //     : 'invert(53%) sepia(6%) saturate(241%) hue-rotate(180deg) brightness(20%) contrast(20%)',
+                  }
+                }
+              >
                 {section.icon}
-                <div style={{ fontSize: '20px' }}>{section.title}</div>
+                <div>{section.title}</div>
               </IconsDiv>
-              <KeyboardArrowDownIcon
+
+              <img
                 style={{
                   transform:
-                    openSection === index ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.3s ease',
+                    openSection === index ? 'rotate(180deg)' : 'inherit',
                 }}
+                src={dropdownArrow}
+                alt="img"
               />
             </ToggleDiv>
 
             {openSection === index && (
-              <div style={{ paddingLeft: '20px' }}>
+              <div>
                 {section.options.map((option) => (
                   <StyledTypography
                     key={option}
-                    onClick={() => handleOptionClick(option)}
+                    onClick={() => handleLinkSelection(option)}
                     style={{
-                      fontWeight: activeOption === option ? 'bold' : 'normal',
-
                       color:
-                        activeOption === option
+                        selectedOption === option
                           ? palette.decor.main
                           : palette.grey.main,
                     }}
                   >
                     <AccordionBox>
-                      <AddCircleOutlineOutlinedIcon sx={{ height: '20px' }} />
+                      <img
+                        src={plusIcon}
+                        alt="img"
+                        style={{
+                          height: '18px',
+                          filter:
+                            selectedOption === option
+                              ? 'invert(0%) brightness(0%)'
+                              : 'invert(53%) sepia(6%) saturate(241%) hue-rotate(180deg) brightness(80%) contrast(87%)',
+                        }}
+                      />
                       {option}
                     </AccordionBox>
-                    {activeOption === option && <ArrowRightAltOutlinedIcon />}
+                    {selectedOption === option && <ArrowRightAltOutlinedIcon />}
                   </StyledTypography>
                 ))}
               </div>
             )}
-          </div>
+          </AccordionContainer>
         ))}
       </SidebarSection>
-      <ContentSection>{content}</ContentSection>
+      <ContantBox>
+        {[
+          'Dashboard',
+          'Live Projects',
+          'Upcoming Projects',
+          'Completed Projects',
+          'All Projects & Quotes',
+        ].includes(selectedOption) && (
+          <DashboardHeader
+            title={selectedOption}
+            onLinkClick={handleLinkSelection}
+          />
+        )}
+
+        <ContentSection>
+          {selectedOption === 'Create Project' ? (
+            <CreateProject />
+          ) : (
+            <div>{content}</div>
+          )}
+        </ContentSection>
+      </ContantBox>
     </SidebarContainer>
   );
 };

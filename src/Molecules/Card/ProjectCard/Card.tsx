@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Card, CardContent, IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import ProjectMenu from '../ThreeDotMenu/Menu';
+import ProjectMenu from './Menu';
 
 interface Project {
   id: number;

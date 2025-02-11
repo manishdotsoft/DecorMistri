@@ -2,13 +2,13 @@ import { styled } from '@mui/system';
 import {
   Box,
   Typography,
-  Accordion,
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import palette from '../../thems/primitives/palette';
 import typeset from '../../thems/primitives/typeset';
+import fonts from '../../thems/primitives/fonts';
 
 export const SidebarContainer = styled(Box)({
   display: 'flex',
@@ -17,21 +17,18 @@ export const SidebarContainer = styled(Box)({
 });
 
 export const SidebarSection = styled(Box)({
-  width: '250px',
+  width: '300px',
   padding: '15px',
-  boxShadow: '2px 0px 10px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.1)',
   transition: 'width 0.3s ease',
-  // '&:hover': {
-  //   width: '280px',
-  // },
+  height: '100vh',
 });
 
 export const ContentSection = styled(Box)({
   flex: 1,
-  padding: '20px',
-  width: 'calc(100vw - 250px)',
-  overflow: 'hidden',
-  overflowX: 'auto',
+  overflowY: 'scroll',
+
+  maxHeight: '100vh',
 });
 
 export const TitleTypography = styled(Typography)({
@@ -41,22 +38,24 @@ export const TitleTypography = styled(Typography)({
   color: palette.primary.dark,
   textAlign: 'center',
   textTransform: 'uppercase',
+  fontFamily: fonts.primary,
 });
 
 export const LinkBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
-  gap: '10px',
+  gap: '12px',
   alignItems: 'start',
+  marginBottom: '12px',
 });
 
-export const LinkTypography = styled('button')({
+export const LinkTypography = styled('div')({
   cursor: 'pointer',
-  fontSize: typeset.body1.fontSize,
-  fontWeight: 600,
+  fontSize: typeset.body2.fontSize,
   border: 'none',
   display: 'flex',
   alignItems: 'center',
+  fontFamily: fonts.primary,
   gap: '10px',
   padding: '10px',
   width: '100%',
@@ -64,31 +63,11 @@ export const LinkTypography = styled('button')({
   transition: 'background-color 0.3s ease, transform 0.2s ease',
   backgroundColor: 'transparent',
   color: palette.text.secondary,
-  '&:hover': {
-    backgroundColor: palette.decor.main,
-    color: palette.white.main,
-    transform: 'scale(1.05)',
-  },
-  '&:active': {
-    transform: 'scale(0.98)',
-  },
-});
-
-export const StyledAccordion = styled(Accordion)({
-  backgroundColor: 'transparent',
-  boxShadow: 'none',
-  transition: 'background-color 0.3s ease',
-  '&:hover': {
-    backgroundColor: palette.grey[100],
-  },
 });
 
 export const StyledAccordionSummary = styled(AccordionSummary)({
   color: palette.text.secondary,
 
-  fontWeight: 600,
-  padding: '0 ',
-  margin: '0',
   '& .MuiAccordionSummary-content': {
     display: 'flex',
     alignItems: 'center',
@@ -105,22 +84,16 @@ export const StyledAccordionDetails = styled(AccordionDetails)({
 
 export const StyledTypography = styled('div')({
   color: palette.text.secondary,
-  fontSize: '1rem',
-  fontWeight: 600,
+  fontSize: typeset.caption.fontSize,
   cursor: 'pointer',
-  marginBottom: '10px',
+  marginBottom: '15px',
   display: 'flex',
   justifyContent: 'space-between',
-  gap: '5px',
-
-  transition: 'color 0.3s ease, transform 0.2s ease',
-  '&:hover': {
-    color: palette.text.secondary,
-    transform: 'scale(1.05)',
-  },
-  '&:active': {
-    transform: 'scale(0.98)',
-  },
+  gap: '8px',
+  margin: '18px 0px ',
+  padding: '4px',
+  marginLeft: '32px',
+  fontFamily: fonts.primary,
 });
 
 export const ExpandIconStyled = styled(ExpandMoreIcon)({
@@ -134,15 +107,31 @@ export const ExpandIconStyled = styled(ExpandMoreIcon)({
 export const ToggleDiv = styled('div')({
   display: 'flex',
   alignItems: 'center',
+  fontFamily: fonts.primary,
   gap: '10px',
   cursor: 'pointer',
   padding: '10px',
   justifyContent: 'space-between',
 });
-export const IconsDiv = styled('div')({ display: 'flex', gap: '10px' });
+export const IconsDiv = styled('div')({
+  display: 'flex',
+  gap: '10px',
+  fontFamily: fonts.primary,
+  fontSize: typeset.body2.fontSize,
+});
 
 export const AccordionBox = styled('div')({
   display: 'flex',
-  gap: '5px',
-  fontSize: '16px',
+  gap: '8px',
+  fontSize: typeset.body2.fontSize,
+  fontFamily: fonts.primary,
+});
+
+export const AccordionContainer = styled('div')({ marginBottom: '12px' });
+
+export const ContantBox = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  fontFamily: fonts.primary,
 });
