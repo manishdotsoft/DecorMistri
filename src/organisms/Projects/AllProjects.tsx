@@ -2,6 +2,8 @@ import { Box } from '@mui/material';
 import { ProjectStatus } from '../../store/reducers/projectDataSlice';
 import Card from '../../Molecules/Card/ProjectCard/Card';
 
+import { Divider } from '../../pages/Dashboard/Dashboard.styel';
+
 const AllProjects = () => {
   return (
     <Box
@@ -12,7 +14,8 @@ const AllProjects = () => {
         justifyContent: 'center',
       }}
     >
-      {/* Correct the prop name to 'status' */}
+      <Divider />
+
       <Card status={ProjectStatus.Live} buttonTitle="Open project" />
       <Card status={ProjectStatus.Complete} buttonTitle="Detail View" />
       <Card status={ProjectStatus.Upcoming} buttonTitle="Move to Live" />

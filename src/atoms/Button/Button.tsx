@@ -18,6 +18,7 @@ interface ButtonProps {
   letterSpacing?: string;
   type?: 'button' | 'reset' | 'submit';
   buttonWarraparStyle?: React.CSSProperties;
+  svgIcon?: React.CSSProperties;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -35,6 +36,7 @@ const Button: React.FC<ButtonProps> = ({
   fontWeight,
   letterSpacing,
   buttonWarraparStyle,
+  svgIcon,
 }: ButtonProps) => {
   const theme = useTheme();
 
@@ -78,7 +80,7 @@ const Button: React.FC<ButtonProps> = ({
               textAlign="center"
             >
               {logo && (
-                <img src={logo} alt="button logo" style={{ height: '25px' }} />
+                <img src={logo} alt="button logo" style={{ ...svgIcon }} />
               )}
               <Typography
                 style={{

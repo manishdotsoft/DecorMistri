@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ProjectStatus } from '../../store/reducers/projectDataSlice';
+import { ProjectStatus } from '../../../store/reducers/projectDataSlice';
 
 export const useProjectMenu = (
   handleUpdateStatus: (projectValue: string, newStatus: ProjectStatus) => void

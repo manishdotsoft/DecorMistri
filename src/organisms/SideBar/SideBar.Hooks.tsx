@@ -13,26 +13,23 @@ import UserPermission from '../UserManagement/UserPermissions';
 import Myprofile from '../MyProfile/MyProfile';
 import Business from '../MyProfile/Business';
 import AdvaceSetting from '../MyProfile/AdvanceSetting';
-
 import CalenderView from '../CalendarView/CalendarView';
-
 import Dashboard from '../../pages/Dashboard/Dashboard';
 
 const SideBarHooks = () => {
-  const [selectedOption, setSelectedOption] = useState('dashboard');
+  const [activeLink, setActiveLink] = useState<string | null>('Dashboard');
+  const [openSection, setOpenSection] = useState<number | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string>('Dashboard');
 
-  const handleOptionChange = setSelectedOption;
   const handleClick = setSelectedOption;
 
-  const handleSelectOption = (option: string) => {
-    handleOptionChange(option);
+  const handleLinkClick = (link: string) => {
+    setActiveLink(link);
+    handleClick(link);
   };
 
-  const [activeOption, setActiveOption] = useState('');
-
-  const handleOptionClick = (option: string) => {
-    setActiveOption(option);
-    handleSelectOption(option);
+  const toggleSection = (index: number) => {
+    setOpenSection(openSection === index ? null : index);
   };
 
   let content;
@@ -66,18 +63,18 @@ const SideBarHooks = () => {
     content = <AdvaceSetting />;
   } else if (selectedOption === 'Calendar View') {
     content = <CalenderView />;
-  } else if (selectedOption === 'dashboard') {
+  } else if (selectedOption === 'Dashboard') {
     content = <Dashboard />;
   }
 
   return {
-    selectedOption,
-    handleOptionChange,
     content,
-    handleClick,
-    handleSelectOption,
-    handleOptionClick,
-    activeOption,
+    handleLinkClick,
+    activeLink,
+    toggleSection,
+    openSection,
+    selectedOption,
+    setSelectedOption,
   };
 };
 
