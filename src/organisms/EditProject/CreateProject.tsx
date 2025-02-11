@@ -1,14 +1,12 @@
-import { Typography, Stepper, Step, StepLabel } from "@mui/material";
-import { useCreateProject } from "./CreateProject.hook";
-
-import ProjectProviderInformation from "./Layout/ProjectProviderInformation/ProjectProviderInformation";
-import PropertyDetails from "./Layout/PropertyDetails/PropertyDetails";
-import PropertyLocationDetails from "./Layout/PropertyLocationDetails/PropertyLocationDetails";
-
-import ClientDetails from "./Layout/ClientDetails/ClientDetails";
-import TimelineSchedule from "./Layout/TimelineSchedule/TimelineSchedule";
-import FinancialDetails from "./Layout/FinancialDetails/FinancialDetails";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Typography, Stepper, Step, StepLabel } from '@mui/material';
+import { useCreateProject } from './CreateProject.hook';
+import ProjectProviderInformation from './Layout/ProjectProviderInformation/ProjectProviderInformation';
+import PropertyDetails from './Layout/PropertyDetails/PropertyDetails';
+import PropertyLocationDetails from './Layout/PropertyLocationDetails/PropertyLocationDetails';
+import ClientDetails from './Layout/ClientDetails/ClientDetails';
+import TimelineSchedule from './Layout/TimelineSchedule/TimelineSchedule';
+import FinancialDetails from './Layout/FinancialDetails/FinancialDetails';
 import {
   CompletedStepIcon,
   MainBox,
@@ -16,9 +14,9 @@ import {
   StepNumber,
   StyledPageContent,
   StyledSidebar,
-} from "./CreateProject.style";
+} from './CreateProject.style';
 
-const CreateProject = () => {
+const EditProject = ({ projectId }: any) => {
   const {
     currentPageIndex,
     formData,
@@ -27,70 +25,72 @@ const CreateProject = () => {
     handlePrevious,
     updateFormData,
     pages,
-  } = useCreateProject();
+  } = useCreateProject(projectId);
+
+  console.log(projectId, 'ifed');
 
   const renderPageContent = () => {
     switch (pages[currentPageIndex]) {
-      case "Project & Provider Information":
+      case 'Project & Provider Information':
         return (
           <ProjectProviderInformation
             data={formData.projectProviderInformation}
             currentPageIndex={currentPageIndex}
             updateData={(data) =>
-              updateFormData("projectProviderInformation", data)
+              updateFormData('projectProviderInformation', data)
             }
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
         );
-      case "Client Details":
+      case 'Client Details':
         return (
           <ClientDetails
             data={formData.clientDetails}
             currentPageIndex={currentPageIndex}
-            updateData={(data) => updateFormData("clientDetails", data)}
+            updateData={(data) => updateFormData('clientDetails', data)}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
         );
-      case "Property Details":
+      case 'Property Details':
         return (
           <PropertyDetails
             data={formData.propertyDetails}
             currentPageIndex={currentPageIndex}
-            updateData={(data) => updateFormData("propertyDetails", data)}
+            updateData={(data) => updateFormData('propertyDetails', data)}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
         );
-      case "Property Location Details":
+      case 'Property Location Details':
         return (
           <PropertyLocationDetails
             data={formData.propertyLocationDetails}
             currentPageIndex={currentPageIndex}
             updateData={(data) =>
-              updateFormData("propertyLocationDetails", data)
+              updateFormData('propertyLocationDetails', data)
             }
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
         );
-      case "Timeline & Schedule":
+      case 'Timeline & Schedule':
         return (
           <TimelineSchedule
             data={formData.timelineSchedule}
             currentPageIndex={currentPageIndex}
-            updateData={(data) => updateFormData("timelineSchedule", data)}
+            updateData={(data) => updateFormData('timelineSchedule', data)}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
         );
-      case "Financial Details":
+      case 'Financial Details':
         return (
           <FinancialDetails
             data={formData.financialDetails}
             currentPageIndex={currentPageIndex}
-            updateData={(data) => updateFormData("financialDetails", data)}
+            updateData={(data) => updateFormData('financialDetails', data)}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
           />
@@ -142,4 +142,4 @@ const CreateProject = () => {
   );
 };
 
-export default CreateProject;
+export default EditProject;

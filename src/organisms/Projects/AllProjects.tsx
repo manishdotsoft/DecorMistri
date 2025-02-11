@@ -1,8 +1,10 @@
 import { Box } from '@mui/material';
-import { ProjectStatus } from '../../store/reducers/projectDataSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import Card from '../../Molecules/Card/ProjectCard/Card';
 
 const AllProjects = () => {
+  const projects = useSelector((state: RootState) => state.projects.projects);
   return (
     <Box
       sx={{
@@ -12,10 +14,7 @@ const AllProjects = () => {
         justifyContent: 'center',
       }}
     >
-      {/* Correct the prop name to 'status' */}
-      <Card status={ProjectStatus.Live} buttonTitle="OPEN PROJECT" />
-      <Card status={ProjectStatus.Complete} buttonTitle="Detail View" />
-      <Card status={ProjectStatus.Upcoming} buttonTitle="Move to Live" />
+      <Card data={projects} />
     </Box>
   );
 };

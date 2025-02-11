@@ -16,6 +16,7 @@ export interface ProjectDataType {
   endDate: string;
   completionPercentage: number;
   status: ProjectStatus;
+  ProjectId: null | number;
 }
 
 interface ProjectState {
@@ -51,6 +52,7 @@ const projectSlice = createSlice({
   },
 });
 
-export const { setProjects, updateProjectStatus } = projectSlice.actions;
+export const { setProjects, updateProjectStatus, deleteProject } =
+  projectSlice.actions;
 
 export default projectSlice.reducer;

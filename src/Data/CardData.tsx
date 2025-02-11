@@ -1,39 +1,35 @@
-import {
-  ProjectStatus,
-  ProjectDataType,
-} from '../store/reducers/projectDataSlice';
-export const ProjectData: ProjectDataType[] = [
+export const ProjectData = [
   {
     id: 1,
-    value: 'Complete Project 1',
+    value: 'Complete 1',
     designType: 'Residential',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 75,
-    status: ProjectStatus.Complete,
+    status: 'Completed',
   },
   {
     id: 2,
 
-    value: 'Complete Project 2',
+    value: 'Complete 2',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Complete,
+    status: 'Completed',
   },
   {
     id: 3,
 
-    value: 'Complete Project 3',
+    value: 'Complete 3',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Complete,
+    status: 'Completed',
   },
 
   {
@@ -45,7 +41,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: ProjectStatus.NotConfirmed,
+    status: 'Not Confirmed',
   },
   {
     id: 5,
@@ -56,7 +52,7 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: ProjectStatus.NotConfirmed,
+    status: 'Not Confirmed',
   },
   {
     id: 6,
@@ -67,96 +63,96 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: ProjectStatus.NotConfirmed,
+    status: 'Not Confirmed',
   },
 
   {
     id: 7,
-    value: 'Upcoming Project 1',
+    value: 'Upcoming  1',
     designType: 'Residential',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 75,
-    status: ProjectStatus.Upcoming,
+    status: 'Upcoming',
   },
   {
     id: 8,
 
-    value: 'Upcoming Project 2',
+    value: 'Upcoming 2',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Upcoming,
+    status: 'Upcoming',
   },
   {
     id: 9,
 
-    value: 'Upcoming Project 3',
+    value: 'Upcoming 3',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Upcoming,
+    status: 'Upcoming',
   },
 
   {
     id: 10,
 
-    value: 'Live Project 1',
+    value: 'Live 1',
     designType: 'Residential',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 75,
-    status: ProjectStatus.Live,
+    status: 'Live',
   },
   {
     id: 11,
 
-    value: 'Live Project 2',
+    value: 'Live 2',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Live,
+    status: 'Live',
   },
   {
     id: 12,
 
-    value: 'Live Project 3',
+    value: 'Live 3',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Live,
+    status: 'Live',
   },
   {
     id: 13,
 
-    value: 'Live Project 2',
+    value: 'Live 2',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Live,
+    status: 'Live',
   },
   {
     id: 14,
 
-    value: 'Complete Project 4',
+    value: 'Complete 4',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Complete,
+    status: 'Completed',
   },
   {
     id: 15,
@@ -167,18 +163,18 @@ export const ProjectData: ProjectDataType[] = [
     startDate: 'TBD',
     endDate: 'TBD',
     completionPercentage: 0,
-    status: ProjectStatus.NotConfirmed,
+    status: 'Not Confirmed',
   },
   {
     id: 16,
 
-    value: 'Upcoming Project 4',
+    value: 'Upcoming 4',
     designType: 'Commercial',
     location: 'India',
     startDate: '2025-01-01',
     endDate: '2025-12-31',
     completionPercentage: 25,
-    status: ProjectStatus.Upcoming,
+    status: 'Upcoming',
   },
 ];
 export const menuItems = [

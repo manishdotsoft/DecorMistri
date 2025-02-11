@@ -76,8 +76,17 @@ export const HIGH1_G = '#FFF2DF';
 export const HIGH2_H = '#FFB40026';
 export const MINIMUM = '#FF000026';
 export const BOOKED_OUT = '#F44336';
+export const DECOR_COLOR = '#C7148A';
+export const DECOR_LIGHT = '#fff0f9';
+export const DECOR_DARK = '#b60a7c';
 
 const palette = {
+  decor: {
+    main: DECOR_COLOR,
+    Lite: DECOR_LIGHT,
+    dark: DECOR_DARK,
+  },
+
   primary: {
     main: PRIMARY_MAIN,
     contrastText: COMMON_DEFAULT,

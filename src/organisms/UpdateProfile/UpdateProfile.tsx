@@ -115,12 +115,14 @@ const UpdateProfile: React.FC = () => {
   const { formik, isAnyFieldEmpty, progress } = useUpdateProfile();
 
   const [profileImage, setProfileImage] = useState<string>(ProfileImage);
+  const [imageSelected, setImageSelected] = useState<boolean>(false);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
+      setImageSelected(true);
     }
   };
 
@@ -364,15 +366,25 @@ const UpdateProfile: React.FC = () => {
                     <Box
                       sx={{
                         display: 'flex',
-                        flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'center',
+                        overflow: 'hidden',
+                        height: '100%',
+                        flexDirection: 'column',
                       }}
                     >
-                      <ProfileUploadImg src={profileImage} alt="Profile" />
-                      <InputLabelItem>
-                        Upload formats JPG, PNG, BMP and GIF
-                      </InputLabelItem>
+                      <ProfileUploadImg
+                        src={profileImage}
+                        alt="Profile"
+                        imageSelected={imageSelected}
+                      />
+                      {!imageSelected ? (
+                        <InputLabelItem>
+                          Upload formats JPG, PNG, BMP and GIF
+                        </InputLabelItem>
+                      ) : (
+                        ''
+                      )}
                     </Box>
                     <InputImg
                       id="profile-upload"
@@ -393,7 +405,7 @@ const UpdateProfile: React.FC = () => {
                       width: '100%',
                       fontFamily: fonts.primary,
                       borderRadius: '8px',
-                      padding: '26px',
+                      padding: '25px',
                       background: theme.palette.grey[300],
                       color: theme.palette.grey[700],
                       fontSize: theme.typography.caption.fontSize,

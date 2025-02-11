@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import palette, { ICON_COLOR } from '../../thems/primitives/palette';
@@ -235,6 +236,7 @@ export const Title2 = styled(Typography)(({ theme }) => ({
 
 export const LabelProfile = styled('label')(() => ({
   cursor: 'pointer',
+  width: '100%',
 }));
 
 export const MainUploadImage = styled(Box)(() => ({
@@ -250,10 +252,14 @@ export const MainUploadImage = styled(Box)(() => ({
   cursor: 'pointer',
 }));
 
-export const ProfileUploadImg = styled('img')(() => ({
-  width: '100px',
-  height: '100%',
-  objectFit: 'cover',
+export const ProfileUploadImg = styled('img', {
+  shouldForwardProp: (prop) => prop !== 'imageSelected',
+})(({ imageSelected }: any) => ({
+  width: '100%',
+  height: imageSelected ? '100%' : '70%',
+  maxWidth: '100%',
+  maxHeight: '100%',
+  objectFit: imageSelected ? 'cover' : 'contain',
 }));
 
 export const CameraBtn = styled('img')(() => ({

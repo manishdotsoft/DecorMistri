@@ -32,6 +32,20 @@ const HeaderFilter = () => {
   return (
     <Container>
       {/* Filters Section */}
+      <ActionsSection>
+        <SearchContainer>
+          <TextInput
+            name="search"
+            type="text"
+            label="Search"
+            value={searchValue}
+            onChange={handleSearchChange}
+            placeholder="Search by Category, Name, ID and other text related to topic"
+            style={{ padding: '12px', width: '400px', paddingLeft: '40px' }}
+          />
+          <StyledSearchIcon />
+        </SearchContainer>
+      </ActionsSection>
       <FilterSection>
         <SelectOption
           name="designType"
@@ -65,21 +79,6 @@ const HeaderFilter = () => {
           value={selectedDate}
           onChange={handleDateChange}
         />
-      </FilterSection>
-
-      <ActionsSection>
-        <SearchContainer>
-          <TextInput
-            name="search"
-            type="text"
-            label="Search"
-            value={searchValue}
-            onChange={handleSearchChange}
-            placeholder="Search..."
-            style={{ padding: '10px' }}
-          />
-          <StyledSearchIcon />
-        </SearchContainer>
         <Link style={{ textDecoration: 'none' }} to={'/create-project'}>
           <Button
             title="Create Project"
@@ -91,11 +90,12 @@ const HeaderFilter = () => {
               color: palette.white.main,
               borderRadius: '5px',
               width: '160px',
+              marginTop: '20px',
             }}
             onClick={() => console.log('Create new project clicked')}
           />
         </Link>
-      </ActionsSection>
+      </FilterSection>
     </Container>
   );
 };

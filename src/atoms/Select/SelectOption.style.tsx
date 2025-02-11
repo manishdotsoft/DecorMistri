@@ -28,7 +28,6 @@ export const SelectWrapper = styled('div')({
 export const SelectItem = styled('select')({
   width: '100%',
   padding: '12px 40px 12px 12px',
-  borderRadius: '4px',
   border: `1px solid ${theme.palette.grey[300]}`,
 
   fontSize: '16px',

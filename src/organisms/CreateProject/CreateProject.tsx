@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { updateFormDataAsync } from '../../store/reducers/action';
-import { Typography, Stepper, Step, StepLabel } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useCreateProject } from './CreateProject.hook';
 import ProjectProviderInformation from './Layout/ProjectProviderInformation/ProjectProviderInformation';
 import PropertyDetails from './Layout/PropertyDetails/PropertyDetails';
@@ -11,12 +11,12 @@ import ClientDetails from './Layout/ClientDetails/ClientDetails';
 import TimelineSchedule from './Layout/TimelineSchedule/TimelineSchedule';
 import FinancialDetails from './Layout/FinancialDetails/FinancialDetails';
 import {
-  CompletedStepIcon,
+  // CompletedStepIcon,
   MainBox,
-  StepIconContainer,
-  StepNumber,
+  // StepIconContainer,
+  // StepNumber,
   StyledPageContent,
-  StyledSidebar,
+  // StyledSidebar,
 } from './CreateProject.style';
 import Toaster from '../../atoms/Toaster/Toaster';
 
@@ -25,7 +25,7 @@ const CreateProject = () => {
   const {
     currentPageIndex,
     formData,
-    completedSteps,
+    // completedSteps,
     handleNext,
     handlePrevious,
     pages,
@@ -48,122 +48,111 @@ const CreateProject = () => {
     }
   }, [currentPageIndex, formData, dispatch, pages]);
 
-  const renderPageContent = () => {
-    switch (pages[currentPageIndex]) {
-      case 'Project & Provider Information':
-        return (
-          <ProjectProviderInformation
-            data={formData.projectProviderInformation}
-            currentPageIndex={currentPageIndex}
-            updateData={(data) =>
-              dispatch(
-                updateFormDataAsync({
-                  page: 'projectProviderInformation',
-                  data,
-                })
-              )
-            }
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-          />
-        );
-      case 'Client Details':
-        return (
-          <ClientDetails
-            data={formData.clientDetails}
-            currentPageIndex={currentPageIndex}
-            updateData={(data) =>
-              dispatch(
-                updateFormDataAsync({
-                  page: 'clientDetails',
-                  data,
-                })
-              )
-            }
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-          />
-        );
-      case 'Property Details':
-        return (
-          <PropertyDetails
-            data={formData.propertyDetails}
-            currentPageIndex={currentPageIndex}
-            updateData={(data) =>
-              dispatch(
-                updateFormDataAsync({
-                  page: 'propertyDetails',
-                  data,
-                })
-              )
-            }
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-          />
-        );
-      case 'Property Location Details':
-        return (
-          <PropertyLocationDetails
-            data={formData.propertyLocationDetails}
-            currentPageIndex={currentPageIndex}
-            updateData={(data) =>
-              dispatch(
-                updateFormDataAsync({
-                  page: 'propertyLocationDetails',
-                  data,
-                })
-              )
-            }
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-          />
-        );
-      case 'Timeline & Schedule':
-        return (
-          <TimelineSchedule
-            data={formData.timelineSchedule}
-            currentPageIndex={currentPageIndex}
-            updateData={(data) =>
-              dispatch(
-                updateFormDataAsync({
-                  page: 'timelineSchedule',
-                  data,
-                })
-              )
-            }
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-          />
-        );
-      case 'Financial Details':
-        return (
-          <FinancialDetails
-            data={formData.financialDetails}
-            currentPageIndex={currentPageIndex}
-            updateData={(data) =>
-              dispatch(
-                updateFormDataAsync({
-                  page: 'financialDetails',
-                  data,
-                })
-              )
-            }
-            handleNext={handleNext}
-            handlePrevious={handlePrevious}
-            handleSubmit={() => handleSubmit(formData)}
-          />
-        );
-      // default:
-      //   return (
-      //     <Typography>Please select a valid page from the sidebar.</Typography>
-      //   );
-    }
+  const renderPages = () => {
+    return pages.slice(0, currentPageIndex + 1).map((page, index) => {
+      switch (page) {
+        case 'Project & Provider Information':
+          return (
+            <ProjectProviderInformation
+              key={index}
+              data={formData.projectProviderInformation}
+              currentPageIndex={index}
+              updateData={(data) =>
+                dispatch(
+                  updateFormDataAsync({
+                    page: 'projectProviderInformation',
+                    data,
+                  })
+                )
+              }
+              handleNext={handleNext}
+              handlePrevious={handlePrevious}
+            />
+          );
+        case 'Client Details':
+          return (
+            <ClientDetails
+              key={index}
+              data={formData.clientDetails}
+              currentPageIndex={index}
+              updateData={(data) =>
+                dispatch(updateFormDataAsync({ page: 'clientDetails', data }))
+              }
+              handleNext={handleNext}
+              handlePrevious={handlePrevious}
+            />
+          );
+        case 'Property Details':
+          return (
+            <PropertyDetails
+              key={index}
+              data={formData.propertyDetails}
+              currentPageIndex={index}
+              updateData={(data) =>
+                dispatch(updateFormDataAsync({ page: 'propertyDetails', data }))
+              }
+              handleNext={handleNext}
+              handlePrevious={handlePrevious}
+            />
+          );
+        case 'Property Location Details':
+          return (
+            <PropertyLocationDetails
+              key={index}
+              data={formData.propertyLocationDetails}
+              currentPageIndex={index}
+              updateData={(data) =>
+                dispatch(
+                  updateFormDataAsync({ page: 'propertyLocationDetails', data })
+                )
+              }
+              handleNext={handleNext}
+              handlePrevious={handlePrevious}
+            />
+          );
+        case 'Timeline & Schedule':
+          return (
+            <TimelineSchedule
+              key={index}
+              data={formData.timelineSchedule}
+              currentPageIndex={index}
+              updateData={(data) =>
+                dispatch(
+                  updateFormDataAsync({ page: 'timelineSchedule', data })
+                )
+              }
+              handleNext={handleNext}
+              handlePrevious={handlePrevious}
+            />
+          );
+        case 'Financial Details':
+          return (
+            <FinancialDetails
+              key={index}
+              data={formData.financialDetails}
+              currentPageIndex={index}
+              updateData={(data) =>
+                dispatch(
+                  updateFormDataAsync({ page: 'financialDetails', data })
+                )
+              }
+              handleNext={handleNext}
+              handlePrevious={handlePrevious}
+              handleSubmit={() => handleSubmit(formData)}
+            />
+          );
+        default:
+          return (
+            <Typography key={index}>Please select a valid page.</Typography>
+          );
+      }
+    });
   };
 
   return (
     <MainBox>
       {/* Sidebar */}
-      <StyledSidebar>
+      {/* <StyledSidebar>
         <Typography variant="h6" sx={{ marginBottom: 4 }}>
           Create Project
         </Typography>
@@ -187,14 +176,14 @@ const CreateProject = () => {
             </Step>
           ))}
         </Stepper>
-      </StyledSidebar>
+      </StyledSidebar> */}
 
       {/* Main Page Content */}
       <StyledPageContent>
         <Typography variant="h5" gutterBottom>
           {pages[currentPageIndex]}
         </Typography>
-        {renderPageContent()}
+        {renderPages()}
       </StyledPageContent>
       {showToast ? (
         <Toaster

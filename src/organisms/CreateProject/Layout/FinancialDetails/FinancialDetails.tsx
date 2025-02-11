@@ -2,8 +2,8 @@ import { Typography, Box } from '@mui/material';
 import {
   ButtonSection,
   Container,
-  FlexRow,
   FullWidthFormControl,
+  GridContainer,
   StyledTypography,
 } from './FinancialDetails.style';
 import Button from '../../../../atoms/Button/Button';
@@ -48,7 +48,7 @@ const FinancialDetails = ({
         Financial Details
       </Typography>
 
-      <FlexRow>
+      <GridContainer>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <TextInput
             name="estimatedBudget"
@@ -61,7 +61,7 @@ const FinancialDetails = ({
               Boolean(formik.errors.estimatedBudget)
             }
             style={{
-              width: '95%',
+              width: '100%',
               borderRadius: '5px',
             }}
             placeholder="Estimated Budget"
@@ -70,26 +70,23 @@ const FinancialDetails = ({
             <StyledTypography>{formik.errors.estimatedBudget}</StyledTypography>
           )}
         </Box>
-      </FlexRow>
 
-      <Typography variant="subtitle1" gutterBottom>
-        Payment Status
-      </Typography>
-      <FullWidthFormControl>
-        <RadioButton
-          label="Payment Received"
-          options={paymentOptions}
-          selectedValue={formik.values.paymentReceived || ''}
-          onChange={(value) => formik.setFieldValue('paymentReceived', value)}
-          name="paymentReceived"
-          direction="row"
-        />
-        {formik.touched.paymentReceived && formik.errors.paymentReceived && (
-          <Typography color="error" variant="caption">
-            {formik.errors.paymentReceived}
-          </Typography>
-        )}
-      </FullWidthFormControl>
+        <FullWidthFormControl>
+          <RadioButton
+            label="Payment Received"
+            options={paymentOptions}
+            selectedValue={formik.values.paymentReceived || ''}
+            onChange={(value) => formik.setFieldValue('paymentReceived', value)}
+            name="paymentReceived"
+            direction="row"
+          />
+          {formik.touched.paymentReceived && formik.errors.paymentReceived && (
+            <Typography color="error" variant="caption">
+              {formik.errors.paymentReceived}
+            </Typography>
+          )}
+        </FullWidthFormControl>
+      </GridContainer>
 
       <ButtonSection>
         <Button

@@ -16,6 +16,7 @@ interface ProjectMenuProps {
   onDeleteProject: (projectValue: string) => void;
   currentProject: string | null;
   onUpdateStatus: (projectValue: string, newStatus: string) => void;
+  projectId?: number | null;
 }
 
 const ProjectMenu: React.FC<ProjectMenuProps> = ({
@@ -26,6 +27,7 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
   onDeleteProject,
   currentProject,
   onUpdateStatus,
+  projectId,
 }) => {
   const {
     statusOptions,
@@ -35,7 +37,7 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
     openModal,
     closeModal,
     handleStatusChange,
-    confirmDelete,
+    // confirmDelete,
   } = useMenuLogic({
     onDeleteProject,
     currentProject,
@@ -53,47 +55,22 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
     >
       {menuItems.map((item, index) => (
         <React.Fragment key={index}>
-          {/* Edit Option */}
           {item === 'Edit' && (
             <StyledMenuItem onClick={() => openModal('edit')}>
               Edit
             </StyledMenuItem>
           )}
 
-          {/* Delete Project Option */}
           {item === 'Delete Project' && (
-            <StyledMenuItem
-              onClick={() => openModal('delete')}
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              {item}
-              <DeleteOutlineIcon />
+            <StyledMenuItem onClick={() => openModal('delete')}>
+              Delete Project <DeleteOutlineIcon />
             </StyledMenuItem>
           )}
 
-          {/* Change Status with Dropdown */}
           {item === 'Change Status' && (
             <>
-              <StyledMenuItem
-                onClick={toggleDropdown}
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                {item}
-                <KeyboardArrowDownIcon
-                  sx={{
-                    marginLeft: 1,
-                    transition: 'transform 0.3s ease',
-                    transform: dropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                  }}
-                />
+              <StyledMenuItem onClick={toggleDropdown}>
+                Change Status <KeyboardArrowDownIcon />
               </StyledMenuItem>
               <Collapse in={dropdownOpen} timeout="auto" unmountOnExit>
                 <Box sx={{ padding: 2, backgroundColor: palette.white[300] }}>
@@ -111,48 +88,27 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
             </>
           )}
 
-          {/* Render Other Menu Items */}
-          {item !== 'Edit' &&
-            item !== 'Delete Project' &&
-            item !== 'Change Status' && <StyledMenuItem>{item}</StyledMenuItem>}
+          {item === 'Add Phase' && <StyledMenuItem>Add Phase</StyledMenuItem>}
+
+          {item === 'Add Task' && <StyledMenuItem>Add Task</StyledMenuItem>}
         </React.Fragment>
       ))}
 
-      {/* Delete Confirmation Modal */}
+      {/* Delete Project Modal */}
       <Modal
         open={modalState === 'delete'}
         onClose={closeModal}
         title="Are you sure you want to delete this project?"
-        buttons={[
-          {
-            label: 'Cancel',
-            onClick: closeModal,
-            style: {
-              backgroundColor: palette.grey[400],
-              color: palette.black[800],
-              borderRadius: '6px',
-              width: '100%',
-            },
-          },
-          {
-            label: 'Delete',
-            onClick: confirmDelete,
-            style: {
-              backgroundColor: palette.error.alert,
-              color: palette.white.main,
-              borderRadius: '6px',
-              width: '100%',
-            },
-          },
-        ]}
       />
 
-      {/* Edit Modal */}
-      <Modal
-        open={modalState === 'edit'}
-        onClose={closeModal}
-        children={<EditProject />}
-      />
+      {/* Edit Project Modal (Passes the correct projectId dynamically) */}
+      <Modal open={modalState === 'edit'} onClose={closeModal}>
+        {projectId ? (
+          <EditProject projectId={projectId} />
+        ) : (
+          <p>No project selected</p>
+        )}
+      </Modal>
     </StyledMenu>
   );
 };

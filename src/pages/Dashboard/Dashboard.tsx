@@ -1,69 +1,30 @@
-import { Box, Divider } from '@mui/material';
+import { Box } from '@mui/material';
 import {
-  Divider as Drivider,
-  HeadingItem,
-  BoxItem,
+  Divider,
+  // HeadingItem,
+  // BoxItem,
   BoxContainer,
-  Titel,
-  Cards,
+  // Cards,
+  // DividerColumn,
 } from './Dashboard.styel';
 import HeaderFilter from '../../organisms/Header/HeaderFilter';
 import ProjectCard from '../../Molecules/Card/ProjectCard/Card';
-import { ProjectStatus } from '../../store/reducers/projectDataSlice';
+// import { ProjectStatus } from '../../store/reducers/projectDataSlice';
 import Loader from '../../atoms/Loader/Loader';
 import { useDashboardLogic } from './Dashboard.hook';
 
 const Dashboard = () => {
-  const { loading } = useDashboardLogic();
+  const { loading, projects } = useDashboardLogic();
 
   return (
-    <Box sx={{ padding: 4 }}>
-      <Titel variant="h4">Project Dashboard</Titel>
+    <Box>
       <HeaderFilter />
-      <Drivider />
+      <Divider />
       {loading ? (
         <Loader message="" size={'large'} />
       ) : (
         <BoxContainer>
-          <BoxItem>
-            <Cards>
-              <HeadingItem variant="h6">Live Project</HeadingItem>
-            </Cards>
-            <ProjectCard
-              status={ProjectStatus.Live}
-              buttonTitle="OPEN PROJECT"
-            />
-          </BoxItem>
-          <Divider />
-          <BoxItem>
-            <Cards>
-              <HeadingItem variant="h6">Upcoming Project</HeadingItem>
-            </Cards>
-            <ProjectCard
-              status={ProjectStatus.Upcoming}
-              buttonTitle="Move to Live"
-            />
-          </BoxItem>
-          <Divider />
-          <BoxItem>
-            <Cards>
-              <HeadingItem variant="h6">Completed Project</HeadingItem>
-            </Cards>
-            <ProjectCard
-              status={ProjectStatus.Complete}
-              buttonTitle="Detail View"
-            />
-          </BoxItem>
-          <Divider />
-          <BoxItem>
-            <Cards>
-              <HeadingItem variant="h6">Not Confirmed</HeadingItem>
-            </Cards>
-            <ProjectCard
-              status={ProjectStatus.NotConfirmed}
-              buttonTitle="Update Status"
-            />
-          </BoxItem>
+          <ProjectCard data={projects} />
         </BoxContainer>
       )}
     </Box>

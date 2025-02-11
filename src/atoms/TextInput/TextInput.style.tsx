@@ -5,11 +5,11 @@ import { theme } from '../../thems/primitives/theme';
 export const FullWidthFormControl = styled('div')({
   width: '100%',
   display: 'flex',
+  position: 'relative',
 });
 
 export const TextInputField = styled('input')({
   padding: '18px',
-  borderRadius: '4px',
   width: '100%',
   border: `1px solid ${theme.palette.grey[300]}`,
   fontSize: '16px',

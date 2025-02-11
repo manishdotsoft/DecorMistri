@@ -14,6 +14,10 @@ export const ModalBox = styled(Box)(() => ({
   padding: '40px 20px',
   textAlign: 'center',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
 }));
 
 export const ModalTitle = styled(Typography)(() => ({
@@ -31,3 +35,10 @@ export const ModalButtons = styled(Box)(() => ({
 
   marginTop: '20px',
 }));
+
+export const ModalChildWrapper = styled(Box)({
+  height: 'auto',
+  maxHeight: '70vh',
+  overflowY: 'auto',
+  scrollbarWidth: 'none',
+});

@@ -9,10 +9,10 @@ interface ProjectProviderData {
   phoneNumber: string;
   website?: string;
   addressLine1: string;
-  addressLine2?: string;
-  zipCode: string;
-  city: string;
-  country: string;
+  // addressLine2?: string;
+  // zipCode: string;
+  // city: string;
+  // country: string;
   state: string;
 }
 
@@ -38,11 +38,11 @@ export const useProjectProviderForm = ({
       phoneNumber: data.phoneNumber || '',
       website: data.website || '',
       addressLine1: data.addressLine1 || '',
-      addressLine2: data.addressLine2 || '',
-      zipCode: data.zipCode || '',
-      city: data.city || '',
-      country: data.country || '',
+      // city: data.city || '',
       state: data.state || '',
+      // addressLine2: data.addressLine2 || '',
+      // zipCode: data.zipCode || '',
+      // country: data.country || '',
     },
     validationSchema: projectProviderSchema,
     validateOnBlur: true,
@@ -63,10 +63,10 @@ export const useProjectProviderForm = ({
       formik.values.projectNumber &&
       formik.values.dateOfIssue &&
       formik.values.email &&
-      formik.values.city &&
-      formik.values.country &&
+      // formik.values.city &&
+      // formik.values.country &&
       formik.values.state &&
-      formik.values.zipCode &&
+      // formik.values.zipCode &&
       formik.values.addressLine1 &&
       formik.values.designerName &&
       formik.values.phoneNumber

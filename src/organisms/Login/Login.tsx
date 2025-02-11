@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { LoginSchema } from './LoginSchema';
@@ -25,13 +25,14 @@ import {
   Collaboration,
   ParentInputBox,
   LinkSignup,
+  ButtonWrapper,
 } from './LoginPage.style';
 import Toaster from '../../atoms/Toaster/Toaster';
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
 import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 import googleLogo from '../../assets/images/logo/google.svg';
 import { useLoginLogic } from './Login.hook';
-import ReusableModal from '../../atoms/Modal/Modal';
+import Modal from '../../atoms/Modal/Modal';
 import { theme } from '../../thems/primitives/theme';
 
 const LoginPage = () => {
@@ -184,33 +185,44 @@ const LoginPage = () => {
               Create an account
             </LinkSignup>
           </SignupContainer>
-          <ReusableModal
+          <Modal
             open={openModal}
             onClose={handleModalClose}
-            title="Do you want to Update Your Profile?"
-            buttons={[
-              {
-                label: 'Skip',
-                onClick: handleModalClose,
-                style: {
-                  backgroundColor: theme.palette.grey[300],
-                  color: theme.palette.text.primary,
-                  borderRadius: '5px',
-                  width: '160px',
-                },
-              },
-              {
-                label: 'Update Now',
-                onClick: handleUpdateprofile,
-                style: {
-                  backgroundColor: DECOR_LOGO_COLOR,
-                  color: theme.palette.common.white,
-                  borderRadius: '5px',
-                  width: '160px',
-                },
-              },
-            ]}
-            showCloseIcon={true}
+            children={
+              <Box>
+                <Typography mt={1}>
+                  Do you want to update your profile?
+                </Typography>
+                <ButtonWrapper>
+                  <Button
+                    title="Skip"
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    onClick={handleModalClose}
+                    style={{
+                      backgroundColor: theme.palette.grey[300],
+                      color: theme.palette.text.primary,
+                      borderRadius: '5px',
+                      width: '160px',
+                    }}
+                  />
+                  <Button
+                    title="Update Now"
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    onClick={handleUpdateprofile}
+                    style={{
+                      backgroundColor: DECOR_LOGO_COLOR,
+                      color: theme.palette.common.white,
+                      borderRadius: '5px',
+                      width: '160px',
+                    }}
+                  />
+                </ButtonWrapper>
+              </Box>
+            }
           />
         </ChildFlex>
         <ImageBox>

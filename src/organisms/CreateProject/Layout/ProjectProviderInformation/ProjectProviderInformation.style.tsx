@@ -4,7 +4,7 @@ import palette from '../../../../thems/primitives/palette';
 import typeset from '../../../../thems/primitives/typeset';
 
 export const Container = styled(Box)({
-  maxWidth: '1000px',
+  maxWidth: '800px',
   margin: 'auto',
   padding: '10px',
   display: 'flex',
@@ -37,6 +37,12 @@ export const StyledTypography = styled(Typography)(() => ({
   marginLeft: '15px',
 }));
 
+export const CreateProjectHeader = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+}));
+
 export const FlexRow = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
@@ -56,5 +62,11 @@ export const FullWidthFormControl = styled(FormControl)({
 export const ButtonSection = styled(Box)({
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-end',
 });
+
+export const InputSection = styled(Typography)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2px',
+}));

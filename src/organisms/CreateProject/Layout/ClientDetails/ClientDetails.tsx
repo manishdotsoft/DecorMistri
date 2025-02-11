@@ -1,9 +1,10 @@
-import { Typography, Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import {
   ButtonSection,
   Container,
   GridContainer,
-  GridContainerChild,
+  // GridContainerChild,
+  InputSection,
   StyledTypography,
 } from './ClientDetails.style';
 import Button from '../../../../atoms/Button/Button';
@@ -23,22 +24,22 @@ const ClientDetails = ({
     clientEmail: string;
     phoneNumber: string;
     city: string;
-    country: string;
+    // country: string;
     state: string;
     zipCode: string;
     addressLine1: string;
-    addressLine2?: string;
+    // addressLine2?: string;
   };
   updateData: (data: {
     clientName: string;
     clientEmail: string;
     phoneNumber: string;
     city: string;
-    country: string;
+    // country: string;
     state: string;
     zipCode: string;
     addressLine1: string;
-    addressLine2?: string;
+    // addressLine2?: string;
   }) => void;
   handleNext: () => void;
   handlePrevious: () => void;
@@ -53,8 +54,9 @@ const ClientDetails = ({
   return (
     <Container>
       <Typography variant="h6">Basic Information</Typography>
-      <GridContainerChild>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+      <GridContainer>
+        <InputSection>
+          <label>Client Name</label>
           <TextInput
             name="clientName"
             label="Client Name"
@@ -65,19 +67,18 @@ const ClientDetails = ({
               formik.touched.clientName && Boolean(formik.errors.clientName)
             }
             style={{
-              width: '95%',
+              width: '100%',
               borderRadius: '5px',
             }}
-            placeholder="Clint Name"
+            placeholder="Name"
           />
           {formik.errors.clientName && formik.touched.clientName && (
             <StyledTypography>{formik.errors.clientName}</StyledTypography>
           )}
-        </Box>
-      </GridContainerChild>
+        </InputSection>
 
-      <GridContainer>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        <InputSection>
+          <label>Client Email</label>
           <TextInput
             name="clientEmail"
             label="Client Email ID"
@@ -88,47 +89,76 @@ const ClientDetails = ({
               formik.touched.clientEmail && Boolean(formik.errors.clientEmail)
             }
             style={{
-              width: '90%',
+              width: '100%',
               borderRadius: '5px',
             }}
-            placeholder="Client Email ID"
+            placeholder="Email address"
           />
           {formik.errors.clientEmail && formik.touched.clientEmail && (
             <StyledTypography>{formik.errors.clientEmail}</StyledTypography>
           )}
-        </Box>
+        </InputSection>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <TextInput
-            name="phoneNumber"
-            label="Phone Number"
-            type="number"
-            value={formik.values.phoneNumber}
-            onChange={(e) => {
-              if (e.target.value.length <= 10) {
-                formik.handleChange(e);
+        <InputSection>
+          <label>Phone Number</label>
+          <Box
+            sx={{
+              display: 'flex',
+              // alignItems: 'center',
+            }}
+          >
+            <SelectOption
+              name=""
+              label=""
+              options={[
+                { value: 'state1', label: 'State 1' },
+                { value: 'state2', label: 'State 2' },
+              ]}
+              defaultOption={'+91'}
+              value=""
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              style={{
+                width: '100%',
+                padding: '19px',
+                borderRight: 'none',
+                borderTopLeftRadius: '6px',
+                borderBottomLeftRadius: '6px',
+              }}
+              containerMainStyle={{
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            />
+            <TextInput
+              name="phoneNumber"
+              label="Phone Number"
+              type="number"
+              value={formik.values.phoneNumber}
+              onChange={(e) => {
+                if (e.target.value.length <= 10) {
+                  formik.handleChange(e);
+                }
+              }}
+              onBlur={formik.handleBlur}
+              error={
+                formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
               }
-            }}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
-            }
-            style={{
-              width: '90%',
-              borderRadius: '5px',
-            }}
-            placeholder="Phone Number"
-          />
+              style={{
+                width: '100%',
+
+                borderTopRightRadius: '6px',
+                borderBottomRightRadius: '6px',
+              }}
+              placeholder="Phone Number"
+            />
+          </Box>
           {formik.errors.phoneNumber && formik.touched.phoneNumber && (
             <StyledTypography>{formik.errors.phoneNumber}</StyledTypography>
           )}
-        </Box>
-      </GridContainer>
+        </InputSection>
 
-      <Typography variant="subtitle1">Address</Typography>
-
-      <GridContainer>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        {/* <InputSection>
           <SelectOption
             name="country"
             label="Country"
@@ -146,8 +176,8 @@ const ClientDetails = ({
           {formik.errors.country && formik.touched.country && (
             <StyledTypography>{formik.errors.country}</StyledTypography>
           )}
-        </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        </InputSection> */}
+        <InputSection>
           <SelectOption
             name="state"
             label="Province/State"
@@ -165,8 +195,8 @@ const ClientDetails = ({
           {formik.errors.state && formik.touched.state && (
             <StyledTypography>{formik.errors.state}</StyledTypography>
           )}
-        </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        </InputSection>
+        <InputSection>
           <SelectOption
             name="city"
             label="City"
@@ -184,9 +214,10 @@ const ClientDetails = ({
           {formik.errors.city && formik.touched.city && (
             <StyledTypography>{formik.errors.city}</StyledTypography>
           )}
-        </Box>
+        </InputSection>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        <InputSection>
+          <label>Zip Code</label>
           <TextInput
             name="zipCode"
             label="Zip/Postal Code"
@@ -196,20 +227,17 @@ const ClientDetails = ({
             onBlur={formik.handleBlur}
             error={formik.touched.zipCode && Boolean(formik.errors.zipCode)}
             style={{
-              width: '90%',
+              width: '100%',
               borderRadius: '5px',
-              marginTop: '18px',
             }}
             placeholder="Zip/Postal Code"
           />
           {formik.errors.zipCode && formik.touched.zipCode && (
             <StyledTypography>{formik.errors.zipCode}</StyledTypography>
           )}
-        </Box>
-      </GridContainer>
-
-      <GridContainerChild>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        </InputSection>
+        <InputSection>
+          <label>Address</label>
           <TextInput
             name="addressLine1"
             label="Address Line 1"
@@ -220,7 +248,34 @@ const ClientDetails = ({
               formik.touched.addressLine1 && Boolean(formik.errors.addressLine1)
             }
             style={{
-              width: '95.3%',
+              width: '100%',
+              borderRadius: '5px',
+            }}
+            placeholder="Enter location or Google Map link"
+          />
+          {formik.errors.addressLine1 && formik.touched.addressLine1 && (
+            <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
+          )}
+        </InputSection>
+      </GridContainer>
+
+      {/* <GridContainerChild>
+   
+      </GridContainerChild> */}
+
+      {/* <GridContainerChild>
+        <InputSection>
+          <TextInput
+            name="addressLine1"
+            label="Address Line 1"
+            value={formik.values.addressLine1}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.addressLine1 && Boolean(formik.errors.addressLine1)
+            }
+            style={{
+              width: '100%',
               borderRadius: '5px',
             }}
             placeholder="Address Line 1"
@@ -228,10 +283,10 @@ const ClientDetails = ({
           {formik.errors.addressLine1 && formik.touched.addressLine1 && (
             <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
           )}
-        </Box>
+        </InputSection>
       </GridContainerChild>
       <GridContainerChild>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        <InputSection>
           <TextInput
             name="addressLine2"
             label="Address Line 2 (Optional)"
@@ -242,7 +297,7 @@ const ClientDetails = ({
               formik.touched.addressLine2 && Boolean(formik.errors.addressLine2)
             }
             style={{
-              width: '95.3%',
+              width: '100%',
               borderRadius: '5px',
             }}
             placeholder="Address Line 2 (Optional)"
@@ -250,8 +305,8 @@ const ClientDetails = ({
           {formik.errors.addressLine2 && formik.touched.addressLine2 && (
             <StyledTypography>{formik.errors.addressLine2}</StyledTypography>
           )}
-        </Box>
-      </GridContainerChild>
+        </InputSection>
+      </GridContainerChild> */}
 
       <ButtonSection>
         <Button
