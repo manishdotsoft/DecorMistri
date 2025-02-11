@@ -1,15 +1,20 @@
-import { Typography, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import usePropertyLocationDetails from './PropertyLocationDetails.hook';
 import Button from '../../../../atoms/Button/Button';
 import SelectOption from '../../../../atoms/Select/SelectOption';
+// import complete from '../../../../assets/images/createProject/complete.svg';
+
 import {
   ButtonSection,
   Container,
+  // CreateProjectHeader,
   GridContainer,
+  InputLabelItem,
   // GridContainerChild,
   StyledTypography,
 } from './PropertyLocationDetails.style';
 import TextInput from '../../../../atoms/TextInput/TextInput';
+import { useState } from 'react';
 
 const PropertyLocationDetails = ({
   data,
@@ -42,154 +47,163 @@ const PropertyLocationDetails = ({
     updateData,
     handleNext,
   });
+
+  const [isPageVisible, setIsPageVisible] = useState(true);
+  const handleNextClick = () => {
+    setIsPageVisible(false);
+    formik.handleSubmit();
+  };
+
+  // const handlePreviousClick = () => {
+  //   setIsPageVisible(true);
+  // };
   return (
-    <Container>
-      <Typography variant="h6">Property Location Details</Typography>
-      <GridContainer>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <SelectOption
-            name="country"
-            label="Country"
-            options={[
-              { value: 'country1', label: 'Country 1' },
-              { value: 'country2', label: 'Country 2' },
-            ]}
-            defaultOption={'Select Count'}
-            value={formik.values.country}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            style={{ width: '100%', padding: '16px' }}
-            error={formik.touched.country && Boolean(formik.errors.country)}
-          />
-          {formik.errors.country && formik.touched.country && (
-            <StyledTypography>{formik.errors.country}</StyledTypography>
-          )}
-        </Box>
+    isPageVisible && (
+      <Container>
+        <GridContainer>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <SelectOption
+              name="country"
+              label="Country"
+              options={[
+                { value: 'country1', label: 'Country 1' },
+                { value: 'country2', label: 'Country 2' },
+              ]}
+              defaultOption={'Select Count'}
+              value={formik.values.country}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              style={{ width: '100%', padding: '18px', borderRadius: '6px' }}
+              error={formik.touched.country && Boolean(formik.errors.country)}
+            />
+            {formik.errors.country && formik.touched.country && (
+              <StyledTypography>{formik.errors.country}</StyledTypography>
+            )}
+          </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <SelectOption
-            name="state"
-            label="State"
-            options={[
-              { value: 'state1', label: 'State 1' },
-              { value: 'state2', label: 'State 2' },
-            ]}
-            defaultOption={'Select State'}
-            value={formik.values.state}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.state && Boolean(formik.errors.state)}
-            style={{ width: '100%', padding: '16px' }}
-          />
-          {formik.errors.state && formik.touched.state && (
-            <StyledTypography>{formik.errors.state}</StyledTypography>
-          )}
-        </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <SelectOption
+              name="state"
+              label="State"
+              options={[
+                { value: 'state1', label: 'State 1' },
+                { value: 'state2', label: 'State 2' },
+              ]}
+              defaultOption={'Select State'}
+              value={formik.values.state}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.state && Boolean(formik.errors.state)}
+              style={{ width: '100%', padding: '18px', borderRadius: '6px' }}
+            />
+            {formik.errors.state && formik.touched.state && (
+              <StyledTypography>{formik.errors.state}</StyledTypography>
+            )}
+          </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <SelectOption
-            name="city"
-            label="City"
-            options={[
-              { value: 'city1', label: 'City 1' },
-              { value: 'city2', label: 'City 2' },
-            ]}
-            defaultOption={'Select City'}
-            value={formik.values.city}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.city && Boolean(formik.errors.city)}
-            style={{ width: '100%', padding: '16px' }}
-          />
-          {formik.errors.city && formik.touched.city && (
-            <StyledTypography>{formik.errors.city}</StyledTypography>
-          )}
-        </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <label>Zip Code</label>
-          <TextInput
-            name="zip"
-            label="ZIP/Code"
-            value={formik.values.zip}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.zip && Boolean(formik.errors.zip)}
-            style={{
-              width: '90%',
-              borderRadius: '5px',
-            }}
-            placeholder="Enter Zip Code"
-          />
-          {formik.errors.zip && formik.touched.zip && (
-            <StyledTypography>{formik.errors.zip}</StyledTypography>
-          )}
-        </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <SelectOption
+              name="city"
+              label="City"
+              options={[
+                { value: 'city1', label: 'City 1' },
+                { value: 'city2', label: 'City 2' },
+              ]}
+              defaultOption={'Select City'}
+              value={formik.values.city}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.city && Boolean(formik.errors.city)}
+              style={{
+                width: '100%',
+                padding: '18px',
+                borderRadius: '6px',
+                marginTop: '3px',
+              }}
+            />
+            {formik.errors.city && formik.touched.city && (
+              <StyledTypography>{formik.errors.city}</StyledTypography>
+            )}
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <InputLabelItem>Zip Code</InputLabelItem>
+            <TextInput
+              name="zip"
+              label="ZIP/Code"
+              value={formik.values.zip}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.zip && Boolean(formik.errors.zip)}
+              style={{
+                width: '100%',
+                borderRadius: '6px',
+              }}
+              placeholder="Enter Zip Code"
+            />
+            {formik.errors.zip && formik.touched.zip && (
+              <StyledTypography>{formik.errors.zip}</StyledTypography>
+            )}
+          </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <label>Address 1</label>
-          <TextInput
-            name="addressLine1"
-            label="Address Line 1"
-            value={formik.values.addressLine1}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.addressLine1 && Boolean(formik.errors.addressLine1)
-            }
-            style={{
-              width: '95%',
-              borderRadius: '5px',
-            }}
-            placeholder="Enter your address"
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <InputLabelItem>Address 1</InputLabelItem>
+            <TextInput
+              name="addressLine1"
+              label="Address Line 1"
+              value={formik.values.addressLine1}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={
+                formik.touched.addressLine1 &&
+                Boolean(formik.errors.addressLine1)
+              }
+              style={{
+                width: '95%',
+                borderRadius: '6px',
+              }}
+              placeholder="Enter your address"
+            />
+            {formik.errors.addressLine1 && formik.touched.addressLine1 && (
+              <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
+            )}
+          </Box>
+
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <InputLabelItem>Address 2</InputLabelItem>
+            <TextInput
+              name="addressLine2"
+              label="Address Line 2 (Optional)"
+              value={formik.values.addressLine2}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              style={{
+                width: '95%',
+                borderRadius: '6px',
+              }}
+              placeholder="Enter your address"
+            />
+          </Box>
+        </GridContainer>
+
+        <ButtonSection>
+          <Button
+            title="Previous"
+            color="primary"
+            variant="contained"
+            onClick={handlePrevious}
+            style={{ borderRadius: '8px', width: '150px' }}
           />
-          {formik.errors.addressLine1 && formik.touched.addressLine1 && (
-            <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
-          )}
-        </Box>
-
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <label>Address 2</label>
-          <TextInput
-            name="addressLine2"
-            label="Address Line 2 (Optional)"
-            value={formik.values.addressLine2}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            style={{
-              width: '95%',
-              borderRadius: '5px',
-            }}
-            placeholder="Enter your address"
+          <Button
+            title="Save"
+            color="primary"
+            variant="contained"
+            disabled={!isFormValid()}
+            onClick={handleNextClick}
+            style={{ borderRadius: '8px', width: '150px' }}
           />
-        </Box>
-      </GridContainer>
-
-      {/* <TextField
-        label="Address Line 2 (Optional)"
-        variant="outlined"
-        fullWidth
-        name="addressLine2"
-        value={formik.values.addressLine2}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      /> */}
-
-      <ButtonSection>
-        <Button
-          title="Previous"
-          color="secondary"
-          onClick={handlePrevious}
-          variant="contained"
-        />
-        <Button
-          title="Next"
-          color="primary"
-          variant="contained"
-          disabled={!isFormValid()}
-          onClick={() => formik.handleSubmit()}
-        />
-      </ButtonSection>
-    </Container>
+        </ButtonSection>
+      </Container>
+    )
   );
 };
 

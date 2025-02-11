@@ -14,7 +14,7 @@ export const FullWidthFormControl = styled('div')({
 });
 
 export const InputLabelItem = styled('label')<InputLabelItemProps>({
-  fontSize: '0.8rem',
+  fontSize: '1rem',
   marginBottom: '4px',
   color: theme.palette.grey[600],
   fontFamily: typeset.secondaryFontFamily,

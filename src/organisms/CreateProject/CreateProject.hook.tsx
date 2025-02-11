@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import {
   nextPage,
+  PageKey,
   previousPage,
   updateFormData,
 } from '../../store/reducers/createProjectSlice';
@@ -13,6 +14,11 @@ import { formatDate } from '../../utils/formateDate';
 export const useCreateProject = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [nextClickedPageIndex, setNextClickedPageIndex] = useState<
+    number | null
+  >(null);
+
   const currentPageIndex = useSelector(
     (state: RootState) => state.createProject.currentPageIndex
   );
@@ -25,12 +31,21 @@ export const useCreateProject = () => {
   const pages = useSelector((state: RootState) => state.createProject.pages);
   const [showToast, setShowToast] = useState(false);
 
+  const [activePage, setActivePage] = useState(0);
+
   const handleNext = () => {
-    dispatch(nextPage());
+    if (currentPageIndex < pages.length) {
+      dispatch(nextPage());
+      setActivePage(currentPageIndex + 1);
+      console.log(currentPageIndex);
+      setNextClickedPageIndex(currentPageIndex);
+      // setShowToast(true);
+    }
   };
 
   const handlePrevious = () => {
     dispatch(previousPage());
+    setActivePage(currentPageIndex - 1);
   };
 
   const updatePageData = (page: string, data: Record<string, unknown>) => {
@@ -112,5 +127,9 @@ export const useCreateProject = () => {
     handleSubmit,
     showToast,
     handleToasterClose,
+    activePage,
+    setActivePage,
+    nextClickedPageIndex,
+    setShowToast,
   };
 };

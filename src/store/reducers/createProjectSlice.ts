@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type PageKey =
+export type PageKey =
   | 'projectProviderInformation'
   | 'clientDetails'
   | 'propertyDetails'
@@ -38,9 +38,9 @@ type ClientDetailsType = {
 type PropertyDetails = {
   size: string;
   designType: string;
-  subcategories: string;
+  subcategories: string[];
   phases: string;
-  file: string;
+  file: { name: string; size: number; type: string } | null;
   comments: string;
 };
 
@@ -54,13 +54,13 @@ type PropertyLocationDetails = {
 };
 
 type TimelineSchedule = {
-  startDate?: string | null;
-  endDate?: string | null;
+  startDate: string | null | undefined;
+  endDate: string | null | undefined;
 };
 
 type FinancialDetails = {
-  estimatedBudget: '';
-  paymentReceived: '';
+  estimatedBudget: string;
+  paymentReceived: string;
 };
 
 type FormDataType = {
@@ -103,9 +103,9 @@ const initialState = {
     propertyDetails: {
       size: '',
       designType: '',
-      subcategories: '',
+      subcategories: [],
       phases: '',
-      file: '',
+      file: null,
       comments: '',
     },
     propertyLocationDetails: {
@@ -141,9 +141,10 @@ const createProjectSlice = createSlice({
   initialState,
   reducers: {
     nextPage(state) {
-      if (state.currentPageIndex < state.pages.length) {
+      const nextIndex = state.currentPageIndex + 1;
+      if (nextIndex < state.pages.length + 1) {
         state.completedSteps[state.currentPageIndex] = true;
-        state.currentPageIndex += 1;
+        state.currentPageIndex = nextIndex;
       }
     },
     previousPage(state) {
