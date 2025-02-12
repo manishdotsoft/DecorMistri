@@ -13,15 +13,17 @@ import fonts from '../../thems/primitives/fonts';
 export const SidebarContainer = styled(Box)({
   display: 'flex',
   width: '100%',
-  minHeight: '100vh',
+  // minHeight: '100vh',
+  height: 'fit-content',
 });
 
 export const SidebarSection = styled(Box)({
   width: '300px',
   padding: '15px',
-  boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.1)',
   transition: 'width 0.3s ease',
-  height: '100vh',
+
+  height: 'fit-content',
 });
 
 export const ContentSection = styled(Box)({

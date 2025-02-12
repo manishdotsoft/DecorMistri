@@ -6,9 +6,13 @@ const useHeaderFilterHooks = () => {
   const [isEndDatePickerOpen, setIsEndDatePickerOpen] = useState(false);
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleStartDatePicker = () => setIsStartDatePickerOpen((prev) => !prev);
   const toggleEndDatePicker = () => setIsEndDatePickerOpen((prev) => !prev);
+  const toggleDrawer = (open: boolean) => {
+    setDrawerOpen(open);
+  };
 
   const handleStartDateChange = (date: Date | null) => {
     setStartDate(date);
@@ -36,6 +40,8 @@ const useHeaderFilterHooks = () => {
     toggleStartDatePicker,
     startDate,
     endDate,
+    toggleDrawer,
+    drawerOpen,
   };
 };
 

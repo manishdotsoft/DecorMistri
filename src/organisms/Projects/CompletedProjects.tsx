@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import Card from '../../Molecules/Card/ProjectCard/Card';
+import Card from '../../Molecules/Card/Card';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
@@ -14,7 +14,7 @@ const CompletedProjects = () => {
         justifyContent: 'center',
       }}
     >
-      <Card data={projects} />
+      <Card data={projects} buttonTitle={'Detail View'} />
     </Box>
   );
 };
