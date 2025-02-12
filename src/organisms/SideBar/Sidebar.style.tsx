@@ -13,8 +13,8 @@ import fonts from '../../thems/primitives/fonts';
 export const SidebarContainer = styled(Box)({
   display: 'flex',
   width: '100%',
-  // minHeight: '100vh',
-  height: 'fit-content',
+  minHeight: '100vh',
+  // height: 'fit-content',
 });
 
 export const SidebarSection = styled(Box)({

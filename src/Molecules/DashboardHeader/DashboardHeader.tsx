@@ -30,6 +30,7 @@ import Button from '../../atoms/Button/Button';
 import palette from '../../thems/primitives/palette';
 import typeset from '../../thems/primitives/typeset';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface DashboardHeaderProps {
   title: string;
@@ -216,13 +217,24 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
 
       {/* Top Drawer */}
       <Drawer
-        anchor="top"
+        anchor="right"
         open={drawerOpen}
         onClose={() => toggleDrawer(false)}
       >
         <ContantBox>
           <DrawerBox>
             <DrawerTitle>Filters & Options</DrawerTitle>
+            <IconButton
+              onClick={() => toggleDrawer(false)}
+              style={{
+                position: 'absolute',
+                left: '10px',
+                top: '10px',
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+
             <FilterSectionDrawer>
               <DateBox>
                 <StartDateBox>
