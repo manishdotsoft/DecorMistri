@@ -14,7 +14,7 @@ export const Header = styled(Box)(() => ({
   justifyContent: 'space-between',
   alignItems: 'center',
   borderBottom: `1px solid ${SHADE_COLOR}`,
-  padding: '10px 25px',
+  padding: '10px 5px',
 }));
 
 export const StyledHeader = styled(Box)(() => ({
@@ -22,6 +22,7 @@ export const StyledHeader = styled(Box)(() => ({
   display: 'flex',
   gap: '15px',
   alignItems: 'center',
+  justifyContent: 'space-between',
 }));
 
 export const Logo = styled('img')(() => ({
@@ -51,10 +52,18 @@ export const HeaderProfileIcon = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  marginRight: '0',
   borderRadius: '50%',
   cursor: 'pointer',
 }));
 
 export const ProfileBox = styled(Box)(() => ({
-  fontSize: '1.1rem',
+  fontSize: typeset.h6.fontSize,
+}));
+
+export const Profileimg = styled('img')(() => ({
+  width: '40px',
+  height: '40px',
+  borderRadius: '50%',
+  objectFit: 'cover',
 }));

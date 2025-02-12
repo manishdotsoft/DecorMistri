@@ -36,7 +36,6 @@ export const BoxContainer = styled(Box)({
 export const Divider = styled(Box)({
   backgroundColor: theme.palette.grey[300],
   height: '2px',
-  width: '100%',
 });
 export const DividerColumn = styled(Box)({
   backgroundColor: theme.palette.grey[300],
