@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import LogoDecor from '../../../../assets/images/logo/Layer_x0020_1.svg';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
@@ -11,22 +10,18 @@ import {
   Line,
   Logo,
   ProfileBox,
+  Profileimg,
   StyledHeader,
 } from './MainHeader.styel';
-import DrawerMenu from '../../../../atoms/Drawer/Drawer';
+import DrawerMenu from '../../../../atoms/ProfileDrawer/Drawer';
 import profileImage from '../../../../assets/images/logo/profile.png';
+import useDrawer from './MainHeader.hook';
 
 const MainHeader: React.FC = () => {
-  const [open, setOpen] = useState(false);
+  const { open, openDrawer, closeDrawer } = useDrawer();
+
   const userName = 'Gupi debnath';
   const userImage = '';
-
-  const DrawerOpen = () => {
-    setOpen(true);
-  };
-  const DrawerClose = () => {
-    setOpen(false);
-  };
 
   const menuItems = [
     {
@@ -54,19 +49,10 @@ const MainHeader: React.FC = () => {
           <Line />
           <HeaderTitle>DecorMistri</HeaderTitle>
         </StyledHeader>
-        <HeaderProfileIcon onClick={DrawerOpen}>
+        <HeaderProfileIcon onClick={openDrawer}>
           <ProfileBox>
             {userImage ? (
-              <img
-                src={profileImage}
-                alt="User"
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                }}
-              />
+              <Profileimg src={profileImage} alt="User" />
             ) : (
               userName.charAt(0).toUpperCase()
             )}
@@ -76,7 +62,7 @@ const MainHeader: React.FC = () => {
 
       <DrawerMenu
         open={open}
-        onClose={DrawerClose}
+        onClose={closeDrawer}
         userName={userName}
         menuItems={menuItems}
       />

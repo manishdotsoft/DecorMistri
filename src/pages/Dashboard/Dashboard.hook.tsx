@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react';
 import { fetchProjectListQuery } from '../../graphql/query/projectList';
 import { useDispatch } from 'react-redux';
@@ -9,7 +8,7 @@ import { RootState } from '../../store/store';
 export const useDashboardLogic = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const projects = useSelector((state: RootState) => state.projects.projects);
 
   useEffect(() => {
@@ -19,8 +18,12 @@ export const useDashboardLogic = () => {
         if (projectData) {
           dispatch(setProjects(projectData));
         }
-      } catch (err: any) {
-        setError(err);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError(String(err));
+        }
       } finally {
         setLoading(false);
       }

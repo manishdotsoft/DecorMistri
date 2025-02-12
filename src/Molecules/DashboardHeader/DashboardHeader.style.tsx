@@ -5,26 +5,33 @@ import Button from '../../atoms/Button/Button';
 import { Box, Typography } from '@mui/material';
 import fonts from '../../thems/primitives/fonts';
 import palette from '../../thems/primitives/palette';
+import typeset from '../../thems/primitives/typeset';
 export const Container = styled('div')({
   display: 'flex',
-  justifyContent: 'space-around',
+  justifyContent: 'space-between',
   fontFamily: fonts.primary,
+  width: '100%',
 });
 
 export const FilterSection = styled('div')({
   display: 'flex',
   justifyContent: 'center',
-  gap: '10px',
+  gap: '8px',
   cursor: 'pointer',
   padding: '22px',
   fontFamily: fonts.primary,
 });
 
-export const ActionsSection = styled('div')({
+export const ActionsSection = styled('div')(({ theme }) => ({
   display: 'flex',
-  marginLeft: '40px',
-  gap: '200px',
-});
+  marginLeft: '10px',
+  gap: '0px',
+  [theme.breakpoints.down('md')]: {
+    marginLeft: '0px',
+    display: 'none',
+    gap: '10px',
+  },
+}));
 
 export const SearchContainer = styled('div')({
   position: 'relative',
@@ -44,15 +51,21 @@ export const StyledButton = styled(Button)({
   padding: '15px',
 });
 
-export const TitelBox = styled(Typography)({
+export const TitelBox = styled(Typography)(({ theme }) => ({
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontSize: '1.5rem',
+  fontSize: typeset.h6.fontSize,
   fontWeight: 'bold',
-  fontFamily: fonts.primary,
-});
+  fontFamily: 'fonts.primary',
+  [theme.breakpoints.down('lg')]: {
+    fontSize: typeset.body1.fontSize,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: typeset.body2.fontSize,
+  },
+}));
 
 export const DateBox = styled(Box)({
   display: 'flex',
@@ -84,6 +97,40 @@ export const DatePikerBox = styled(Box)({
   top: '50px',
   left: 0,
   backgroundColor: '#fff',
-  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+  boxShadow: `0 2px 10px ${palette.grey[300]}`,
   zIndex: 10,
+});
+
+export const DrawerBox = styled(Box)({
+  width: '300px',
+  padding: '20px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px',
+});
+
+export const ChindContainer = styled(Box)({
+  display: 'flex',
+  gap: '16px',
+  alignItems: 'center',
+  padding: '10px  ',
+});
+
+export const DrawerTitle = styled(Typography)({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontFamily: fonts.primary,
+  fontSize: typeset.h5.fontSize,
+  fontWeight: '600',
+});
+export const ContantBox = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+});
+
+export const FilterSectionDrawer = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px',
 });

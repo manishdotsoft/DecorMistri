@@ -15,6 +15,7 @@ import {
   ProfileBox,
   UserBox,
   UserAccount,
+  DrawerContainer,
 } from './Drawer.style';
 
 interface DrawerMenuProps {
@@ -32,7 +33,7 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({
 }) => {
   return (
     <Drawer anchor="right" open={open} onClose={onClose}>
-      <div style={{ width: 330, padding: 16, borderRadius: '10px' }}>
+      <DrawerContainer>
         <IconButton onClick={onClose}>
           <CloseIcon />
         </IconButton>
@@ -59,7 +60,7 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({
             </div>
           ))}
         </List>
-      </div>
+      </DrawerContainer>
     </Drawer>
   );
 };

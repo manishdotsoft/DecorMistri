@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 import palette from '../../thems/primitives/palette';
 import { Box } from '@mui/material';
+import typeset from '../../thems/primitives/typeset';
 
 export const HeaderProfileIcon = styled(Box)(() => ({
   background: DECOR_LOGO_COLOR,
@@ -15,7 +16,7 @@ export const HeaderProfileIcon = styled(Box)(() => ({
   width: '60px',
 }));
 export const ProfileBox = styled(Box)(() => ({
-  fontSize: '1.1rem',
+  fontSize: typeset.h5.fontSize,
 }));
 
 export const UserBox = styled(Box)(() => ({
@@ -24,9 +25,16 @@ export const UserBox = styled(Box)(() => ({
   alignItems: 'center',
   padding: '20px',
 }));
+
 export const UserAccount = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   gap: '6px',
+}));
+
+export const DrawerContainer = styled(Box)(() => ({
+  width: 330,
+  padding: 16,
+  borderRadius: '10px',
 }));
