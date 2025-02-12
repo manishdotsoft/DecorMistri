@@ -5,7 +5,7 @@ import {
   nextPage,
   PageKey,
   previousPage,
-  // resetFormData,
+  resetFormData,
   updateFormData,
 } from '../../store/reducers/createProjectSlice';
 import { createProjectMutation } from '../../graphql/mutation/createProject';
@@ -133,7 +133,7 @@ export const useCreateProject = () => {
         navigate('/dashboard');
 
         // Reset the form data after submission
-        // dispatch(resetFormData());
+        dispatch(resetFormData());
         return;
       }
     } catch (err) {
