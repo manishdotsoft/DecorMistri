@@ -12,6 +12,7 @@ import RadioButton from '../../../../atoms/RadioButton/RadioButton';
 import useFinancialDetails from './FinancialDetails.hook';
 import TextInput from '../../../../atoms/TextInput/TextInput';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const FinancialDetails = ({
   data,
@@ -44,10 +45,12 @@ const FinancialDetails = ({
     { label: 'No', value: 'no' },
   ];
 
+  const navigate = useNavigate();
   const [isPageVisible, setIsPageVisible] = useState(true);
   const handleNextClick = () => {
     setIsPageVisible(false);
     formik.handleSubmit();
+    navigate('dashboard');
   };
 
   // const handlePreviousClick = () => {

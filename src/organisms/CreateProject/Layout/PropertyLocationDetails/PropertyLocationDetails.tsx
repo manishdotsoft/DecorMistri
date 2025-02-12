@@ -15,6 +15,7 @@ import {
 } from './PropertyLocationDetails.style';
 import TextInput from '../../../../atoms/TextInput/TextInput';
 import { useState } from 'react';
+import { stateOptions } from '../../CreateProjectData/StateData';
 
 const PropertyLocationDetails = ({
   data,
@@ -85,10 +86,7 @@ const PropertyLocationDetails = ({
             <SelectOption
               name="state"
               label="State"
-              options={[
-                { value: 'state1', label: 'State 1' },
-                { value: 'state2', label: 'State 2' },
-              ]}
+              options={stateOptions}
               defaultOption={'Select State'}
               value={formik.values.state}
               onChange={formik.handleChange}

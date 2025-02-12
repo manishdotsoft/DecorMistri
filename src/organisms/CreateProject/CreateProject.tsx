@@ -26,6 +26,8 @@ import Toaster from '../../atoms/Toaster/Toaster';
 import SaveImage from '../../assets/images/createProject/complete.svg';
 import DownArrow from '../../assets/images/createProject/DownArrow.svg';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Loader from '../../atoms/Loader/Loader';
+import { theme } from '../../thems/primitives/theme';
 
 const CreateProject = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -41,7 +43,7 @@ const CreateProject = () => {
     activePage,
     completedSteps,
     toastMessage,
-    // setShowToast,
+    isLoading,
   } = useCreateProject();
   const previousFormData = useRef(formData);
 
@@ -108,9 +110,6 @@ const CreateProject = () => {
                     }
                     handleNext={handleNext}
                     handlePrevious={handlePrevious}
-                    // showToast={showToast}
-                    // handleToasterClose={handleToasterClose}
-                    // setShowToast={setShowToast}
                   />
                 )}
                 {page === 'Client Details' && (
@@ -198,6 +197,27 @@ const CreateProject = () => {
   return (
     <MainBox>
       <StyledPageContent>{renderPages()}</StyledPageContent>
+      {isLoading && (
+        <Loader
+          message="Saving data..."
+          size="medium"
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '60%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: theme.palette.background.paper,
+            padding: '20px',
+            borderRadius: '10px',
+            boxShadow: '0px 4px 10px rgba(0,0,0,0.1)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1300,
+          }}
+        />
+      )}
       {showToast && (
         <Toaster
           message={toastMessage}
