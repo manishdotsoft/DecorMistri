@@ -16,6 +16,7 @@ import TextInput from '../../../../atoms/TextInput/TextInput';
 import EmailIcon from '../../../../assets/images/createProject/Email.svg';
 import LocationIcon from '../../../../assets/images/createProject/Location.svg';
 import { useState } from 'react';
+import { stateOptions } from '../../CreateProjectData/StateData';
 
 const ClientDetails = ({
   data,
@@ -144,10 +145,7 @@ const ClientDetails = ({
             <SelectOption
               name="state"
               label="Province/State"
-              options={[
-                { value: 'state1', label: 'State 1' },
-                { value: 'state2', label: 'State 2' },
-              ]}
+              options={stateOptions}
               defaultOption={'Select State'}
               value={formik.values.state}
               onChange={formik.handleChange}

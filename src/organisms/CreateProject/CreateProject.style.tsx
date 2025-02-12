@@ -59,7 +59,7 @@ export const StyledAccordionSummary = styled(AccordionSummary, {
   shouldForwardProp: (prop) => prop !== 'isExpanded',
 })<{ isExpanded: boolean }>(({ isExpanded }) => ({
   background: isExpanded ? '#FFFFFF' : '#F5F5F5',
-  padding: '10px 30px !important',
+  padding: '6px 30px !important',
   transition: 'background 0.3s ease',
 }));
 

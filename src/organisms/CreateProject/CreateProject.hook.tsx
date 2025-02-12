@@ -5,6 +5,7 @@ import {
   nextPage,
   PageKey,
   previousPage,
+  // resetFormData,
   updateFormData,
 } from '../../store/reducers/createProjectSlice';
 import { createProjectMutation } from '../../graphql/mutation/createProject';
@@ -15,6 +16,7 @@ export const useCreateProject = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [nextClickedPageIndex, setNextClickedPageIndex] = useState<
     number | null
   >(null);
@@ -30,16 +32,36 @@ export const useCreateProject = () => {
   );
   const pages = useSelector((state: RootState) => state.createProject.pages);
   const [showToast, setShowToast] = useState(false);
-
+  const [toastMessage, setToastMessage] = useState<string>('');
   const [activePage, setActivePage] = useState(0);
 
   const handleNext = () => {
     if (currentPageIndex < pages.length) {
+      setIsLoading(true);
       dispatch(nextPage());
       setActivePage(currentPageIndex + 1);
-      console.log(currentPageIndex);
       setNextClickedPageIndex(currentPageIndex);
-      // setShowToast(true);
+
+      // Set different toaster messages based on the current page using if-else
+      // if (pages[currentPageIndex] === 'Project & Provider Information') {
+      //   setToastMessage('Project & Provider information details are saved');
+      // } else if (pages[currentPageIndex] === 'Client Details') {
+      //   setToastMessage('Client Details details are saved');
+      // } else if (pages[currentPageIndex] === 'Property Details') {
+      //   setToastMessage('Property Details details are saved');
+      // } else if (pages[currentPageIndex] === 'Property Location Details') {
+      //   setToastMessage('Property Location Details details are saved');
+      // } else if (pages[currentPageIndex] === 'Timeline & Schedule') {
+      //   setToastMessage('Timeline & Schedule details are saved');
+      // } else if (pages[currentPageIndex] === 'Financial Details') {
+      //   setToastMessage('Financial Details details are saved');
+      // } else {
+      //   setToastMessage('Data Saved Successfully');
+      // }
+      setToastMessage(`${pages[currentPageIndex]} details are saved`);
+
+      setShowToast(true);
+      setTimeout(() => setIsLoading(false), 1000);
     }
   };
 
@@ -49,10 +71,13 @@ export const useCreateProject = () => {
   };
 
   const updatePageData = (page: string, data: Record<string, unknown>) => {
+    setIsLoading(true);
     dispatch(updateFormData({ page: page as PageKey, data }));
+    setIsLoading(false);
   };
 
   const handleSubmit = async (finalData: typeof formData) => {
+    setIsLoading(true);
     const mutationInput = {
       projectId: finalData?.projectProviderInformation?.projectNumber,
       dateOfIssue: formatDate(
@@ -103,17 +128,25 @@ export const useCreateProject = () => {
     try {
       const response = await createProjectMutation({ input: mutationInput });
       if (response) {
+        setToastMessage('Project Created Successfully');
         setShowToast(true);
         navigate('/dashboard');
+
+        // Reset the form data after submission
+        // dispatch(resetFormData());
         return;
       }
     } catch (err) {
+      setToastMessage('Error while creating project');
+      setShowToast(true);
       console.error('Unexpected error:', err);
     }
+    setIsLoading(false);
   };
 
   const handleToasterClose = () => {
     setShowToast(false);
+    setToastMessage('');
   };
 
   return {
@@ -130,6 +163,7 @@ export const useCreateProject = () => {
     activePage,
     setActivePage,
     nextClickedPageIndex,
-    setShowToast,
+    toastMessage,
+    isLoading,
   };
 };
