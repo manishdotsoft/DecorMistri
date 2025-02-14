@@ -14,7 +14,6 @@ export const SidebarContainer = styled(Box)({
   display: 'flex',
   width: '100%',
   minHeight: '100vh',
-  // height: 'fit-content',
 });
 
 export const SidebarSection = styled(Box)({
@@ -22,15 +21,22 @@ export const SidebarSection = styled(Box)({
   padding: '15px',
   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.1)',
   transition: 'width 0.3s ease',
-
-  height: 'fit-content',
+  overflowY: 'scroll',
+  maxHeight: '100vh',
+  scrollbarWidth: 'none',
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
 });
 
 export const ContentSection = styled(Box)({
   flex: 1,
   overflowY: 'scroll',
-
   maxHeight: '100vh',
+  scrollbarWidth: 'none',
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
 });
 
 export const TitleTypography = styled(Typography)({
