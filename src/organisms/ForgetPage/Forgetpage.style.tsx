@@ -45,7 +45,7 @@ export const StyledContainer = styled('div')(() => ({
   padding: '20px',
   color: theme.palette.text.primary,
 
-  '@media (max-width: 468px)': {
+  [theme.breakpoints.down('sm')]: {
     padding: '0',
     marginTop: '40px',
   },
@@ -59,20 +59,21 @@ export const MainFlex = styled('div')(() => ({
   borderRadius: '20px',
   boxShadow: `0px 0px 100px 10px ${theme.palette.grey[300]}`,
   overflow: 'hidden',
-  width: '80%',
 
-  '@media (max-width: 1310px)': {
+  [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',
+
     width: '90%',
   },
-  '@media (max-width: 1047px)': {
+  [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
-    padding: '20px',
+    padding: '16px',
     width: '97%',
   },
-  '@media (max-width: 468px)': {
+  [theme.breakpoints.down('md')]: {
     width: '100%',
     boxShadow: 'none',
+    padding: '0',
   },
 }));
 
