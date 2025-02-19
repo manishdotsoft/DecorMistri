@@ -1,7 +1,7 @@
 import { styled } from '@mui/system';
 import typeset from '../../thems/primitives/typeset';
 import { theme } from '../../thems/primitives/theme';
-import { SELECT_BORDER } from '../../thems/primitives/colors';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 
 interface InputLabelItemProps {
   isFocused: boolean;
@@ -35,7 +35,7 @@ export const SelectItem = styled('select')({
   backgroundColor: theme.palette.primary.contrastText,
   outline: 'none',
   '&:focus': {
-    border: `2px solid ${SELECT_BORDER}`,
+    border: `2px solid ${DECOR_LOGO_COLOR}`,
   },
   cursor: 'pointer',
 });

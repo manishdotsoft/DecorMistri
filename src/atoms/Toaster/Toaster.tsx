@@ -7,14 +7,23 @@ import {
   useTheme,
 } from '@mui/material';
 import { Theme } from '@mui/material/styles';
-import { ToasterContainer, alertStyles } from './Toaster.style';
+import {
+  ToasterContainer,
+  alertStyles,
+  AnimatedCheckIcon,
+} from './Toaster.style';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+import palette from '../../thems/primitives/palette';
+
+type CustomAlertColor = AlertColor | 'projectCreateSuccess';
 
 export interface ToasterProps {
   message: string;
-  severity: AlertColor;
+  severity: CustomAlertColor;
   open: boolean;
   onClose: () => void;
   position?: SnackbarOrigin;
+  style?: React.CSSProperties;
 }
 
 const Toaster: React.FC<ToasterProps> = ({
@@ -23,26 +32,20 @@ const Toaster: React.FC<ToasterProps> = ({
   open,
   onClose,
   position = { vertical: 'top', horizontal: 'right' },
+  style,
 }) => {
   const theme: Theme = useTheme();
 
-  const getBackgroundColor = (severity: AlertColor): string => {
-    switch (severity) {
-      case 'success':
-        return theme.palette.primary.main;
-      case 'warning':
-        return theme.palette.warning.main;
-      case 'error':
-        return theme.palette.error.main;
-      case 'info':
-        return theme.palette.info.main;
-      default:
-        return theme.palette.primary.main;
-    }
+  const backgroundColors: Record<CustomAlertColor, string> = {
+    success: DECOR_LOGO_COLOR,
+    warning: palette.warning.warning,
+    error: theme.palette.error.main,
+    info: theme.palette.info.main,
+    projectCreateSuccess: DECOR_LOGO_COLOR,
   };
 
   return (
-    <ToasterContainer>
+    <ToasterContainer style={style}>
       <Snackbar
         open={open}
         autoHideDuration={3000}
@@ -51,8 +54,15 @@ const Toaster: React.FC<ToasterProps> = ({
       >
         <Alert
           onClose={onClose}
-          severity={severity}
-          sx={alertStyles(getBackgroundColor(severity))}
+          severity={
+            severity !== 'projectCreateSuccess'
+              ? (severity as AlertColor)
+              : 'success'
+          }
+          iconMapping={{
+            success: <AnimatedCheckIcon />,
+          }}
+          sx={alertStyles(backgroundColors[severity])}
         >
           {message}
         </Alert>

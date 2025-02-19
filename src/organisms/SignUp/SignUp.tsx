@@ -34,6 +34,7 @@ import { useSignUp } from './SignUp.hook';
 import googleLogo from '../../assets/images/logo/google.svg';
 import { theme } from '../../thems/primitives/theme';
 import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+import Toaster from '../../atoms/Toaster/Toaster';
 
 const SignUpForm: React.FC = () => {
   const {
@@ -43,6 +44,8 @@ const SignUpForm: React.FC = () => {
     handlePasswordChange,
     label,
     getStrengthLabel,
+    toasterOpen,
+    handleCloseToaster,
   } = useSignUp();
 
   const SegmentedProgressBar: React.FC<{ strength: number }> = ({
@@ -251,6 +254,13 @@ const SignUpForm: React.FC = () => {
                 Sign in
               </HaveAccount2>
             </StyledBoxCenter>
+
+            <Toaster
+              message="Signup successful! Redirecting..."
+              severity="success"
+              open={toasterOpen}
+              onClose={handleCloseToaster}
+            />
           </StyledForm>
         </ChildFlex>
 
