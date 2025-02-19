@@ -30,26 +30,18 @@ export const MainFlex = styled('div')(() => ({
   boxShadow: `0px 0px 100px 10px ${BOX_SHADOW}`,
 
   overflow: 'hidden',
-  // [theme.breakpoints.down("lg")]: {
-  //   flexDirection: "column",
-  //   maxWidth: "1200px",
-  // },
-  // [theme.breakpoints.down("md")]: {
-  //   maxWidth: "700px",
-  // },
-  width: '80%',
-  '@media(max-width: 1310px)': {
+
+  [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',
 
     width: '90%',
   },
-  '@media(max-width: 1047px)': {
+  [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     padding: '16px',
     width: '97%',
   },
-
-  '@media(max-width: 468px)': {
+  [theme.breakpoints.down('md')]: {
     width: '100%',
     boxShadow: 'none',
     padding: '0',
@@ -61,8 +53,6 @@ export const StyledForm = styled('form')(() => ({
 
 export const ParentInputBox = styled('div')(() => ({
   fontFamily: fonts.primary,
-  // marginRight: '49px',
-  '@media(max-width: 468px)': {},
 }));
 
 export const TextArea = styled('div')(() => ({
@@ -89,12 +79,15 @@ export const ChildFlex = styled('div')(({ theme }) => ({
 export const SignUpImageBox = styled('div')(() => ({
   width: '50%',
   height: 'auto',
-
-  '@media(max-width: 468px)': {
-    display: 'none',
-  },
-  '@media(max-width: 1338px)': {
+  [theme.breakpoints.down('lg')]: {
     width: '100%',
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '95%',
+    padding: '20px',
+    height: 'auto',
+    borderTopLeftRadius: '10px',
+    borderBottomLeftRadius: '10px',
   },
 }));
 
@@ -106,6 +99,9 @@ export const AllImg = styled('img')(({ theme }) => ({
     width: '95%',
     margin: '0 auto',
     padding: '18px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
   },
 }));
 

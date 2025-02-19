@@ -41,8 +41,9 @@ export const StyledContainer = styled('div')(() => ({
   alignItems: 'center',
   minHeight: '92vh',
   backgroundColor: palette.white.main,
-  padding: '16px',
-  '@media(max-width: 468px)': {
+  padding: '16px ',
+
+  [theme.breakpoints.down('sm')]: {
     padding: '0px',
     marginTop: '35px',
   },
@@ -59,19 +60,17 @@ export const MainFlex = styled('div')(() => ({
 
   overflow: 'hidden',
 
-  width: '80%',
-  '@media(max-width: 1310px)': {
+  [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',
 
     width: '90%',
   },
-  '@media(max-width: 1047px)': {
+  [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     padding: '16px',
     width: '97%',
   },
-
-  '@media(max-width: 468px)': {
+  [theme.breakpoints.down('md')]: {
     width: '100%',
     boxShadow: 'none',
     padding: '0',
