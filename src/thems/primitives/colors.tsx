@@ -10,6 +10,9 @@ export const SHADE_COLOR = '#f0f0f0';
 export const EXTRA_VARIANT = '#fafafa';
 export const COMMON_PAPER = '#000000';
 export const COMMON_DEFAULT = '#ffffff';
+export const COMMON_DEFAULT_SECOND = '#F5F5F5';
+export const MAIN_COLOR_SECOND = '#717171';
+
 export const CARD_SECONDARY_COLOR = '#f3efe4';
 export const INPUT_TEXT_COLOR = '#1a1a1a';
 export const OUTLINE_PRIMARY = '#219653';
@@ -20,7 +23,11 @@ export const GOLD_HIGHLIGHT = '#ecd92f';
 export const QUATERARY_COLOR = '#f8d548';
 export const STATUS_BAR_COLOR = '#FFA500';
 export const DECOR_LOGO_COLOR = '#C7148A';
+export const DECOR_LOGO_COLOR_HOVER = '#fff5fb';
+
 export const SELECT_BORDER = '#16cf5d';
 export const BOX_SHADOW = '#0000004c';
 export const BOX_SHADOW2 = '#00000033';
 export const BOX_SHADOW3 = '#91919133';
+export const BOX_SHADOW_LOADER = '#00000019';
+export const MAIN_GREY_COLOR = '#CCCCCC';

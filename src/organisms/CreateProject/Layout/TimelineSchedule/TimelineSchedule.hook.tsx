@@ -19,18 +19,29 @@ const useTimelineSchedule = ({
   handleNext,
   handlePrevious,
 }: UseTimelineScheduleProps) => {
+  // Check localStorage for previously saved data
+  const savedData = JSON.parse(
+    localStorage.getItem('timelineScheduleData') || '{}'
+  );
+
   const formik = useFormik({
     initialValues: {
-      startDate: data.startDate ? new Date(data.startDate) : null,
-      endDate: data.endDate ? new Date(data.endDate) : null,
+      startDate: savedData.startDate
+        ? new Date(savedData.startDate)
+        : data.startDate
+          ? new Date(data.startDate)
+          : null,
+      endDate: savedData.endDate
+        ? new Date(savedData.endDate)
+        : data.endDate
+          ? new Date(data.endDate)
+          : null,
     },
     validationSchema: timelineScheduleSchema,
-    validateOnBlur: true,
     onSubmit: (values) => {
       updateData({
         page: 'timelineSchedule',
         data: {
-          ...values,
           startDate: values.startDate ? values.startDate.toISOString() : null,
           endDate: values.endDate ? values.endDate.toISOString() : null,
         },

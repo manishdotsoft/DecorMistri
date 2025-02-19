@@ -50,6 +50,8 @@ export const useLoginLogic = () => {
         token = response?.data?.loginUser?.token;
         localStorage.setItem('authTocken', token);
         setMessage(response?.data?.loginUser?.message || 'Login successful!');
+        setSeverity('success');
+        setShowToaster(true);
         setOpenModal(true);
       } else {
         setSeverity('warning');
@@ -71,7 +73,7 @@ export const useLoginLogic = () => {
     if (token) {
       navigate('/dashboard');
     }
-  }, [token]);
+  }, [token, navigate]);
 
   return {
     dispatch,

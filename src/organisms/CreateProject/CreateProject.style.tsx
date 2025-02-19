@@ -6,17 +6,24 @@ import {
   Typography,
 } from '@mui/material';
 import { styled } from '@mui/system';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+import {
+  COMMON_DEFAULT_SECOND,
+  COMMON_PAPER,
+  DECOR_LOGO_COLOR,
+  MAIN_COLOR_SECOND,
+  MAIN_GREY_COLOR,
+} from '../../thems/primitives/colors';
+import { theme } from '../../thems/primitives/theme';
 
 export const StyledPageContent = styled(Box)({
   width: '74%',
   height: 'fit-content',
   marginTop: '25px',
   marginBottom: '0px',
-  boxShadow: '0px 0px 10px 1px #ccc',
+  boxShadow: `0px 0px 10px 1px ${MAIN_GREY_COLOR}`,
   borderRadius: '14px',
   overflowY: 'auto',
-  border: '1px solid #ccc',
+  border: `1px solid ${MAIN_GREY_COLOR}`,
 });
 
 export const CreateProjectHeader = styled(Box)({
@@ -29,7 +36,9 @@ export const CreateProjectHeader = styled(Box)({
 export const HeaderIconSec = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'isExpanded',
 })<{ isExpanded: boolean }>(({ isExpanded }) => ({
-  background: isExpanded ? '#ffffff' : '#ffffff',
+  background: isExpanded
+    ? theme.palette.primary.contrastText
+    : theme.palette.primary.contrastText,
   height: '25px',
   width: '25px',
   borderRadius: '50%',
@@ -40,12 +49,11 @@ export const HeaderIconSec = styled(Box, {
 }));
 
 export const MainBox = styled(Box)({
-  height: '100vh',
+  height: '100%',
   display: 'flex',
   justifyContent: 'center',
-  overflow: 'scroll',
-  overflowX: 'hidden',
-  backgroundColor: '#F5F5F5',
+
+  backgroundColor: COMMON_DEFAULT_SECOND,
 });
 
 export const StyledAccordion = styled(Accordion, {
@@ -58,7 +66,9 @@ export const StyledAccordion = styled(Accordion, {
 export const StyledAccordionSummary = styled(AccordionSummary, {
   shouldForwardProp: (prop) => prop !== 'isExpanded',
 })<{ isExpanded: boolean }>(({ isExpanded }) => ({
-  background: isExpanded ? '#FFFFFF' : '#F5F5F5',
+  background: isExpanded
+    ? theme.palette.primary.contrastText
+    : COMMON_DEFAULT_SECOND,
   padding: '6px 30px !important',
   transition: 'background 0.3s ease',
 }));
@@ -72,5 +82,5 @@ export const StyledTypography = styled(Typography, {
 })<{ isExpanded: boolean }>(({ isExpanded }) => ({
   fontWeight: '700',
   fontSize: '1.1rem',
-  color: isExpanded ? '#000000' : '#717171',
+  color: isExpanded ? COMMON_PAPER : MAIN_COLOR_SECOND,
 }));

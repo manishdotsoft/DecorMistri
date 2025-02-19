@@ -3,6 +3,7 @@ import {
   Container,
   EmailIconSec,
   GridContainer,
+  GridContainer2,
   InputIconFor,
   InputLabelItem,
   InputSection,
@@ -15,8 +16,12 @@ import useClientDetailsForm from './ClientDetails.hook';
 import TextInput from '../../../../atoms/TextInput/TextInput';
 import EmailIcon from '../../../../assets/images/createProject/Email.svg';
 import LocationIcon from '../../../../assets/images/createProject/Location.svg';
-import { useState } from 'react';
 import { stateOptions } from '../../CreateProjectData/StateData';
+import {
+  DECOR_LOGO_COLOR,
+  DECOR_LOGO_COLOR_HOVER,
+} from '../../../../thems/primitives/colors';
+import { COMMON_DEFAULT } from '../../../../thems/primitives/palette';
 
 const ClientDetails = ({
   data,
@@ -54,205 +59,213 @@ const ClientDetails = ({
     handleNext,
     handlePrevious,
   });
-  const [isPageVisible, setIsPageVisible] = useState(true);
+  // const [isPageVisible, setIsPageVisible] = useState(true);
   const handleNextClick = () => {
-    setIsPageVisible(false);
+    // setIsPageVisible(false);
     formik.handleSubmit();
   };
 
   return (
-    isPageVisible && (
-      <Container>
-        <GridContainer>
-          <InputSection>
-            <InputLabelItem>Client Name</InputLabelItem>
+    <Container>
+      <GridContainer>
+        <InputSection>
+          <InputLabelItem>Client Name</InputLabelItem>
+          <TextInput
+            name="clientName"
+            label="Client Name"
+            value={formik.values.clientName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.clientName && Boolean(formik.errors.clientName)
+            }
+            style={{
+              width: '100%',
+              borderRadius: '8px',
+            }}
+            placeholder="Name"
+          />
+          {formik.errors.clientName && formik.touched.clientName && (
+            <StyledTypography>{formik.errors.clientName}</StyledTypography>
+          )}
+        </InputSection>
+
+        <InputSection>
+          <InputLabelItem>Client Email</InputLabelItem>
+          <InputIconFor>
             <TextInput
-              name="clientName"
-              label="Client Name"
-              value={formik.values.clientName}
+              name="clientEmail"
+              label="Client Email ID"
+              value={formik.values.clientEmail}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={
-                formik.touched.clientName && Boolean(formik.errors.clientName)
+                formik.touched.clientEmail && Boolean(formik.errors.clientEmail)
               }
               style={{
                 width: '100%',
                 borderRadius: '8px',
               }}
-              placeholder="Name"
+              placeholder="Email address"
             />
-            {formik.errors.clientName && formik.touched.clientName && (
-              <StyledTypography>{formik.errors.clientName}</StyledTypography>
-            )}
-          </InputSection>
+            <EmailIconSec src={EmailIcon} alt="" />
+          </InputIconFor>
+          {formik.errors.clientEmail && formik.touched.clientEmail && (
+            <StyledTypography>{formik.errors.clientEmail}</StyledTypography>
+          )}
+        </InputSection>
 
-          <InputSection>
-            <InputLabelItem>Client Email</InputLabelItem>
-            <InputIconFor>
-              <TextInput
-                name="clientEmail"
-                label="Client Email ID"
-                value={formik.values.clientEmail}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={
-                  formik.touched.clientEmail &&
-                  Boolean(formik.errors.clientEmail)
-                }
-                style={{
-                  width: '100%',
-                  borderRadius: '8px',
-                }}
-                placeholder="Email address"
-              />
-              <EmailIconSec src={EmailIcon} alt="" />
-            </InputIconFor>
-            {formik.errors.clientEmail && formik.touched.clientEmail && (
-              <StyledTypography>{formik.errors.clientEmail}</StyledTypography>
-            )}
-          </InputSection>
+        <InputSection>
+          <InputLabelItem>Phone Number</InputLabelItem>
 
-          <InputSection>
-            <InputLabelItem>Phone Number</InputLabelItem>
+          <TextInput
+            name="phoneNumber"
+            label="Phone Number"
+            type="number"
+            value={formik.values.phoneNumber}
+            onChange={(e) => {
+              if (e.target.value.length <= 10) {
+                formik.handleChange(e);
+              }
+            }}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
+            }
+            style={{
+              width: '100%',
+              borderRadius: '8px',
+            }}
+            placeholder="Phone Number"
+          />
+          {/* </Box> */}
+          {formik.errors.phoneNumber && formik.touched.phoneNumber && (
+            <StyledTypography>{formik.errors.phoneNumber}</StyledTypography>
+          )}
+        </InputSection>
 
+        <InputSection>
+          <SelectOption
+            name="state"
+            label="Province/State"
+            options={stateOptions}
+            defaultOption={'Select State'}
+            value={formik.values.state}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.state && Boolean(formik.errors.state)}
+            style={{
+              width: '100%',
+              padding: '18px',
+              borderRadius: '8px',
+              marginTop: '2px',
+            }}
+          />
+          {formik.errors.state && formik.touched.state && (
+            <StyledTypography>{formik.errors.state}</StyledTypography>
+          )}
+        </InputSection>
+        <InputSection>
+          <SelectOption
+            name="city"
+            label="City"
+            options={[
+              { value: 'city1', label: 'City 1' },
+              { value: 'city2', label: 'City 2' },
+            ]}
+            defaultOption={'Select City'}
+            value={formik.values.city}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.city && Boolean(formik.errors.city)}
+            style={{
+              width: '100%',
+              padding: '18px',
+              borderRadius: '8px',
+              marginTop: '2px',
+            }}
+          />
+          {formik.errors.city && formik.touched.city && (
+            <StyledTypography>{formik.errors.city}</StyledTypography>
+          )}
+        </InputSection>
+
+        <InputSection>
+          <InputLabelItem>Zip Code</InputLabelItem>
+          <TextInput
+            name="zipCode"
+            label="Zip/Postal Code"
+            type="number"
+            value={formik.values.zipCode}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.zipCode && Boolean(formik.errors.zipCode)}
+            style={{
+              width: '100%',
+              borderRadius: '8px',
+            }}
+            placeholder="Zip/Postal Code"
+          />
+          {formik.errors.zipCode && formik.touched.zipCode && (
+            <StyledTypography>{formik.errors.zipCode}</StyledTypography>
+          )}
+        </InputSection>
+      </GridContainer>
+      <GridContainer2>
+        <InputSection>
+          <InputLabelItem>Address</InputLabelItem>
+          <InputIconFor sx={{ position: 'relative' }}>
             <TextInput
-              name="phoneNumber"
-              label="Phone Number"
-              type="number"
-              value={formik.values.phoneNumber}
-              onChange={(e) => {
-                if (e.target.value.length <= 10) {
-                  formik.handleChange(e);
-                }
-              }}
+              name="addressLine1"
+              label="Address Line 1"
+              value={formik.values.addressLine1}
+              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={
-                formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
+                formik.touched.addressLine1 &&
+                Boolean(formik.errors.addressLine1)
               }
               style={{
                 width: '100%',
                 borderRadius: '8px',
               }}
-              placeholder="Phone Number"
+              placeholder="Enter location or Google Map link"
             />
-            {/* </Box> */}
-            {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-              <StyledTypography>{formik.errors.phoneNumber}</StyledTypography>
-            )}
-          </InputSection>
+            <LocationIconSec src={LocationIcon} alt="" />
+          </InputIconFor>
+          {formik.errors.addressLine1 && formik.touched.addressLine1 && (
+            <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
+          )}
+        </InputSection>
+      </GridContainer2>
 
-          <InputSection>
-            <SelectOption
-              name="state"
-              label="Province/State"
-              options={stateOptions}
-              defaultOption={'Select State'}
-              value={formik.values.state}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.state && Boolean(formik.errors.state)}
-              style={{
-                width: '100%',
-                padding: '18px',
-                borderRadius: '8px',
-                marginTop: '2px',
-              }}
-            />
-            {formik.errors.state && formik.touched.state && (
-              <StyledTypography>{formik.errors.state}</StyledTypography>
-            )}
-          </InputSection>
-          <InputSection>
-            <SelectOption
-              name="city"
-              label="City"
-              options={[
-                { value: 'city1', label: 'City 1' },
-                { value: 'city2', label: 'City 2' },
-              ]}
-              defaultOption={'Select City'}
-              value={formik.values.city}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.city && Boolean(formik.errors.city)}
-              style={{
-                width: '100%',
-                padding: '18px',
-                borderRadius: '8px',
-                marginTop: '2px',
-              }}
-            />
-            {formik.errors.city && formik.touched.city && (
-              <StyledTypography>{formik.errors.city}</StyledTypography>
-            )}
-          </InputSection>
-
-          <InputSection>
-            <InputLabelItem>Zip Code</InputLabelItem>
-            <TextInput
-              name="zipCode"
-              label="Zip/Postal Code"
-              type="number"
-              value={formik.values.zipCode}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.zipCode && Boolean(formik.errors.zipCode)}
-              style={{
-                width: '100%',
-                borderRadius: '8px',
-              }}
-              placeholder="Zip/Postal Code"
-            />
-            {formik.errors.zipCode && formik.touched.zipCode && (
-              <StyledTypography>{formik.errors.zipCode}</StyledTypography>
-            )}
-          </InputSection>
-          <InputSection>
-            <InputLabelItem>Address</InputLabelItem>
-            <InputIconFor sx={{ position: 'relative' }}>
-              <TextInput
-                name="addressLine1"
-                label="Address Line 1"
-                value={formik.values.addressLine1}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={
-                  formik.touched.addressLine1 &&
-                  Boolean(formik.errors.addressLine1)
-                }
-                style={{
-                  width: '100%',
-                  borderRadius: '8px',
-                }}
-                placeholder="Enter location or Google Map link"
-              />
-              <LocationIconSec src={LocationIcon} alt="" />
-            </InputIconFor>
-            {formik.errors.addressLine1 && formik.touched.addressLine1 && (
-              <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
-            )}
-          </InputSection>
-        </GridContainer>
-
-        <ButtonSection>
-          <Button
-            title="Previous"
-            color="primary"
-            variant="contained"
-            onClick={handlePrevious}
-            style={{ borderRadius: '8px', width: '150px' }}
-          />
-          <Button
-            title="Save"
-            color="primary"
-            variant="contained"
-            disabled={!isFormValid()}
-            onClick={handleNextClick}
-            style={{ borderRadius: '8px', width: '150px' }}
-          />
-        </ButtonSection>
-      </Container>
-    )
+      <ButtonSection>
+        <Button
+          title="Previous"
+          variant="contained"
+          onClick={handlePrevious}
+          style={{
+            borderRadius: '8px',
+            width: '150px',
+            color: DECOR_LOGO_COLOR,
+            border: `2px solid ${DECOR_LOGO_COLOR}`,
+          }}
+          backgroundColor={COMMON_DEFAULT}
+          hoverBackgroundColor={DECOR_LOGO_COLOR_HOVER}
+        />
+        <Button
+          title="Save"
+          variant="contained"
+          disabled={!isFormValid()}
+          onClick={handleNextClick}
+          style={{
+            borderRadius: '8px',
+            width: '150px',
+            background: !isFormValid() ? '' : DECOR_LOGO_COLOR,
+          }}
+        />
+      </ButtonSection>
+    </Container>
   );
 };
 

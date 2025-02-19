@@ -10,6 +10,7 @@ interface ButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   variant: 'contained' | 'outlined';
   backgroundColor?: string;
+  hoverBackgroundColor?: string; // <-- Add this prop
   style?: React.CSSProperties;
   disabled?: boolean;
   loading?: boolean;
@@ -28,6 +29,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   variant,
   backgroundColor,
+  hoverBackgroundColor,
   style,
   type,
   disabled = false,
@@ -66,6 +68,7 @@ const Button: React.FC<ButtonProps> = ({
           onClick={onClick}
           type={type}
           backgroundColor={backgroundColor}
+          hoverBackgroundColor={hoverBackgroundColor}
           color={color}
           style={{ ...style }}
         >

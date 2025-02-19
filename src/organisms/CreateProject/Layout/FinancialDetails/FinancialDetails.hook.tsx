@@ -1,6 +1,6 @@
-import { useFormik } from "formik";
-import { useEffect, useCallback } from "react";
-import { financialDetailsSchema } from "../../Schema";
+import { useFormik } from 'formik';
+import { useEffect, useCallback } from 'react';
+import { financialDetailsSchema } from '../../Schema';
 
 interface FinancialDetailsData {
   paymentReceived?: string | null;
@@ -20,8 +20,8 @@ const useFinancialDetails = ({
 }: UseFinancialDetailsProps) => {
   const formik = useFormik({
     initialValues: {
-      estimatedBudget: data.estimatedBudget || "",
-      paymentReceived: data.paymentReceived || null,
+      estimatedBudget: data.estimatedBudget || '',
+      paymentReceived: data.paymentReceived || '',
     },
     validationSchema: financialDetailsSchema,
     validateOnBlur: true,
