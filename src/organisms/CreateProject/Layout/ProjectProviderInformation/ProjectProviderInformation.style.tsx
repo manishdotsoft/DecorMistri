@@ -20,21 +20,33 @@ export const Container = styled(Box)({
   boxShadow: BOX_SHADOW3,
 });
 
-export const GridContainer = styled(Box)({
+export const GridContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   columnGap: '20px',
   rowGap: '15px',
   width: '100%',
-});
+  [theme.breakpoints.down('lg')]: {
+    gridTemplateColumns: '1fr 1fr',
+  },
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
 
-export const GridContainer2 = styled(Box)({
+export const GridContainer2 = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '0.98fr 2fr',
   columnGap: '20px',
   rowGap: '15px',
   width: '100%',
-});
+  [theme.breakpoints.down('lg')]: {
+    gridTemplateColumns: '1fr 1fr',
+  },
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
 
 export const StyledTypography = styled(Typography)(() => ({
   fontSize: '12px',

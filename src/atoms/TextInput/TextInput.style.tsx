@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { SELECT_BORDER } from '../../thems/primitives/colors';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 import { theme } from '../../thems/primitives/theme';
 
 export const FullWidthFormControl = styled('div')({
@@ -16,7 +16,7 @@ export const TextInputField = styled('input')({
   backgroundColor: theme.palette.primary.contrastText,
   outline: 'none',
   '&:focus': {
-    border: `2px solid ${SELECT_BORDER}`,
+    border: `2px solid ${DECOR_LOGO_COLOR}`,
   },
 });
 

@@ -29,13 +29,16 @@ export const ButtonSection = styled(Box)({
   gap: '20px',
 });
 
-export const GridContainer = styled(Box)({
+export const GridContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   columnGap: '20px',
   rowGap: '15px',
   width: '100%',
-});
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
 
 export const StyledTypography = styled(Typography)(() => ({
   fontSize: '12px',

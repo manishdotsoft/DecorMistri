@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
@@ -28,7 +28,10 @@ export const useSignUp = () => {
   const [toasterOpen, setToasterOpen] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
 
-  const handleSubmit = async (values: SignUpFormValues, actions: any) => {
+  const handleSubmit = async (
+    values: SignUpFormValues,
+    actions: FormikHelpers<SignUpFormValues>
+  ) => {
     try {
       dispatch(setSignUpData(values));
       const response = await createUserMutation({
@@ -42,7 +45,7 @@ export const useSignUp = () => {
       if (response.data) {
         setToasterOpen(true);
         actions.resetForm();
-        navigate('/success');
+        setTimeout(() => navigate('/success'), 2000);
       } else if (response.error) {
         console.error('Error creating user:', response.error);
       }

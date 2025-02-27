@@ -27,6 +27,7 @@ export const ButtonSection = styled(Box)({
   flexDirection: 'row',
   justifyContent: 'flex-end',
   gap: '20px',
+  marginTop: '20px',
 });
 
 export const StyledTypography = styled(Typography)(() => ({
@@ -37,13 +38,31 @@ export const StyledTypography = styled(Typography)(() => ({
   marginLeft: '15px',
 }));
 
-export const GridContainer = styled(Box)({
+export const GridContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   columnGap: '20px',
   rowGap: '15px',
   width: '100%',
-});
+  [theme.breakpoints.down('lg')]: {
+    gridTemplateColumns: '1fr 1fr',
+  },
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
+export const GridContainer2 = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: '1fr 0.51fr',
+
+  width: '100%',
+  [theme.breakpoints.down('lg')]: {
+    gridTemplateColumns: '1fr',
+  },
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
 
 export const InputSection = styled(Box)(() => ({
   display: 'flex',
