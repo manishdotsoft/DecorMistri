@@ -73,6 +73,7 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
+    // <Box sx={{}}>
     <StyledContainer>
       <MainFlex>
         <ChildFlex>
@@ -269,6 +270,7 @@ const SignUpForm: React.FC = () => {
         </SignUpImageBox>
       </MainFlex>
     </StyledContainer>
+    // </Box>
   );
 };
 

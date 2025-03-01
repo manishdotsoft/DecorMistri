@@ -6,7 +6,7 @@ import { AppDispatch } from '../../store/store';
 import { setSignUpData } from '../../store/reducers/signUpSlice';
 import { signUpSchema } from './SchemasSignup';
 import { createUserMutation } from '../../graphql/mutation/createUser';
-import palette from '../../thems/primitives/palette';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 
 export interface SignUpFormValues {
   name: string;
@@ -82,15 +82,15 @@ export const useSignUp = () => {
   const getStrengthLabel = (strength: number) => {
     switch (strength) {
       case 1:
-        return { label: 'Weak', color: palette.error.main };
+        return { label: 'Weak', color: DECOR_LOGO_COLOR };
       case 2:
-        return { label: 'Fair', color: palette.warning.real };
+        return { label: 'Fair', color: DECOR_LOGO_COLOR };
       case 3:
-        return { label: 'Good', color: palette.success.midSuccess };
+        return { label: 'Good', color: DECOR_LOGO_COLOR };
       case 4:
-        return { label: 'Strong', color: palette.success.fullSuccess };
+        return { label: 'Strong', color: DECOR_LOGO_COLOR };
       default:
-        return { label: 'Very Weak', color: palette.grey[500] };
+        return { label: 'Very Weak', color: DECOR_LOGO_COLOR };
     }
   };
 

@@ -30,11 +30,16 @@ export const MainFlex = styled('div')(() => ({
   boxShadow: `0px 0px 100px 10px ${BOX_SHADOW}`,
 
   overflow: 'hidden',
+  width: '70%',
+
+  [theme.breakpoints.down('xl')]: {
+    // flexDirection: 'column',
+    width: '85%',
+  },
 
   [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',
-
-    width: '90%',
+    width: '100%',
   },
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
