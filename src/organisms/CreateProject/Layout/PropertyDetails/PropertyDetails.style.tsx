@@ -80,7 +80,7 @@ export const SelectSection = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
   padding: '18px 16px',
-  width: '88%',
+  width: '91%',
   justifyContent: 'center',
   border: `1px solid ${theme.palette.grey[300]}`,
   borderRadius: '6px',
@@ -99,5 +99,11 @@ export const TextArea = styled('textarea')(() => ({
   width: '100%',
   borderRadius: '6px',
   height: '120px',
-  borderColor: theme.palette.grey[600],
+  borderColor: `${theme.palette.grey[300]} !important`,
+  outline: 'none',
+  // transition: 'border-color 0.3s ease',
+  outlineColor: 'none',
+  '&:focus': {
+    border: `2px solid ${DECOR_LOGO_COLOR} !important`,
+  },
 }));
