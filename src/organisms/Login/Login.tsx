@@ -1,4 +1,4 @@
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, useTheme } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { LoginSchema } from './LoginSchema';
@@ -33,9 +33,10 @@ import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 import googleLogo from '../../assets/images/logo/google.svg';
 import { useLoginLogic } from './Login.hook';
 import Modal from '../../atoms/Modal/Modal';
-import { theme } from '../../thems/primitives/theme';
+// import palette from '../../thems/primitives/palette';
 
 const LoginPage = () => {
+  const theme = useTheme();
   const {
     initialValues,
     handleSubmit,
@@ -147,7 +148,7 @@ const LoginPage = () => {
                     backgroundColor:
                       !values.email || !values.password || !isValid
                         ? theme.palette.grey[500]
-                        : DECOR_LOGO_COLOR,
+                        : theme.palette.decor.light,
                     width: '100%',
                     height: '50px',
                     borderRadius: '6px',
