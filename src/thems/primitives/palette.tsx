@@ -1,5 +1,8 @@
 export const PRIMARY_COLOR = '#00945d';
 export const SECONDARY_COLOR = '#f0f4ef';
+export const PAPER_COLOR = '#eee1e1';
+export const WHITE_BACKGROUND = '#d3e4f8';
+
 export const PRIMARY_DARK = '#3A7C63';
 
 export const SECONDARY_COLOR_100 = '#f4f7f4';
@@ -79,12 +82,15 @@ export const BOOKED_OUT = '#F44336';
 export const DECOR_COLOR = '#C7148A';
 export const DECOR_LIGHT = '#fff0f9';
 export const DECOR_DARK = '#b60a7c';
+export const LIGHT_COLOR = '#0b9a72';
+export const BLACK_200 = '#0000004c';
+export const BLACK_COLOR = '#1a1a1a';
 
 const palette = {
   decor: {
     main: DECOR_COLOR,
-    Lite: DECOR_LIGHT,
     dark: DECOR_DARK,
+    light: LIGHT_COLOR,
   },
 
   primary: {
@@ -124,6 +130,8 @@ const palette = {
   },
   black: {
     800: BLACK_800,
+    100: BLACK_COLOR,
+    200: BLACK_200,
   },
   error: {
     // main: ACCENT_ERROR,
@@ -157,6 +165,8 @@ const palette = {
   },
   background: {
     default: SECONDARY_COLOR,
+    paper: WHITE,
+    white: WHITE_BACKGROUND,
   },
   icon: {
     secondary: SECONDARY_ICON,

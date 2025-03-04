@@ -11,19 +11,24 @@ export const ToasterContainer = styled(Box)(() => ({
 }));
 
 // Background Styling with Gradient
-export const alertStyles = (backgroundColor: string) => ({
+import { Theme } from '@mui/material/styles';
+
+export const alertStyles = (backgroundColor: string) => (theme: Theme) => ({
   width: '100%',
-  background: backgroundColor,
-  color: '#fff',
+  background: backgroundColor || theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
   borderRadius: '8px',
+  padding: '16px',
+  display: 'flex',
+  alignItems: 'center',
   transition: 'transform 0.3s ease-in-out',
   '&:hover': {
     transform: 'scale(1.02)',
   },
   '.MuiAlert-icon': {
-    animation: `${pulseTick} 1.5s infinite ease-in-out`,
-    color: '#ff1e00',
+    animation: `pulseTick 1.5s infinite ease-in-out`,
+    color: theme.palette.error.main,
   },
 });
 

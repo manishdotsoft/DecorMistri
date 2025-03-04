@@ -97,7 +97,7 @@ export const ToDoActionsBox = styled(Box)(({ theme }) => ({
 
 export const CalendarEventStyles = `
   .fc-list-event:hover {
-    background-color: #d3e4f8;
+    background-color: theme.palette.background.paper
     color: #1a1a1a;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
