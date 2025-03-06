@@ -11,6 +11,7 @@ export const Container = styled('div')({
   justifyContent: 'space-between',
   fontFamily: fonts.primary,
   width: '100%',
+  backgroundColor: '#fff',
 });
 
 export const FilterSection = styled('div')({
