@@ -18,7 +18,7 @@ const StyledButton = styled('button')<StyledButtonProps>(
     backgroundColor:
       variant === 'outlined'
         ? 'transparent'
-        : backgroundColor || theme.palette.primary.main,
+        : backgroundColor || theme.palette.decor.main,
     color:
       variant === 'outlined'
         ? color || theme.palette.primary.main

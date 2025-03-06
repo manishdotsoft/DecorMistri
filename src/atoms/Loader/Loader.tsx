@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, useTheme } from '@mui/material';
 import { LoaderContainer, LoaderText } from './Loader.style';
 
 export interface LoaderProps {
@@ -13,6 +14,7 @@ const Loader: React.FC<LoaderProps> = ({
   size = 'medium',
   style,
 }) => {
+  const theme: any = useTheme();
   const sizeMap = {
     small: 20,
     medium: 40,
@@ -21,7 +23,10 @@ const Loader: React.FC<LoaderProps> = ({
 
   return (
     <LoaderContainer style={{ ...style }}>
-      <CircularProgress size={sizeMap[size]} />
+      <CircularProgress
+        size={sizeMap[size]}
+        sx={{ color: theme?.palette?.decor?.dark }}
+      />
       {message && <LoaderText variant="body1">{message}</LoaderText>}
     </LoaderContainer>
   );

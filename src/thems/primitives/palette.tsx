@@ -79,6 +79,7 @@ export const BOOKED_OUT = '#F44336';
 export const DECOR_COLOR = '#C7148A';
 export const DECOR_LIGHT = '#fff0f9';
 export const DECOR_DARK = '#b60a7c';
+export const BLACK_100 = '#1e1e1e';
 
 const palette = {
   decor: {
@@ -123,6 +124,7 @@ const palette = {
     300: WHITE_300,
   },
   black: {
+    100: BLACK_100,
     800: BLACK_800,
   },
   error: {

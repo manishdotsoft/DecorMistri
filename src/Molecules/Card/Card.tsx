@@ -5,25 +5,27 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ProjectMenu from './Menu';
 import Button from '../../atoms/Button/Button';
 import { ButtonWrapper } from './Card.styel';
-import { useCardLogic } from './card.hook';
+import { useCardLogic } from './Card.hook';
 import { formatDate } from '../../utils/formateDate';
 
 interface ProjectCardProps {
   data: any;
   cardStyle?: React.CSSProperties;
   buttonTitle: string;
+  cardWrapperStyle?: React.CSSProperties;
 }
 
 const CardGrid: React.FC<ProjectCardProps> = ({
   data,
   cardStyle,
   buttonTitle,
+  cardWrapperStyle,
 }) => {
   const { menuState, handleMenuClick, handleMenuClose, handleButtonClick } =
     useCardLogic();
 
   return (
-    <Box display="flex" gap={2} flexWrap="wrap">
+    <Box display="flex" gap={2} flexWrap="wrap" sx={{ ...cardWrapperStyle }}>
       {data.length > 0 ? (
         data.map((project: any) => (
           <Card

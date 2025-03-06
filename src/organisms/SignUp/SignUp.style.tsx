@@ -193,7 +193,7 @@ export const HaveAccount1 = styled(Typography)(() => ({
 
 export const HaveAccount2 = styled(Typography)(() => ({
   color: DECOR_LOGO_COLOR,
-  // fontSize: "14px",
-  fontSize: typeset.button.fontSize,
+  fontSize: '14px',
+  // fontSize: typeset.button.fontSize,
   textDecoration: 'none',
 }));
