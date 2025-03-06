@@ -42,8 +42,7 @@
 
 // ----------------------
 
-import { styled } from '@mui/material/styles';
-import { Box, ListItem, Typography } from '@mui/material';
+import { Box, ListItem, Typography, styled } from '@mui/material';
 
 export const StyledContainer = styled(Box)(({ theme }) => ({
   margin: theme.spacing(2.5),

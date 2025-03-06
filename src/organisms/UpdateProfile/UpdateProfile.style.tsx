@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Typography, styled } from '@mui/material';
 
 export const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',

@@ -1,7 +1,6 @@
-import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '../../atoms/Button/Button';
-import { Box, Typography } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 
 export const Container = styled('div')(() => ({
   display: 'flex',

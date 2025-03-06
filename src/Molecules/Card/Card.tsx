@@ -11,7 +11,7 @@ import {
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ProjectMenu from './Menu';
 import Button from '../../atoms/Button/Button';
-import { ButtonWrapper } from './Card.styel';
+import { ButtonWrapper } from './Card.style';
 import { formatDate } from '../../utils/formateDate';
 import { useCardLogic } from './Card.hook';
 

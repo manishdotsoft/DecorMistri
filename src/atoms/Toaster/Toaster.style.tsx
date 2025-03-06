@@ -1,5 +1,5 @@
-import { styled, keyframes } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { keyframes } from '@mui/material/styles';
+import { Box, styled } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 // Snackbar Slide & Bounce Animation

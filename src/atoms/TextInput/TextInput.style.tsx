@@ -1,4 +1,4 @@
-import { styled } from '@mui/system';
+import { styled } from '@mui/material';
 
 export const FullWidthFormControl = styled('div')(() => ({
   width: '100%',
