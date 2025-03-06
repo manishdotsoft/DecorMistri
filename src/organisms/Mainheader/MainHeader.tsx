@@ -2,6 +2,7 @@ import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import { useTheme } from '@mui/material';
 
 import {
   Header,
@@ -12,7 +13,7 @@ import {
   ProfileBox,
   Profileimg,
   StyledHeader,
-} from './MainHeader.styel';
+} from './MainHeader.style';
 import DrawerMenu from '../../atoms/ProfileDrawer/Drawer';
 import profileImage from '../../assets/images/logo/profile.png';
 import useDrawer from './MainHeader.hook';
@@ -40,6 +41,9 @@ const MainHeader: React.FC = () => {
       onClick: () => console.log('Logout'),
     },
   ];
+
+  const theme = useTheme();
+  console.log(theme);
 
   return (
     <div>

@@ -1,5 +1,4 @@
-import { Box } from '@mui/material';
-import styled from 'styled-components';
+import { Box, styled } from '@mui/material';
 
 export const Header = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -36,7 +35,7 @@ export const HeaderTitle = styled('span')(() => ({
 export const HeaderProfileIcon = styled(Box)(({ theme }) => ({
   height: '40px',
   width: '40px',
-  backgroundColor: `${theme?.palette?.primary.main} !important`,
+  backgroundColor: theme?.palette?.decor.main,
   color: theme?.palette?.white?.main,
   display: 'flex',
   alignItems: 'center',

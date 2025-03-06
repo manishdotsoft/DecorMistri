@@ -1,6 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { Box, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Typography, styled } from '@mui/material';
 
 export const SignupContainer = styled('div')(({ theme }) => ({
   display: 'flex',

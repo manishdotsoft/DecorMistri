@@ -1,10 +1,8 @@
-import styled from 'styled-components';
-import { Box } from '@mui/material';
-import palette from '../../thems/primitives/palette';
+import { Box, styled } from '@mui/material';
 
 export const HeaderProfileIcon = styled(Box)(({ theme }) => ({
-  background: theme.palette?.decor?.main || palette.decor.main,
-  color: theme.palette?.white?.main || palette.white.main,
+  background: theme.palette?.decor?.main,
+  color: theme.palette?.white?.main,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

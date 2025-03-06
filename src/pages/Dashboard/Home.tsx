@@ -1,4 +1,4 @@
-import MainHeader from '../../organisms/Mainheader/MainHeader';
+import MainHeader from '../../organisms/MainHeader/MainHeader';
 import Sidebar from '../../organisms/SideBar/Sidebar';
 import { Box } from '@mui/material';
 
