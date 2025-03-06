@@ -22,14 +22,15 @@ import {
   TitleOne,
   TitleTwo,
 } from '../../Login/LoginPage.style';
-import { DECOR_LOGO_COLOR } from '../../../thems/primitives/colors';
-import { theme } from '../../../thems/primitives/theme';
+import { useTheme } from '@mui/material';
+
 const ForgetPassword = () => {
   const { handleSubmit } = useForgetPassword();
 
   const initialValues = {
     email: '',
   };
+  const theme = useTheme();
 
   return (
     <StyledContainer>
@@ -94,13 +95,12 @@ const ForgetPassword = () => {
                   <Button
                     title="Reset Password"
                     type="submit"
-                    color="primary"
                     variant="contained"
                     onClick={() => {}}
                     backgroundColor={
                       isButtonDisabled
                         ? theme.palette.grey[300]
-                        : DECOR_LOGO_COLOR
+                        : theme.palette.decor.main
                     }
                     disabled={isButtonDisabled}
                     style={{
@@ -122,7 +122,6 @@ const ForgetPassword = () => {
             <Button
               title="Back"
               type="submit"
-              color="primary"
               variant="contained"
               onClick={() => {}}
               style={{

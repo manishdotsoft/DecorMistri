@@ -5,6 +5,7 @@ import {
   FormHelperText,
   Checkbox,
   ListItemText,
+  useTheme,
 } from '@mui/material';
 import {
   ButtonSection,
@@ -24,14 +25,6 @@ import Button from '../../../../atoms/Button/Button';
 import SelectOption from '../../../../atoms/Select/SelectOption';
 import usePropertyDetailsForm from './PropertyDetails.hook';
 import TextInput from '../../../../atoms/TextInput/TextInput';
-
-import {
-  DECOR_LOGO_COLOR,
-  DECOR_LOGO_COLOR_HOVER,
-  MAIN_GREY_COLOR,
-  SHADE_COLOR,
-} from '../../../../thems/primitives/colors';
-import { COMMON_DEFAULT } from '../../../../thems/primitives/palette';
 
 const designOptions = [
   {
@@ -137,6 +130,8 @@ const PropertyDetails = ({
     formik.handleSubmit();
   };
 
+  const theme = useTheme();
+
   return (
     <Container>
       <GridContainer>
@@ -187,11 +182,11 @@ const PropertyDetails = ({
               height: '58px',
               borderRadius: '6px',
               backgroundColor: !formik.values.designType
-                ? SHADE_COLOR
+                ? theme.palette.grey[200]
                 : 'white',
               '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline':
                 {
-                  borderColor: MAIN_GREY_COLOR,
+                  borderColor: theme.palette.grey[600],
                 },
             }}
           >
@@ -308,11 +303,11 @@ const PropertyDetails = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            color: DECOR_LOGO_COLOR,
-            border: `2px solid ${DECOR_LOGO_COLOR}`,
+            color: theme.palette.decor.main,
+            border: `2px solid ${theme.palette.decor.main}`,
           }}
-          backgroundColor={COMMON_DEFAULT}
-          hoverBackgroundColor={DECOR_LOGO_COLOR_HOVER}
+          backgroundColor={theme.palette.white.main}
+          hoverBackgroundColor={theme.palette.decor.hover}
         />
         <Button
           title="Save"
@@ -322,7 +317,7 @@ const PropertyDetails = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            background: !isFormValid() ? '' : DECOR_LOGO_COLOR,
+            background: !isFormValid() ? '' : theme.palette.decor.main,
           }}
         />
       </ButtonSection>

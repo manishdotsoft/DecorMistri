@@ -10,9 +10,13 @@ export const GREY_50 = '#F2F2F2';
 export const GREY_150 = '#F5F5F5';
 export const GREY_100 = '#FAFAFA';
 export const GREY_200 = '#f0f0f0';
-export const GREY_400 = 'rgba(115, 115, 114, 0.9)';
 export const GREY_300 = '#CACACA';
+export const GREY_600 = '#CCCCCC';
+export const GREY_700 = '#717171';
+
+export const GREY_400 = 'rgba(115, 115, 114, 0.9)';
 export const GREY_500 = 'rgba(158, 158, 158, 1)';
+
 export const BORDER_GREY = '#CCC';
 export const PRIMARY_500 = '#0B9A64';
 export const PRIMARY_400 = '#7bc67e';
@@ -85,12 +89,17 @@ export const DECOR_DARK = '#b60a7c';
 export const LIGHT_COLOR = '#0b9a72';
 export const BLACK_200 = '#0000004c';
 export const BLACK_COLOR = '#1a1a1a';
+export const DECOR_LOGO_COLOR_HOVER = '#fff5fb';
+export const BOX_SHADOW3 = '#91919133';
+export const BLACK_600 = '#00000019';
+export const WHITE_lIGHT = '#ddd';
 
 const palette = {
   decor: {
     main: DECOR_COLOR,
     dark: DECOR_DARK,
-    light: LIGHT_COLOR,
+    light: DECOR_LIGHT,
+    hover: DECOR_LOGO_COLOR_HOVER,
   },
 
   primary: {
@@ -114,17 +123,21 @@ const palette = {
   grey: {
     main: GRAY_COLOR,
     textColor: GREY_100,
+    iconColor: ICON_COLOR,
     50: GREY_50,
     100: ICON_LIGHT,
     150: GREY_150,
     200: GREY_200,
     300: GREY_300,
     400: GREY_400,
+    600: GREY_600,
+    700: GREY_700,
     500: GREY_500,
-    border: BORDER_GREY,
+    800: BORDER_GREY,
   },
   white: {
     main: WHITE,
+    light: WHITE_lIGHT,
     100: WHITE_100,
     300: WHITE_300,
   },
@@ -132,6 +145,8 @@ const palette = {
     800: BLACK_800,
     100: BLACK_COLOR,
     200: BLACK_200,
+    500: BOX_SHADOW3,
+    600: BLACK_600,
   },
   error: {
     // main: ACCENT_ERROR,

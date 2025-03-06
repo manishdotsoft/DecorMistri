@@ -1,23 +1,19 @@
 import { styled } from '@mui/system';
 import { Box, Typography } from '@mui/material';
-import palette from '../../../../thems/primitives/palette';
-import typeset from '../../../../thems/primitives/typeset';
-import { theme } from '../../../../thems/primitives/theme';
 
-export const Container = styled(Box)({
+export const Container = styled(Box)(({ theme }) => ({
   maxWidth: '1200px',
   margin: 'auto',
   display: 'flex',
   flexDirection: 'column',
   gap: '8px',
-  color: palette.text.primary,
-  fontFamily: typeset.fontFamily,
-  backgroundColor: theme.palette.background.paper,
-});
+  color: theme.palette.text.primary,
 
-export const InputLabelItem = styled('label')(() => ({
-  fontFamily: typeset.secondaryFontFamily,
-  fontSize: typeset.body2.fontSize,
+  backgroundColor: theme.palette.background.paper,
+}));
+
+export const InputLabelItem = styled('label')(({ theme }) => ({
+  fontSize: theme.typography?.body2.fontSize,
   marginBottom: '4px',
   color: theme.palette.grey[700],
 }));
@@ -30,9 +26,9 @@ export const ButtonSection = styled(Box)({
   marginTop: '20px',
 });
 
-export const StyledTypography = styled(Typography)(() => ({
+export const StyledTypography = styled(Typography)(({ theme }) => ({
   fontSize: '12px',
-  color: palette.error.main,
+  color: theme.palette.error.main,
   fontFamily: 'sans-serif',
 
   marginLeft: '15px',

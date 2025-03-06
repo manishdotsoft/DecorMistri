@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyledMenu, StyledMenuItem, StatusButton } from './Menu.style';
-import { Collapse, Box } from '@mui/material';
+import { Collapse, Box, useTheme } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Modal from '../../atoms/Modal/Modal';
-import palette from '../../thems/primitives/palette';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useMenuLogic } from './Menu.hook';
 import EditProject from '../../organisms/EditProject/CreateProject';
@@ -45,6 +44,8 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
     onClose,
   });
 
+  const theme = useTheme();
+
   return (
     <StyledMenu
       anchorEl={anchorEl}
@@ -73,7 +74,9 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
                 Change Status <KeyboardArrowDownIcon />
               </StyledMenuItem>
               <Collapse in={dropdownOpen} timeout="auto" unmountOnExit>
-                <Box sx={{ padding: 2, backgroundColor: palette.white[300] }}>
+                <Box
+                  sx={{ padding: 2, backgroundColor: theme.palette.white[300] }}
+                >
                   {statusOptions.map((status, idx) => (
                     <StatusButton
                       key={idx}

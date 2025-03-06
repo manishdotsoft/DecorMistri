@@ -1,6 +1,4 @@
 import { styled, Box, Typography } from '@mui/material';
-import typeset from '../../thems/primitives/typeset';
-import fonts from '../../thems/primitives/fonts';
 
 export const ModalBox = styled(Box)(({ theme }) => ({
   position: 'absolute',
@@ -22,9 +20,9 @@ export const ModalBox = styled(Box)(({ theme }) => ({
 export const ModalTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary || '#1e1e1e',
   fontWeight: 700,
-  fontSize: typeset.h6?.fontSize || '20px',
+  fontSize: theme.typography.h6?.fontSize || '20px',
   marginBottom: '20px',
-  fontFamily: fonts.primary,
+
   width: '300px',
 }));
 

@@ -1,33 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import palette, { ICON_COLOR } from '../../thems/primitives/palette';
-import fonts from '../../thems/primitives/fonts';
-import typeset from '../../thems/primitives/typeset';
-import {
-  BOX_SHADOW3,
-  DECOR_LOGO_COLOR,
-  SHADE_COLOR,
-} from '../../thems/primitives/colors';
-import { theme } from '../../thems/primitives/theme';
 
-export const StyledContainer = styled('div')(() => ({
+export const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
-  fontFamily: fonts.primary,
+
   alignItems: 'center',
   minHeight: '92vh',
-  backgroundColor: palette.white.main,
+  backgroundColor: theme.palette.white.main,
 }));
 
-export const MainFlex = styled('div')(() => ({
+export const MainFlex = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  fontFamily: fonts.primary,
-  backgroundColor: palette.white.main,
+
+  backgroundColor: theme.palette.white.main,
   borderRadius: '25px',
-  boxShadow: `0px 0px 20px 5px ${BOX_SHADOW3}`,
+  boxShadow: `0px 0px 20px 5px ${theme.palette.black[500]}`,
   overflow: 'hidden',
   width: '95%',
   '@media(max-width: 1310px)': {
@@ -47,21 +38,19 @@ export const MainFlex = styled('div')(() => ({
 }));
 
 // header
-export const Header = styled(Box)(() => ({
-  fontFamily: fonts.primary,
+export const Header = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  borderBottom: `1px solid ${SHADE_COLOR}`,
+  borderBottom: `1px solid ${theme.palette.grey[200]}`,
   padding: '20px',
 }));
 
-export const Line = styled(Box)(() => ({
-  fontFamily: fonts.primary,
+export const Line = styled(Box)(({ theme }) => ({
   width: '1px',
   display: 'flex',
   flexDirection: 'row',
-  background: palette.grey[500],
+  background: theme.palette.grey[500],
   height: '30px',
 }));
 
@@ -72,11 +61,11 @@ export const A = styled(Typography)(() => ({
   fontSize: '1.1rem',
 }));
 
-export const HeaderProfileIcon = styled(Box)(() => ({
+export const HeaderProfileIcon = styled(Box)(({ theme }) => ({
   height: '40px',
   width: '40px',
-  background: DECOR_LOGO_COLOR,
-  color: palette.white.main,
+  background: theme.palette.decor.main,
+  color: theme.palette.white.main,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -104,9 +93,7 @@ export const TitleSec = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const StyledForm = styled('form')(() => ({
-  fontFamily: fonts.primary,
-}));
+export const StyledForm = styled('form')(() => ({}));
 export const SetFormikError = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
@@ -124,7 +111,7 @@ export const ChildFlex = styled('div')(({ theme }) => ({
   margin: '0 auto',
   width: '55%',
   flexDirection: 'column',
-  fontFamily: fonts.primary,
+
   height: '100%',
   [theme.breakpoints.down('lg')]: {
     width: '70%',
@@ -158,27 +145,26 @@ export const GridContainerChild = styled(Box)({
   width: '100%',
 });
 
-export const StyledTypography = styled(Typography)(() => ({
-  fontSize: typeset.caption.fontSize,
-  color: palette.error.main,
+export const StyledTypography = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.caption.fontSize,
+  color: theme.palette.error.main,
   fontFamily: 'sans-serif',
 
   marginLeft: '15px',
 }));
 
-export const InputLabelItem = styled('label')(() => ({
+export const InputLabelItem = styled('label')(({ theme }) => ({
   fontSize: '0.8rem',
   marginBottom: '1px',
   color: theme.palette.grey[600],
-  fontFamily: typeset.secondaryFontFamily,
 }));
 
-export const ImageFlex = styled('div')(() => ({
+export const ImageFlex = styled('div')(({ theme }) => ({
   flex: 1,
-  backgroundColor: palette.grey[50],
+  backgroundColor: theme.palette.grey[50],
   width: '100%',
   height: '100%',
-  fontFamily: fonts.primary,
+
   borderRadius: '25px',
 }));
 
@@ -204,31 +190,30 @@ export const AllImg = styled('img')(({ theme }) => ({
 }));
 
 export const StyledHeader = styled(Box)(() => ({
-  fontFamily: fonts.primary,
   display: 'flex',
   // justifyContent: 'center',
   gap: '15px',
   alignItems: 'center',
 }));
 
-export const Title = styled(Typography)(() => ({
-  fontSize: typeset.h4.fontSize,
+export const Title = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.h4.fontSize,
   fontWeight: '300',
-  fontFamily: fonts.primary,
+
   margin: '0',
   '@media(max-width: 1068px)': {
-    fontSize: typeset.h5.fontSize,
+    fontSize: theme.typography.h5.fontSize,
   },
 }));
 
 export const Title2 = styled(Typography)(({ theme }) => ({
-  fontSize: typeset.button.fontSize,
+  fontSize: theme.typography.button.fontSize,
   fontWeight: '300',
-  color: palette.rateSheduleColors.colorB,
-  fontFamily: fonts.primary,
+  color: theme.palette.rateSheduleColors.colorB,
+
   margin: '0',
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.caption.fontSize,
+    fontSize: theme.typography.caption.fontSize,
   },
 }));
 
@@ -239,7 +224,7 @@ export const LabelProfile = styled('label')(() => ({
   width: '100%',
 }));
 
-export const MainUploadImage = styled(Box)(() => ({
+export const MainUploadImage = styled(Box)(({ theme }) => ({
   marginTop: '3px',
   display: 'flex',
   justifyContent: 'center',
@@ -247,7 +232,7 @@ export const MainUploadImage = styled(Box)(() => ({
   height: '140px',
   borderRadius: '8px',
   overflow: 'hidden',
-  border: `1px solid ${ICON_COLOR}`,
+  border: `1px solid ${theme.palette.grey.iconColor}`,
   borderStyle: 'dashed',
   cursor: 'pointer',
 }));
@@ -279,7 +264,7 @@ export const ButtonSec = styled(Box)(() => ({
   width: '100%',
   marginTop: '10px',
 }));
-export const ButtonContainer = styled(Box)(() => ({
+export const ButtonContainer = styled(Box)(({ theme }) => ({
   marginBottom: '0px',
 
   [theme.breakpoints.down('sm')]: {

@@ -4,7 +4,6 @@ import { Formik, Form } from 'formik';
 import { LoginSchema } from './LoginSchema';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Button from '../../atoms/Button/Button';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 
 import {
   StyledContainer,
@@ -33,7 +32,6 @@ import loginLogo from '../../assets/images/logo/Layer_x0020_1.svg';
 import googleLogo from '../../assets/images/logo/google.svg';
 import { useLoginLogic } from './Login.hook';
 import Modal from '../../atoms/Modal/Modal';
-// import palette from '../../thems/primitives/palette';
 
 const LoginPage = () => {
   const theme = useTheme();
@@ -148,7 +146,7 @@ const LoginPage = () => {
                     backgroundColor:
                       !values.email || !values.password || !isValid
                         ? theme.palette.grey[500]
-                        : theme.palette.decor.light,
+                        : theme.palette.decor.main,
                     width: '100%',
                     height: '50px',
                     borderRadius: '6px',
@@ -215,7 +213,7 @@ const LoginPage = () => {
                     variant="contained"
                     onClick={handleUpdateprofile}
                     style={{
-                      backgroundColor: DECOR_LOGO_COLOR,
+                      backgroundColor: theme.palette.decor.main,
                       color: theme.palette.common.white,
                       borderRadius: '5px',
                       width: '160px',

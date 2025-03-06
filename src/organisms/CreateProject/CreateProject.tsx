@@ -27,14 +27,12 @@ import SaveImage from '../../assets/images/createProject/complete.svg';
 import DownArrow from '../../assets/images/createProject/DownArrow.svg';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Loader from '../../atoms/Loader/Loader';
-import { theme } from '../../thems/primitives/theme';
-import {
-  BOX_SHADOW_LOADER,
-  DECOR_LOGO_COLOR,
-} from '../../thems/primitives/colors';
+
+import { useTheme } from '@mui/material';
 
 const CreateProject = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const theme = useTheme();
   const {
     currentPageIndex,
     formData,
@@ -213,14 +211,14 @@ const CreateProject = () => {
             backgroundColor: theme.palette.background.paper,
             padding: '20px',
             borderRadius: '10px',
-            boxShadow: `0px 4px 10px ${BOX_SHADOW_LOADER}`,
+            boxShadow: `0px 4px 10px ${theme.palette.black[600]}`,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 1300,
           }}
-          createProjectLoader={{ color: DECOR_LOGO_COLOR }}
+          createProjectLoader={{ color: theme.palette.decor.main }}
         />
       )}
       {showToast && (

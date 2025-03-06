@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import usePropertyLocationDetails from './PropertyLocationDetails.hook';
 import Button from '../../../../atoms/Button/Button';
 import SelectOption from '../../../../atoms/Select/SelectOption';
@@ -16,11 +16,6 @@ import {
 import TextInput from '../../../../atoms/TextInput/TextInput';
 // import { useState } from 'react';
 import { stateOptions } from '../../CreateProjectData/StateData';
-import {
-  DECOR_LOGO_COLOR,
-  DECOR_LOGO_COLOR_HOVER,
-} from '../../../../thems/primitives/colors';
-import { COMMON_DEFAULT } from '../../../../thems/primitives/palette';
 
 const PropertyLocationDetails = ({
   data,
@@ -57,6 +52,7 @@ const PropertyLocationDetails = ({
   const handleNextClick = () => {
     formik.handleSubmit();
   };
+  const theme = useTheme();
 
   return (
     <Container>
@@ -187,11 +183,11 @@ const PropertyLocationDetails = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            color: DECOR_LOGO_COLOR,
-            border: `2px solid ${DECOR_LOGO_COLOR}`,
+            color: theme.palette.decor.main,
+            border: `2px solid ${theme.palette.decor.main}`,
           }}
-          backgroundColor={COMMON_DEFAULT}
-          hoverBackgroundColor={DECOR_LOGO_COLOR_HOVER}
+          backgroundColor={theme.palette.white.main}
+          hoverBackgroundColor={theme.palette.decor.hover}
         />
         <Button
           title="Save"
@@ -201,7 +197,7 @@ const PropertyLocationDetails = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            background: !isFormValid() ? '' : DECOR_LOGO_COLOR,
+            background: !isFormValid() ? '' : theme.palette.decor.main,
           }}
         />
       </ButtonSection>

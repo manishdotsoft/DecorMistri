@@ -1,31 +1,26 @@
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { theme } from './../../thems/primitives/theme';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
-import palette from '../../thems/primitives/palette';
-import typeset from '../../thems/primitives/typeset';
-import fonts from '../../thems/primitives/fonts';
 
-export const SignupContainer = styled('div')(() => ({
+export const SignupContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'row',
   gap: '10px',
   marginTop: '20px',
-  fontSize: typeset.body1.fontSize,
+  fontSize: theme.typography?.body1.fontSize,
   color: theme.palette.text.secondary,
   width: '100%',
   '.signup-link': {
     marginLeft: '5px',
-    fontSize: typeset.body1.fontSize,
+    fontSize: theme.typography?.body1.fontSize,
     color: theme.palette.primary.main,
     textDecoration: 'none',
   },
 }));
 
-export const LoginLink = styled(RouterLink)(() => ({
+export const LoginLink = styled(RouterLink)(({ theme }) => ({
   textDecoration: 'none',
   color: theme.palette.primary.main,
   fontSize: theme.typography.body1.fontSize,
@@ -34,14 +29,14 @@ export const LoginLink = styled(RouterLink)(() => ({
   },
 }));
 
-export const StyledContainer = styled('div')(() => ({
+export const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
 
   minHeight: '92vh',
   fontFamily: theme.typography.fontFamily,
-  backgroundColor: palette.white.main,
+  backgroundColor: theme.palette.white.main,
   padding: '20px',
   color: theme.palette.text.primary,
 
@@ -51,7 +46,7 @@ export const StyledContainer = styled('div')(() => ({
   },
 }));
 
-export const MainFlex = styled('div')(() => ({
+export const MainFlex = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   fontFamily: theme.typography.fontFamily,
@@ -77,22 +72,18 @@ export const MainFlex = styled('div')(() => ({
   },
 }));
 
-export const StyledForm = styled('form')(() => ({
-  fontFamily: fonts.primary,
-}));
+export const StyledForm = styled('form')(() => ({}));
 
 export const TextArea = styled('div')(() => ({
   display: 'flex',
   alignItems: 'center',
-  fontFamily: fonts.primary,
+
   gap: '8px',
 }));
 
-export const TextArea2 = styled('div')(() => ({
-  fontFamily: fonts.primary,
-}));
+export const TextArea2 = styled('div')(() => ({}));
 
-export const ChildFlex = styled('div')(() => ({
+export const ChildFlex = styled('div')(({ theme }) => ({
   flex: 1,
   padding: '35px 100px',
   display: 'flex',
@@ -100,7 +91,6 @@ export const ChildFlex = styled('div')(() => ({
   overflow: 'hidden',
   marginTop: 'auto',
   marginBottom: 'auto',
-  fontFamily: fonts.primary,
 
   height: '100%',
   [theme.breakpoints.down('md')]: {
@@ -108,31 +98,30 @@ export const ChildFlex = styled('div')(() => ({
   },
 }));
 
-export const HeadlineSpan = styled('span')(() => ({
+export const HeadlineSpan = styled('span')(({ theme }) => ({
   fontWeight: 600,
   color: theme.palette.text.primary,
-  fontFamily: fonts.primary,
 }));
 
-export const Highlight = styled('span')(() => ({
+export const Highlight = styled('span')(({ theme }) => ({
   fontWeight: 600,
-  color: DECOR_LOGO_COLOR,
+  color: theme.palette.decor.main,
 
-  fontSize: typeset.A4.fontSize,
+  fontSize: theme.typography?.A4.fontSize,
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.h5.fontSize,
+    fontSize: theme.typography?.h5.fontSize,
   },
 }));
 
-export const ForgotPasswordLink = styled(RouterLink)(() => ({
+export const ForgotPasswordLink = styled(RouterLink)(({ theme }) => ({
   display: 'block',
   marginTop: '10px',
   textAlign: 'right',
-  color: DECOR_LOGO_COLOR,
+  color: theme.palette.decor.main,
   textDecoration: 'none',
-  fontSize: typeset.body2.fontSize,
+  fontSize: theme.typography?.body2.fontSize,
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.subtitle2.fontSize,
+    fontSize: theme.typography?.subtitle2.fontSize,
   },
 }));
 
@@ -144,7 +133,7 @@ export const ForgetPaswordContainer = styled('div')(() => ({
   marginBottom: '10px',
 }));
 
-export const ImageFlex = styled('div')(() => ({
+export const ImageFlex = styled('div')(({ theme }) => ({
   flex: 1,
   backgroundColor: theme.palette.background.default,
   width: '100%',
@@ -152,7 +141,7 @@ export const ImageFlex = styled('div')(() => ({
   borderRadius: '6px',
 }));
 
-export const AllImg = styled('img')(() => ({
+export const AllImg = styled('img')(({ theme }) => ({
   width: '100%',
   height: '100%',
 
@@ -166,7 +155,7 @@ export const AllImg = styled('img')(() => ({
   },
 }));
 
-export const StyledHeader = styled('div')(() => ({
+export const StyledHeader = styled('div')(({ theme }) => ({
   marginBottom: '10px',
   color: theme.palette.text.primary,
 }));
@@ -179,22 +168,20 @@ export const Logo = styled('div')(() => ({
   marginBottom: '10px',
 }));
 
-export const Title = styled(Typography)(() => ({
-  fontSize: typeset.h3.fontSize,
+export const Title = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography?.h3.fontSize,
   fontWeight: 'bold',
-  fontFamily: fonts.primary,
 
   color: theme.palette.text.primary,
   margin: 0,
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.h4.fontSize,
+    fontSize: theme.typography?.h4.fontSize,
   },
 }));
 
-export const Title2 = styled(Typography)(() => ({
-  fontSize: typeset.body2.fontSize,
+export const Title2 = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography?.body2.fontSize,
   fontWeight: 'bold',
-  fontFamily: fonts.primary,
 
   color: theme.palette.text.secondary,
   margin: 0,
@@ -203,10 +190,10 @@ export const Title2 = styled(Typography)(() => ({
   },
 }));
 
-export const StyledTypography = styled('p')(() => ({
-  fontSize: typeset.body2.fontSize,
+export const StyledTypography = styled('p')(({ theme }) => ({
+  fontSize: theme.typography?.body2.fontSize,
   color: theme.palette.error.main,
-  fontFamily: fonts.primary,
+
   marginTop: '10px',
 }));
 
@@ -218,16 +205,15 @@ export const StyledBoxCenter = styled('div')(() => ({
   marginTop: '10px',
 }));
 
-export const StyledLink = styled('span')(() => ({
+export const StyledLink = styled('span')(({ theme }) => ({
   color: theme.palette.primary.main,
   fontWeight: 'bold',
   cursor: 'pointer',
-  fontFamily: fonts.primary,
 
   textDecoration: 'none',
 }));
 
-export const ImageBox = styled('div')(() => ({
+export const ImageBox = styled('div')(({ theme }) => ({
   width: '50%',
   height: 'auto',
 
@@ -243,20 +229,20 @@ export const ImageBox = styled('div')(() => ({
   },
 }));
 
-export const TitleOne = styled(Typography)(() => ({
-  fontSize: typeset.A4.fontSize,
+export const TitleOne = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography?.A4.fontSize,
   fontWeight: 300,
 
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.h5.fontSize,
+    fontSize: theme.typography?.h5.fontSize,
   },
 }));
 
-export const TitleTwo = styled(Typography)(() => ({
-  fontSize: typeset.body1.fontSize,
+export const TitleTwo = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography?.body1.fontSize,
 
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.body2.fontSize,
+    fontSize: theme.typography?.body2.fontSize,
   },
 }));
 
@@ -264,12 +250,12 @@ export const LogoImage = styled('img')(() => ({
   height: '40px',
 }));
 
-export const Collaboration = styled(Typography)(() => ({
-  fontSize: typeset.A4.fontSize,
+export const Collaboration = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography?.A4.fontSize,
   fontWeight: 300,
 
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.h5.fontSize,
+    fontSize: theme.typography?.h5.fontSize,
   },
 }));
 
@@ -277,7 +263,7 @@ export const ParentInputBox = styled('div')(() => ({
   marginRight: '49px',
 }));
 
-export const ModalBox = styled(Box)(() => ({
+export const ModalBox = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -291,10 +277,10 @@ export const ModalBox = styled(Box)(() => ({
   textAlign: 'center',
 }));
 
-export const ModalTitle = styled(Box)(() => ({
+export const ModalTitle = styled(Box)(({ theme }) => ({
   color: theme.palette.text.primary,
   fontWeight: 700,
-  fontSize: typeset.h6.fontSize,
+  fontSize: theme.typography?.h6.fontSize,
   marginBottom: '20px',
 }));
 
@@ -305,8 +291,8 @@ export const ModalButtons = styled(Box)(() => ({
   marginTop: '20px',
 }));
 
-export const LinkSignup = styled(Typography)(() => ({
-  color: DECOR_LOGO_COLOR,
-  fontSize: typeset.body1.fontSize,
+export const LinkSignup = styled(Typography)(({ theme }) => ({
+  color: theme.palette.decor.main,
+  fontSize: theme.typography?.body1.fontSize,
   textDecoration: 'none',
 }));

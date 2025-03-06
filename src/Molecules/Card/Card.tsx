@@ -1,12 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { Box, Typography, Card, CardContent, IconButton } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  IconButton,
+  useTheme,
+} from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ProjectMenu from './Menu';
 import Button from '../../atoms/Button/Button';
 import { ButtonWrapper } from './Card.styel';
-import { useCardLogic } from './card.hook';
 import { formatDate } from '../../utils/formateDate';
+import { useCardLogic } from './Card.hook';
 
 interface ProjectCardProps {
   data: any;
@@ -21,6 +28,7 @@ const CardGrid: React.FC<ProjectCardProps> = ({
 }) => {
   const { menuState, handleMenuClick, handleMenuClose, handleButtonClick } =
     useCardLogic();
+  const theme = useTheme();
 
   return (
     <Box display="flex" gap={2} flexWrap="wrap">
@@ -49,7 +57,7 @@ const CardGrid: React.FC<ProjectCardProps> = ({
                 position: 'absolute',
                 top: 8,
                 right: 8,
-                color: '#c7148A',
+                color: theme.palette.decor.main,
               }}
             >
               <MoreVertIcon />
@@ -106,7 +114,7 @@ const CardGrid: React.FC<ProjectCardProps> = ({
                 variant={'contained'}
                 style={{
                   borderRadius: '6px',
-                  backgroundColor: '#C7148A',
+                  backgroundColor: theme.palette.decor.main,
                   textTransform: 'uppercase',
                 }}
               />

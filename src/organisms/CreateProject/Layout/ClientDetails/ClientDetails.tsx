@@ -17,11 +17,8 @@ import TextInput from '../../../../atoms/TextInput/TextInput';
 import EmailIcon from '../../../../assets/images/createProject/Email.svg';
 import LocationIcon from '../../../../assets/images/createProject/Location.svg';
 import { stateOptions } from '../../CreateProjectData/StateData';
-import {
-  DECOR_LOGO_COLOR,
-  DECOR_LOGO_COLOR_HOVER,
-} from '../../../../thems/primitives/colors';
-import { COMMON_DEFAULT } from '../../../../thems/primitives/palette';
+
+import { useTheme } from '@mui/material';
 
 const ClientDetails = ({
   data,
@@ -64,6 +61,7 @@ const ClientDetails = ({
     // setIsPageVisible(false);
     formik.handleSubmit();
   };
+  const theme = useTheme();
 
   return (
     <Container>
@@ -247,11 +245,11 @@ const ClientDetails = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            color: DECOR_LOGO_COLOR,
-            border: `2px solid ${DECOR_LOGO_COLOR}`,
+            color: theme.palette.decor.main,
+            border: `2px solid ${theme.palette.decor.main}`,
           }}
-          backgroundColor={COMMON_DEFAULT}
-          hoverBackgroundColor={DECOR_LOGO_COLOR_HOVER}
+          backgroundColor={theme.palette.white.main}
+          hoverBackgroundColor={theme.palette.decor.hover}
         />
         <Button
           title="Save"
@@ -261,7 +259,7 @@ const ClientDetails = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            background: !isFormValid() ? '' : DECOR_LOGO_COLOR,
+            background: !isFormValid() ? '' : theme.palette.decor.main,
           }}
         />
       </ButtonSection>

@@ -1,5 +1,4 @@
 import { styled } from '@mui/system';
-import typeset from '../../thems/primitives/typeset';
 
 interface InputLabelItemProps {
   isFocused: boolean;
@@ -16,7 +15,6 @@ export const InputLabelItem = styled('label')<InputLabelItemProps>(
     fontSize: '1rem',
     marginBottom: '4px',
     color: theme.palette.grey[600],
-    fontFamily: typeset.secondaryFontFamily,
   })
 );
 export const SelectWrapper = styled('div')(() => ({

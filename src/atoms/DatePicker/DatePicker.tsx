@@ -38,10 +38,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           '& .MuiOutlinedInput-root': {
             borderRadius: '6px',
             '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.grey?.border,
+              borderColor: theme.palette.grey[800],
             },
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.decor?.main,
+              borderColor: theme.palette.decor.main,
               borderWidth: '2px',
             },
             height: '55px',

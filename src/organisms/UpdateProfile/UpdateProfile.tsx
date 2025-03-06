@@ -33,14 +33,12 @@ import TextInput from '../../atoms/TextInput/TextInput';
 import Button from '../../atoms/Button/Button';
 import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
 import { useUpdateProfile } from './UpdateProfile.hook';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import SelectOption from '../../atoms/Select/SelectOption';
 
 import ProfileImage from '../../assets/images/updateProfile/man.svg';
 import { useNavigate } from 'react-router-dom';
-import { theme } from '../../thems/primitives/theme';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
-import fonts from '../../thems/primitives/fonts';
+
 import ProgressBar from './ProgressBar';
 
 const designOptions = [
@@ -112,6 +110,7 @@ const designOptions = [
 ];
 
 const UpdateProfile: React.FC = () => {
+  const theme = useTheme();
   const { formik, isAnyFieldEmpty, progress } = useUpdateProfile();
 
   const [profileImage, setProfileImage] = useState<string>(ProfileImage);
@@ -403,7 +402,7 @@ const UpdateProfile: React.FC = () => {
                     variant="contained"
                     style={{
                       width: '100%',
-                      fontFamily: fonts.primary,
+
                       borderRadius: '8px',
                       padding: '25px',
                       background: theme.palette.grey[300],
@@ -428,7 +427,7 @@ const UpdateProfile: React.FC = () => {
                     style={{
                       backgroundColor: isAnyFieldEmpty
                         ? theme.palette.grey[500]
-                        : DECOR_LOGO_COLOR,
+                        : theme.palette.decor.main,
                       cursor:
                         isAnyFieldEmpty || formik.isSubmitting
                           ? 'not-allowed'
