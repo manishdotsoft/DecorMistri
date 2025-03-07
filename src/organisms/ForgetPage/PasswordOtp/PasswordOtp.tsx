@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 import { Formik, Form } from 'formik';
 import { LoginSchema } from '../../Login/LoginSchema';
 import TextInput from '../../../atoms/TextInput/TextInput';
@@ -25,8 +25,6 @@ import {
   TitleOne,
   TitleTwo,
 } from '../../Login/LoginPage.style';
-import { theme } from '../../../thems/primitives/theme';
-import { DECOR_LOGO_COLOR } from '../../../thems/primitives/colors';
 
 const initialValues = {
   email: '',
@@ -34,6 +32,7 @@ const initialValues = {
 };
 
 const PasswordOtp = () => {
+  const theme = useTheme();
   return (
     <StyledContainer>
       <MainFlex>
@@ -88,11 +87,10 @@ const PasswordOtp = () => {
                       <Button
                         title="Continue"
                         type="submit"
-                        color="primary"
                         variant="contained"
                         onClick={() => {}}
                         style={{
-                          backgroundColor: DECOR_LOGO_COLOR,
+                          backgroundColor: theme.palette.decor.main,
                           color: theme.palette.background.paper,
                           width: '100%',
                           height: '50px',
@@ -128,7 +126,7 @@ const PasswordOtp = () => {
             <Typography component="span">Dont receive the code ? </Typography>
             <Link
               to=""
-              style={{ color: DECOR_LOGO_COLOR }}
+              style={{ color: theme.palette.decor.main }}
               className="signup-link"
             >
               Please resend

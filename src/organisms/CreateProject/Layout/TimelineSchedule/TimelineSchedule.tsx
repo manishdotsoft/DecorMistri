@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import {
   ButtonSection,
   Container,
@@ -8,11 +8,6 @@ import {
 import Button from '../../../../atoms/Button/Button';
 import useTimelineSchedule from './TimelineSchedule.hook';
 import { DatePicker } from '../../../../atoms/DatePicker/DatePicker';
-import {
-  DECOR_LOGO_COLOR,
-  DECOR_LOGO_COLOR_HOVER,
-} from '../../../../thems/primitives/colors';
-import { COMMON_DEFAULT } from '../../../../thems/primitives/palette';
 
 interface TimelineScheduleProps {
   data: {
@@ -46,6 +41,7 @@ const TimelineSchedule: React.FC<TimelineScheduleProps> = ({
     formik.handleSubmit();
     localStorage.setItem('timelineScheduleData', JSON.stringify(formik.values));
   };
+  const theme = useTheme();
 
   return (
     <Container>
@@ -98,11 +94,11 @@ const TimelineSchedule: React.FC<TimelineScheduleProps> = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            color: DECOR_LOGO_COLOR,
-            border: `2px solid ${DECOR_LOGO_COLOR}`,
+            color: theme.palette.decor.main,
+            border: `2px solid ${theme.palette.decor.main}`,
           }}
-          backgroundColor={COMMON_DEFAULT}
-          hoverBackgroundColor={DECOR_LOGO_COLOR_HOVER}
+          backgroundColor={theme.palette.primary.contrastText}
+          hoverBackgroundColor={theme.palette.decor.hover}
         />
         <Button
           title="Save"
@@ -112,7 +108,7 @@ const TimelineSchedule: React.FC<TimelineScheduleProps> = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            background: !isFormValid() ? '' : DECOR_LOGO_COLOR,
+            background: !isFormValid() ? '' : theme.palette.decor.main,
           }}
         />
       </ButtonSection>

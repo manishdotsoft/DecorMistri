@@ -23,10 +23,10 @@ import {
 } from '../../Login/LoginPage.style';
 import { useNewPasswordLogic } from './NewPassword.hook';
 import Toaster from '../../../atoms/Toaster/Toaster';
-import { theme } from '../../../thems/primitives/theme';
-import { DECOR_LOGO_COLOR } from '../../../thems/primitives/colors';
+import { useTheme } from '@mui/material';
 
 const NewPassword = () => {
+  const theme = useTheme();
   const {
     handleSubmit,
     initialValues,
@@ -133,7 +133,7 @@ const NewPassword = () => {
                       backgroundColor={
                         isButtonDisabled
                           ? theme.palette.grey[300]
-                          : DECOR_LOGO_COLOR
+                          : theme.palette.decor.main
                       }
                       variant="contained"
                       disabled={isButtonDisabled}

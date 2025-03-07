@@ -12,12 +12,8 @@ import Button from '../../../../atoms/Button/Button';
 import useFinancialDetails from './FinancialDetails.hook';
 import TextInput from '../../../../atoms/TextInput/TextInput';
 import { useNavigate } from 'react-router-dom';
-import {
-  DECOR_LOGO_COLOR,
-  DECOR_LOGO_COLOR_HOVER,
-} from '../../../../thems/primitives/colors';
-import { COMMON_DEFAULT } from '../../../../thems/primitives/palette';
 import SelectOption from '../../../../atoms/Select/SelectOption';
+import { useTheme } from '@mui/material';
 
 const FinancialDetails = ({
   data,
@@ -39,6 +35,7 @@ const FinancialDetails = ({
   handlePrevious: () => void;
   handleSubmit: () => void;
 }) => {
+  const theme = useTheme();
   const { formik, isFormValid } = useFinancialDetails({
     data,
     updateData,
@@ -57,7 +54,9 @@ const FinancialDetails = ({
   };
 
   // Button background color logic
-  const submitButtonBackgroundColor = isFormValid() ? DECOR_LOGO_COLOR : '#CCC';
+  const submitButtonBackgroundColor = isFormValid()
+    ? theme.palette.decor.main
+    : theme.palette.grey[600];
 
   return (
     <Container>
@@ -133,11 +132,11 @@ const FinancialDetails = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            color: DECOR_LOGO_COLOR,
-            border: `2px solid ${DECOR_LOGO_COLOR}`,
+            color: theme.palette.decor.main,
+            border: `2px solid ${theme.palette.decor.main}`,
           }}
-          backgroundColor={COMMON_DEFAULT}
-          hoverBackgroundColor={DECOR_LOGO_COLOR_HOVER}
+          backgroundColor={theme.palette.primary.contrastText}
+          hoverBackgroundColor={theme.palette.decor.hover}
         />
         <Button
           title="Submit"

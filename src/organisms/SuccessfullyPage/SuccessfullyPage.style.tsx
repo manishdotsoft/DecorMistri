@@ -1,18 +1,11 @@
-import { Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Typography, styled } from '@mui/material';
 
-import palette from '../../thems/primitives/palette';
-import { BOX_SHADOW } from '../../thems/primitives/colors';
-import fonts from '../../thems/primitives/fonts';
-import typeset from '../../thems/primitives/typeset';
-
-export const StyledContainer = styled('div')(() => ({
+export const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
-  fontFamily: fonts.primary,
   alignItems: 'center',
   minHeight: '92vh',
-  backgroundColor: palette.white.main,
+  backgroundColor: theme.palette.white.main,
   padding: '16px',
 
   '@media(max-width: 468px)': {
@@ -21,13 +14,12 @@ export const StyledContainer = styled('div')(() => ({
   },
 }));
 
-export const MainFlex = styled('div')(() => ({
+export const MainFlex = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
-  fontFamily: fonts.primary,
-  backgroundColor: palette.white.main,
+  backgroundColor: theme.palette.white.main,
   borderRadius: '25px',
-  boxShadow: `0px 0px 100px 10px ${BOX_SHADOW}`,
+  boxShadow: `0px 0px 100px 10px ${theme.palette.black[500]}`,
 
   overflow: 'hidden',
   // [theme.breakpoints.down("lg")]: {
@@ -102,22 +94,22 @@ export const Logo = styled('img')(() => ({
 }));
 
 export const Title = styled(Typography)(({ theme }) => ({
-  fontSize: typeset.h4.fontSize,
+  fontSize: theme.typography.h4.fontSize,
   fontWeight: '300',
   lineHeight: '30px',
   marginBottom: '10px',
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.h5.fontSize,
+    fontSize: theme.typography.h5.fontSize,
   },
 }));
 
 export const Title2 = styled(Typography)(({ theme }) => ({
   // fontSize: "14px",
-  fontSize: typeset.button.fontSize,
+  fontSize: theme.typography.button.fontSize,
   fontWeight: '300',
-  color: palette.rateSheduleColors.colorB,
+  color: theme.palette.rateSheduleColors.colorB,
   margin: '0',
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.caption.fontSize,
+    fontSize: theme.typography.caption.fontSize,
   },
 }));

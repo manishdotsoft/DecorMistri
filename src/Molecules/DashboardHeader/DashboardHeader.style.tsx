@@ -1,17 +1,12 @@
-import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import { theme } from '../../thems/primitives/theme';
 import Button from '../../atoms/Button/Button';
-import { Box, Typography } from '@mui/material';
-import fonts from '../../thems/primitives/fonts';
-import palette from '../../thems/primitives/palette';
-import typeset from '../../thems/primitives/typeset';
-export const Container = styled('div')({
+import { Box, styled, Typography } from '@mui/material';
+
+export const Container = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-between',
-  fontFamily: fonts.primary,
   width: '100%',
-});
+}));
 
 export const FilterSection = styled('div')({
   display: 'flex',
@@ -19,7 +14,6 @@ export const FilterSection = styled('div')({
   gap: '8px',
   cursor: 'pointer',
   padding: '22px',
-  fontFamily: fonts.primary,
 });
 
 export const ActionsSection = styled('div')(({ theme }) => ({
@@ -38,12 +32,12 @@ export const SearchContainer = styled('div')({
   width: '100%',
 });
 
-export const StyledSearchIcon = styled(SearchIcon)({
+export const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
   color: theme.palette.grey[700],
   position: 'absolute',
   top: '8px',
   left: '8px',
-});
+}));
 
 export const StyledButton = styled(Button)({
   width: '100%',
@@ -56,29 +50,27 @@ export const TitelBox = styled(Typography)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontSize: typeset.h6.fontSize,
+  fontSize: theme.typography.h6.fontSize,
   fontWeight: 'bold',
   fontFamily: 'fonts.primary',
   [theme.breakpoints.down('lg')]: {
-    fontSize: typeset.body1.fontSize,
+    fontSize: theme.typography.body1.fontSize,
   },
   [theme.breakpoints.down('sm')]: {
-    fontSize: typeset.body2.fontSize,
+    fontSize: theme.typography.body2.fontSize,
   },
 }));
 
-export const DateBox = styled(Box)({
+export const DateBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   border: `1px solid 
-  ${palette.grey[300]}`,
+  ${theme.palette.grey[300]}`,
   borderRadius: '6px',
-  fontFamily: fonts.primary,
-});
+}));
 
 export const StartDateBox = styled(Box)({
   position: 'relative',
   width: '120px',
-  fontFamily: fonts.primary,
 });
 
 export const DateCntainer = styled(Box)({
@@ -89,17 +81,16 @@ export const IconBox = styled(Box)({
   position: 'absolute',
   top: '8px',
   right: '10px',
-  fontFamily: fonts.primary,
 });
 
-export const DatePikerBox = styled(Box)({
+export const DatePikerBox = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: '50px',
   left: 0,
-  backgroundColor: '#fff',
-  boxShadow: `0 2px 10px ${palette.grey[300]}`,
+  backgroundColor: theme.palette.white.main,
+  boxShadow: `0 2px 10px ${theme.palette.grey[300]}`,
   zIndex: 10,
-});
+}));
 
 export const DrawerBox = styled(Box)({
   width: '300px',
@@ -116,14 +107,14 @@ export const ChindContainer = styled(Box)({
   padding: '10px  ',
 });
 
-export const DrawerTitle = styled(Typography)({
+export const DrawerTitle = styled(Typography)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontFamily: fonts.primary,
-  fontSize: typeset.h5.fontSize,
+
+  fontSize: theme.typography.h5.fontSize,
   fontWeight: '600',
-});
+}));
 export const ContantBox = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
