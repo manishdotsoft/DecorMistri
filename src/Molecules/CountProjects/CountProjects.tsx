@@ -1,45 +1,67 @@
 import React from 'react';
-import { Card, CardContent, Typography, Grid, Box } from '@mui/material';
-
-const stats = [
-  { label: 'LIVE PROJECTS', value: '05', size: '13,500', color: '#1976d2' },
-  { label: 'UPCOMING', value: '12', size: '24,500', color: '#fbc02d' },
-  { label: 'COMPLETED', value: '03', size: '10,500', color: '#388e3c' },
-  { label: 'NOT CONFIRMED', value: '02', size: '2,500', color: '#e64a19' },
-  { label: 'TOTAL USERS', value: '250', size: '25,320' },
-];
+import { useTheme } from '@mui/material';
+import {
+  CardChild,
+  CardFirst,
+  CardMain,
+  CardSecond,
+  ColorBox,
+  CountProjectsMainSec,
+  LabelTypography,
+  ValueTypography,
+} from './CountProjects.style';
 
 const CountProjects: React.FC = () => {
+  const theme = useTheme();
+
+  const stats = [
+    {
+      label: 'LIVE PROJECTS',
+      value: '05',
+      size: '13,500',
+      color: theme.palette.rateSheduleColors.colorD,
+    },
+    {
+      label: 'UPCOMING',
+      value: '12',
+      size: '24,500',
+      color: theme.palette.warning.upcoming,
+    },
+
+    {
+      label: 'COMPLETED',
+      value: '03',
+      size: '10,500',
+      color: theme.palette.rateSheduleColors.complete,
+    },
+    {
+      label: 'NOT CONFIRMED',
+      value: '02',
+      size: '2,500',
+      color: theme.palette.rateSheduleColors.bookedOut,
+    },
+    { label: 'TOTAL USERS', value: '250', size: '25,320' },
+  ];
+
   return (
-    <Grid container spacing={2}>
+    <CountProjectsMainSec>
       {stats.map((stat, index) => (
-        <Grid item xs={12} sm={6} md={2.4} key={index}>
-          <Card elevation={2} sx={{ borderRadius: 2, overflow: 'hidden' }}>
-            <Box sx={{ height: 5, backgroundColor: stat.color }} />
-            <CardContent
-              sx={{ display: 'flex', justifyContent: 'space-between' }}
-            >
-              <Box>
-                <Typography variant="subtitle2" color="textSecondary">
-                  {stat.label}
-                </Typography>
-                <Typography variant="h5" fontWeight={600}>
-                  {stat.value}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant="subtitle2" color="textSecondary">
-                  TOTAL SIZE SQ.FT.
-                </Typography>
-                <Typography variant="h5" fontWeight={600}>
-                  {stat.size}
-                </Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+        <CardMain key={index}>
+          <ColorBox color={stat.color} />
+
+          <CardChild>
+            <CardFirst>
+              <LabelTypography>{stat.label}</LabelTypography>
+              <ValueTypography>{stat.value}</ValueTypography>
+            </CardFirst>
+            <CardSecond>
+              <LabelTypography>TOTAL SIZE SQ.FT.</LabelTypography>
+              <ValueTypography>{stat.size}</ValueTypography>
+            </CardSecond>
+          </CardChild>
+        </CardMain>
       ))}
-    </Grid>
+    </CountProjectsMainSec>
   );
 };
 

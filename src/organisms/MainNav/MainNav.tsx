@@ -5,10 +5,19 @@ import {
   ListItemButton,
   ListItemText,
   Collapse,
-  Typography,
 } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { NavList, StyledNavLink } from './MainNav.style';
+import {
+  ChildSidebar,
+  DropDownLableTitle,
+  DropDownListItemButton,
+  ListItemButtonIcon,
+  ListItemTextSec,
+  MainSidebar,
+  NavList,
+  StyledNavLink,
+  SubItemTitle,
+} from './MainNav.style';
 import DashboardIcon from '../../assets/images/sidebar/dashboard.svg';
 import CalendarIcon from '../../assets/images/sidebar/calender.svg';
 import CreateProjectIcon from '../../assets/images/sidebar/plusIcon.svg';
@@ -165,48 +174,32 @@ const Sidebar: React.FC = () => {
     setSelectedItem(title);
   };
   return (
-    <Box sx={{ bgcolor: '#fff', paddingTop: '1.5rem' }}>
+    <MainSidebar>
       <NavList>
         {navItems.map((item) => (
-          <Box key={item.title} sx={{ color: '#626061' }}>
+          <ChildSidebar key={item.title}>
             {item.subItems ? (
               <>
-                <ListItemButton
+                <DropDownListItemButton
                   onClick={() => handleToggle(item.title)}
-                  sx={{
-                    '&.MuiListItemButton-root': {
-                      padding: '10px 10px 10px 28px',
-                      backgroundColor: `${selectedItem === item.title ? '#f3f3f3' : '#ffffff'}`,
-                      borderLeft: `5px solid ${selectedItem === item.title ? '#C7148A' : '#ffffff'}`,
-                    },
-                  }}
                 >
                   {item.icon}
                   <ListItemText
                     primary={
-                      <Typography
-                        sx={{
-                          ml: 1,
-                          fontSize: '0.95rem',
-                          color:
-                            openSection === item.title ||
-                            selectedItem === item.title
-                              ? '#000000'
-                              : '#606062',
-                          fontWeight:
-                            openSection === item.title ||
-                            selectedItem === item.title
-                              ? 'bold'
-                              : '500',
-                        }}
+                      <DropDownLableTitle
+                        isOpen={openSection === item.title}
+                        isSelected={
+                          openSection === item.title ||
+                          selectedItem === item.title
+                        }
                       >
                         {item.title}
-                      </Typography>
+                      </DropDownLableTitle>
                     }
                   />
 
                   {openSection === item.title ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
+                </DropDownListItemButton>
                 <Collapse
                   in={openSection === item.title}
                   timeout="auto"
@@ -221,11 +214,6 @@ const Sidebar: React.FC = () => {
                           '& .MuiTypography-root': {
                             fontSize: '0.95rem',
                           },
-
-                          '&.MuiListItemButton-root': {
-                            backgroundColor: `${selectedItem === subItem.title ? '#f3f3f3' : '#ffffff'}`,
-                            borderLeft: `5px solid ${selectedItem === subItem.title ? '#C7148A' : '#ffffff'}`,
-                          },
                         }}
                         component={StyledNavLink}
                         to={subItem.path || '#'}
@@ -234,22 +222,11 @@ const Sidebar: React.FC = () => {
                         {subItem.icon}
                         <ListItemText
                           primary={
-                            <Typography
-                              sx={{
-                                ml: 1,
-                                fontSize: '0.95rem',
-                                color:
-                                  selectedItem === subItem.title
-                                    ? '#C7148A'
-                                    : '#606062',
-                                fontWeight:
-                                  selectedItem === subItem.title
-                                    ? 'bold'
-                                    : '500',
-                              }}
+                            <SubItemTitle
+                              isSelected={selectedItem === subItem.title}
                             >
                               {subItem.title}
-                            </Typography>
+                            </SubItemTitle>
                           }
                         />
 
@@ -264,43 +241,30 @@ const Sidebar: React.FC = () => {
                 </Collapse>
               </>
             ) : (
-              <ListItemButton
+              <ListItemButtonIcon
                 component={StyledNavLink}
                 to={item.path || '#'}
                 onClick={() => handleSelect(item.title)}
-                sx={{
-                  '&.MuiListItemButton-root': {
-                    padding: '10px 15px 10px 24px', // Change this value as needed
-                    backgroundColor: `${selectedItem === item.title ? '#f3f3f3' : '#ffffff'}`,
-                    borderLeft: `5px solid ${selectedItem === item.title ? '#C7148A' : '#ffffff'}`,
-                  },
-                }}
+                selectedItem={selectedItem}
+                itemTitle={item.title}
               >
                 {item.icon}
-
-                <ListItemText
+                <ListItemTextSec
                   primary={item.title}
-                  sx={{
-                    ml: 1,
-                    '& .MuiTypography-root': {
-                      fontSize: '0.95rem',
-
-                      color: `${selectedItem === item.title ? '#C7148A' : '#606062'}`,
-                      fontWeight: `${selectedItem === item.title ? '600' : '500'}`,
-                    },
-                  }}
+                  selectedItem={selectedItem}
+                  itemTitle={item.title}
                 />
                 {selectedItem === item.title && (
                   <Box>
                     <img src={KeyArrowIcon} alt="" />
                   </Box>
                 )}
-              </ListItemButton>
+              </ListItemButtonIcon>
             )}
-          </Box>
+          </ChildSidebar>
         ))}
       </NavList>
-    </Box>
+    </MainSidebar>
   );
 };
 

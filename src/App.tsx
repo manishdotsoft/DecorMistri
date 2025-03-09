@@ -50,7 +50,6 @@ const App = () => {
             <Route path="profile-information" element={<Myprofile />} />
             <Route path="business-details" element={<Business />} />
             <Route path="advance-settings" element={<AdvaceSetting />} />
-            <Route path="updateProfile" element={<UpdateProfile />} />
           </Route>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SignUpForm />} />
@@ -59,6 +58,7 @@ const App = () => {
           <Route path="/newpassword" element={<NewPassword />} />
           <Route path="/success" element={<SuccessfullyPage />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="updateProfile" element={<UpdateProfile />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>

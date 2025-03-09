@@ -1,5 +1,4 @@
-import { Box } from '@mui/material';
-import styled from 'styled-components';
+import { Box, styled } from '@mui/material';
 
 export const StyledAppLayout = styled(Box)(() => ({
   display: 'grid',
@@ -8,7 +7,7 @@ export const StyledAppLayout = styled(Box)(() => ({
   height: '91vh',
 }));
 
-export const Main = styled('main')(() => ({
-  backgroundColor: '#ffffff',
-  //   padding: "4rem 4.8rem 6.4rem",
+export const Main = styled('main')(({ theme }) => ({
+  backgroundColor: theme.palette.white.main,
+  overflow: 'hidden',
 }));

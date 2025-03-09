@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
-export const StyledSidebarMain = styled('aside')(() => ({
-  backgroundColor: '#ffffff',
-  // padding: "2rem 2rem",
-  borderRight: '1px solid #e2e2e2',
+export const StyledSidebarMain = styled('aside')(({ theme }) => ({
+  backgroundColor: theme.palette.white.main,
+  borderRight: `2px solid ${theme.palette.grey[200]}`,
   gridRow: '1 / -1',
   display: 'flex',
   flexDirection: 'column',
   gap: '3.2rem',
+  height: '100%',
 }));
