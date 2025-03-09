@@ -1,10 +1,9 @@
-import { Box } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, styled } from '@mui/material';
 
 export const CustomTextField = styled(Box)({
   '& .MuiOutlinedInput-root': {
     width: '100%',
-    borderRadius: '6px', // Ensure it's applied
+    borderRadius: '6px',
     height: '55px',
   },
 });

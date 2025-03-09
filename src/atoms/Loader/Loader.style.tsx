@@ -1,12 +1,10 @@
-import { styled } from '@mui/material/styles';
-import { Box, Typography } from '@mui/material';
-import { theme } from '../../thems/primitives/theme';
+import { Box, Typography, styled } from '@mui/material';
 
-export const LoaderContainer = styled(Box)(() => ({
+export const LoaderContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
-export const LoaderText = styled(Typography)(() => ({
+export const LoaderText = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(2),
   color: theme.palette.text.primary,
 }));

@@ -5,15 +5,14 @@ import {
   Snackbar,
   SnackbarOrigin,
   useTheme,
+  Theme,
 } from '@mui/material';
-import { Theme } from '@mui/material/styles';
+
 import {
   ToasterContainer,
   alertStyles,
   AnimatedCheckIcon,
 } from './Toaster.style';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
-import palette from '../../thems/primitives/palette';
 
 type CustomAlertColor = AlertColor | 'projectCreateSuccess';
 
@@ -37,11 +36,11 @@ const Toaster: React.FC<ToasterProps> = ({
   const theme: Theme = useTheme();
 
   const backgroundColors: Record<CustomAlertColor, string> = {
-    success: DECOR_LOGO_COLOR,
-    warning: palette.warning.warning,
+    success: theme.palette.decor.main,
+    warning: theme.palette.warning.warning,
     error: theme.palette.error.main,
     info: theme.palette.info.main,
-    projectCreateSuccess: DECOR_LOGO_COLOR,
+    projectCreateSuccess: theme.palette.decor.main,
   };
 
   return (

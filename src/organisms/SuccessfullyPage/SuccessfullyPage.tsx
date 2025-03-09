@@ -17,10 +17,11 @@ import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
 import Button from '../../atoms/Button/Button';
 import { Link } from 'react-router-dom';
 import { useSuccessfullyPageLogic } from './SuccessfullyPage.hook';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+import { useTheme } from '@mui/material';
 
 const SuccessfullyPage: React.FC = () => {
   const { handleClick } = useSuccessfullyPageLogic();
+  const theme = useTheme();
   return (
     <StyledContainer>
       <MainFlex>
@@ -43,7 +44,7 @@ const SuccessfullyPage: React.FC = () => {
               type="button"
               variant="contained"
               style={{
-                backgroundColor: `${DECOR_LOGO_COLOR}`,
+                backgroundColor: `${theme.palette.decor.main}`,
                 width: '50%',
                 borderRadius: '5px',
                 padding: '25px',

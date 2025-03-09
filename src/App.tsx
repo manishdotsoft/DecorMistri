@@ -34,22 +34,22 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="create-project" element={<CreateProject />} />
-            <Route path="calendar" element={<CalendarView />} />
-            <Route path="create-task" element={<CreateTask />} />
-            <Route path="live-projects" element={<LiveProjects />} />
-            <Route path="upcoming-projects" element={<UpcomeingProjets />} />
-            <Route path="completed-projects" element={<CompletedProjects />} />
-            <Route path="all-projects&quotes" element={<AllProjects />} />
-            <Route path="core-chat" element={<CoreChat />} />
-            <Route path="inbox-management" element={<InboxManagement />} />
-            <Route path="create-user" element={<CreateUser />} />
-            <Route path="manage-user" element={<ManageUser />} />
-            <Route path="user-permissions" element={<UserPermissions />} />
-            <Route path="profile-information" element={<Myprofile />} />
-            <Route path="business-details" element={<Business />} />
-            <Route path="advance-settings" element={<AdvaceSetting />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/create-project" element={<CreateProject />} />
+            <Route path="/calendar" element={<CalendarView />} />
+            <Route path="/create-task" element={<CreateTask />} />
+            <Route path="/live-projects" element={<LiveProjects />} />
+            <Route path="/upcoming-projects" element={<UpcomeingProjets />} />
+            <Route path="/completed-projects" element={<CompletedProjects />} />
+            <Route path="/all-projects&quotes" element={<AllProjects />} />
+            <Route path="/core-chat" element={<CoreChat />} />
+            <Route path="/inbox-management" element={<InboxManagement />} />
+            <Route path="/create-user" element={<CreateUser />} />
+            <Route path="/manage-user" element={<ManageUser />} />
+            <Route path="/user-permissions" element={<UserPermissions />} />
+            <Route path="/profile-information" element={<Myprofile />} />
+            <Route path="/business-details" element={<Business />} />
+            <Route path="/advance-settings" element={<AdvaceSetting />} />
           </Route>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SignUpForm />} />
@@ -58,7 +58,7 @@ const App = () => {
           <Route path="/newpassword" element={<NewPassword />} />
           <Route path="/success" element={<SuccessfullyPage />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
-          <Route path="updateProfile" element={<UpdateProfile />} />
+          <Route path="/updateProfile" element={<UpdateProfile />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>

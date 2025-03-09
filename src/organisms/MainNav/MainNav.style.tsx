@@ -38,7 +38,7 @@ export const DropDownLableTitle = styled(Typography, {
     marginLeft: '1rem',
     fontSize: '0.95rem',
     color:
-      isOpen || isSelected ? theme.palette.black[800] : theme.palette.grey[600],
+      isOpen || isSelected ? theme.palette.black[800] : theme.palette.grey[700],
     fontWeight: isOpen || isSelected ? 'bold' : '500',
   })
 );
@@ -55,11 +55,14 @@ export const SubItemTitle = styled(Typography, {
 export const ListItemButtonIcon = styled(ListItemButton, {
   shouldForwardProp: (prop) => prop !== 'selectedItem' && prop !== 'itemTitle',
 })<{ selectedItem: string | null; itemTitle: string }>(
-  ({ selectedItem, itemTitle }) => ({
+  ({ theme, selectedItem, itemTitle }) => ({
     '&.MuiListItemButton-root': {
       padding: '10px 15px 10px 24px',
-      backgroundColor: selectedItem === itemTitle ? '#f3f3f3' : '#ffffff',
-      borderLeft: `5px solid ${selectedItem === itemTitle ? '#C7148A' : '#ffffff'}`,
+      backgroundColor:
+        selectedItem === itemTitle
+          ? theme.palette.grey[150]
+          : theme.palette.white.main,
+      borderLeft: `5px solid ${selectedItem === itemTitle ? theme.palette.decor.main : theme.palette.white.main}`,
     },
   })
 );
@@ -67,11 +70,14 @@ export const ListItemButtonIcon = styled(ListItemButton, {
 export const ListItemTextSec = styled(ListItemText, {
   shouldForwardProp: (prop) => prop !== 'selectedItem' && prop !== 'itemTitle',
 })<{ selectedItem: string | null; itemTitle: string }>(
-  ({ selectedItem, itemTitle }) => ({
+  ({ theme, selectedItem, itemTitle }) => ({
     marginLeft: '12px',
     '& .MuiTypography-root': {
       fontSize: '0.95rem',
-      color: selectedItem === itemTitle ? '#C7148A' : '#606062',
+      color:
+        selectedItem === itemTitle
+          ? theme.palette.decor.main
+          : theme.palette.grey[700],
       fontWeight: selectedItem === itemTitle ? '600' : '500',
     },
   })

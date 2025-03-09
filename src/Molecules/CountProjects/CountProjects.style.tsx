@@ -19,7 +19,7 @@ export const CardMain = styled(Card)(({ theme }) => ({
   flex: '1 1 200px',
   height: 'fit-content',
   boxShadow: 'none !important',
-  border: `1px solid ${theme.palette.grey.border}`,
+  border: `1.2px solid ${theme.palette.grey[500]}`,
 }));
 
 export const ColorBox = styled(Box)<{ color?: string }>(

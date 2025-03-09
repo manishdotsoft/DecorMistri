@@ -22,7 +22,8 @@ import EmailIcon from '../../../../assets/images/createProject/Email.svg';
 import LocationIcon from '../../../../assets/images/createProject/Location.svg';
 import WebsiteIcon from '../../../../assets/images/createProject/WebsiteIcon.svg';
 import { stateOptions } from '../../CreateProjectData/StateData';
-import { DECOR_LOGO_COLOR } from '../../../../thems/primitives/colors';
+
+import { useTheme } from '@mui/material';
 
 interface ProjectProviderInformationProps {
   currentPageIndex: number;
@@ -58,6 +59,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
     formik.handleSubmit();
     localStorage.setItem('timelineScheduleData', JSON.stringify(formik.values));
   };
+
+  const theme = useTheme();
 
   return (
     <Container>
@@ -263,7 +266,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           style={{
             borderRadius: '8px',
             width: '150px',
-            background: !isFormValid() ? '' : DECOR_LOGO_COLOR,
+            background: !isFormValid() ? '' : theme.palette.decor.main,
           }}
         />
       </ButtonSection>

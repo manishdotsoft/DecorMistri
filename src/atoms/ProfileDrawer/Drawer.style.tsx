@@ -1,12 +1,9 @@
-import styled from 'styled-components';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+import { Box, styled } from '@mui/material';
 import palette from '../../thems/primitives/palette';
-import { Box } from '@mui/material';
-import typeset from '../../thems/primitives/typeset';
 
-export const HeaderProfileIcon = styled(Box)(() => ({
-  background: DECOR_LOGO_COLOR,
-  color: palette.white.main,
+export const HeaderProfileIcon = styled(Box)(({ theme }) => ({
+  background: theme.palette?.decor?.main || palette.decor.main,
+  color: theme.palette?.white?.main || palette.white.main,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -16,7 +13,7 @@ export const HeaderProfileIcon = styled(Box)(() => ({
   width: '60px',
 }));
 export const ProfileBox = styled(Box)(() => ({
-  fontSize: typeset.h5.fontSize,
+  fontSize: ' 24px',
 }));
 
 export const UserBox = styled(Box)(() => ({
