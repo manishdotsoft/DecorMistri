@@ -27,7 +27,7 @@ export const BoxItem = styled(Box)({
 
 export const BoxContainer = styled(Box)({
   gap: '16px',
-  padding: '32px',
+  padding: '22px',
 });
 
 export const Divider = styled(Box)({
