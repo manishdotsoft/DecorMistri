@@ -19,21 +19,19 @@ interface ProjectCardProps {
   data: any;
   cardStyle?: React.CSSProperties;
   buttonTitle: string;
-  cardWrapperStyle?: React.CSSProperties;
 }
 
 const CardGrid: React.FC<ProjectCardProps> = ({
   data,
   cardStyle,
   buttonTitle,
-  cardWrapperStyle,
 }) => {
   const { menuState, handleMenuClick, handleMenuClose, handleButtonClick } =
     useCardLogic();
   const theme = useTheme();
 
   return (
-    <Box display="flex" gap={2} flexWrap="wrap" sx={{ ...cardWrapperStyle }}>
+    <Box display="flex" gap={2} flexWrap="wrap">
       {data.length > 0 ? (
         data.map((project: any) => (
           <Card
@@ -83,14 +81,14 @@ const CardGrid: React.FC<ProjectCardProps> = ({
               onDeleteProject={() => {
                 if (menuState.selectedProject) {
                   console.log(
-                    `Deleting project with ID: ${menuState.selectedProject.id}`
+                    `  Deleting project with ID: ${menuState.selectedProject.id}`
                   );
                 }
               }}
               onUpdateStatus={() => {
                 if (menuState.selectedProject) {
                   console.log(
-                    `Updating status of project ID: ${menuState.selectedProject.id}`
+                    ` Updating status of project ID: ${menuState.selectedProject.id}`
                   );
                 }
               }}

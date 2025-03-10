@@ -15,6 +15,7 @@ export const CardContainer = styled('div')(({ theme }) => ({
   minWidth: '240px',
   backgroundColor: theme.palette.decor.light,
   borderRadius: '8px',
+  border,
 }));
 
 export const HeadingTitle = styled(Typography)(({ theme }) => ({
@@ -23,7 +24,7 @@ export const HeadingTitle = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
   fontSize: theme.typography.h6.fontSize,
   fontWeight: 'bold',
-  color: theme.palette.text.primary,
+  color: theme?.palette?.text?.primary,
   backgroundSize: '300% 100%',
   padding: '5px 10px',
   marginBottom: '10px',
@@ -53,4 +54,8 @@ export const SuccessStatus = styled(Typography, {
   fontSize: theme.typography.body2.fontSize,
 }));
 
-export const ButtonWrapper = styled(Box)({});
+export const ButtonWrapper = styled(Box)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+});

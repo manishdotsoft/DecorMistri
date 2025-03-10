@@ -1,22 +1,23 @@
 import { Button, styled } from '@mui/material';
 import { Menu, MenuItem } from '@mui/material';
 
-export const StyledMenu = styled(Menu)(({ theme }) => ({
-  '& .MuiPaper-root': {
-    borderRadius: '8px',
-    padding: '8px 0',
-    minWidth: '232px',
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: `${theme.palette.black[100]}`,
-  },
-}));
+export const StyledMenu = styled(Menu)<{ borderColor?: string }>(
+  ({ theme, borderColor }) => ({
+    '& .MuiPaper-root': {
+      borderRadius: '8px',
+      minWidth: '152px',
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[3],
+      border: `3px solid ${borderColor || theme.palette.grey[400]} !important`,
+    },
+  })
+);
 
 export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   fontSize: theme.typography.body2.fontSize,
   fontWeight: 'bold',
   color: theme.palette.text.primary,
 
-  padding: '10px 16px',
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
   },
