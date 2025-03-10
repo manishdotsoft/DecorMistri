@@ -1,5 +1,8 @@
 export const PRIMARY_COLOR = '#00945d';
 export const SECONDARY_COLOR = '#f0f4ef';
+export const PAPER_COLOR = '#eee1e1';
+export const WHITE_BACKGROUND = '#d3e4f8';
+
 export const PRIMARY_DARK = '#3A7C63';
 
 export const SECONDARY_COLOR_100 = '#f4f7f4';
@@ -7,9 +10,13 @@ export const GREY_50 = '#F2F2F2';
 export const GREY_150 = '#F5F5F5';
 export const GREY_100 = '#FAFAFA';
 export const GREY_200 = '#f0f0f0';
-export const GREY_400 = 'rgba(115, 115, 114, 0.9)';
 export const GREY_300 = '#CACACA';
+export const GREY_600 = '#CCCCCC';
+export const GREY_700 = '#717171';
+
+export const GREY_400 = 'rgba(115, 115, 114, 0.9)';
 export const GREY_500 = 'rgba(158, 158, 158, 1)';
+
 export const BORDER_GREY = '#CCC';
 export const PRIMARY_500 = '#0B9A64';
 export const PRIMARY_400 = '#7bc67e';
@@ -79,13 +86,21 @@ export const BOOKED_OUT = '#F44336';
 export const DECOR_COLOR = '#C7148A';
 export const DECOR_LIGHT = '#fff0f9';
 export const DECOR_DARK = '#b60a7c';
-export const BLACK_100 = '#1e1e1e';
+export const LIGHT_COLOR = '#0b9a72';
+export const BLACK_200 = '#0000004c';
+export const BLACK_COLOR = '#1a1a1a';
+export const DECOR_LOGO_COLOR_HOVER = '#fff5fb';
+export const BOX_SHADOW3 = '#91919133';
+export const BLACK_600 = '#00000019';
+export const WHITE_lIGHT = '#ddd';
+export const BLUE = '#007bff';
 
 const palette = {
   decor: {
     main: DECOR_COLOR,
-    Lite: DECOR_LIGHT,
     dark: DECOR_DARK,
+    light: DECOR_LIGHT,
+    hover: DECOR_LOGO_COLOR_HOVER,
   },
 
   primary: {
@@ -99,6 +114,7 @@ const palette = {
     hover: PRIMARY_HOVER,
     card: PRIMARY_CARD,
     cardLight: PRIMARY_LIGHT,
+    blue: BLUE,
   },
   secondary: {
     main: SECONDARY_COLOR,
@@ -109,23 +125,31 @@ const palette = {
   grey: {
     main: GRAY_COLOR,
     textColor: GREY_100,
+    iconColor: ICON_COLOR,
     50: GREY_50,
     100: ICON_LIGHT,
     150: GREY_150,
     200: GREY_200,
     300: GREY_300,
     400: GREY_400,
+    600: GREY_600,
+    700: GREY_700,
     500: GREY_500,
-    border: BORDER_GREY,
+    800: BORDER_GREY,
   },
   white: {
     main: WHITE,
+    light: WHITE_lIGHT,
     100: WHITE_100,
     300: WHITE_300,
   },
   black: {
     100: BLACK_100,
     800: BLACK_800,
+    100: BLACK_COLOR,
+    200: BLACK_200,
+    500: BOX_SHADOW3,
+    600: BLACK_600,
   },
   error: {
     // main: ACCENT_ERROR,
@@ -159,6 +183,8 @@ const palette = {
   },
   background: {
     default: SECONDARY_COLOR,
+    paper: WHITE,
+    white: WHITE_BACKGROUND,
   },
   icon: {
     secondary: SECONDARY_ICON,

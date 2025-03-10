@@ -7,12 +7,14 @@ export interface LoaderProps {
   message?: string;
   size?: 'small' | 'medium' | 'large';
   style?: React.CSSProperties;
+  createProjectLoader?: React.CSSProperties;
 }
 
 const Loader: React.FC<LoaderProps> = ({
   message = 'Loading...',
   size = 'medium',
   style,
+  // createProjectLoader,
 }) => {
   const theme: any = useTheme();
   const sizeMap = {

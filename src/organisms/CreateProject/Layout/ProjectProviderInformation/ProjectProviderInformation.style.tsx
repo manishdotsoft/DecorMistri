@@ -1,44 +1,52 @@
 import { styled } from '@mui/system';
 import { Box, Typography } from '@mui/material';
-import palette from '../../../../thems/primitives/palette';
-import typeset from '../../../../thems/primitives/typeset';
-import { BOX_SHADOW3 } from '../../../../thems/primitives/colors';
-import { theme } from '../../../../thems/primitives/theme';
 
-export const Container = styled(Box)({
+export const Container = styled(Box)(({ theme }) => ({
   maxWidth: '1200px',
   margin: ' 0px auto',
 
   display: 'flex',
   flexDirection: 'column',
   gap: '20px',
-  color: palette.text.primary,
-  fontFamily: typeset.fontFamily,
+  color: theme.palette.text.primary,
+
   backgroundColor: theme.palette.background.paper,
   borderTopLeftRadius: '14px',
   borderTopRightRadius: '14px',
-  boxShadow: BOX_SHADOW3,
-});
+  boxShadow: theme.palette.black[500],
+}));
 
-export const GridContainer = styled(Box)({
+export const GridContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   columnGap: '20px',
   rowGap: '15px',
   width: '100%',
-});
+  [theme.breakpoints.down('lg')]: {
+    gridTemplateColumns: '1fr 1fr',
+  },
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
 
-export const GridContainer2 = styled(Box)({
+export const GridContainer2 = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '0.98fr 2fr',
   columnGap: '20px',
   rowGap: '15px',
   width: '100%',
-});
+  [theme.breakpoints.down('lg')]: {
+    gridTemplateColumns: '1fr 1fr',
+  },
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
 
-export const StyledTypography = styled(Typography)(() => ({
+export const StyledTypography = styled(Typography)(({ theme }) => ({
   fontSize: '12px',
-  color: palette.error.main,
+  color: theme.palette.error.main,
   fontFamily: 'sans-serif',
 
   marginLeft: '15px',
@@ -57,9 +65,8 @@ export const InputSection = styled(Box)(() => ({
   gap: '2px',
 }));
 
-export const InputLabelItem = styled('label')(() => ({
-  fontFamily: typeset.secondaryFontFamily,
-  fontSize: typeset.body2.fontSize,
+export const InputLabelItem = styled('label')(({ theme }) => ({
+  fontSize: theme.typography?.body2.fontSize,
   marginBottom: '4px',
   color: theme.palette.grey[700],
 }));

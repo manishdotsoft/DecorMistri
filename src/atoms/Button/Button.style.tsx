@@ -7,14 +7,16 @@ const theme = customTheme;
 interface StyledButtonProps {
   loading?: boolean;
   backgroundColor?: string;
+  hoverBackgroundColor?: string;
   color?: string;
   variant?: 'contained' | 'outlined';
 }
 
 const StyledButton = styled('button')<StyledButtonProps>(
-  ({ backgroundColor, color, variant, loading }) => ({
+  ({ backgroundColor, color, variant, loading, hoverBackgroundColor }) => ({
     width: 240,
     height: 40,
+    transition: 'all 0.3s',
     backgroundColor:
       variant === 'outlined'
         ? 'transparent'
@@ -39,6 +41,13 @@ const StyledButton = styled('button')<StyledButtonProps>(
         variant === 'outlined' ? 'transparent' : theme.palette.grey[400],
       color: theme.palette.common.white,
       border: 'none',
+    },
+
+    '&:hover': {
+      backgroundColor:
+        hoverBackgroundColor ||
+        (variant === 'outlined' ? 'transparent' : backgroundColor) ||
+        theme.palette.primary.dark,
     },
   })
 );

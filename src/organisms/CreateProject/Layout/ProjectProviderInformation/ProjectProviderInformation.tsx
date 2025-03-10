@@ -12,7 +12,6 @@ import {
   WebsiteIconSec,
 } from './ProjectProviderInformation.style';
 
-import { useState } from 'react';
 import Button from '../../../../atoms/Button/Button';
 import SelectOption from '../../../../atoms/Select/SelectOption';
 import { useProjectProviderForm } from './ProjectProviderInformation.hook';
@@ -23,7 +22,8 @@ import EmailIcon from '../../../../assets/images/createProject/Email.svg';
 import LocationIcon from '../../../../assets/images/createProject/Location.svg';
 import WebsiteIcon from '../../../../assets/images/createProject/WebsiteIcon.svg';
 import { stateOptions } from '../../CreateProjectData/StateData';
-// import Toaster from '../../../../atoms/Toaster/Toaster';
+
+import { useTheme } from '@mui/material';
 
 interface ProjectProviderInformationProps {
   currentPageIndex: number;
@@ -55,14 +55,14 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
     handlePrevious,
   });
 
-  const [isPageVisible, setIsPageVisible] = useState(true);
-
   const handleNextClick = () => {
-    setIsPageVisible(false);
     formik.handleSubmit();
+    localStorage.setItem('timelineScheduleData', JSON.stringify(formik.values));
   };
 
-  return isPageVisible ? (
+  const theme = useTheme();
+
+  return (
     <Container>
       <GridContainer>
         <InputSection>
@@ -93,10 +93,10 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
           <InputLabelItem>Date of Issue</InputLabelItem>
 
           <DatePicker
+            value={formik.values.dateOfIssue}
             onDateChange={(value: Date | null) =>
               formik.setFieldValue('dateOfIssue', value)
             }
-            style={{ borderRadius: '6px' }}
           />
 
           {formik.errors.dateOfIssue && formik.touched.dateOfIssue && (
@@ -260,15 +260,18 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
       <ButtonSection>
         <Button
           title="Save"
-          color="primary"
           variant="contained"
           disabled={!isFormValid()}
           onClick={handleNextClick}
-          style={{ borderRadius: '8px', width: '150px' }}
+          style={{
+            borderRadius: '8px',
+            width: '150px',
+            background: !isFormValid() ? '' : theme.palette.decor.main,
+          }}
         />
       </ButtonSection>
     </Container>
-  ) : null;
+  );
 };
 
 export default ProjectProviderInformation;

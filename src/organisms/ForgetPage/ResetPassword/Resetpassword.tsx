@@ -18,10 +18,10 @@ import {
   TitleOne,
   TitleTwo,
 } from '../../Login/LoginPage.style';
-import { DECOR_LOGO_COLOR } from '../../../thems/primitives/colors';
-import { theme } from '../../../thems/primitives/theme';
+import { useTheme } from '@mui/material';
 
 const ResetPassword = () => {
+  const theme = useTheme();
   return (
     <StyledContainer>
       <MainFlex>
@@ -48,7 +48,7 @@ const ResetPassword = () => {
                 onClick={() => {}}
                 style={{
                   marginTop: '10px',
-                  backgroundColor: DECOR_LOGO_COLOR,
+                  backgroundColor: theme.palette.decor.main,
                   color: theme.palette.background.paper,
                   width: '100%',
                   height: '50px',

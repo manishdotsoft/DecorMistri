@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { setSignUpData } from '../../store/reducers/signUpSlice';
 import { signUpSchema } from './SchemasSignup';
 import { createUserMutation } from '../../graphql/mutation/createUser';
-import palette from '../../thems/primitives/palette';
+import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 
 export interface SignUpFormValues {
   name: string;
@@ -28,7 +28,10 @@ export const useSignUp = () => {
   const [toasterOpen, setToasterOpen] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
 
-  const handleSubmit = async (values: SignUpFormValues, actions: any) => {
+  const handleSubmit = async (
+    values: SignUpFormValues,
+    actions: FormikHelpers<SignUpFormValues>
+  ) => {
     try {
       dispatch(setSignUpData(values));
       const response = await createUserMutation({
@@ -42,7 +45,7 @@ export const useSignUp = () => {
       if (response.data) {
         setToasterOpen(true);
         actions.resetForm();
-        navigate('/success');
+        setTimeout(() => navigate('/success'), 2000);
       } else if (response.error) {
         console.error('Error creating user:', response.error);
       }
@@ -79,15 +82,15 @@ export const useSignUp = () => {
   const getStrengthLabel = (strength: number) => {
     switch (strength) {
       case 1:
-        return { label: 'Weak', color: palette.error.main };
+        return { label: 'Weak', color: DECOR_LOGO_COLOR };
       case 2:
-        return { label: 'Fair', color: palette.warning.real };
+        return { label: 'Fair', color: DECOR_LOGO_COLOR };
       case 3:
-        return { label: 'Good', color: palette.success.midSuccess };
+        return { label: 'Good', color: DECOR_LOGO_COLOR };
       case 4:
-        return { label: 'Strong', color: palette.success.fullSuccess };
+        return { label: 'Strong', color: DECOR_LOGO_COLOR };
       default:
-        return { label: 'Very Weak', color: palette.grey[500] };
+        return { label: 'Very Weak', color: DECOR_LOGO_COLOR };
     }
   };
 

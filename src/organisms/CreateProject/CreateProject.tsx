@@ -27,10 +27,12 @@ import SaveImage from '../../assets/images/createProject/complete.svg';
 import DownArrow from '../../assets/images/createProject/DownArrow.svg';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Loader from '../../atoms/Loader/Loader';
-import { theme } from '../../thems/primitives/theme';
+
+import { useTheme } from '@mui/material';
 
 const CreateProject = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const theme = useTheme();
   const {
     currentPageIndex,
     formData,
@@ -209,19 +211,20 @@ const CreateProject = () => {
             backgroundColor: theme.palette.background.paper,
             padding: '20px',
             borderRadius: '10px',
-            boxShadow: '0px 4px 10px rgba(0,0,0,0.1)',
+            boxShadow: `0px 4px 10px ${theme.palette.black[600]}`,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 1300,
           }}
+          createProjectLoader={{ color: theme.palette.decor.main }}
         />
       )}
       {showToast && (
         <Toaster
           message={toastMessage}
-          severity={'success'}
+          severity={'projectCreateSuccess'}
           open={showToast}
           onClose={handleToasterClose}
         />

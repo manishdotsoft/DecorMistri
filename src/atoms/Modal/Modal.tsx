@@ -2,7 +2,7 @@ import React from 'react';
 import { IconButton, Modal, useTheme } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { ModalBox, ModalChildWrapper } from './Modal.styles';
-// import palette from '../../thems/primitives/palette';
+import { useTheme } from '@mui/material';
 
 interface ButtonConfig {
   label: string;

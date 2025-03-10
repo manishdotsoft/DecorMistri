@@ -1,42 +1,37 @@
 import { styled } from '@mui/system';
 import { Box, FormControl, Radio, Typography } from '@mui/material';
-import palette from '../../../../thems/primitives/palette';
-import typeset from '../../../../thems/primitives/typeset';
-import { COMMON_PAPER } from '../../../../thems/primitives/colors';
-import { theme } from '../../../../thems/primitives/theme';
 
-export const Container = styled(Box)({
+export const Container = styled(Box)(({ theme }) => ({
   maxWidth: '1200px',
   margin: 'auto',
   // padding: '20px',
   display: 'flex',
   flexDirection: 'column',
   gap: '20px',
-  color: palette.text.primary,
-  fontFamily: typeset.fontFamily,
-  backgroundColor: theme.palette.background.paper,
-});
+  color: theme.palette.text.primary,
 
-export const FlexRow = styled(Box)({
+  backgroundColor: theme.palette.background.paper,
+}));
+
+export const FlexRow = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   gap: '20px',
-  color: palette.text.secondary,
-});
+  color: theme.palette.text.secondary,
+}));
 
-export const InputLabelItem = styled('label')(() => ({
-  fontFamily: typeset.secondaryFontFamily,
-  fontSize: typeset.body2.fontSize,
+export const InputLabelItem = styled('label')(({ theme }) => ({
+  fontSize: theme.typography?.body2.fontSize,
   marginBottom: '4px',
   color: theme.palette.grey[700],
 }));
 
-export const FullWidthFormControl = styled(FormControl)({
+export const FullWidthFormControl = styled(FormControl)(({ theme }) => ({
   width: '100%',
-  backgroundColor: palette.white.main,
-  color: palette.text.primary,
-  borderColor: palette.primary.main,
-});
+  backgroundColor: theme.palette.white.main,
+  color: theme.palette.text.primary,
+  borderColor: theme.palette.primary.main,
+}));
 
 interface StyledLabelProps {
   selected: boolean;
@@ -53,7 +48,9 @@ export const StyledLabel = styled('label')<StyledLabelProps>(
       selected ? theme.palette.primary.main : theme.palette.grey[900]
     }`,
     borderRadius: '8px',
-    borderColor: selected ? theme.palette.primary.light : COMMON_PAPER,
+    borderColor: selected
+      ? theme.palette.primary.light
+      : theme.palette.black[800],
     color: selected ? theme.palette.primary.main : theme.palette.text.secondary,
     fontWeight: selected ? '600' : '400',
     cursor: 'pointer',
@@ -76,13 +73,19 @@ export const ButtonSection = styled(Box)({
   gap: '20px',
 });
 
-export const GridContainer = styled(Box)({
+export const GridContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   columnGap: '20px',
   rowGap: '15px',
   width: '100%',
-});
+  [theme.breakpoints.down('lg')]: {
+    gridTemplateColumns: '1fr 1fr',
+  },
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
 export const CreateProjectHeader = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
@@ -98,9 +101,9 @@ export const GridContainerChild = styled(Box)({
   width: '100%',
 });
 
-export const StyledTypography = styled(Typography)(() => ({
+export const StyledTypography = styled(Typography)(({ theme }) => ({
   fontSize: '12px',
-  color: palette.error.main,
+  color: theme.palette.error.main,
   fontFamily: 'sans-serif',
 
   marginLeft: '15px',

@@ -1,20 +1,19 @@
 import React from 'react';
-import { LinearProgress, SxProps } from '@mui/material';
+import { LinearProgress, SxProps, useTheme } from '@mui/material';
 import { ProgressBarr, ProTitle, Update } from './ProgressBar.style';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
-import palette from '../../thems/primitives/palette';
 
 interface ProgressBarProps {
   progress: number;
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
+  const theme = useTheme();
   const progressBarStyles: SxProps = {
     height: 10,
     borderRadius: 5,
-    backgroundColor: palette.grey[100],
+    backgroundColor: theme.palette.grey[100],
     '& .MuiLinearProgress-bar': {
-      backgroundColor: DECOR_LOGO_COLOR,
+      backgroundColor: theme.palette.decor.main,
     },
     width: '230px',
 

@@ -5,7 +5,7 @@ import {
   nextPage,
   PageKey,
   previousPage,
-  // resetFormData,
+  resetFormData,
   updateFormData,
 } from '../../store/reducers/createProjectSlice';
 import { createProjectMutation } from '../../graphql/mutation/createProject';
@@ -42,22 +42,6 @@ export const useCreateProject = () => {
       setActivePage(currentPageIndex + 1);
       setNextClickedPageIndex(currentPageIndex);
 
-      // Set different toaster messages based on the current page using if-else
-      // if (pages[currentPageIndex] === 'Project & Provider Information') {
-      //   setToastMessage('Project & Provider information details are saved');
-      // } else if (pages[currentPageIndex] === 'Client Details') {
-      //   setToastMessage('Client Details details are saved');
-      // } else if (pages[currentPageIndex] === 'Property Details') {
-      //   setToastMessage('Property Details details are saved');
-      // } else if (pages[currentPageIndex] === 'Property Location Details') {
-      //   setToastMessage('Property Location Details details are saved');
-      // } else if (pages[currentPageIndex] === 'Timeline & Schedule') {
-      //   setToastMessage('Timeline & Schedule details are saved');
-      // } else if (pages[currentPageIndex] === 'Financial Details') {
-      //   setToastMessage('Financial Details details are saved');
-      // } else {
-      //   setToastMessage('Data Saved Successfully');
-      // }
       setToastMessage(`${pages[currentPageIndex]} details are saved`);
 
       setShowToast(true);
@@ -110,7 +94,7 @@ export const useCreateProject = () => {
         zip_code: String(finalData?.clientDetails?.zipCode || ''),
         property_info: {
           size: finalData?.propertyDetails?.size,
-          phases: finalData?.propertyDetails?.phases,
+          phases: Number(finalData?.propertyDetails?.phases) || 0,
           comments: finalData?.propertyDetails?.comments,
           property_address: {
             address1: finalData?.propertyLocationDetails?.addressLine1,
@@ -133,7 +117,7 @@ export const useCreateProject = () => {
         navigate('/dashboard');
 
         // Reset the form data after submission
-        // dispatch(resetFormData());
+        dispatch(resetFormData());
         return;
       }
     } catch (err) {

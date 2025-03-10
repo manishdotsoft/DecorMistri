@@ -1,30 +1,37 @@
 import { styled } from '@mui/system';
 import { Box } from '@mui/material';
-import palette from '../../../../thems/primitives/palette';
-import typeset from '../../../../thems/primitives/typeset';
-import { theme } from '../../../../thems/primitives/theme';
 
-export const Container = styled(Box)({
+export const Container = styled(Box)(({ theme }) => ({
   maxWidth: '1200px',
   margin: 'auto',
   display: 'flex',
   flexDirection: 'column',
   gap: '20px',
-  color: palette.text.primary,
-  fontFamily: typeset.fontFamily,
-});
+  color: theme.palette.text.primary,
+}));
 
-export const GridContainer = styled(Box)({
+// export const GridContainer = styled(Box)({
+//   display: 'grid',
+//   gridTemplateColumns: '1fr 1fr',
+//   columnGap: '20px',
+//   rowGap: '15px',
+//   width: '100%',
+// });
+
+export const GridContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   columnGap: '20px',
   rowGap: '15px',
   width: '100%',
-});
 
-export const InputLabelItem = styled('label')(() => ({
-  fontFamily: typeset.secondaryFontFamily,
-  fontSize: typeset.body2.fontSize,
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));
+
+export const InputLabelItem = styled('label')(({ theme }) => ({
+  fontSize: theme.typography?.body2.fontSize,
   marginBottom: '4px',
   color: theme.palette.grey[700],
 }));

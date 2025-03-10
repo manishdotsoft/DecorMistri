@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, useTheme } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   StyledContainer,
@@ -32,8 +32,8 @@ import Button from '../../atoms/Button/Button';
 import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
 import { useSignUp } from './SignUp.hook';
 import googleLogo from '../../assets/images/logo/google.svg';
-import { theme } from '../../thems/primitives/theme';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
+
+import Toaster from '../../atoms/Toaster/Toaster';
 
 const SignUpForm: React.FC = () => {
   const {
@@ -43,7 +43,10 @@ const SignUpForm: React.FC = () => {
     handlePasswordChange,
     label,
     getStrengthLabel,
+    toasterOpen,
+    handleCloseToaster,
   } = useSignUp();
+  const theme = useTheme();
 
   const SegmentedProgressBar: React.FC<{ strength: number }> = ({
     strength,
@@ -70,6 +73,7 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
+    // <Box sx={{}}>
     <StyledContainer>
       <MainFlex>
         <ChildFlex>
@@ -230,7 +234,7 @@ const SignUpForm: React.FC = () => {
               style={{
                 backgroundColor: isAnyFieldEmpty
                   ? theme.palette.grey[500]
-                  : DECOR_LOGO_COLOR,
+                  : theme.palette.decor.main,
                 cursor:
                   isAnyFieldEmpty || formik.isSubmitting
                     ? 'not-allowed'
@@ -251,6 +255,13 @@ const SignUpForm: React.FC = () => {
                 Sign in
               </HaveAccount2>
             </StyledBoxCenter>
+
+            <Toaster
+              message="Signup successful! Redirecting..."
+              severity="success"
+              open={toasterOpen}
+              onClose={handleCloseToaster}
+            />
           </StyledForm>
         </ChildFlex>
 
@@ -259,6 +270,7 @@ const SignUpForm: React.FC = () => {
         </SignUpImageBox>
       </MainFlex>
     </StyledContainer>
+    // </Box>
   );
 };
 

@@ -1,34 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-// import { CustomTextField } from './DatePicker.style';
 import DatePickerIcon from '../../assets/images/createProject/DatePickerIcon.svg';
+
+import { Theme, useTheme } from '@mui/material';
 
 interface DatePickerProps {
   onDateChange?: (date: Date | null) => void;
   style?: React.CSSProperties;
+  value?: Date | null;
+  label?: string;
+  placeholder?: string;
+  disableFuture?: boolean;
+  disablePast?: boolean;
+  className?: string;
 }
 
 export const DatePicker: React.FC<DatePickerProps> = ({
   onDateChange,
-  style,
+  value,
 }) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-
   const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
     if (onDateChange) {
       onDateChange(date);
     }
   };
-
+  const theme: Theme = useTheme();
   return (
+    // <CustomTextField style={{ ...style }}>
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <MuiDatePicker
-        value={selectedDate}
+        value={value}
         onChange={handleDateChange}
         format="MM/dd/yyyy"
+        sx={{
+          '& .MuiOutlinedInput-root': {
+            borderRadius: '6px',
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: theme.palette.grey[800],
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: theme.palette.decor.main,
+              borderWidth: '2px',
+            },
+            height: '55px',
+          },
+        }}
         slots={{
           openPickerIcon: () => (
             <img
@@ -39,8 +57,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             />
           ),
         }}
-        sx={{ ...style }}
       />
     </LocalizationProvider>
+    // </CustomTextField>
   );
 };

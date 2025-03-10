@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
 import styled from 'styled-components';
-import { DECOR_LOGO_COLOR } from '../../thems/primitives/colors';
 
 export const ProgressBarr = styled(Box)(() => ({
   width: '100%',
@@ -18,11 +17,11 @@ export const ProTitle = styled('p')(() => ({
   },
 }));
 
-export const Update = styled('p')(() => ({
+export const Update = styled('p')(({ theme }) => ({
   fontSize: '0.9rem',
   display: 'flex',
   justifyContent: 'end',
-  color: DECOR_LOGO_COLOR,
+  color: theme?.palette?.decor?.main,
 
   '@media(max-width: 744px)': {
     marginTop: '5px',

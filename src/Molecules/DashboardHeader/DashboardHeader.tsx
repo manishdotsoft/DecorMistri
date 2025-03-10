@@ -22,14 +22,13 @@ import sortIcon from '../../assets/images/logo/bar-chart-svgrepo-com.svg';
 import plusIcon2 from '../../assets/images/sidebar/plusIcon2.svg';
 import DatePickerIcon from '../../assets/images/logo/datepicker.svg';
 
-import { Drawer, IconButton, useMediaQuery } from '@mui/material';
+import { Drawer, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Button from '../../atoms/Button/Button';
-import palette from '../../thems/primitives/palette';
-import typeset from '../../thems/primitives/typeset';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface DashboardHeaderProps {
   title: string;
@@ -55,6 +54,8 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     toggleDrawer,
     drawerOpen,
   } = useHeaderFilterHooks();
+
+  const theme = useTheme();
 
   return (
     <Container>
@@ -165,32 +166,30 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           {/* Filter Button */}
           <Button
             title="Filter"
-            color="primary"
             variant="outlined"
             logo={filterIcon}
             style={{
-              color: palette.text.secondary,
+              color: theme.palette.text.secondary,
               borderRadius: '5px',
               width: '100%',
-              border: `1px solid ${palette.grey[300]}`,
-              fontSize: typeset.body2.fontSize,
+              border: `1px solid ${theme.palette.grey[300]}`,
+              fontSize: theme.typography.body2.fontSize,
             }}
             onClick={() => console.log('Filter clicked')}
-            svgIcon={{ height: '12px', color: palette.grey[300] }}
+            svgIcon={{ height: '12px', color: theme.palette.grey[300] }}
           />
 
           {/* Sort Button */}
           <Button
             title="Sort"
-            color="primary"
             variant="outlined"
             logo={sortIcon}
             style={{
-              color: palette.text.secondary,
+              color: theme.palette.text.secondary,
               borderRadius: '5px',
               width: '100%',
 
-              border: `1px solid ${palette.grey[300]}`,
+              border: `1px solid ${theme.palette.grey[300]}`,
             }}
             onClick={() => console.log('Sort clicked')}
             svgIcon={{ height: '12px' }}
@@ -199,30 +198,40 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           {/* Create Project Button */}
           <Button
             title="Create Project"
-            color="primary"
             variant="outlined"
             logo={plusIcon2}
             style={{
-              color: palette.decor.main,
+              color: theme.palette.decor.main,
               borderRadius: '5px',
               width: '140px',
-              border: `1px solid ${palette.decor.main}`,
+              border: `1px solid ${theme.palette.decor.main}`,
             }}
             onClick={() => onLinkClick('Create Project')}
-            svgIcon={{ height: '12px', color: palette.decor.main }}
+            svgIcon={{ height: '12px', color: theme.palette.decor.main }}
           />
         </FilterSection>
       )}
 
       {/* Top Drawer */}
       <Drawer
-        anchor="top"
+        anchor="right"
         open={drawerOpen}
         onClose={() => toggleDrawer(false)}
       >
         <ContantBox>
           <DrawerBox>
             <DrawerTitle>Filters & Options</DrawerTitle>
+            <IconButton
+              onClick={() => toggleDrawer(false)}
+              style={{
+                position: 'absolute',
+                left: '10px',
+                top: '10px',
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+
             <FilterSectionDrawer>
               <DateBox>
                 <StartDateBox>
@@ -300,51 +309,51 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
               {/* Filter Button */}
               <Button
                 title="Filter"
-                color="primary"
                 variant="outlined"
                 logo={filterIcon}
                 style={{
-                  color: palette.text.secondary,
+                  color: theme.palette.text.secondary,
                   borderRadius: '5px',
                   width: '100%',
-                  border: `1px solid ${palette.grey[300]}`,
-                  fontSize: typeset.body2.fontSize,
+                  border: `1px solid ${theme.palette.grey[300]}`,
+                  fontSize: theme.typography.body2.fontSize,
                 }}
                 onClick={() => console.log('Filter clicked')}
-                svgIcon={{ height: '12px', color: palette.grey[300] }}
+                svgIcon={{ height: '12px', color: theme.palette.grey[300] }}
               />
 
               {/* Sort Button */}
               <Button
                 title="Sort"
-                color="primary"
                 variant="outlined"
                 logo={sortIcon}
                 style={{
-                  color: palette.text.secondary,
+                  color: theme.palette.text.secondary,
                   borderRadius: '5px',
                   width: '100%',
-                  border: `1px solid ${palette.grey[300]}`,
+                  border: `1px solid ${theme.palette.grey[300]}`,
                 }}
                 onClick={() => console.log('Sort clicked')}
                 svgIcon={{ height: '12px' }}
               />
-
-              {/* Create Project Button */}
               <Button
                 title="Create Project"
-                color="primary"
                 variant="outlined"
                 logo={plusIcon2}
                 style={{
-                  color: palette.decor.main,
+                  color: theme.palette.decor.main,
                   borderRadius: '5px',
                   width: '100%',
-                  border: `1px solid ${palette.decor.main}`,
+                  border: `1px solid ${theme.palette.decor.main}`,
                 }}
                 onClick={() => onLinkClick('Create Project')}
-                svgIcon={{ height: '12px', color: palette.decor.main }}
+                svgIcon={{
+                  height: '12px',
+                  color: theme.palette.decor.main,
+                }}
               />
+
+              {/* Create Project Button */}
             </FilterSectionDrawer>
           </DrawerBox>
         </ContantBox>

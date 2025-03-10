@@ -29,6 +29,7 @@ const App = () => {
           <Route path="/create-project" element={<CreateProject />} />
           <Route path="/success" element={<SuccessfullyPage />} />
           <Route path="/updateProfile" element={<UpdateProfile />} />
+          <Route path="/updateProfile" element={<UpdateProfile />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
