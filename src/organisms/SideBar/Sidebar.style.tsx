@@ -17,7 +17,7 @@ export const SidebarContainer = styled(Box)({
 });
 
 export const SidebarSection = styled(Box)({
-  width: '400px',
+  width: '300px',
   padding: '15px',
   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.1)',
   transition: 'width 0.3s ease',
