@@ -60,6 +60,8 @@ export const SECONDARY_LIGHT = '#FFEFEE';
 export const PRIMARY_ICON_COLOR = '#49433D';
 export const SECONDARY_ICON_COLOR = '#139262';
 export const TROPHY_ICON_COLOR = '#FFB400';
+export const UPCOMING_PROJECTS_COLOR = '#ffc73a';
+
 export const ERROR_COLOR = '#FF0000';
 export const SECONDARY_ICON = '#0B9A64';
 export const PRIMARY_HOVER = '#087f53';
@@ -72,7 +74,11 @@ export const COLOR_A = '#0B9A64';
 export const COLOR_B = '#3c3a39';
 
 export const COLOR_C = '#005AA1';
+export const COLOR_D = '#1976d2';
+
 export const COLOR_HOLIDAY = '#0B9A64';
+export const COLOR_COMPLETE = '#388e3c';
+
 export const REGULAR_A = '#D6EFDCBF';
 export const PRIME_B = '#F0F4EF';
 export const SUNDAY_C = '#E9EEF8';
@@ -144,6 +150,7 @@ const palette = {
     300: WHITE_300,
   },
   black: {
+    // 100: BLACK_100,
     800: BLACK_800,
     100: BLACK_COLOR,
     200: BLACK_200,
@@ -168,6 +175,7 @@ const palette = {
     contrastText: TEXT_WARNING,
     warning: TROPHY_ICON_COLOR,
     real: TROPHY_ICON_COLOR,
+    upcoming: UPCOMING_PROJECTS_COLOR,
   },
   confirm: {
     main: CONFIRM_COLOR,
@@ -195,6 +203,8 @@ const palette = {
     colorA: COLOR_A,
     colorB: COLOR_B,
     colorC: COLOR_C,
+    colorD: COLOR_D,
+
     colorHoliday: COLOR_HOLIDAY,
     bookedOut: BOOKED_OUT,
     regularA: REGULAR_A,
@@ -206,6 +216,7 @@ const palette = {
     high1G: HIGH1_G,
     high2H: HIGH2_H,
     minimum: MINIMUM,
+    complete: COLOR_COMPLETE,
   },
 };
 

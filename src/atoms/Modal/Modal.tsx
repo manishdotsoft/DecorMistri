@@ -1,8 +1,8 @@
 import React from 'react';
-import { IconButton, Modal } from '@mui/material';
+import { IconButton, Modal, useTheme } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { ModalBox, ModalChildWrapper } from './Modal.styles';
-import { useTheme } from '@mui/material';
+// import { useTheme } from '@mui/material';
 
 interface ButtonConfig {
   label: string;
@@ -36,7 +36,7 @@ const ReusableModal: React.FC<ReusableModalProps> = ({
               position: 'absolute',
               top: '10px',
               right: '10px',
-              color: theme.palette.grey[400],
+              color: theme?.palette.grey[400],
             }}
             aria-label="close"
           >

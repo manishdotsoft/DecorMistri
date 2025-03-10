@@ -29,16 +29,13 @@ import TextInput from '../../atoms/TextInput/TextInput';
 import Button from '../../atoms/Button/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import { useNavigate } from 'react-router-dom';
 
 interface DashboardHeaderProps {
   title: string;
-  onLinkClick: (option: string) => void;
 }
 
-const DashboardHeader: React.FC<DashboardHeaderProps> = ({
-  title,
-  onLinkClick,
-}) => {
+const DashboardHeader: React.FC<DashboardHeaderProps> = ({ title }) => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const {
     searchValue,
@@ -55,11 +52,11 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     drawerOpen,
   } = useHeaderFilterHooks();
 
+  const navigate = useNavigate();
   const theme = useTheme();
 
   return (
     <Container>
-      {/* Title Section */}
       <ChindContainer>
         <ActionsSection>
           <TitelBox>{title}</TitelBox>
@@ -206,7 +203,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
               width: '140px',
               border: `1px solid ${theme.palette.decor.main}`,
             }}
-            onClick={() => onLinkClick('Create Project')}
+            onClick={() => navigate('/create-project')}
             svgIcon={{ height: '12px', color: theme.palette.decor.main }}
           />
         </FilterSection>
@@ -346,7 +343,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                   width: '100%',
                   border: `1px solid ${theme.palette.decor.main}`,
                 }}
-                onClick={() => onLinkClick('Create Project')}
+                onClick={() => navigate('/create-project')}
                 svgIcon={{
                   height: '12px',
                   color: theme.palette.decor.main,

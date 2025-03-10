@@ -1,7 +1,8 @@
-import { Box } from '@mui/material';
 import Card from '../../Molecules/Card/Card';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import DashboardHeader from '../../Molecules/DashboardHeader/DashboardHeader';
+import { Box } from '@mui/material';
 
 const LiveProjects = () => {
   const projects = useSelector((state: RootState) => state.projects.projects);
@@ -14,6 +15,7 @@ const LiveProjects = () => {
         flexWrap: 'wrap',
       }}
     >
+      <DashboardHeader title="Dashboard" />
       <Card data={projects} buttonTitle={'open project'} />
     </Box>
   );

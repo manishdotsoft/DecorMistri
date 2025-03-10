@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import DashboardHeader from '../../Molecules/DashboardHeader/DashboardHeader';
 // import { useSelector } from 'react-redux';
 // import { RootState } from '../../store/store';
 // import Card from '../../Molecules/Card/Card';
@@ -16,6 +17,7 @@ const AllProjects = () => {
         justifyContent: 'center',
       }}
     >
+      <DashboardHeader title="Dashboard" />
       {/* <Card data={projects} buttonTitle='' /> */}
     </Box>
   );
