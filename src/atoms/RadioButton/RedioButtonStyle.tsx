@@ -1,5 +1,4 @@
-import { styled } from '@mui/material/styles';
-import { FormControl, FormLabel, RadioGroup } from '@mui/material';
+import { FormControl, FormLabel, RadioGroup, styled } from '@mui/material';
 
 export const StyledFormControl = styled(FormControl)(() => ({
   marginBottom: '20px',

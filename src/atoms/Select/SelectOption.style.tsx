@@ -1,4 +1,4 @@
-import { styled } from '@mui/system';
+import { styled } from '@mui/material';
 
 interface InputLabelItemProps {
   isFocused: boolean;

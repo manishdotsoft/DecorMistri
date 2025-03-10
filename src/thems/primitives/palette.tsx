@@ -93,6 +93,7 @@ export const DECOR_LOGO_COLOR_HOVER = '#fff5fb';
 export const BOX_SHADOW3 = '#91919133';
 export const BLACK_600 = '#00000019';
 export const WHITE_lIGHT = '#ddd';
+export const BLUE = '#007bff';
 
 const palette = {
   decor: {
@@ -113,6 +114,7 @@ const palette = {
     hover: PRIMARY_HOVER,
     card: PRIMARY_CARD,
     cardLight: PRIMARY_LIGHT,
+    blue: BLUE,
   },
   secondary: {
     main: SECONDARY_COLOR,

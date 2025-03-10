@@ -25,6 +25,7 @@ import {
 import palette from '../../thems/primitives/palette';
 import DashboardHeader from '../../Molecules/DashboardHeader/DashboardHeader';
 import CreateProject from '../CreateProject/CreateProject';
+import Notifications from '../../Molecules/Notifications/Notifications';
 
 const Sidebar = () => {
   const {
@@ -176,6 +177,7 @@ const Sidebar = () => {
             )}
           </AccordionContainer>
         ))}
+        <Notifications />
       </SidebarSection>
       <ContantBox>
         {[

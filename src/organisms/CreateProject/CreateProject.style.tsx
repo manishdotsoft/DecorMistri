@@ -4,8 +4,8 @@ import {
   AccordionDetails,
   AccordionSummary,
   Typography,
+  styled,
 } from '@mui/material';
-import { styled } from '@mui/system';
 
 export const StyledPageContent = styled(Box)(({ theme }) => ({
   width: '74%',

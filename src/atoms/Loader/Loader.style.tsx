@@ -1,5 +1,4 @@
-import { styled } from '@mui/material/styles';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 
 export const LoaderContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
