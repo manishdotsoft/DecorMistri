@@ -90,7 +90,7 @@ const projects = [
   },
 ];
 
-const ProjectBoard: React.FC = () => {
+const Dashboard: React.FC = () => {
   return (
     <Box display="flex" justifyContent={'center'} gap={2} flexWrap="wrap">
       {projects.map((proj, index) => (
@@ -108,4 +108,4 @@ const ProjectBoard: React.FC = () => {
   );
 };
 
-export default ProjectBoard;
+export default Dashboard;
