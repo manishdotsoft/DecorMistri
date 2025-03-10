@@ -150,6 +150,7 @@ const palette = {
     300: WHITE_300,
   },
   black: {
+    // 100: BLACK_100,
     800: BLACK_800,
     100: BLACK_COLOR,
     200: BLACK_200,

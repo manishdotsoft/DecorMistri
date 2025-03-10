@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { theme } from './../../thems/primitives/theme';
+import { theme } from '../../thems/primitives/theme';
 import styled from 'styled-components';
 import palette from '../../thems/primitives/palette';
 
@@ -52,4 +52,18 @@ export const Titel = styled(Typography)({
 
 export const Cards = styled(Box)({
   marginBottom: '20px',
+});
+
+export const LoaderWrapper = styled(Box)({
+  height: '80vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+export const ProjectHeading = styled(Typography)({
+  fontWeight: '600 !important',
+  fontSize: '18px',
+  textTransform: 'uppercase',
+  textAlign: 'center',
 });
