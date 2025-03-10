@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { theme } from './../../thems/primitives/theme';
+import { theme } from '../../thems/primitives/theme';
 import styled from 'styled-components';
 import palette from '../../thems/primitives/palette';
 
