@@ -11,7 +11,7 @@ const CompletionBar: React.FC<CompletionBarProps> = ({
   borderColor,
 }) => {
   return (
-    <Box display="flex" alignItems="center" mt={1} sx={{ px: '6px' }}>
+    <Box display="flex" alignItems="center" sx={{ my: '15px' }}>
       <Typography sx={{ fontSize: '14px', mr: 1 }}>Completion:</Typography>
       <Box sx={{ flex: 1, height: '6px', bgcolor: '#eee', borderRadius: 1 }}>
         <Box
@@ -23,7 +23,9 @@ const CompletionBar: React.FC<CompletionBarProps> = ({
           }}
         />
       </Box>
-      <Typography sx={{ ml: 1 }}>{completion}%</Typography>
+      <Typography sx={{ ml: 1, color: borderColor, fontSize: '14px' }}>
+        {completion}%
+      </Typography>
     </Box>
   );
 };
