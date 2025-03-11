@@ -21,10 +21,21 @@ export const useCardLogic = () => {
     selectedProject: null,
   });
 
+  const color: Record<string, string> = {
+    Live: '#1A73E8',
+    Upcoming: '#FFC107',
+    Completed: '#08c912',
+    NotConfirmed: '#FF5722',
+  };
+
+  const [borderColor, setBorderColor] = useState('');
+
   const handleMenuClick = (
     event: React.MouseEvent<HTMLElement>,
     project: Project
   ) => {
+    console.log(project);
+    setBorderColor(color[project?.status]);
     setMenuState({ anchorEl: event.currentTarget, selectedProject: project });
   };
 
@@ -39,5 +50,6 @@ export const useCardLogic = () => {
     handleMenuClick,
     handleMenuClose,
     handleButtonClick,
+    borderColor,
   };
 };

@@ -6,9 +6,11 @@ import { useDashboardLogic } from './Dashboard.hook';
 import DashboardHeader from '../../Molecules/DashboardHeader/DashboardHeader';
 import CountProjects from '../../Molecules/CountProjects/CountProjects';
 import { BoxContainer } from './Dashboard.style';
+import { ProjectData } from '../../Data/CardData';
 
 const Dashboard = () => {
-  const { loading, projects } = useDashboardLogic();
+  const { loading } = useDashboardLogic();
+  const projects = ProjectData || [];
 
   return (
     <Box>
@@ -19,7 +21,19 @@ const Dashboard = () => {
           <DashboardHeader title="Dashboard" />
           <BoxContainer>
             <CountProjects />
-            <Card data={projects} buttonTitle={'Move to live'} />
+            <Box
+              sx={{
+                marginTop: '20px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <Card
+                data={projects}
+                buttonTitle={'Move to live'}
+                sx={{ width: '100%' }}
+              />
+            </Box>
           </BoxContainer>
         </>
       )}
