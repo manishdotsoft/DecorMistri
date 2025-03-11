@@ -19,7 +19,7 @@ export const CardMain = styled(Card)(({ theme }) => ({
   flex: '1 1 200px',
   height: 'fit-content',
   boxShadow: 'none !important',
-  border: `1.2px solid ${theme.palette.grey[500]}`,
+  border: `1px solid ${theme.palette.grey.borderColor}`,
 }));
 
 export const ColorBox = styled(Box)<{ color?: string }>(
@@ -48,5 +48,5 @@ export const LabelTypography = styled(Typography)(({ theme }) => ({
 
 export const ValueTypography = styled(Typography)(({ theme }) => ({
   fontSize: `${theme.typography.body1.fontSize}px`,
-  fontWeight: '800',
+  fontWeight: '700',
 }));

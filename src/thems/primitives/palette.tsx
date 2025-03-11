@@ -13,6 +13,7 @@ export const GREY_200 = '#f0f0f0';
 export const GREY_300 = '#CACACA';
 export const GREY_600 = '#CCCCCC';
 export const GREY_700 = '#717171';
+export const GREY_800 = '#F4F4F4';
 
 export const GREY_400 = 'rgba(115, 115, 114, 0.9)';
 export const GREY_500 = 'rgba(158, 158, 158, 1)';
@@ -31,6 +32,8 @@ export const ACCENT_ERROR_100 = 'rgba(255, 220, 218, 0.6)';
 export const ICON_COLOR = '#979797';
 export const COMMON_DEFAULT = '#ffffff';
 export const GRAY_COLOR = '#808080';
+export const GRAY_BORDER_COLOR = '#BCBCBC';
+export const GREY_FONT_COLOR = '#7c7b7b';
 
 export const ICON_LIGHT = '#dadada';
 export const TEXT_PRIMARY = '#212121';
@@ -60,7 +63,7 @@ export const SECONDARY_LIGHT = '#FFEFEE';
 export const PRIMARY_ICON_COLOR = '#49433D';
 export const SECONDARY_ICON_COLOR = '#139262';
 export const TROPHY_ICON_COLOR = '#FFB400';
-export const UPCOMING_PROJECTS_COLOR = '#ffc73a';
+export const UPCOMING_PROJECTS_COLOR = '#FFCD06';
 
 export const ERROR_COLOR = '#FF0000';
 export const SECONDARY_ICON = '#0B9A64';
@@ -74,10 +77,10 @@ export const COLOR_A = '#0B9A64';
 export const COLOR_B = '#3c3a39';
 
 export const COLOR_C = '#005AA1';
-export const COLOR_D = '#1976d2';
+export const COLOR_D = '#0379FF';
 
 export const COLOR_HOLIDAY = '#0B9A64';
-export const COLOR_COMPLETE = '#388e3c';
+export const COLOR_COMPLETE = '#1EB500';
 
 export const REGULAR_A = '#D6EFDCBF';
 export const PRIME_B = '#F0F4EF';
@@ -88,7 +91,7 @@ export const SUNDAY_F = '#FFEFEE';
 export const HIGH1_G = '#FFF2DF';
 export const HIGH2_H = '#FFB40026';
 export const MINIMUM = '#FF000026';
-export const BOOKED_OUT = '#F44336';
+export const BOOKED_OUT = '#FF4E0D';
 export const DECOR_COLOR = '#C7148A';
 export const DECOR_LIGHT = '#fff0f9';
 export const DECOR_DARK = '#b60a7c';
@@ -132,6 +135,9 @@ const palette = {
     main: GRAY_COLOR,
     textColor: GREY_100,
     iconColor: ICON_COLOR,
+    borderColor: GRAY_BORDER_COLOR,
+    greyFontColor: GREY_FONT_COLOR,
+    20: GREY_800,
     50: GREY_50,
     100: ICON_LIGHT,
     150: GREY_150,

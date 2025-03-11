@@ -1,16 +1,12 @@
 import React, { ReactElement, useState } from 'react';
-import {
-  Box,
-  List,
-  ListItemButton,
-  ListItemText,
-  Collapse,
-} from '@mui/material';
+import { Box, List, ListItemText, Collapse } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
   ChildSidebar,
+  DropDownItems,
   DropDownLableTitle,
   DropDownListItemButton,
+  IconWrapper,
   ListItemButtonIcon,
   ListItemTextSec,
   MainSidebar,
@@ -163,7 +159,7 @@ const navItems: NavItem[] = [
   },
 ];
 
-const Sidebar: React.FC = () => {
+const MainNav: React.FC = () => {
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>('Dashboard');
 
@@ -183,7 +179,14 @@ const Sidebar: React.FC = () => {
                 <DropDownListItemButton
                   onClick={() => handleToggle(item.title)}
                 >
-                  {item.icon}
+                  <IconWrapper
+                    selectedItem={selectedItem}
+                    itemTitle={item.title}
+                    openSection={openSection}
+                  >
+                    {item.icon}
+                  </IconWrapper>
+
                   <ListItemText
                     primary={
                       <DropDownLableTitle
@@ -207,19 +210,23 @@ const Sidebar: React.FC = () => {
                 >
                   <List component="div" disablePadding>
                     {item.subItems.map((subItem) => (
-                      <ListItemButton
+                      <DropDownItems
                         key={subItem.title}
-                        sx={{
-                          pl: 6,
-                          '& .MuiTypography-root': {
-                            fontSize: '0.95rem',
-                          },
-                        }}
+                        sx={{}}
                         component={StyledNavLink}
                         to={subItem.path || '#'}
                         onClick={() => handleSelect(subItem.title)}
+                        itemTitle={subItem.title}
+                        selectedItem={selectedItem}
                       >
-                        {subItem.icon}
+                        <IconWrapper
+                          selectedItem={selectedItem}
+                          itemTitle={subItem.title}
+                          openSection={openSection}
+                        >
+                          {subItem.icon}
+                        </IconWrapper>
+
                         <ListItemText
                           primary={
                             <SubItemTitle
@@ -235,7 +242,7 @@ const Sidebar: React.FC = () => {
                             <img src={KeyArrowIcon} alt="" />
                           </Box>
                         )}
-                      </ListItemButton>
+                      </DropDownItems>
                     ))}
                   </List>
                 </Collapse>
@@ -248,7 +255,13 @@ const Sidebar: React.FC = () => {
                 selectedItem={selectedItem}
                 itemTitle={item.title}
               >
-                {item.icon}
+                <IconWrapper
+                  selectedItem={selectedItem}
+                  itemTitle={item.title}
+                  openSection={openSection}
+                >
+                  {item.icon}
+                </IconWrapper>
                 <ListItemTextSec
                   primary={item.title}
                   selectedItem={selectedItem}
@@ -268,4 +281,4 @@ const Sidebar: React.FC = () => {
   );
 };
 
-export default Sidebar;
+export default MainNav;
