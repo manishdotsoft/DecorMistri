@@ -1,13 +1,14 @@
 import { Button, styled } from '@mui/material';
 import { Menu, MenuItem } from '@mui/material';
+import { Box } from '@mui/system';
 
 export const StyledMenu = styled(Menu)<{ borderColor?: string }>(
-  ({ theme }) => ({
+  ({ theme, borderColor }) => ({
     '&& .MuiPaper-root': {
       borderRadius: '8px',
       minWidth: '152px',
       backgroundColor: theme.palette.background.paper,
-      // border: `3px solid ${borderColor || theme.palette.grey[400]} !important`,
+      border: `3px solid ${borderColor || theme.palette.grey[400]} !important`,
       boxShadow: 'none !important',
     },
   })
@@ -15,8 +16,8 @@ export const StyledMenu = styled(Menu)<{ borderColor?: string }>(
 
 export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   fontSize: theme.typography.body2.fontSize,
-  fontWeight: 'bold',
-  color: theme.palette.text.primary,
+
+  color: theme.palette.black[200],
 
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
@@ -28,7 +29,6 @@ export const StatusButton = styled(Button)(({ theme }) => ({
   gap: '5px',
   border: 'none',
   marginBottom: '5px',
-  fontWeight: 'bold',
   padding: '0',
   color: theme.palette.text.primary,
   textTransform: 'inherit',
@@ -42,3 +42,15 @@ export const StatusButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.palette.decor.main,
   },
 }));
+export const ButtonContainer = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '10px',
+});
+
+export const MenuHeader = styled(Box)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  paddingRight: '8px',
+});

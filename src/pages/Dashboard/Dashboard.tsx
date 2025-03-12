@@ -24,8 +24,6 @@ const Dashboard = () => {
             <Box
               sx={{
                 marginTop: '20px',
-                display: 'flex',
-                justifyContent: 'center',
               }}
             >
               <Card

@@ -49,7 +49,7 @@ export const MainFlex = styled('div')(({ theme }) => ({
 
   backgroundColor: theme.palette.white.main,
   borderRadius: '25px',
-  boxShadow: `0px 0px 100px 10px ${theme.palette.black[200]}`,
+  boxShadow: `0px 0px 100px 10px ${theme.palette.grey[800]}`,
 
   overflow: 'hidden',
 
