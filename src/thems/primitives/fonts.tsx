@@ -1,6 +1,6 @@
 const fonts = {
-	primary: "'Roboto', sans-serif",
-	secondary: "'Barlow', sans-serif",
+  primary: "'Manrope', sans-serif",
+  secondary: "'Roboto', sans-serif",
 };
 
 export default fonts;
