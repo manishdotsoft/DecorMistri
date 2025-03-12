@@ -1,66 +1,87 @@
 import useHeaderFilterHooks from './DashboardHeader.hook';
 import {
   Container,
-  ActionsSection,
+  // ActionsSection,
   SearchContainer,
   StyledSearchIcon,
   FilterSection,
-  TitelBox,
+  // TitelBox,
   DateBox,
-  StartDateBox,
-  DateCntainer,
-  IconBox,
-  DatePikerBox,
   DrawerBox,
-  ChindContainer,
+  // ChindContainer,
   DrawerTitle,
   ContantBox,
   FilterSectionDrawer,
 } from './DashboardHeader.style';
 import filterIcon from '../../assets/images/logo/filter-svgrepo-com.svg';
-import sortIcon from '../../assets/images/logo/bar-chart-svgrepo-com.svg';
+
+// ----chatgpt fix now
+
+import React, { useState } from 'react';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { Box, Chip, Stack } from '@mui/material';
+import { Dayjs } from 'dayjs';
+import DeleteIcon from '@mui/icons-material/Close';
+
+// --------------
+
 import plusIcon2 from '../../assets/images/sidebar/plusIcon2.svg';
-import DatePickerIcon from '../../assets/images/logo/datepicker.svg';
 
 import { Drawer, IconButton, useMediaQuery, useTheme } from '@mui/material';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Button from '../../atoms/Button/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
+import SearchIcon from '../../assets/images/logo/Search.svg';
+import ShortByIcon from '../../assets/images/logo/arrowdown 2.svg';
+import XxlLineIcon from '../../assets/images/logo/xxlLine.svg';
+import XlLineIcon from '../../assets/images/logo/xlLine.svg';
+import LgLineIcon from '../../assets/images/logo/lgLine.svg';
+
+// import { Box } from '@mui/system';
 
 interface DashboardHeaderProps {
   title: string;
 }
 
-const DashboardHeader: React.FC<DashboardHeaderProps> = ({ title }) => {
-  const isMobile = useMediaQuery('(max-width: 1024px)');
-  const {
-    searchValue,
-    handleSearchChange,
-    isStartDatePickerOpen,
-    isEndDatePickerOpen,
-    handleEndDateChange,
-    toggleEndDatePicker,
-    handleStartDateChange,
-    toggleStartDatePicker,
-    startDate,
-    endDate,
-    toggleDrawer,
-    drawerOpen,
-  } = useHeaderFilterHooks();
+const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
+  // { title }
+  {
+    const isMobile = useMediaQuery('(max-width: 1024px)');
+    const {
+      searchValue,
+      handleSearchChange,
 
-  const navigate = useNavigate();
-  const theme = useTheme();
+      toggleDrawer,
+      drawerOpen,
+    } = useHeaderFilterHooks();
 
-  return (
-    <Container>
-      <ChindContainer>
-        <ActionsSection>
-          <TitelBox>{title}</TitelBox>
-        </ActionsSection>
+    const navigate = useNavigate();
+    const theme = useTheme();
+
+    // ------------Now --------
+    const [dates, setDates] = useState<Dayjs[]>([]);
+    const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
+
+    const handleDateChange = (newDate: Dayjs | null) => {
+      if (newDate && !dates.some((date) => date.isSame(newDate, 'day'))) {
+        setDates([...dates, newDate]);
+      }
+      setSelectedDate(null); // Reset picker after selection
+    };
+
+    const removeDate = (index: number) => {
+      setDates(dates.filter((_, i) => i !== index));
+    };
+
+    // ---------------
+
+    return (
+      <Container>
         <SearchContainer>
           <TextInput
             name="search"
@@ -72,291 +93,199 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ title }) => {
             style={{
               width: '100%',
               borderRadius: '8px',
-              paddingLeft: '40px',
+              paddingLeft: '50px',
               height: '4px',
+              fontSize: '0.9rem',
             }}
           />
-          <StyledSearchIcon />
+          <StyledSearchIcon>
+            <img src={SearchIcon} alt="" style={{ height: '18px' }} />
+          </StyledSearchIcon>
         </SearchContainer>
-      </ChindContainer>
 
-      {isMobile ? (
-        <IconButton onClick={() => toggleDrawer(true)}>
-          <MenuIcon />
-        </IconButton>
-      ) : (
-        <FilterSection>
-          {/* Start Date Picker */}
-          <DateBox>
-            <StartDateBox>
-              <DateCntainer onClick={toggleStartDatePicker}>
-                <TextInput
-                  name="startDate"
-                  type="text"
-                  label="Start Date"
-                  onChange={() => {}}
-                  value={startDate ? startDate.toLocaleDateString() : ''}
-                  placeholder="Start Date"
-                  style={{
-                    width: '80%',
-                    height: '4px',
-                    borderRadius: '6px',
-                    border: 'none',
-                  }}
-                />
-                <IconBox>
-                  <img
-                    src={DatePickerIcon}
-                    alt="Date Picker"
-                    style={{ height: '18px' }}
-                  />
-                </IconBox>
-              </DateCntainer>
-              {isStartDatePickerOpen && (
-                <DatePikerBox>
+        {isMobile ? (
+          <IconButton onClick={() => toggleDrawer(true)}>
+            <MenuIcon />
+          </IconButton>
+        ) : (
+          <FilterSection>
+            {/* Start Date Picker */}
+
+            <DateBox>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <Stack spacing={2}>
                   <DatePicker
-                    selected={startDate}
-                    onChange={handleStartDateChange}
-                    inline
+                    label="Select Date"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    // Fix: No `renderInput` prop, use TextField directly
+                    slotProps={{ textField: { fullWidth: true } }}
                   />
-                </DatePikerBox>
-              )}
-            </StartDateBox>
+                  <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                    {dates.map((date, index) => (
+                      <Chip
+                        key={index}
+                        label={date.format('YYYY-MM-DD')}
+                        onDelete={() => removeDate(index)}
+                        deleteIcon={<DeleteIcon />}
+                      />
+                    ))}
+                  </Box>
+                </Stack>
+              </LocalizationProvider>
+            </DateBox>
 
-            {/* End Date Picker */}
-            <StartDateBox>
-              <DateCntainer onClick={toggleEndDatePicker}>
-                <TextInput
-                  name="endDate"
-                  type="text"
-                  label="End Date"
-                  onChange={() => {}}
-                  value={endDate ? endDate.toLocaleDateString() : ''}
-                  placeholder="End Date"
-                  style={{
-                    width: '80%',
-                    height: '4px',
-                    borderRadius: '6px',
-                    border: 'none',
-                  }}
-                />
-                <IconBox>
-                  <img
-                    src={DatePickerIcon}
-                    alt="Date Picker"
-                    style={{ height: '18px' }}
-                  />
-                </IconBox>
-              </DateCntainer>
-              {isEndDatePickerOpen && (
-                <DatePikerBox>
-                  <DatePicker
-                    selected={endDate}
-                    onChange={handleEndDateChange}
-                    inline
-                  />
-                </DatePikerBox>
-              )}
-            </StartDateBox>
-          </DateBox>
-
-          {/* Filter Button */}
-          <Button
-            title="Filter"
-            variant="outlined"
-            logo={filterIcon}
-            style={{
-              color: theme.palette.text.secondary,
-              borderRadius: '5px',
-              width: '100%',
-              border: `1px solid ${theme.palette.grey[300]}`,
-              fontSize: theme.typography.body2.fontSize,
-            }}
-            onClick={() => console.log('Filter clicked')}
-            svgIcon={{ height: '12px', color: theme.palette.grey[300] }}
-          />
-
-          {/* Sort Button */}
-          <Button
-            title="Sort"
-            variant="outlined"
-            logo={sortIcon}
-            style={{
-              color: theme.palette.text.secondary,
-              borderRadius: '5px',
-              width: '100%',
-
-              border: `1px solid ${theme.palette.grey[300]}`,
-            }}
-            onClick={() => console.log('Sort clicked')}
-            svgIcon={{ height: '12px' }}
-          />
-
-          {/* Create Project Button */}
-          <Button
-            title="Create Project"
-            variant="outlined"
-            logo={plusIcon2}
-            style={{
-              color: theme.palette.decor.main,
-              borderRadius: '5px',
-              width: '140px',
-              border: `1px solid ${theme.palette.decor.main}`,
-            }}
-            onClick={() => navigate('/create-project')}
-            svgIcon={{ height: '12px', color: theme.palette.decor.main }}
-          />
-        </FilterSection>
-      )}
-
-      {/* Top Drawer */}
-      <Drawer
-        anchor="right"
-        open={drawerOpen}
-        onClose={() => toggleDrawer(false)}
-      >
-        <ContantBox>
-          <DrawerBox>
-            <DrawerTitle>Filters & Options</DrawerTitle>
-            <IconButton
-              onClick={() => toggleDrawer(false)}
+            {/* Filter Button */}
+            <Button
+              title="Filter"
+              variant="outlined"
+              logo={filterIcon}
               style={{
-                position: 'absolute',
-                left: '10px',
-                top: '10px',
+                color: theme.palette.text.secondary,
+                borderRadius: '5px',
+                width: '100%',
+                border: `1px solid ${theme.palette.grey[300]}`,
+                fontSize: theme.typography.body2.fontSize,
+              }}
+              onClick={() => console.log('Filter clicked')}
+              svgIcon={{ height: '12px', color: theme.palette.grey[300] }}
+            />
+
+            {/* Sort Button */}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                border: `1px solid ${theme.palette.grey[300]}`,
+                borderRadius: '8px',
               }}
             >
-              <CloseIcon />
-            </IconButton>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <img src={ShortByIcon} alt="" />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    flexDirection: 'column',
+                    gap: '2px',
+                  }}
+                >
+                  <img src={XxlLineIcon} alt="" />
+                  <img src={XlLineIcon} alt="" />
+                  <img src={LgLineIcon} alt="" />
+                </Box>
+              </Box>
 
-            <FilterSectionDrawer>
-              <DateBox>
-                <StartDateBox>
-                  <DateCntainer onClick={toggleStartDatePicker}>
-                    <TextInput
-                      name="startDate"
-                      type="text"
-                      label="Start Date"
-                      onChange={() => {}}
-                      value={startDate ? startDate.toLocaleDateString() : ''}
-                      placeholder="Start Date"
-                      style={{
-                        width: '80%',
-                        height: '4px',
-                        borderRadius: '6px',
-                        border: 'none',
-                      }}
-                    />
-                    <IconBox>
-                      <img
-                        src={DatePickerIcon}
-                        alt="Date Picker"
-                        style={{ height: '18px' }}
-                      />
-                    </IconBox>
-                  </DateCntainer>
-                  {isStartDatePickerOpen && (
-                    <DatePikerBox>
-                      <DatePicker
-                        selected={startDate}
-                        onChange={handleStartDateChange}
-                        inline
-                      />
-                    </DatePikerBox>
-                  )}
-                </StartDateBox>
-
-                {/* End Date Picker */}
-                <StartDateBox>
-                  <DateCntainer onClick={toggleEndDatePicker}>
-                    <TextInput
-                      name="endDate"
-                      type="text"
-                      label="End Date"
-                      onChange={() => {}}
-                      value={endDate ? endDate.toLocaleDateString() : ''}
-                      placeholder="End Date"
-                      style={{
-                        width: '80%',
-                        height: '4px',
-                        borderRadius: '6px',
-                        border: 'none',
-                      }}
-                    />
-                    <IconBox>
-                      <img
-                        src={DatePickerIcon}
-                        alt="Date Picker"
-                        style={{ height: '18px' }}
-                      />
-                    </IconBox>
-                  </DateCntainer>
-                  {isEndDatePickerOpen && (
-                    <DatePikerBox>
-                      <DatePicker
-                        selected={endDate}
-                        onChange={handleEndDateChange}
-                        inline
-                      />
-                    </DatePikerBox>
-                  )}
-                </StartDateBox>
-              </DateBox>
-
-              {/* Filter Button */}
               <Button
-                title="Filter"
+                title="Sort By"
                 variant="outlined"
-                logo={filterIcon}
+                // logo={sortIcon}
                 style={{
                   color: theme.palette.text.secondary,
                   borderRadius: '5px',
                   width: '100%',
-                  border: `1px solid ${theme.palette.grey[300]}`,
-                  fontSize: theme.typography.body2.fontSize,
-                }}
-                onClick={() => console.log('Filter clicked')}
-                svgIcon={{ height: '12px', color: theme.palette.grey[300] }}
-              />
 
-              {/* Sort Button */}
-              <Button
-                title="Sort"
-                variant="outlined"
-                logo={sortIcon}
-                style={{
-                  color: theme.palette.text.secondary,
-                  borderRadius: '5px',
-                  width: '100%',
-                  border: `1px solid ${theme.palette.grey[300]}`,
+                  border: 'none',
                 }}
                 onClick={() => console.log('Sort clicked')}
                 svgIcon={{ height: '12px' }}
               />
-              <Button
-                title="Create Project"
-                variant="outlined"
-                logo={plusIcon2}
-                style={{
-                  color: theme.palette.decor.main,
-                  borderRadius: '5px',
-                  width: '100%',
-                  border: `1px solid ${theme.palette.decor.main}`,
-                }}
-                onClick={() => navigate('/create-project')}
-                svgIcon={{
-                  height: '12px',
-                  color: theme.palette.decor.main,
-                }}
-              />
+            </Box>
 
-              {/* Create Project Button */}
-            </FilterSectionDrawer>
-          </DrawerBox>
-        </ContantBox>
-      </Drawer>
-    </Container>
-  );
-};
+            {/* Create Project Button */}
+            <Button
+              title="Create Project"
+              variant="outlined"
+              logo={plusIcon2}
+              style={{
+                color: theme.palette.decor.main,
+                borderRadius: '5px',
+                width: '140px',
+                border: `1px solid ${theme.palette.decor.main}`,
+              }}
+              onClick={() => navigate('/create-project')}
+              svgIcon={{ height: '12px', color: theme.palette.decor.main }}
+            />
+          </FilterSection>
+        )}
+
+        {/* Top Drawer */}
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={() => toggleDrawer(false)}
+        >
+          <ContantBox>
+            <DrawerBox>
+              <DrawerTitle>Filters & Options</DrawerTitle>
+              <IconButton
+                onClick={() => toggleDrawer(false)}
+                style={{
+                  position: 'absolute',
+                  left: '10px',
+                  top: '10px',
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+
+              <FilterSectionDrawer>
+                <DateBox></DateBox>
+
+                {/* Filter Button */}
+                <Button
+                  title="Filter"
+                  variant="outlined"
+                  logo={filterIcon}
+                  style={{
+                    color: theme.palette.text.secondary,
+                    borderRadius: '5px',
+                    width: '100%',
+                    border: `1px solid ${theme.palette.grey[300]}`,
+                    fontSize: theme.typography.body2.fontSize,
+                  }}
+                  onClick={() => console.log('Filter clicked')}
+                  svgIcon={{ height: '12px', color: theme.palette.grey[300] }}
+                />
+
+                {/* Sort Button */}
+                <Button
+                  title="Sort"
+                  variant="outlined"
+                  // logo={sortIcon}
+                  style={{
+                    color: theme.palette.text.secondary,
+                    borderRadius: '5px',
+                    width: '100%',
+                    border: `1px solid ${theme.palette.grey[300]}`,
+                  }}
+                  onClick={() => console.log('Sort clicked')}
+                  svgIcon={{ height: '12px' }}
+                />
+                <Button
+                  title="Create Project"
+                  variant="outlined"
+                  logo={plusIcon2}
+                  style={{
+                    color: theme.palette.decor.main,
+                    borderRadius: '5px',
+                    width: '100%',
+                    border: `1px solid ${theme.palette.decor.main}`,
+                  }}
+                  onClick={() => navigate('/create-project')}
+                  svgIcon={{
+                    height: '12px',
+                    color: theme.palette.decor.main,
+                  }}
+                />
+
+                {/* Create Project Button */}
+              </FilterSectionDrawer>
+            </DrawerBox>
+          </ContantBox>
+        </Drawer>
+      </Container>
+    );
+  };
 
 export default DashboardHeader;

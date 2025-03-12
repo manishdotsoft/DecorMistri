@@ -5,7 +5,7 @@ export const Header = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
   alignItems: 'center',
   borderBottom: `1px solid ${theme?.palette?.grey[200]}`,
-  padding: '10px 5px',
+  padding: '10px 20px',
 }));
 
 export const StyledHeader = styled(Box)(() => ({
@@ -27,7 +27,8 @@ export const Line = styled(Box)(({ theme }) => ({
   height: '30px',
 }));
 
-export const HeaderTitle = styled('span')(() => ({
+export const HeaderTitle = styled('span')(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
   fontWeight: '600',
   fontSize: '20px',
 }));
