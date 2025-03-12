@@ -128,7 +128,12 @@ const LoginPage = () => {
                 <ForgetPaswordContainer>
                   <div>
                     <input type="checkbox" id="rememberMe" name="rememberMe" />
-                    <label htmlFor="rememberMe">Remember Me</label>
+                    <label
+                      htmlFor="rememberMe"
+                      style={{ fontFamily: theme?.typography?.fontFamily }}
+                    >
+                      Remember Me
+                    </label>
                   </div>
                   <ForgotPasswordLink to="/forgot-password">
                     Forgot password?
