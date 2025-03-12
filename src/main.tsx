@@ -4,6 +4,7 @@ import App from './App.tsx';
 import Theme from './thems';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import '@fontsource/manrope';
 
 createRoot(document.getElementById('root')!).render(
   // <StrictMode>
