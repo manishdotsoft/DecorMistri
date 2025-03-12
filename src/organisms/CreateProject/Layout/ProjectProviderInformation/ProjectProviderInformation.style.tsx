@@ -69,6 +69,7 @@ export const InputLabelItem = styled('label')(({ theme }) => ({
   fontSize: theme.typography?.body2.fontSize,
   marginBottom: '4px',
   color: theme.palette.grey[700],
+  fontFamily: theme?.typography?.fontFamily,
 }));
 
 export const InputIconFor = styled(Box)(() => ({

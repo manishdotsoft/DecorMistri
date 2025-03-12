@@ -14,7 +14,8 @@ export const InputLabelItem = styled('label')<InputLabelItemProps>(
   ({ theme }) => ({
     fontSize: '1rem',
     marginBottom: '4px',
-    color: theme.palette.grey[600],
+    color: theme.palette.grey[700],
+    fontFamily: theme.typography.fontFamily,
   })
 );
 export const SelectWrapper = styled('div')(() => ({

@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyledMenu, StyledMenuItem, StatusButton } from './Menu.style';
-import { Collapse, Box, useTheme } from '@mui/material';
+import { Collapse, Box, IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Modal from '../../atoms/Modal/Modal';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import CloseIcon from '@mui/icons-material/Close';
 import { useMenuLogic } from './Menu.hook';
 import EditProject from '../../organisms/EditProject/CreateProject';
+import Button from '../../atoms/Button/Button';
 
 interface ProjectMenuProps {
   anchorEl: null | HTMLElement;
@@ -16,6 +18,7 @@ interface ProjectMenuProps {
   currentProject: string | null;
   onUpdateStatus: (projectValue: string, newStatus: string) => void;
   projectId?: number | null;
+  borderColor?: string;
 }
 
 const ProjectMenu: React.FC<ProjectMenuProps> = ({
@@ -27,6 +30,7 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
   currentProject,
   onUpdateStatus,
   projectId,
+  borderColor,
 }) => {
   const {
     statusOptions,
@@ -36,15 +40,13 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
     openModal,
     closeModal,
     handleStatusChange,
-    // confirmDelete,
   } = useMenuLogic({
     onDeleteProject,
     currentProject,
     onUpdateStatus,
     onClose,
   });
-
-  const theme = useTheme();
+  console.log(borderColor);
 
   return (
     <StyledMenu
@@ -52,14 +54,32 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
       open={open}
       onClose={onClose}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      sx={{
+        '& .MuiPaper-root': {
+          border: `2px solid ${borderColor}`,
+        },
+      }}
     >
       {menuItems.map((item, index) => (
         <React.Fragment key={index}>
           {item === 'Edit' && (
-            <StyledMenuItem onClick={() => openModal('edit')}>
-              Edit
-            </StyledMenuItem>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingRight: '8px',
+              }}
+            >
+              <StyledMenuItem onClick={() => openModal('edit')}>
+                Edit project
+              </StyledMenuItem>
+              {/* Close Icon to close the entire menu */}
+              <IconButton size="small" onClick={onClose}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </Box>
           )}
 
           {item === 'Delete Project' && (
@@ -74,9 +94,7 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
                 Change Status <KeyboardArrowDownIcon />
               </StyledMenuItem>
               <Collapse in={dropdownOpen} timeout="auto" unmountOnExit>
-                <Box
-                  sx={{ padding: 2, backgroundColor: theme.palette.white[300] }}
-                >
+                <Box sx={{ padding: 2 }}>
                   {statusOptions.map((status, idx) => (
                     <StatusButton
                       key={idx}
@@ -92,7 +110,6 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
           )}
 
           {item === 'Add Phase' && <StyledMenuItem>Add Phase</StyledMenuItem>}
-
           {item === 'Add Task' && <StyledMenuItem>Add Task</StyledMenuItem>}
         </React.Fragment>
       ))}
@@ -102,9 +119,38 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
         open={modalState === 'delete'}
         onClose={closeModal}
         title="Are you sure you want to delete this project?"
-      />
+      >
+        <Box>
+          <h3>Are you sure you want to delete this project?</h3>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+            '
+            <Button
+              title="Cancel"
+              variant="contained"
+              onClick={() => {}}
+              style={{
+                width: '100%',
+                borderRadius: '6px',
+                padding: '10px 40px',
+                background: 'grey',
+              }}
+            />
+            <Button
+              title="Delete"
+              variant="contained"
+              onClick={() => {}}
+              style={{
+                width: '100%',
+                borderRadius: '6px',
+                padding: '10px 40px',
+                background: 'red',
+              }}
+            />
+          </Box>
+        </Box>
+      </Modal>
 
-      {/* Edit Project Modal (Passes the correct projectId dynamically) */}
+      {/* Edit Project Modal */}
       <Modal open={modalState === 'edit'} onClose={closeModal}>
         {projectId ? (
           <EditProject projectId={projectId} />

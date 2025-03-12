@@ -21,6 +21,8 @@ export const FlexRow = styled(Box)(({ theme }) => ({
 }));
 
 export const InputLabelItem = styled('label')(({ theme }) => ({
+  fontFamily: theme?.typography?.fontFamily,
+
   fontSize: theme.typography?.body2.fontSize,
   marginBottom: '4px',
   color: theme.palette.grey[700],
