@@ -20,6 +20,7 @@ interface TextInputProps {
   type?: React.HTMLInputTypeAttribute;
   placeholder?: string;
   eyePadding?: React.CSSProperties;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -33,6 +34,7 @@ const TextInput: React.FC<TextInputProps> = ({
   type,
   placeholder,
   eyePadding,
+  onKeyDown,
 }) => {
   const { isPasswordVisible, togglePasswordVisibility } =
     usePasswordVisibility();
@@ -59,6 +61,7 @@ const TextInput: React.FC<TextInputProps> = ({
             ...eyePadding,
           }}
           placeholder={placeholder}
+          onKeyDown={onKeyDown}
         />
         {type === 'password' && (
           <button

@@ -46,6 +46,8 @@ import LgLineIcon from '../../assets/images/logo/lgLine.svg';
 
 interface DashboardHeaderProps {
   title: string;
+  name: string;
+  label: string;
 }
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
@@ -55,7 +57,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
     const {
       searchValue,
       handleSearchChange,
-
+      setSearchValue,
       toggleDrawer,
       drawerOpen,
     } = useHeaderFilterHooks();
@@ -71,11 +73,16 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
       if (newDate && !dates.some((date) => date.isSame(newDate, 'day'))) {
         setDates([...dates, newDate]);
       }
-      setSelectedDate(null); // Reset picker after selection
+      setSelectedDate(null);
     };
 
     const removeDate = (index: number) => {
       setDates(dates.filter((_, i) => i !== index));
+    };
+
+    const handleSearchSubmit = () => {
+      console.log('Search Value:', searchValue);
+      setSearchValue('');
     };
 
     // ---------------
@@ -97,9 +104,15 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
               height: '4px',
               fontSize: '0.9rem',
             }}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                event.preventDefault();
+                handleSearchSubmit();
+              }
+            }}
           />
-          <StyledSearchIcon>
-            <img src={SearchIcon} alt="" style={{ height: '18px' }} />
+          <StyledSearchIcon onClick={handleSearchSubmit}>
+            <img src={SearchIcon} alt="Search" style={{ height: '18px' }} />
           </StyledSearchIcon>
         </SearchContainer>
 
