@@ -8,6 +8,21 @@ export const CountProjectsMainSec = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('xl')]: {
     overflowX: 'scroll',
     paddingBottom: '10px',
+    /* Scrollbar styles */
+    '&::-webkit-scrollbar': {
+      height: '6px',
+    },
+    '&::-webkit-scrollbar-track': {
+      background: theme.palette.grey[300],
+      borderRadius: '10px',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: theme.palette.decor.main,
+      borderRadius: '10px',
+    },
+    // '&::-webkit-scrollbar-thumb:hover': {
+    //   background: theme.palette.decor.main,
+    // },
   },
 }));
 

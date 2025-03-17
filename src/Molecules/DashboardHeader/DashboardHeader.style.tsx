@@ -65,12 +65,17 @@ export const TitelBox = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const DateBox = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  border: `1px solid 
-  ${theme.palette.grey[300]}`,
-  borderRadius: '6px',
-}));
+export const DateBox = styled(Box)<{ borderColor: string }>(
+  ({ theme, borderColor }) => ({
+    display: 'flex',
+
+    border: `1px solid ${borderColor || theme.palette.grey[300]}`,
+    borderRadius: '6px',
+    paddingRight: '10px',
+    marginLeft: '10px',
+    cursor: 'pointer',
+  })
+);
 
 export const IconBox = styled(Box)({
   position: 'absolute',
@@ -111,3 +116,22 @@ export const FilterSectionDrawer = styled(Box)({
   flexDirection: 'column',
   gap: '20px',
 });
+
+export const ShortSection = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  border: `1px solid ${theme.palette.grey[300]}`,
+  borderRadius: '8px',
+}));
+
+export const ShortIcon = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+export const ThreeLineIcon = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'flex-end',
+  flexDirection: 'column',
+  gap: '2px',
+}));

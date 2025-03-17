@@ -33,7 +33,7 @@ export const SelectItem = styled('select')(({ theme }) => ({
   backgroundColor: theme.palette.primary.contrastText,
   outline: 'none',
   '&:focus': {
-    border: `2px solid ${theme.palette.decor.main}`,
+    border: `1px solid ${theme.palette.decor.main}`,
   },
   cursor: 'pointer',
 }));

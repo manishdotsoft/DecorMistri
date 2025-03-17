@@ -12,22 +12,16 @@ import {
   DrawerTitle,
   ContantBox,
   FilterSectionDrawer,
+  ShortSection,
+  ShortIcon,
+  ThreeLineIcon,
 } from './DashboardHeader.style';
 import filterIcon from '../../assets/images/logo/filter-svgrepo-com.svg';
-
-// ----chatgpt fix now
-
-import React, { useState } from 'react';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Box, Chip, Stack } from '@mui/material';
-import { Dayjs } from 'dayjs';
-import DeleteIcon from '@mui/icons-material/Close';
 
 // --------------
 
 import plusIcon2 from '../../assets/images/sidebar/plusIcon2.svg';
+import DatePickerIcon from '../../assets/images/logo/datepicker.svg';
 
 import { Drawer, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -42,7 +36,8 @@ import XxlLineIcon from '../../assets/images/logo/xxlLine.svg';
 import XlLineIcon from '../../assets/images/logo/xlLine.svg';
 import LgLineIcon from '../../assets/images/logo/lgLine.svg';
 
-// import { Box } from '@mui/system';
+import MultiDatePicker from '../../atoms/MultiDate/MultiDatePicker';
+import { useEffect, useRef, useState } from 'react';
 
 interface DashboardHeaderProps {
   title: string;
@@ -66,24 +61,29 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
     const theme = useTheme();
 
     // ------------Now --------
-    const [dates, setDates] = useState<Dayjs[]>([]);
-    const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
-
-    const handleDateChange = (newDate: Dayjs | null) => {
-      if (newDate && !dates.some((date) => date.isSame(newDate, 'day'))) {
-        setDates([...dates, newDate]);
-      }
-      setSelectedDate(null);
-    };
-
-    const removeDate = (index: number) => {
-      setDates(dates.filter((_, i) => i !== index));
-    };
 
     const handleSearchSubmit = () => {
       console.log('Search Value:', searchValue);
       setSearchValue('');
     };
+    const [isDateBoxActive, setIsDateBoxActive] = useState(false);
+    const dateBoxRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          dateBoxRef.current &&
+          !dateBoxRef.current.contains(event.target as Node)
+        ) {
+          setIsDateBoxActive(false);
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
 
     // ---------------
 
@@ -124,28 +124,57 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
           <FilterSection>
             {/* Start Date Picker */}
 
-            <DateBox>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Stack spacing={2}>
-                  <DatePicker
-                    label="Select Date"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    // Fix: No `renderInput` prop, use TextField directly
-                    slotProps={{ textField: { fullWidth: true } }}
-                  />
-                  <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                    {dates.map((date, index) => (
-                      <Chip
-                        key={index}
-                        label={date.format('YYYY-MM-DD')}
-                        onDelete={() => removeDate(index)}
-                        deleteIcon={<DeleteIcon />}
-                      />
-                    ))}
-                  </Box>
-                </Stack>
-              </LocalizationProvider>
+            <DateBox
+              ref={dateBoxRef}
+              borderColor={
+                isDateBoxActive
+                  ? theme.palette.decor.main
+                  : theme.palette.grey[300]
+              }
+              onClick={() => setIsDateBoxActive(true)}
+            >
+              <MultiDatePicker
+                style={{
+                  display: 'flex',
+                }}
+                sx={{
+                  '& .MuiOutlinedInput-input': {
+                    padding: '10px',
+                    fontSize: '0.8rem',
+                    borderRadius: '8px',
+                    width: '160px',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '8px',
+                    '& fieldset': {
+                      border: 'none',
+                    },
+
+                    '&.Mui-focused fieldset': {
+                      borderColor: theme.palette.decor.main,
+                    },
+                  },
+                }}
+                popperSX={{
+                  '&.MuiPopper-root': {
+                    backgroundColor: theme.palette.white.main,
+                    borderRadius: '8px',
+
+                    border: `1px solid ${theme.palette.decor.main}`,
+                  },
+                }}
+                dateCalendarSX={{
+                  '& .MuiPickersDay-root.Mui-selected': {
+                    backgroundColor: theme.palette.decor.main,
+                    color: 'white',
+                    '&:hover': {
+                      backgroundColor: theme.palette.decor.main,
+                    },
+                  },
+                }}
+                datePickerIcon={DatePickerIcon}
+                datePickerIconStyle={{ height: '18px', marginTop: '8px' }}
+              />
             </DateBox>
 
             {/* Filter Button */}
@@ -158,41 +187,27 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
                 borderRadius: '5px',
                 width: '100%',
                 border: `1px solid ${theme.palette.grey[300]}`,
-                fontSize: theme.typography.body2.fontSize,
+                fontSize: theme.typography.subtitle2.fontSize,
+                height: '39px',
               }}
               onClick={() => console.log('Filter clicked')}
-              svgIcon={{ height: '12px', color: theme.palette.grey[300] }}
+              svgIcon={{ height: '15px', color: theme.palette.grey[300] }}
             />
 
             {/* Sort Button */}
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                border: `1px solid ${theme.palette.grey[300]}`,
-                borderRadius: '8px',
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <ShortSection>
+              <ShortIcon>
                 <img src={ShortByIcon} alt="" />
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    flexDirection: 'column',
-                    gap: '2px',
-                  }}
-                >
+                <ThreeLineIcon>
                   <img src={XxlLineIcon} alt="" />
                   <img src={XlLineIcon} alt="" />
                   <img src={LgLineIcon} alt="" />
-                </Box>
-              </Box>
+                </ThreeLineIcon>
+              </ShortIcon>
 
               <Button
                 title="Sort By"
                 variant="outlined"
-                // logo={sortIcon}
                 style={{
                   color: theme.palette.text.secondary,
                   borderRadius: '5px',
@@ -203,7 +218,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
                 onClick={() => console.log('Sort clicked')}
                 svgIcon={{ height: '12px' }}
               />
-            </Box>
+            </ShortSection>
 
             {/* Create Project Button */}
             <Button
@@ -243,7 +258,57 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
               </IconButton>
 
               <FilterSectionDrawer>
-                <DateBox></DateBox>
+                <DateBox
+                  ref={dateBoxRef}
+                  borderColor={
+                    isDateBoxActive
+                      ? theme.palette.decor.main
+                      : theme.palette.grey[300]
+                  }
+                  onClick={() => setIsDateBoxActive(true)}
+                >
+                  <MultiDatePicker
+                    style={{
+                      display: 'flex',
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-input': {
+                        padding: '10px',
+                        fontSize: '0.8rem',
+                        borderRadius: '8px',
+                      },
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: '8px',
+                        '& fieldset': {
+                          border: 'none',
+                        },
+
+                        '&.Mui-focused fieldset': {
+                          borderColor: theme.palette.decor.main,
+                        },
+                      },
+                    }}
+                    popperSX={{
+                      '&.MuiPopper-root': {
+                        backgroundColor: '#ffffff',
+                        borderRadius: '8px',
+
+                        border: `1px solid ${theme.palette.decor.main}`,
+                      },
+                    }}
+                    dateCalendarSX={{
+                      '& .MuiPickersDay-root.Mui-selected': {
+                        backgroundColor: theme.palette.decor.main,
+                        color: 'white',
+                        '&:hover': {
+                          backgroundColor: theme.palette.decor.main,
+                        },
+                      },
+                    }}
+                    datePickerIcon={DatePickerIcon}
+                    datePickerIconStyle={{ height: '18px', marginTop: '8px' }}
+                  />
+                </DateBox>
 
                 {/* Filter Button */}
                 <Button
@@ -284,6 +349,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
                     borderRadius: '5px',
                     width: '100%',
                     border: `1px solid ${theme.palette.decor.main}`,
+                    fontSize: theme.typography.subtitle2.fontSize,
                   }}
                   onClick={() => navigate('/create-project')}
                   svgIcon={{
