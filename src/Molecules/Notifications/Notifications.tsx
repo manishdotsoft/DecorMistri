@@ -49,25 +49,31 @@ const Notifications: React.FC = () => {
                 title="Accept "
                 type="submit"
                 variant="contained"
+                buttonFontSize="13px"
                 onClick={() => {}}
                 style={{
                   backgroundColor: theme.palette.primary.blue,
                   color: theme.palette.common.white,
                   borderRadius: '5px',
-                  width: '80px',
+                  width: '75px',
+                  height: '31px',
+                  fontWeight: 600,
                 }}
               />
               <Button
                 title="Decline "
                 type="submit"
                 variant="contained"
+                buttonFontSize="13px"
                 onClick={() => {}}
                 style={{
                   borderRadius: '5px',
                   backgroundColor: theme.palette.grey[200],
-
-                  color: theme.palette.black[200],
-                  width: '80px',
+                  fontWeight: 600,
+                  color: theme.palette.grey[400],
+                  width: '75px',
+                  height: '31px',
+                  border: `1px solid ${theme.palette.grey[500]}`,
                 }}
               />
             </ActionButtonsContainer>

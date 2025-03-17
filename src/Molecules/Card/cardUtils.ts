@@ -5,6 +5,7 @@ interface CardStyle {
   buttonBgColor: string;
   ButtonColor: string;
   title: string;
+  completionColor: string;
 }
 
 export const getCardStyle = (
@@ -17,12 +18,15 @@ export const getCardStyle = (
         borderColor: theme?.palette?.rateSheduleColors?.colorD,
         buttonBgColor: theme?.palette?.decor?.main,
         ButtonColor: theme?.palette?.decor?.main,
-        title: 'Live Project',
+        completionColor: theme?.palette?.primary?.complete,
+        title: 'Open Project',
       };
     case 'Upcoming':
       return {
         borderColor: theme?.palette?.warning?.upcoming,
         buttonBgColor: theme?.palette?.warning?.orange,
+        completionColor: theme?.palette?.primary?.complete,
+
         ButtonColor: theme?.palette?.warning?.orange,
         title: 'Move to Live',
       };
@@ -30,6 +34,8 @@ export const getCardStyle = (
       return {
         borderColor: theme?.palette?.primary?.success,
         buttonBgColor: theme?.palette?.primary?.complete,
+        completionColor: theme?.palette?.primary?.complete,
+
         ButtonColor: theme?.palette?.black[200],
         title: 'Detail View',
       };
@@ -37,6 +43,8 @@ export const getCardStyle = (
       return {
         borderColor: theme?.palette?.rateSheduleColors?.bookedOut,
         buttonBgColor: theme?.palette?.rateSheduleColors?.bookedOut,
+        completionColor: theme?.palette?.primary?.complete,
+
         ButtonColor: theme?.palette?.black[200],
         title: 'Update Status',
       };
@@ -45,6 +53,7 @@ export const getCardStyle = (
         borderColor: theme.palette.grey[400],
         buttonBgColor: theme.palette.background.default,
         ButtonColor: theme.palette.text.primary,
+        completionColor: theme?.palette?.primary?.complete,
         title: '',
       };
   }

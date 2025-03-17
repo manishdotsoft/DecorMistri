@@ -75,8 +75,10 @@ const CardGrid: React.FC<ProjectCardProps> = ({ data }) => {
                 <CompletionBarContainer>
                   <CompletionBar>
                     <CompletionBarFill
-                      fillColor={projectCardStyle.buttonBgColor}
-                      completionPercentage={project.completionPercentage}
+                      style={{
+                        width: `${project.completionPercentage}%`,
+                        backgroundColor: projectCardStyle.completionColor,
+                      }}
                     />
                   </CompletionBar>
                   <CompletionPercentage color={projectCardStyle.buttonBgColor}>
@@ -93,7 +95,13 @@ const CardGrid: React.FC<ProjectCardProps> = ({ data }) => {
 
           return (
             <Box key={project.id}>
-              <ProjectCard borderColor={projectCardStyle.borderColor}>
+              {/* <ProjectCard borderColor={projectCardStyle.borderColor}> */}
+              <ProjectCard
+                style={{
+                  border: `2px solid ${projectCardStyle.borderColor}`,
+                  borderTopWidth: '6px',
+                }}
+              >
                 {/* Header */}
                 <CardHeader>
                   <Typography fontWeight="bold">{project?.heading}</Typography>
@@ -160,13 +168,14 @@ const CardGrid: React.FC<ProjectCardProps> = ({ data }) => {
                   <Button
                     title={projectCardStyle.title}
                     onClick={handleButtonClick}
+                    buttonFontSize="14px"
                     variant="outlined"
                     style={{
                       borderRadius: '6px',
                       border: `1px solid ${projectCardStyle.buttonBgColor}`,
                       color: projectCardStyle.ButtonColor,
                       fontWeight: 'bold',
-                      width: '120px',
+                      width: '113px',
                     }}
                   />
                 </ButtonWrapper>

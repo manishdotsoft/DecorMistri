@@ -7,9 +7,7 @@ import {
   MenuHeader,
 } from './Menu.style';
 import { Collapse, Box, IconButton, useTheme } from '@mui/material';
-// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Modal from '../../atoms/Modal/Modal';
-// import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import { useMenuLogic } from './Menu.hook';
 import EditProject from '../../organisms/EditProject/CreateProject';
@@ -52,7 +50,7 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
     onUpdateStatus,
     onClose,
   });
-  console.log(borderColor);
+
   const theme = useTheme();
 
   return (

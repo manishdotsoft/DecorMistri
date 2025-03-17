@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material';
 import { useState } from 'react';
 
 interface Project {
@@ -21,11 +22,13 @@ export const useCardLogic = () => {
     selectedProject: null,
   });
 
+  const theme = useTheme();
+
   const color: Record<string, string> = {
-    Live: '#1A73E8',
-    Upcoming: '#FFC107',
-    Completed: '#08c912',
-    NotConfirmed: '#FF5722',
+    Live: theme?.palette?.rateSheduleColors?.colorD,
+    Upcoming: theme?.palette?.warning?.upcoming,
+    Completed: theme?.palette?.primary?.success,
+    NotConfirmed: theme?.palette?.rateSheduleColors?.bookedOut,
   };
 
   const [borderColor, setBorderColor] = useState('');
