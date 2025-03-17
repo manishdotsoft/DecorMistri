@@ -6,7 +6,7 @@ export const MainContainer = styled(Box)(() => ({
   justifyContent: 'center',
 }));
 export const CardContainer = styled(Box)(({ theme }) => ({
-  width: '280px',
+  width: '260px',
   border: `1px solid ${theme.palette.grey[800]} `,
   borderRadius: '10px',
 }));
@@ -14,6 +14,7 @@ export const Title = styled(Typography)(() => ({
   padding: '0 25px',
   paddingTop: '10px',
   fontSize: '16px',
+  fontWeight: 600,
 }));
 export const CardBox = styled(Box)(() => ({
   marginBottom: '10px',
@@ -34,12 +35,13 @@ export const NotificationWrapper = styled(Box)(({ theme }) => ({
   marginBottom: '20px',
 }));
 export const NotificationText = styled(Box)(({ theme }) => ({
-  fontSize: '16px',
+  fontSize: '13px',
   color: theme.palette.grey[500],
+  fontFamily: theme.typography.fontFamily,
 }));
 
-export const HighlightedName = styled(Box)(({ theme }) => ({
-  fontSize: '16px',
+export const HighlightedName = styled('span')(({ theme }) => ({
+  fontSize: '13px',
   color: theme.palette.black[800],
   fontWeight: 'bold',
 }));
@@ -49,24 +51,25 @@ export const ActionButtonsContainer = styled(Box)(() => ({
   gap: '8px',
 }));
 export const CardTitle = styled(Typography)(() => ({
-  fontSize: '14px',
+  fontSize: '13px',
   fontWeight: 'bold',
 }));
 export const CardDate = styled(Typography)({
-  fontSize: '14px',
+  fontSize: '13px',
+  fontWeight: 'bold',
 });
 export const CardDescription = styled(Typography)(({ theme }) => ({
-  fontSize: '14px',
+  fontSize: '13px',
   color: theme.palette.grey[500],
 }));
 
 export const MoveToLiveLink = styled(Link)(({ theme }) => ({
   display: 'flex',
   marginTop: '8px',
+  fontSize: '13px',
   justifyContent: 'end',
+  fontWeight: 600,
   color: theme.palette.primary.blue,
+  fontFamily: theme.typography.fontFamily,
   textDecoration: 'none',
-  '&:hover': {
-    textDecoration: 'underline',
-  },
 }));

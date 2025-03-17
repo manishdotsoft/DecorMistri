@@ -102,7 +102,6 @@ export const DrawerTitle = styled(Typography)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-
   fontSize: theme.typography.h5.fontSize,
   fontWeight: '600',
 }));

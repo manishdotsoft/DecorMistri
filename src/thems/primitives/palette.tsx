@@ -96,13 +96,16 @@ export const DECOR_COLOR = '#C7148A';
 export const DECOR_LIGHT = '#fff0f9';
 export const DECOR_DARK = '#b60a7c';
 export const LIGHT_COLOR = '#0b9a72';
-export const BLACK_200 = '#0000004c';
+export const BLACK_200 = '#000000';
 export const BLACK_COLOR = '#1a1a1a';
 export const DECOR_LOGO_COLOR_HOVER = '#fff5fb';
 export const BOX_SHADOW3 = '#91919133';
 export const BLACK_600 = '#00000019';
 export const WHITE_lIGHT = '#ddd';
 export const BLUE = '#007bff';
+export const OFF_WHITE_GRAY = '#E4E4E4';
+export const SUCCESS_GREEN = '#08c912';
+export const WARNING_ORANGE = '#F69400';
 
 const palette = {
   decor: {
@@ -115,6 +118,8 @@ const palette = {
   primary: {
     main: PRIMARY_MAIN,
     contrastText: COMMON_DEFAULT,
+    complete: COLOR_COMPLETE,
+    success: SUCCESS_GREEN,
     dark: PRIMARY_DARK,
     icon: PRIMARY_ICON_COLOR,
     200: PRIMARY_200,
@@ -137,6 +142,7 @@ const palette = {
     iconColor: ICON_COLOR,
     borderColor: GRAY_BORDER_COLOR,
     greyFontColor: GREY_FONT_COLOR,
+    offwhite: OFF_WHITE_GRAY,
     20: GREY_800,
     50: GREY_50,
     100: ICON_LIGHT,
@@ -182,6 +188,7 @@ const palette = {
     warning: TROPHY_ICON_COLOR,
     real: TROPHY_ICON_COLOR,
     upcoming: UPCOMING_PROJECTS_COLOR,
+    orange: WARNING_ORANGE,
   },
   confirm: {
     main: CONFIRM_COLOR,
