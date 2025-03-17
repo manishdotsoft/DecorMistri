@@ -42,7 +42,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             },
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
               borderColor: theme.palette.decor.main,
-              borderWidth: '2px',
+              borderWidth: '1px',
             },
             height: '55px',
           },

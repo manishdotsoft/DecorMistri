@@ -1,19 +1,21 @@
-import SearchIcon from '@mui/icons-material/Search';
 import Button from '../../atoms/Button/Button';
 import { Box, styled, Typography } from '@mui/material';
 
 export const Container = styled('div')(() => ({
   display: 'flex',
-  justifyContent: 'space-between',
-  width: '100%',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  // width: '100%',
+  padding: '14px 22px',
+  backgroundColor: '#fdfdfd',
 }));
 
 export const FilterSection = styled('div')({
   display: 'flex',
   justifyContent: 'center',
+  alignItems: 'center',
   gap: '8px',
   cursor: 'pointer',
-  padding: '22px',
 });
 
 export const ActionsSection = styled('div')(({ theme }) => ({
@@ -29,14 +31,16 @@ export const ActionsSection = styled('div')(({ theme }) => ({
 
 export const SearchContainer = styled('div')({
   position: 'relative',
-  width: '100%',
+  width: '40%',
+  minWidth: '250px',
 });
 
-export const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
-  color: theme.palette.grey[700],
+export const StyledSearchIcon = styled(Box)(() => ({
+  // color: theme.palette.grey[700],
   position: 'absolute',
-  top: '8px',
-  left: '8px',
+  top: '13px',
+  left: '15px',
+  // height: '7px',
 }));
 
 export const StyledButton = styled(Button)({
@@ -61,36 +65,23 @@ export const TitelBox = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const DateBox = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  border: `1px solid 
-  ${theme.palette.grey[300]}`,
-  borderRadius: '6px',
-}));
+export const DateBox = styled(Box)<{ borderColor: string }>(
+  ({ theme, borderColor }) => ({
+    display: 'flex',
 
-export const StartDateBox = styled(Box)({
-  position: 'relative',
-  width: '120px',
-});
-
-export const DateCntainer = styled(Box)({
-  cursor: 'pointer',
-});
+    border: `1px solid ${borderColor || theme.palette.grey[300]}`,
+    borderRadius: '6px',
+    paddingRight: '10px',
+    marginLeft: '10px',
+    cursor: 'pointer',
+  })
+);
 
 export const IconBox = styled(Box)({
   position: 'absolute',
   top: '8px',
   right: '10px',
 });
-
-export const DatePikerBox = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  top: '50px',
-  left: 0,
-  backgroundColor: theme.palette.white.main,
-  boxShadow: `0 2px 10px ${theme.palette.grey[300]}`,
-  zIndex: 10,
-}));
 
 export const DrawerBox = styled(Box)({
   width: '300px',
@@ -125,3 +116,22 @@ export const FilterSectionDrawer = styled(Box)({
   flexDirection: 'column',
   gap: '20px',
 });
+
+export const ShortSection = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  border: `1px solid ${theme.palette.grey[300]}`,
+  borderRadius: '8px',
+}));
+
+export const ShortIcon = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+export const ThreeLineIcon = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'flex-end',
+  flexDirection: 'column',
+  gap: '2px',
+}));

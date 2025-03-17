@@ -14,7 +14,7 @@ export const TextInputField = styled('input')(({ theme }) => ({
   backgroundColor: theme.palette.primary.contrastText,
   outline: 'none',
   '&:focus': {
-    border: `2px solid ${theme.palette.decor.main}`,
+    border: `1px solid ${theme.palette.decor.main}`,
   },
 }));
 
