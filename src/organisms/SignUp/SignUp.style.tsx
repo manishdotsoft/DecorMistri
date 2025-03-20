@@ -4,10 +4,10 @@ export const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  minHeight: '92vh',
+  minHeight: '96vh',
   backgroundColor: theme.palette.white.main,
   padding: '16px',
-  '@media(max-width: 468px)': {
+  [theme.breakpoints.down('sm')]: {
     padding: '0px',
     marginTop: '35px',
   },
@@ -22,23 +22,17 @@ export const MainFlex = styled('div')(({ theme }) => ({
   boxShadow: `0px 0px 100px 10px ${theme.palette.black[500]}`,
 
   overflow: 'hidden',
-  width: '90%',
-
-  [theme.breakpoints.down('xl')]: {
-    // flexDirection: 'column',
-    width: '95%',
-  },
 
   [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',
-    width: '100%',
+    width: '90%',
   },
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     padding: '16px',
     width: '97%',
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('sm')]: {
     width: '100%',
     boxShadow: 'none',
     padding: '0',
@@ -61,6 +55,9 @@ export const ChildFlex = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden',
+
+  margin: 'auto 0',
+
   height: '100%',
   [theme.breakpoints.down('md')]: {
     padding: '20px 16px',
@@ -91,6 +88,12 @@ export const AllImg = styled('img')(({ theme }) => ({
     margin: '0 auto',
     padding: '18px',
   },
+
+  [theme.breakpoints.down('md')]: {
+    borderTopLeftRadius: '6px',
+    borderBottomLeftRadius: '6px',
+  },
+
   [theme.breakpoints.down('sm')]: {
     display: 'none',
   },
@@ -143,7 +146,7 @@ export const ProgressBar = styled('div')(() => ({
   display: 'flex',
 
   gap: '5px',
-  width: '80%',
+  width: '82%',
 }));
 
 export const PasswordError = styled('div')(() => ({
@@ -157,20 +160,26 @@ export const LogoImage = styled('img')(() => ({
 export const DividerLine = styled(Divider)(({ theme }) => ({
   margin: '10px 0',
   color: theme.palette.text.primary,
+  fontFamily: theme.typography.fontFamily,
 }));
 export const StrengthText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.grey[600],
+  color: theme.palette.grey[700],
   fontFamily: theme.typography.fontFamily,
+  fontWeight: '600',
   marginTop: '10px',
-
   display: 'flex',
   justifyContent: 'flex-end',
+}));
+
+export const StrengthLabel = styled('strong')(({ theme }) => ({
+  color: theme.palette.decor.main,
+  paddingLeft: '3px',
 }));
 
 export const HaveAccount1 = styled(Typography)(({ theme }) => ({
   textAlign: 'center',
   fontWeight: '600',
-  color: theme.palette.grey[700],
+  color: theme.palette.grey[900],
 }));
 
 export const HaveAccount2 = styled(Typography)(({ theme }) => ({

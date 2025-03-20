@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Box, List, ListItemText, Collapse } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
@@ -38,6 +38,7 @@ import BusinessDetailsIcon from '../../assets/images/sidebar/plusIcon.svg';
 import AdvancedSettingsIcon from '../../assets/images/sidebar/plusIcon.svg';
 
 import KeyArrowIcon from '../../assets/images/sidebar/keyArrow.svg';
+import { useLocation } from 'react-router-dom';
 
 interface NavItem {
   title: string;
@@ -160,8 +161,31 @@ const navItems: NavItem[] = [
 ];
 
 const MainNav: React.FC = () => {
+  const location = useLocation();
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>('Dashboard');
+
+  // Automatically set active menu item based on the current URL
+  useEffect(() => {
+    const currentPath = location.pathname;
+    let foundItem: string | null = null;
+
+    navItems.forEach((item) => {
+      if (item.path === currentPath) {
+        foundItem = item.title;
+      } else if (item.subItems) {
+        const subItemMatch = item.subItems.find(
+          (subItem) => subItem.path === currentPath
+        );
+        if (subItemMatch) {
+          foundItem = subItemMatch.title;
+          setOpenSection(item.title); // Open the parent section
+        }
+      }
+    });
+
+    setSelectedItem(foundItem);
+  }, [location.pathname]);
 
   const handleToggle = (title: string) => {
     setOpenSection(openSection === title ? null : title);
@@ -169,6 +193,7 @@ const MainNav: React.FC = () => {
   const handleSelect = (title: string) => {
     setSelectedItem(title);
   };
+
   return (
     <MainSidebar>
       <NavList>

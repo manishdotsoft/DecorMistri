@@ -10,16 +10,17 @@ interface ButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   variant: 'contained' | 'outlined';
   backgroundColor?: string;
-  hoverBackgroundColor?: string; // <-- Add this prop
+  hoverBackgroundColor?: string;
   style?: React.CSSProperties;
   disabled?: boolean;
   loading?: boolean;
-  buttonFontSize?: string;
+  buttonFontSize?: string | number;
   fontWeight?: string;
   letterSpacing?: string;
   type?: 'button' | 'reset' | 'submit';
   buttonWarraparStyle?: React.CSSProperties;
   svgIcon?: React.CSSProperties;
+  fontFamily?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({

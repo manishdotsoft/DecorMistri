@@ -1,10 +1,8 @@
-import React from 'react';
-import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import React, { useState } from 'react';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import DatePickerIcon from '../../assets/images/createProject/DatePickerIcon.svg';
-
-import { Theme, useTheme } from '@mui/material';
+import TextInput from '../TextInput/TextInput';
 
 interface DatePickerProps {
   onDateChange?: (date: Date | null) => void;
@@ -14,51 +12,79 @@ interface DatePickerProps {
   placeholder?: string;
   disableFuture?: boolean;
   disablePast?: boolean;
-  className?: string;
+  inputStyle?: React.CSSProperties;
 }
 
 export const DatePicker: React.FC<DatePickerProps> = ({
   onDateChange,
   value,
+  label,
+  placeholder,
+  inputStyle,
 }) => {
-  const handleDateChange = (date: Date | null) => {
-    if (onDateChange) {
-      onDateChange(date);
+  const [manualInput, setManualInput] = useState<string>(
+    value ? value.toLocaleDateString('en-US') : ''
+  );
+
+  // ✅ Handle manual input and convert it to Date
+  const handleManualInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setManualInput(inputValue);
+
+    const parsedDate = new Date(inputValue);
+    if (!isNaN(parsedDate.getTime())) {
+      onDateChange?.(parsedDate);
+    } else {
+      onDateChange?.(null);
     }
   };
-  const theme: Theme = useTheme();
+
+  // ✅ Handle date selection from calendar
+  const handleDateChange = (date: Date | null) => {
+    setManualInput(date ? date.toLocaleDateString('en-US') : '');
+    onDateChange?.(date);
+  };
+
   return (
-    // <CustomTextField style={{ ...style }}>
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <MuiDatePicker
-        value={value}
-        onChange={handleDateChange}
-        format="MM/dd/yyyy"
-        sx={{
-          '& .MuiOutlinedInput-root': {
-            borderRadius: '6px',
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.grey[800],
-            },
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.decor.main,
-              borderWidth: '1px',
-            },
-            height: '55px',
-          },
-        }}
-        slots={{
-          openPickerIcon: () => (
-            <img
-              src={DatePickerIcon}
-              alt="Calendar Icon"
-              width={20}
-              height={20}
-            />
-          ),
-        }}
-      />
-    </LocalizationProvider>
-    // </CustomTextField>
+    <ReactDatePicker
+      selected={value}
+      onChange={handleDateChange}
+      dateFormat="MM/dd/yyyy"
+      customInput={
+        <div style={{ position: 'relative', width: '100%' }}>
+          <TextInput
+            name={label || 'date-picker'}
+            label={label || 'Date'}
+            value={manualInput}
+            onChange={handleManualInputChange}
+            type="date"
+            placeholder={placeholder || 'MM/DD/YYYY'}
+            style={{
+              width: '100%',
+              height: '40px',
+              paddingRight: '35px',
+              borderRadius: '6px',
+              ...inputStyle,
+            }}
+          />
+          <img
+            src={DatePickerIcon}
+            alt="Calendar Icon"
+            width={20}
+            height={20}
+            style={{
+              position: 'absolute',
+              right: '10px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              cursor: 'pointer',
+              // pointerEvents: 'none',
+            }}
+          />
+        </div>
+      }
+    />
   );
 };
+
+export default DatePicker;

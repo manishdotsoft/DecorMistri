@@ -97,6 +97,8 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
             onDateChange={(value: Date | null) =>
               formik.setFieldValue('dateOfIssue', value)
             }
+            placeholder="Select date"
+            inputStyle={{ width: '100%', height: '18px', borderRadius: '8px' }}
           />
 
           {formik.errors.dateOfIssue && formik.touched.dateOfIssue && (
@@ -141,6 +143,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               style={{
                 width: '100%',
                 borderRadius: '8px',
+                paddingRight: '40px',
               }}
               placeholder="Email address"
             />
@@ -192,6 +195,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               style={{
                 width: '100%',
                 borderRadius: '8px',
+                paddingRight: '40px',
               }}
               placeholder="Input here website name"
             />
@@ -239,6 +243,7 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               style={{
                 width: '100%',
                 borderRadius: '8px',
+                paddingRight: '40px',
               }}
               placeholder="Enter location or Google Map link"
             />

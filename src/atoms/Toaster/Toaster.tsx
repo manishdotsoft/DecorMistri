@@ -50,6 +50,7 @@ const Toaster: React.FC<ToasterProps> = ({
         autoHideDuration={3000}
         onClose={onClose}
         anchorOrigin={position}
+        style={style}
       >
         <Alert
           onClose={onClose}

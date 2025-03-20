@@ -122,6 +122,7 @@ const PropertyLocationDetails = ({
             label="ZIP/Code"
             value={formik.values.zip}
             onChange={formik.handleChange}
+            type="number"
             onBlur={formik.handleBlur}
             error={formik.touched.zip && Boolean(formik.errors.zip)}
             style={{

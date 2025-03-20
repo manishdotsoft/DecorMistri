@@ -100,9 +100,8 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
             style={{
               width: '100%',
               borderRadius: '8px',
-              paddingLeft: '50px',
-              height: '4px',
               fontSize: '0.9rem',
+              padding: '11px 11px 11px 50px',
             }}
             onKeyDown={(event) => {
               if (event.key === 'Enter') {
@@ -182,13 +181,14 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
               title="Filter"
               variant="outlined"
               logo={filterIcon}
+              buttonFontSize={theme.typography.subtitle2.fontSize}
               style={{
-                color: theme.palette.text.secondary,
-                borderRadius: '5px',
+                color: theme.palette.black[200],
+                borderRadius: '8px',
                 width: '100%',
                 border: `1px solid ${theme.palette.grey[300]}`,
-                fontSize: theme.typography.subtitle2.fontSize,
-                height: '39px',
+                fontSize: theme.typography.caption.fontSize,
+                padding: '0px 12px',
               }}
               onClick={() => console.log('Filter clicked')}
               svgIcon={{ height: '15px', color: theme.palette.grey[300] }}
@@ -208,15 +208,14 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
               <Button
                 title="Sort By"
                 variant="outlined"
+                buttonFontSize={theme.typography.caption.fontSize}
                 style={{
-                  color: theme.palette.text.secondary,
+                  color: theme.palette.black[200],
                   borderRadius: '5px',
                   width: '100%',
-
                   border: 'none',
                 }}
                 onClick={() => console.log('Sort clicked')}
-                svgIcon={{ height: '12px' }}
               />
             </ShortSection>
 
@@ -225,9 +224,10 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
               title="Create Project"
               variant="outlined"
               logo={plusIcon2}
+              buttonFontSize={theme.typography.subtitle2.fontSize}
               style={{
                 color: theme.palette.decor.main,
-                borderRadius: '5px',
+                borderRadius: '8px',
                 width: '140px',
                 border: `1px solid ${theme.palette.decor.main}`,
               }}
@@ -349,7 +349,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
                     borderRadius: '5px',
                     width: '100%',
                     border: `1px solid ${theme.palette.decor.main}`,
-                    fontSize: theme.typography.subtitle2.fontSize,
+                    // fontSize: theme.typography.subtitle2.fontSize,
                   }}
                   onClick={() => navigate('/create-project')}
                   svgIcon={{

@@ -55,9 +55,8 @@ const TimelineSchedule: React.FC<TimelineScheduleProps> = ({
             onDateChange={(value: Date | null) =>
               formik.setFieldValue('startDate', value)
             }
-            style={{
-              width: '100%',
-            }}
+            placeholder="Select date"
+            inputStyle={{ width: '100%', height: '18px', borderRadius: '8px' }}
           />
 
           {formik.errors.startDate && formik.touched.startDate && (
@@ -73,9 +72,8 @@ const TimelineSchedule: React.FC<TimelineScheduleProps> = ({
             onDateChange={(value: Date | null) =>
               formik.setFieldValue('endDate', value)
             }
-            style={{
-              width: '100%',
-            }}
+            placeholder="Select date"
+            inputStyle={{ width: '100%', height: '18px', borderRadius: '8px' }}
           />
 
           {formik.errors.endDate && formik.touched.endDate && (

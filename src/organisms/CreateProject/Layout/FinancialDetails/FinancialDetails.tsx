@@ -69,6 +69,7 @@ const FinancialDetails = ({
             value={formik.values.estimatedBudget}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            type="number"
             error={
               formik.touched.estimatedBudget &&
               Boolean(formik.errors.estimatedBudget)

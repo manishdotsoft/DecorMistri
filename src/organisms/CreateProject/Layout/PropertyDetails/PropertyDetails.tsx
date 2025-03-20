@@ -261,6 +261,7 @@ const PropertyDetails = ({
           <SelectFileParent>
             <SelectSection
               title="Select File"
+              tabIndex={0}
               onClick={() => document.getElementById('fileInput')?.click()}
             >
               Select plans

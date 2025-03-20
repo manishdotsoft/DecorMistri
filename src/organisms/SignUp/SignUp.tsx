@@ -23,6 +23,7 @@ import {
   StrengthText,
   HaveAccount1,
   HaveAccount2,
+  StrengthLabel,
 } from './SignUp.style';
 
 import TextInput from '../../atoms/TextInput/TextInput';
@@ -73,7 +74,6 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
-    // <Box sx={{}}>
     <StyledContainer>
       <MainFlex>
         <ChildFlex>
@@ -123,7 +123,7 @@ const SignUpForm: React.FC = () => {
                   borderRadius: '8px',
 
                   marginTop: '10px',
-                  marginBottom: '6px',
+                  marginBottom: '4px',
                 }}
                 eyePadding={{ paddingRight: '30px' }}
                 placeholder="Enter your name"
@@ -150,7 +150,7 @@ const SignUpForm: React.FC = () => {
                   borderRadius: '8px',
 
                   marginTop: '10px',
-                  marginBottom: '6px',
+                  marginBottom: '4px',
                 }}
                 // inputProps={{
                 //   maxLength: 10,
@@ -176,7 +176,7 @@ const SignUpForm: React.FC = () => {
                   borderRadius: '8px',
 
                   marginTop: '10px',
-                  marginBottom: '6px',
+                  marginBottom: '4px',
                 }}
                 eyePadding={{ paddingRight: '30px' }}
                 placeholder="Enter your email address"
@@ -205,7 +205,7 @@ const SignUpForm: React.FC = () => {
                       borderRadius: '8px',
 
                       marginTop: '10px',
-                      marginBottom: '6px',
+                      marginBottom: '4px',
                     }}
                     eyePadding={{ paddingRight: '30px' }}
                   />
@@ -221,10 +221,11 @@ const SignUpForm: React.FC = () => {
               <SegmentedProgressBar strength={passwordStrength} />
             </ProgressBar1>
             <StrengthText variant="caption">
-              Password strength: {label}
+              Password strength : <StrengthLabel>{label}</StrengthLabel>
             </StrengthText>
 
             {/* Sign Up Button */}
+
             <Button
               title="Sign Up"
               type="submit"

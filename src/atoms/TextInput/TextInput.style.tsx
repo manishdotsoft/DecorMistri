@@ -7,14 +7,25 @@ export const FullWidthFormControl = styled('div')(() => ({
 }));
 
 export const TextInputField = styled('input')(({ theme }) => ({
-  padding: '18px',
+  fontFamily: theme.typography.fontFamily,
+  padding: '16px',
   width: '100%',
   border: `1px solid ${theme.palette.grey[300]}`,
-  fontSize: '16px',
+  fontSize: '14px',
   backgroundColor: theme.palette.primary.contrastText,
   outline: 'none',
   '&:focus': {
     border: `1px solid ${theme.palette.decor.main}`,
+  },
+
+  /* Hide arrows in number input for Chrome, Safari, Edge, Opera */
+  '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+    WebkitAppearance: 'none',
+    margin: 0,
+  },
+  /* Hide arrows in number input for Firefox */
+  '&[type=number]': {
+    MozAppearance: 'textfield',
   },
 }));
 

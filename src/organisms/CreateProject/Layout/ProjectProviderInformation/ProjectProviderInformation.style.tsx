@@ -45,9 +45,9 @@ export const GridContainer2 = styled(Box)(({ theme }) => ({
 }));
 
 export const StyledTypography = styled(Typography)(({ theme }) => ({
+  fontFamily: theme?.typography?.fontFamily,
   fontSize: '12px',
   color: theme.palette.error.main,
-  fontFamily: 'sans-serif',
 
   marginLeft: '15px',
 }));
@@ -66,10 +66,10 @@ export const InputSection = styled(Box)(() => ({
 }));
 
 export const InputLabelItem = styled('label')(({ theme }) => ({
+  fontFamily: theme?.typography?.fontFamily,
   fontSize: theme.typography?.body2.fontSize,
   marginBottom: '4px',
   color: theme.palette.grey[700],
-  fontFamily: theme?.typography?.fontFamily,
 }));
 
 export const InputIconFor = styled(Box)(() => ({
