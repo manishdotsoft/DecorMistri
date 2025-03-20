@@ -59,9 +59,9 @@ export const GridContainer2 = styled(Box)(({ theme }) => ({
 }));
 
 export const StyledTypography = styled(Typography)(({ theme }) => ({
+  fontFamily: theme?.typography?.fontFamily,
   fontSize: theme.typography?.caption.fontSize,
   color: theme.palette.error.main,
-  fontFamily: 'sans-serif',
 
   marginLeft: '15px',
 }));
@@ -81,8 +81,11 @@ export const SelectSection = styled(Box)(({ theme }) => ({
   border: `1px solid ${theme.palette.grey[300]}`,
   borderRadius: '6px',
   cursor: 'pointer',
-  '&:hover': {
-    border: `2px solid ${theme.palette.decor.main}`,
+  transition: 'border-color 0.3s ease', // Smooth transition for focus effect
+
+  '&:focus, &:focus-within': {
+    borderColor: theme.palette.decor.main, // Focused border color
+    outline: 'none',
   },
 }));
 
@@ -100,6 +103,6 @@ export const TextArea = styled('textarea')(({ theme }) => ({
   // transition: 'border-color 0.3s ease',
   outlineColor: 'none',
   '&:focus': {
-    border: `2px solid ${theme.palette.decor.main} !important`,
+    border: `1px solid ${theme.palette.decor.main} !important`,
   },
 }));

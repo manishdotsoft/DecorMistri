@@ -32,7 +32,7 @@ export const ActionsSection = styled('div')(({ theme }) => ({
 export const SearchContainer = styled('div')({
   position: 'relative',
   width: '40%',
-  minWidth: '250px',
+  minWidth: '300px',
 });
 
 export const StyledSearchIcon = styled(Box)(() => ({
@@ -70,7 +70,7 @@ export const DateBox = styled(Box)<{ borderColor: string }>(
     display: 'flex',
 
     border: `1px solid ${borderColor || theme.palette.grey[300]}`,
-    borderRadius: '6px',
+    borderRadius: '8px',
     paddingRight: '10px',
     marginLeft: '10px',
     cursor: 'pointer',
@@ -121,6 +121,8 @@ export const ShortSection = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   border: `1px solid ${theme.palette.grey[300]}`,
   borderRadius: '8px',
+  padding: '0px 10px',
+  height: '38px',
 }));
 
 export const ShortIcon = styled(Box)(() => ({

@@ -7,6 +7,7 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import usePasswordVisibility from './customHooks';
+import { Box } from '@mui/system';
 
 interface TextInputProps {
   name: string;
@@ -47,7 +48,7 @@ const TextInput: React.FC<TextInputProps> = ({
         : 'text';
 
   return (
-    <div>
+    <Box>
       <FullWidthFormControl>
         <TextInputField
           id={name}
@@ -83,7 +84,7 @@ const TextInput: React.FC<TextInputProps> = ({
         )}
       </FullWidthFormControl>
       {error && <FormHelp>{helperText}</FormHelp>}
-    </div>
+    </Box>
   );
 };
 

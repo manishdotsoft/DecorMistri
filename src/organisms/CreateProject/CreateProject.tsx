@@ -227,6 +227,7 @@ const CreateProject = () => {
           severity={'projectCreateSuccess'}
           open={showToast}
           onClose={handleToasterClose}
+          style={{ marginTop: '50px' }}
         />
       )}
     </MainBox>

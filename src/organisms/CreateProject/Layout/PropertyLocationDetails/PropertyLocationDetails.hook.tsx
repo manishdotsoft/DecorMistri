@@ -27,7 +27,7 @@ const usePropertyLocationDetails = ({
       country: data.country || '',
       state: data.state || '',
       city: data.city || '',
-      zip: data.zip || '',
+      zip: String(data.zip || ''),
       addressLine1: data.addressLine1 || '',
       addressLine2: data.addressLine2 || '',
     },
@@ -45,7 +45,7 @@ const usePropertyLocationDetails = ({
       formik.values.country &&
       formik.values.state &&
       formik.values.city &&
-      formik.values.zip.trim() &&
+      String(formik.values.zip).trim() &&
       formik.values.addressLine1.trim()
     );
   }, [formik.values]);

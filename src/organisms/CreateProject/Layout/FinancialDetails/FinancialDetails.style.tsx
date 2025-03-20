@@ -38,10 +38,9 @@ export const GridContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const StyledTypography = styled(Typography)(({ theme }) => ({
+  fontFamily: theme?.typography?.fontFamily,
   fontSize: '12px',
   color: theme.palette.error.main,
-  fontFamily: 'sans-serif',
-
   marginLeft: '15px',
 }));
 
