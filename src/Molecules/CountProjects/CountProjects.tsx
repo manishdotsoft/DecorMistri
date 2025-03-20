@@ -11,7 +11,11 @@ import {
   ValueTypography,
 } from './CountProjects.style';
 
-const CountProjects: React.FC = () => {
+interface CountProjectsProps {
+  status?: string;
+}
+
+const CountProjects: React.FC<CountProjectsProps> = ({ status }) => {
   const theme = useTheme();
 
   const stats = [
@@ -20,35 +24,46 @@ const CountProjects: React.FC = () => {
       value: '05',
       size: '13,500',
       color: theme.palette.rateSheduleColors.colorD,
+      key: 'live',
     },
     {
       label: 'UPCOMING',
       value: '12',
       size: '24,500',
       color: theme.palette.warning.upcoming,
+      key: 'upcoming',
     },
-
     {
       label: 'COMPLETED',
       value: '03',
       size: '10,500',
       color: theme.palette.rateSheduleColors.complete,
+      key: 'complete',
     },
     {
       label: 'NOT CONFIRMED',
       value: '02',
       size: '2,500',
       color: theme.palette.rateSheduleColors.bookedOut,
+      key: 'notconfirmed',
     },
-    { label: 'TOTAL USERS', value: '250', size: '25,320' },
+    {
+      label: 'TOTAL USERS',
+      value: '250',
+      size: '25,320',
+      key: 'total',
+    },
   ];
+
+  const filteredStats = status
+    ? stats.filter((stat) => stat.key.toLowerCase() === status.toLowerCase())
+    : stats;
 
   return (
     <CountProjectsMainSec>
-      {stats.map((stat, index) => (
+      {filteredStats.map((stat, index) => (
         <CardMain key={index}>
           <ColorBox color={stat.color} />
-
           <CardChild>
             <CardFirst>
               <LabelTypography>{stat.label}</LabelTypography>

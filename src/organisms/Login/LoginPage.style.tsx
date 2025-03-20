@@ -8,7 +8,7 @@ export const SignupContainer = styled('div')(({ theme }) => ({
   flexDirection: 'row',
   gap: '10px',
   marginTop: '20px',
-  fontSize: theme.typography.body1.fontSize,
+  fontSize: theme.typography.caption.fontSize,
   color: theme.palette.text.secondary,
   width: '100%',
   '.signup-link': {
@@ -31,7 +31,6 @@ export const LoginLink = styled(RouterLink)(({ theme }) => ({
 export const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
-
   alignItems: 'center',
   minHeight: '92vh',
   backgroundColor: theme.palette.white.main,
@@ -46,11 +45,9 @@ export const StyledContainer = styled('div')(({ theme }) => ({
 export const MainFlex = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
-
   backgroundColor: theme.palette.white.main,
   borderRadius: '25px',
   boxShadow: `0px 0px 100px 10px ${theme.palette.grey[800]}`,
-
   overflow: 'hidden',
 
   [theme.breakpoints.down('lg')]: {
@@ -63,7 +60,7 @@ export const MainFlex = styled('div')(({ theme }) => ({
     padding: '16px',
     width: '97%',
   },
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('sm')]: {
     width: '100%',
     boxShadow: 'none',
     padding: '0',
@@ -74,7 +71,6 @@ export const StyledForm = styled('form')(() => ({}));
 export const TextArea = styled('div')(() => ({
   display: 'flex',
   alignItems: 'center',
-
   gap: '8px',
 }));
 
@@ -86,9 +82,7 @@ export const ChildFlex = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden',
-  marginTop: 'auto',
-  marginBottom: 'auto',
-
+  margin: 'auto 0',
   height: '100%',
   [theme.breakpoints.down('md')]: {
     padding: '20px 16px',
@@ -116,6 +110,7 @@ export const ForgotPasswordLink = styled(RouterLink)(({ theme }) => ({
   textAlign: 'right',
   color: theme.palette.decor.main,
   textDecoration: 'none',
+  fontFamily: theme.typography.fontFamily,
   fontSize: theme.typography.body2.fontSize,
   [theme.breakpoints.down('sm')]: {
     fontSize: theme.typography.subtitle2.fontSize,
@@ -165,7 +160,7 @@ export const Logo = styled('div')(() => ({
   marginBottom: '10px',
 }));
 
-export const Title = styled(Typography)(({ theme }) => ({
+export const Title = styled('div')(({ theme }) => ({
   fontSize: theme.typography.h3.fontSize,
   fontWeight: 'bold',
   // fontFamily: fonts.primary,
@@ -228,7 +223,7 @@ export const ImageBox = styled('div')(({ theme }) => ({
 }));
 
 export const TitleOne = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.A4.fontSize,
+  fontSize: theme?.typography?.A4?.fontSize,
   fontWeight: 300,
 
   [theme.breakpoints.down('sm')]: {
@@ -250,7 +245,7 @@ export const LogoImage = styled('img')(() => ({
 }));
 
 export const Collaboration = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.A4.fontSize,
+  fontSize: theme?.typography?.A4?.fontSize,
   fontWeight: 300,
 
   [theme.breakpoints.down('sm')]: {
@@ -258,8 +253,9 @@ export const Collaboration = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const ParentInputBox = styled('div')(() => ({
+export const ParentInputBox = styled('div')(({ theme }) => ({
   // marginRight: '49px',
+  fontFamily: theme.typography.fontFamily,
 }));
 
 export const ModalBox = styled(Box)(({ theme }) => ({
@@ -294,6 +290,7 @@ export const LinkSignup = styled(Typography)(({ theme }) => ({
   color: theme.palette.decor.main,
   fontSize: theme.typography.body2.fontSize,
   textDecoration: 'none',
+  fontWeight: 500,
 }));
 
 export const ButtonWrapper = styled(Box)({
@@ -303,3 +300,19 @@ export const ButtonWrapper = styled(Box)({
   marginTop: '24px',
   gap: '20px',
 });
+
+export const CheckboxContainer = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '5px',
+}));
+export const StyledCheckbox = styled('input')(({ theme }) => ({
+  accentColor: theme?.palette?.decor?.Check,
+  width: '22px',
+  height: '22px',
+  cursor: 'pointer',
+}));
+export const StyledLabel = styled('label')(({ theme }) => ({
+  fontFamily: theme?.typography?.fontFamily,
+  cursor: 'pointer',
+}));

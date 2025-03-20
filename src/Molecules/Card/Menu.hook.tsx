@@ -16,6 +16,17 @@ export const useMenuLogic = ({
   const statusOptions = ['Live', 'Complete', 'Upcoming', 'Not confirmed'];
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalState, setModalState] = useState<'edit' | 'delete' | null>(null);
+  const [statusAnchorEl, setStatusAnchorEl] = useState<null | HTMLElement>(
+    null
+  );
+
+  const handleOpenStatusMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setStatusAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseStatusMenu = () => {
+    setStatusAnchorEl(null);
+  };
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
@@ -47,5 +58,8 @@ export const useMenuLogic = ({
     closeModal,
     handleStatusChange,
     confirmDelete,
+    statusAnchorEl,
+    handleOpenStatusMenu,
+    handleCloseStatusMenu,
   };
 };

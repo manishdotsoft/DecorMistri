@@ -11,8 +11,7 @@ export const CardContainer = styled(Box)(({ theme }) => ({
   borderRadius: '10px',
 }));
 export const Title = styled(Typography)(() => ({
-  padding: '0 25px',
-  paddingTop: '10px',
+  padding: '8px 25px',
   fontSize: '16px',
   fontWeight: 600,
 }));

@@ -15,6 +15,7 @@ export const ModalBox = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
+  fontFamily: theme.typography.fontFamily,
 }));
 
 export const ModalTitle = styled(Typography)(({ theme }) => ({

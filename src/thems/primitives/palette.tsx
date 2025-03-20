@@ -106,6 +106,7 @@ export const BLUE = '#007bff';
 export const OFF_WHITE_GRAY = '#E4E4E4';
 export const SUCCESS_GREEN = '#08c912';
 export const WARNING_ORANGE = '#F69400';
+export const CHECK_BOX = '#F8A0DA';
 
 const palette = {
   decor: {
@@ -113,6 +114,7 @@ const palette = {
     dark: DECOR_DARK,
     light: DECOR_LIGHT,
     hover: DECOR_LOGO_COLOR_HOVER,
+    Check: CHECK_BOX,
   },
 
   primary: {

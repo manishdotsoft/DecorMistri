@@ -10,6 +10,7 @@ export const ProjectData = [
     completionPercentage: 75,
     status: 'Live',
     heading: 'Live Project',
+    ownerImage: 'https://i.pravatar.cc/150?img=3',
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ export const ProjectData = [
     completionPercentage: 25,
     status: 'Upcoming',
     heading: 'Upcoming Project',
+    ownerImage: 'https://i.pravatar.cc/150?img=5',
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ export const ProjectData = [
     completionPercentage: 25,
     status: 'Completed',
     heading: 'Completed Project',
+    ownerImage: 'https://i.pravatar.cc/150?img=54',
   },
 
   {
@@ -50,6 +53,7 @@ export const ProjectData = [
     completionPercentage: 0,
     status: 'NotConfirmed',
     heading: 'Not Confirmed',
+    ownerImage: 'https://i.pravatar.cc/150?img=45',
   },
   {
     id: 5,
@@ -62,6 +66,7 @@ export const ProjectData = [
     completionPercentage: 75,
     status: 'Live',
     heading: 'Live Project',
+    ownerImage: 'https://i.pravatar.cc/150?img=55',
   },
   {
     id: 6,
@@ -75,6 +80,7 @@ export const ProjectData = [
     completionPercentage: 25,
     status: 'Upcoming',
     heading: 'Upcoming Project',
+    ownerImage: 'https://i.pravatar.cc/150?img=57',
   },
   {
     id: 7,
@@ -88,6 +94,7 @@ export const ProjectData = [
     completionPercentage: 25,
     status: 'Completed',
     heading: 'Completed Project',
+    ownerImage: 'https://i.pravatar.cc/150?img=10',
   },
 
   {
@@ -102,6 +109,7 @@ export const ProjectData = [
     completionPercentage: 0,
     status: 'NotConfirmed',
     heading: 'Not Confirmed',
+    ownerImage: 'https://i.pravatar.cc/150?img=12',
   },
 
   //   {
