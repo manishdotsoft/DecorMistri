@@ -4,7 +4,12 @@ import Loader from '../../atoms/Loader/Loader';
 import { useDashboardLogic } from './Dashboard.hook';
 import DashboardHeader from '../../Molecules/DashboardHeader/DashboardHeader';
 import CountProjects from '../../Molecules/CountProjects/CountProjects';
-import { BoxContainer, CardContaier, ProjectBox } from './Dashboard.style';
+import {
+  BoxContainer,
+  CardContaier,
+  ProjectBox,
+  LoadingWrapper,
+} from './Dashboard.style';
 import { ProjectData } from '../../Data/CardData';
 
 const Dashboard = () => {
@@ -26,10 +31,12 @@ const Dashboard = () => {
   return (
     <Box>
       {loading ? (
-        <Loader message="" size={'large'} />
+        <LoadingWrapper>
+          <Loader message="" size={'large'} />
+        </LoadingWrapper>
       ) : (
         <>
-          <DashboardHeader title="Dashboard" />
+          <DashboardHeader />
           <BoxContainer>
             <CountProjects />
 

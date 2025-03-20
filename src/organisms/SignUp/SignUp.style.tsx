@@ -85,7 +85,6 @@ export const SignUpImageBox = styled('div')(({ theme }) => ({
 export const AllImg = styled('img')(({ theme }) => ({
   width: '100%',
   height: '100%',
-
   [theme.breakpoints.down('lg')]: {
     width: '95%',
     margin: '0 auto',
@@ -141,7 +140,6 @@ export const ProgressBar1 = styled('div')(() => ({
 
 export const ProgressBar = styled('div')(() => ({
   display: 'flex',
-
   gap: '5px',
   width: '80%',
 }));

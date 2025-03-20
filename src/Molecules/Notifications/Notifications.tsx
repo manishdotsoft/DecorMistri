@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, useTheme } from '@mui/material';
+import { Box, Divider, useTheme } from '@mui/material';
 import Button from '../../atoms/Button/Button';
-import { DividerLine } from '../../organisms/SignUp/SignUp.style';
+
 import {
   ActionButtonsContainer,
   Card,
@@ -24,7 +24,7 @@ const Notifications: React.FC = () => {
     <MainContainer>
       <CardContainer>
         <Title variant="h6">Notifications</Title>
-        <DividerLine />
+        <Divider />
 
         {/* Project Status Notification */}
         <CardBox>
@@ -49,7 +49,7 @@ const Notifications: React.FC = () => {
                 title="Accept "
                 type="submit"
                 variant="contained"
-                buttonFontSize="13px"
+                buttonFontSize={theme.typography.caption.fontSize}
                 onClick={() => {}}
                 style={{
                   backgroundColor: theme.palette.primary.blue,
@@ -64,7 +64,7 @@ const Notifications: React.FC = () => {
                 title="Decline "
                 type="submit"
                 variant="contained"
-                buttonFontSize="13px"
+                buttonFontSize={theme.typography.caption.fontSize}
                 onClick={() => {}}
                 style={{
                   borderRadius: '5px',

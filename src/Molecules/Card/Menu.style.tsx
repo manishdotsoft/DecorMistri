@@ -1,6 +1,5 @@
-import { Button, styled } from '@mui/material';
+import { Box, Button, styled } from '@mui/material';
 import { Menu, MenuItem } from '@mui/material';
-import { Box } from '@mui/system';
 
 export const StyledMenu = styled(Menu)<{ borderColor?: string }>(
   ({ theme, borderColor }) => ({
@@ -16,6 +15,7 @@ export const StyledMenu = styled(Menu)<{ borderColor?: string }>(
 
 export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   fontSize: theme.typography.body2.fontSize,
+  display: 'flex',
 
   color: theme.palette.black[200],
 
@@ -23,6 +23,7 @@ export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
     backgroundColor: theme.palette.action.hover,
   },
 }));
+
 export const StatusButton = styled(Button)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
@@ -42,6 +43,7 @@ export const StatusButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.palette.decor.main,
   },
 }));
+
 export const ButtonContainer = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
@@ -54,3 +56,13 @@ export const MenuHeader = styled(Box)({
   alignItems: 'center',
   paddingRight: '8px',
 });
+
+export const StatusContainer = styled(Box)<{ borderColor?: string }>(
+  ({ theme, borderColor }) => ({
+    padding: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(1),
+    border: `2px solid ${borderColor || theme.palette.divider}`,
+  })
+);

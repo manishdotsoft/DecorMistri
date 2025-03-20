@@ -25,6 +25,9 @@ import {
   ParentInputBox,
   LinkSignup,
   ButtonWrapper,
+  CheckboxContainer,
+  StyledCheckbox,
+  StyledLabel,
 } from './LoginPage.style';
 import Toaster from '../../atoms/Toaster/Toaster';
 import loginImage from '../../assets/images/signUpLogImage/SignUpLog.png';
@@ -95,7 +98,9 @@ const LoginPage = () => {
                     onChange={handleChange}
                     style={{
                       width: '100%',
-                      borderRadius: '6px',
+                      borderRadius: '8px',
+                      marginTop: '20px',
+                      marginBottom: '10px',
                     }}
                     onBlur={handleBlur}
                     error={Boolean(touched.email && errors.email)}
@@ -112,7 +117,7 @@ const LoginPage = () => {
                     onChange={handleChange}
                     style={{
                       width: '100%',
-                      borderRadius: '6px',
+                      borderRadius: '8px',
                       marginTop: '20px',
                       marginBottom: '10px',
                     }}
@@ -126,15 +131,14 @@ const LoginPage = () => {
                   />
                 </ParentInputBox>
                 <ForgetPaswordContainer>
-                  <div>
-                    <input type="checkbox" id="rememberMe" name="rememberMe" />
-                    <label
-                      htmlFor="rememberMe"
-                      style={{ fontFamily: theme?.typography?.fontFamily }}
-                    >
-                      Remember Me
-                    </label>
-                  </div>
+                  <CheckboxContainer>
+                    <StyledCheckbox
+                      type="checkbox"
+                      id="rememberMe"
+                      name="rememberMe"
+                    />
+                    <StyledLabel htmlFor="rememberMe">Remember Me</StyledLabel>
+                  </CheckboxContainer>
                   <ForgotPasswordLink to="/forgot-password">
                     Forgot password?
                   </ForgotPasswordLink>
@@ -182,9 +186,8 @@ const LoginPage = () => {
           />
           <SignupContainer>
             <Typography component="span">
-              New to <HeadlineSpan> Decormistri?</HeadlineSpan>
+              New to <HeadlineSpan> Decormistri ?</HeadlineSpan>
             </Typography>
-
             <LinkSignup component={RouterLink} to="/signup">
               Create an account
             </LinkSignup>

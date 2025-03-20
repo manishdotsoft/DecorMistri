@@ -5,13 +5,15 @@ import {
   StatusButton,
   ButtonContainer,
   MenuHeader,
+  StatusContainer,
 } from './Menu.style';
-import { Collapse, Box, IconButton, useTheme } from '@mui/material';
+import { Box, IconButton, useTheme, Popover } from '@mui/material';
 import Modal from '../../atoms/Modal/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { useMenuLogic } from './Menu.hook';
 import EditProject from '../../organisms/EditProject/CreateProject';
 import Button from '../../atoms/Button/Button';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 interface ProjectMenuProps {
   anchorEl: null | HTMLElement;
@@ -23,6 +25,7 @@ interface ProjectMenuProps {
   onUpdateStatus: (projectValue: string, newStatus: string) => void;
   projectId?: number | null;
   borderColor?: string;
+  status?: string;
 }
 
 const ProjectMenu: React.FC<ProjectMenuProps> = ({
@@ -35,15 +38,17 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
   onUpdateStatus,
   projectId,
   borderColor,
+  status,
 }) => {
   const {
-    statusOptions,
-    dropdownOpen,
+    statusOptions = [],
     modalState,
-    toggleDropdown,
     openModal,
     closeModal,
-    handleStatusChange,
+    // handleStatusChange,
+    statusAnchorEl,
+    handleOpenStatusMenu,
+    handleCloseStatusMenu,
   } = useMenuLogic({
     onDeleteProject,
     currentProject,
@@ -69,7 +74,6 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
               <StyledMenuItem onClick={() => openModal('edit')}>
                 Edit project
               </StyledMenuItem>
-              {/* Close Icon to close the entire menu */}
               <IconButton size="small" onClick={onClose}>
                 <CloseIcon fontSize="small" />
               </IconButton>
@@ -84,22 +88,53 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
 
           {item === 'Change Status' && (
             <>
-              <StyledMenuItem onClick={toggleDropdown}>
+              <StyledMenuItem onClick={handleOpenStatusMenu}>
                 Change Status
+                <IconButton size="small">
+                  <KeyboardArrowRightIcon fontSize="small" />
+                </IconButton>
               </StyledMenuItem>
-              <Collapse in={dropdownOpen} timeout="auto" unmountOnExit>
-                <Box sx={{ padding: 2 }}>
-                  {statusOptions.map((status, idx) => (
-                    <StatusButton
-                      key={idx}
-                      variant="outlined"
-                      onClick={() => handleStatusChange(status)}
-                    >
-                      {status}
-                    </StatusButton>
-                  ))}
-                </Box>
-              </Collapse>
+
+              <Popover
+                open={Boolean(statusAnchorEl)}
+                anchorEl={statusAnchorEl}
+                onClose={handleCloseStatusMenu}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: ['live', 'upcoming', 'completed'].includes(
+                    status?.toLowerCase() || ''
+                  )
+                    ? 'right'
+                    : 'left',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: ['live', 'upcoming', 'completed'].includes(
+                    status?.toLowerCase() || ''
+                  )
+                    ? 'left'
+                    : 'right',
+                }}
+              >
+                <StatusContainer borderColor={borderColor}>
+                  {statusOptions.length > 0 ? (
+                    statusOptions.map((status, idx) => (
+                      <StatusButton
+                        key={idx}
+                        variant="outlined"
+                        onClick={() => {
+                          onUpdateStatus(currentProject ?? '', status);
+                          handleCloseStatusMenu();
+                        }}
+                      >
+                        {status}
+                      </StatusButton>
+                    ))
+                  ) : (
+                    <p>No status options available</p>
+                  )}
+                </StatusContainer>
+              </Popover>
             </>
           )}
 
@@ -120,7 +155,7 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
             <Button
               title="Cancel"
               variant="contained"
-              onClick={() => {}}
+              onClick={closeModal}
               style={{
                 width: '100%',
                 borderRadius: '6px',
@@ -132,7 +167,12 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
             <Button
               title="Delete"
               variant="contained"
-              onClick={() => {}}
+              onClick={() => {
+                if (currentProject) {
+                  onDeleteProject(currentProject);
+                }
+                closeModal();
+              }}
               style={{
                 width: '100%',
                 borderRadius: '6px',

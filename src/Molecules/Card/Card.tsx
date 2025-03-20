@@ -28,7 +28,7 @@ interface Project {
   name: string;
   designType: string;
   location: string;
-  status: 'Live' | 'Upcoming' | 'Completed' | 'NotConfirmed';
+  status: string;
   startDate: string;
   endDate: string;
   completionPercentage: number;
@@ -95,13 +95,7 @@ const CardGrid: React.FC<ProjectCardProps> = ({ data }) => {
 
           return (
             <Box key={project.id}>
-              {/* <ProjectCard borderColor={projectCardStyle.borderColor}> */}
-              <ProjectCard
-                style={{
-                  border: `2px solid ${projectCardStyle.borderColor}`,
-                  borderTopWidth: '6px',
-                }}
-              >
+              <ProjectCard bordercolor={projectCardStyle.borderColor}>
                 {/* Header */}
                 <CardHeader>
                   <Typography fontWeight="bold">{project?.heading}</Typography>
@@ -120,6 +114,7 @@ const CardGrid: React.FC<ProjectCardProps> = ({ data }) => {
                   open={Boolean(menuState.anchorEl)}
                   onClose={handleMenuClose}
                   borderColor={borderColor}
+                  status={project.status}
                   menuItems={[
                     'Edit',
                     'Change Status',
@@ -168,7 +163,7 @@ const CardGrid: React.FC<ProjectCardProps> = ({ data }) => {
                   <Button
                     title={projectCardStyle.title}
                     onClick={handleButtonClick}
-                    buttonFontSize="14px"
+                    buttonFontSize={theme?.typography?.subtitle2?.fontSize}
                     variant="outlined"
                     style={{
                       borderRadius: '6px',
@@ -176,6 +171,7 @@ const CardGrid: React.FC<ProjectCardProps> = ({ data }) => {
                       color: projectCardStyle.ButtonColor,
                       fontWeight: 'bold',
                       width: '113px',
+                      cursor: 'pointer',
                     }}
                   />
                 </ButtonWrapper>

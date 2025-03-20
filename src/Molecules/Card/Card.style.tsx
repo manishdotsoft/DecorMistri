@@ -60,40 +60,24 @@ export const ButtonWrapper = styled(Box)({
   padding: '12px',
 });
 
-// export const ProjectCard = styled(Card)<{ borderColor?: string }>(
-//   ({ theme, borderColor }) => ({
-//     width: '100%',
-//     minWidth: '260px',
-//     position: 'relative',
-//     overflow: 'visible',
-//     display: 'flex',
-//     flexDirection: 'column',
-//     justifyContent: 'space-between',
-//     borderRadius: '8px',
-//     border: `2px solid ${borderColor}`,
-//     borderTopWidth: '6px',
+export const ProjectCard = styled(Card)<{ bordercolor?: string }>(
+  ({ theme, bordercolor }) => ({
+    width: '100%',
+    minWidth: '260px',
+    position: 'relative',
+    overflow: 'visible',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    borderRadius: '8px',
+    border: `2px solid ${bordercolor}`,
+    borderTopWidth: '6px',
 
-//     [theme.breakpoints.up('xl')]: {
-//       minWidth: '280px',
-//     },
-//   })
-// );
-
-export const ProjectCard = styled(Card)(({ theme }) => ({
-  width: '100%',
-  minWidth: '260px',
-  position: 'relative',
-  overflow: 'visible',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  borderRadius: '8px',
-  borderTopWidth: '6px',
-
-  [theme.breakpoints.up('xl')]: {
-    minWidth: '280px',
-  },
-}));
+    [theme.breakpoints.up('xl')]: {
+      minWidth: '280px',
+    },
+  })
+);
 
 export const CardContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -128,16 +112,6 @@ export const CompletionBar = styled(Box)(({ theme }) => ({
   borderRadius: ' 6px',
 }));
 
-// export const CompletionBarFill = styled(Box)<{
-//   fillColor?: string;
-//   completionPercentage?: number;
-// }>(({ fillColor, completionPercentage }) => ({
-//   height: '100%',
-//   width: `${completionPercentage}%`,
-//   backgroundColor: fillColor,
-//   transition: 'width 0.3s ease-in-out',
-//   borderRadius: '6px',
-// }));
 export const CompletionBarFill = styled(Box)({
   height: '100%',
   transition: 'width 0.3s ease-in-out',
