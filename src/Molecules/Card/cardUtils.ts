@@ -8,10 +8,7 @@ interface CardStyle {
   completionColor: string;
 }
 
-export const getCardStyle = (
-  status: 'Live' | 'Upcoming' | 'Completed' | 'NotConfirmed',
-  theme: Theme
-): CardStyle => {
+export const getCardStyle = (status: string, theme: Theme): CardStyle => {
   switch (status) {
     case 'Live':
       return {

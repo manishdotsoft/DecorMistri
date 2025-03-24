@@ -99,8 +99,6 @@ const LoginPage = () => {
                     style={{
                       width: '100%',
                       borderRadius: '8px',
-                      marginTop: '20px',
-                      marginBottom: '10px',
                     }}
                     onBlur={handleBlur}
                     error={Boolean(touched.email && errors.email)}
@@ -118,8 +116,7 @@ const LoginPage = () => {
                     style={{
                       width: '100%',
                       borderRadius: '8px',
-                      marginTop: '20px',
-                      marginBottom: '10px',
+                      marginTop: '10px',
                     }}
                     onBlur={handleBlur}
                     error={Boolean(touched.password && errors.password)}
@@ -137,10 +134,10 @@ const LoginPage = () => {
                       id="rememberMe"
                       name="rememberMe"
                     />
-                    <StyledLabel htmlFor="rememberMe">Remember Me</StyledLabel>
+                    <StyledLabel htmlFor="rememberMe">Remember me</StyledLabel>
                   </CheckboxContainer>
                   <ForgotPasswordLink to="/forgot-password">
-                    Forgot password?
+                    Forgot password ?
                   </ForgotPasswordLink>
                 </ForgetPaswordContainer>
                 <Button

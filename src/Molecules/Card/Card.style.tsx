@@ -12,11 +12,6 @@ interface SuccessStatusProps {
   isStarted: boolean;
 }
 
-// export const Button = styled('button')({
-//   height: '20px',
-//   width: '20px',
-// });
-
 export const HeadingTitle = styled(Typography)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
@@ -52,7 +47,7 @@ export const SuccessStatus = styled(Typography, {
   color: isStarted ? theme.palette.primary.main : theme.palette.error.main,
   fontSize: theme.typography.body2.fontSize,
 }));
-///////////
+
 export const ButtonWrapper = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
@@ -70,7 +65,7 @@ export const ProjectCard = styled(Card)<{ bordercolor?: string }>(
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderRadius: '8px',
-    border: `2px solid ${bordercolor}`,
+    border: `1px solid ${bordercolor}`,
     borderTopWidth: '6px',
 
     [theme.breakpoints.up('xl')]: {
@@ -93,8 +88,8 @@ export const CardHeader = styled(Box)(({ theme }) => ({
 
 export const MoreButton = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
-  top: -3,
-  right: -3,
+  top: -1,
+  right: -1,
   color: theme.palette.text.secondary,
 }));
 
@@ -161,3 +156,8 @@ export const StyledMoreIcon = styled(MoreHorizIcon)<{ color?: string }>(
     cursor: 'pointer',
   })
 );
+
+export const TitleOne = styled(Typography)(() => ({
+  fontSize: '14px',
+  fontWeight: 600,
+}));

@@ -18,6 +18,7 @@ import {
   SizeBox,
   StyledAvatar,
   StyledMoreIcon,
+  TitleOne,
   ValueText,
 } from './Card.style';
 import { useCardLogic } from './Card.hook';
@@ -89,6 +90,7 @@ const CardGrid: React.FC<ProjectCardProps> = ({ data }) => {
             },
             {
               label: 'Date',
+
               value: `${project.startDate} to ${project.endDate}`,
             },
           ];
@@ -98,7 +100,7 @@ const CardGrid: React.FC<ProjectCardProps> = ({ data }) => {
               <ProjectCard bordercolor={projectCardStyle.borderColor}>
                 {/* Header */}
                 <CardHeader>
-                  <Typography fontWeight="bold">{project?.heading}</Typography>
+                  <TitleOne>{project?.heading}</TitleOne>
 
                   <MoreButton
                     aria-label="more"

@@ -84,10 +84,11 @@ const NewPassword = () => {
                       type="password"
                       name="password"
                       placeholder="New Password"
+                      VisibilityStyle={{ top: '30px' }}
                       style={{
                         width: '100%',
                         borderRadius: '8px',
-                        height: '10px',
+                        padding: '18px',
                         marginBottom: '5px',
                       }}
                       value={values.password}
@@ -107,11 +108,12 @@ const NewPassword = () => {
                       value={values.confirm_password}
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      VisibilityStyle={{ top: '40px' }}
                       style={{
                         width: '100%',
                         borderRadius: '8px',
-                        height: '10px',
-                        marginBottom: '10px',
+                        padding: '18px',
+
                         marginTop: '10px',
                       }}
                       error={

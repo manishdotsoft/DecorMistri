@@ -7,7 +7,7 @@ export const StyledMenu = styled(Menu)<{ borderColor?: string }>(
       borderRadius: '8px',
       minWidth: '152px',
       backgroundColor: theme.palette.background.paper,
-      border: `3px solid ${borderColor || theme.palette.grey[400]} !important`,
+      border: `1px solid ${borderColor || theme.palette.grey[400]} !important`,
       boxShadow: 'none !important',
     },
   })
@@ -16,9 +16,7 @@ export const StyledMenu = styled(Menu)<{ borderColor?: string }>(
 export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   fontSize: theme.typography.body2.fontSize,
   display: 'flex',
-
   color: theme.palette.black[200],
-
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
   },
@@ -63,6 +61,6 @@ export const StatusContainer = styled(Box)<{ borderColor?: string }>(
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing(1),
-    border: `2px solid ${borderColor || theme.palette.divider}`,
+    border: `1px solid ${borderColor || theme.palette.divider}`,
   })
 );

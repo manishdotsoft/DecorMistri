@@ -4,11 +4,17 @@ export const StyledAppLayout = styled(Box)(() => ({
   display: 'grid',
   gridTemplateColumns: '18rem 1fr',
   gridTemplateRows: 'auto 1fr',
-  height: '100% ',
+  height: '100%',
 }));
 
 export const Main = styled('main')(({ theme }) => ({
   backgroundColor: theme.palette.white.main,
   overflow: 'hidden',
   height: 'inherit',
+}));
+export const AppContainer = styled(Box)(() => ({
+  height: '100vh',
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
 }));

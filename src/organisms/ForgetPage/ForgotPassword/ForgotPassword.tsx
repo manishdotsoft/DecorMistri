@@ -81,7 +81,7 @@ const ForgetPassword = () => {
                       style={{
                         width: '100%',
                         borderRadius: '8px',
-                        height: '10px',
+                        padding: '18px',
                         marginBottom: '6px',
                       }}
                       onBlur={handleBlur}
@@ -104,7 +104,7 @@ const ForgetPassword = () => {
                     }
                     disabled={isButtonDisabled}
                     style={{
-                      marginTop: '20px',
+                      marginTop: '10px',
                       color: theme.palette.grey[50],
                       width: '100%',
                       height: '50px',

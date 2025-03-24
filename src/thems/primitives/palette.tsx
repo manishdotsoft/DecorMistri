@@ -107,6 +107,7 @@ export const OFF_WHITE_GRAY = '#E4E4E4';
 export const SUCCESS_GREEN = '#08c912';
 export const WARNING_ORANGE = '#F69400';
 export const CHECK_BOX = '#F8A0DA';
+export const LIGHT_GREY = '#D9D9D9';
 
 const palette = {
   decor: {
@@ -145,6 +146,7 @@ const palette = {
     borderColor: GRAY_BORDER_COLOR,
     greyFontColor: GREY_FONT_COLOR,
     offwhite: OFF_WHITE_GRAY,
+    lightGrey: LIGHT_GREY,
     20: GREY_800,
     50: GREY_50,
     100: ICON_LIGHT,
