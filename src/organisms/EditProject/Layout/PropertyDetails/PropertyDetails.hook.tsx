@@ -1,12 +1,12 @@
-import { useFormik } from "formik";
-import { useState } from "react";
-import { propertyDetailsSchema } from "../../Schema";
+import { useFormik } from 'formik';
+import { useState } from 'react';
+import { propertyDetailsSchema } from '../../Schema';
 
 interface PropertyDetailsFormProps {
   data: {
     size: string;
     phases: string;
-    file: File | null;
+    file: { name: string; size: number; type: string } | null;
     comments: string;
     designType: string;
     subcategories: string[];
@@ -14,7 +14,7 @@ interface PropertyDetailsFormProps {
   updateData: (data: {
     size: string;
     phases: string;
-    file: File | null;
+    file: { name: string; size: number; type: string } | null;
     comments: string;
     designType: string;
     subcategories: string[];
@@ -31,28 +31,35 @@ const usePropertyDetailsForm = ({
 
   const formik = useFormik({
     initialValues: {
-      size: data.size || "",
-      phases: data.phases || "",
+      size: data.size || '',
+      phases: data.phases || '',
       file: data.file || null,
-      comments: data.comments || "",
-      designType: data.designType || "",
+      comments: data.comments || '',
+      designType: data.designType || '',
       subcategories: data.subcategories || [],
     },
     validationSchema: propertyDetailsSchema,
     validateOnBlur: true,
     onSubmit: (values) => {
-      updateData(values);
-      console.log(values);
+      const { file, ...rest } = values;
+      const fileMetadata = file
+        ? { name: file.name, size: file.size, type: file.type }
+        : null;
+      updateData({
+        ...rest,
+        file: fileMetadata, // Send only serializable metadata
+      });
       handleNext();
     },
   });
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      formik.setFieldValue("file", event.target.files[0]);
-      setFileError(null); // Clear file error if a file is selected
+      const file = event.target.files[0];
+      formik.setFieldValue('file', file);
+      setFileError(null); // Clear error if a file is selected
     } else {
-      setFileError("Please select a file.");
+      setFileError('Please select a file.');
     }
   };
 

@@ -1,6 +1,5 @@
-import { useEffect, useCallback } from "react";
-import { useFormik } from "formik";
-import { timelineScheduleSchema } from "../../Schema";
+import { useFormik } from 'formik';
+import { timelineScheduleSchema } from '../../Schema';
 
 interface TimelineScheduleData {
   startDate?: Date | null;
@@ -9,40 +8,57 @@ interface TimelineScheduleData {
 
 interface UseTimelineScheduleProps {
   data: TimelineScheduleData;
-  updateData: (data: TimelineScheduleData) => void;
+  updateData: (data: { page: string; data: Record<string, unknown> }) => void;
   handleNext: () => void;
+  handlePrevious: () => void;
 }
 
 const useTimelineSchedule = ({
   data,
   updateData,
   handleNext,
+  handlePrevious,
 }: UseTimelineScheduleProps) => {
+  // Check localStorage for previously saved data
+  const savedData = JSON.parse(
+    localStorage.getItem('timelineScheduleData') || '{}'
+  );
+
   const formik = useFormik({
     initialValues: {
-      startDate: data.startDate || null,
-      endDate: data.endDate || null,
+      startDate: savedData.startDate
+        ? new Date(savedData.startDate)
+        : data.startDate
+          ? new Date(data.startDate)
+          : null,
+      endDate: savedData.endDate
+        ? new Date(savedData.endDate)
+        : data.endDate
+          ? new Date(data.endDate)
+          : null,
     },
     validationSchema: timelineScheduleSchema,
-    validateOnBlur: true,
     onSubmit: (values) => {
-      updateData(values);
-      console.log(values);
+      updateData({
+        page: 'timelineSchedule',
+        data: {
+          startDate: values.startDate ? values.startDate.toISOString() : null,
+          endDate: values.endDate ? values.endDate.toISOString() : null,
+        },
+      });
       handleNext();
     },
   });
 
-  const isFormValid = useCallback(() => {
-    return formik.values.startDate !== null && formik.values.endDate !== null;
-  }, [formik.values]);
-
-  useEffect(() => {
-    updateData(formik.values);
-  }, [formik.values, updateData]);
+  const isFormValid = () => {
+    return formik.values.startDate && formik.values.endDate;
+  };
 
   return {
     formik,
     isFormValid,
+    handlePrevious,
+    handleNext,
   };
 };
 

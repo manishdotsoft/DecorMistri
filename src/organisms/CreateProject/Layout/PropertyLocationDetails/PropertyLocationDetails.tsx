@@ -2,19 +2,15 @@ import { Box, useTheme } from '@mui/material';
 import usePropertyLocationDetails from './PropertyLocationDetails.hook';
 import Button from '../../../../atoms/Button/Button';
 import SelectOption from '../../../../atoms/Select/SelectOption';
-// import complete from '../../../../assets/images/createProject/complete.svg';
 
 import {
   ButtonSection,
   Container,
-  // CreateProjectHeader,
   GridContainer,
   InputLabelItem,
-  // GridContainerChild,
   StyledTypography,
 } from './PropertyLocationDetails.style';
 import TextInput from '../../../../atoms/TextInput/TextInput';
-// import { useState } from 'react';
 import { stateOptions } from '../../CreateProjectData/StateData';
 
 const PropertyLocationDetails = ({
@@ -108,7 +104,6 @@ const PropertyLocationDetails = ({
               width: '100%',
               padding: '18px',
               borderRadius: '6px',
-              marginTop: '3px',
             }}
           />
           {formik.errors.city && formik.touched.city && (

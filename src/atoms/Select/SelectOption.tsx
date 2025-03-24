@@ -10,7 +10,7 @@ import {
   IconWrapper,
   SelectWrapper,
 } from './SelectOption.style';
-import { FaCaretDown } from 'react-icons/fa';
+import SelectDownArrow from '../../assets/images/logo/SelectDownArrow.svg';
 
 interface SelectOptionProps {
   name: string;
@@ -25,6 +25,9 @@ interface SelectOptionProps {
   labelFontSize?: string;
   defaultOption?: string;
   containerMainStyle?: React.CSSProperties;
+  selectInputStyle?: React.CSSProperties;
+  starIcon?: React.ReactNode;
+  labelStyle?: React.CSSProperties;
 }
 
 const SelectOption: React.FC<SelectOptionProps> = ({
@@ -39,6 +42,10 @@ const SelectOption: React.FC<SelectOptionProps> = ({
   helperText,
   defaultOption,
   containerMainStyle,
+  labelFontSize,
+  selectInputStyle,
+  starIcon,
+  labelStyle,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -48,7 +55,10 @@ const SelectOption: React.FC<SelectOptionProps> = ({
         htmlFor={name}
         isFocused={isFocused}
         hasValue={Boolean(value)}
+        fontSize={labelFontSize}
+        sx={labelStyle}
       >
+        {starIcon}
         {label}
       </InputLabelItem>
       <FullWidthFormControl>
@@ -64,6 +74,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
             }}
             onFocus={() => setIsFocused(true)}
             style={{ ...style }}
+            sx={selectInputStyle}
           >
             <OptionSelect value="" disabled>
               {defaultOption}
@@ -75,7 +86,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
             ))}
           </SelectItem>
           <IconWrapper>
-            <FaCaretDown size={16} />
+            <img src={SelectDownArrow} alt="" />
           </IconWrapper>
         </SelectWrapper>
       </FullWidthFormControl>

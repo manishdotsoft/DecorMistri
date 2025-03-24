@@ -216,10 +216,10 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
             onBlur={formik.handleBlur}
             style={{
               width: '100%',
-              padding: '18px',
               borderRadius: '8px',
               marginTop: '3px',
             }}
+            selectInputStyle={{ padding: '16px' }}
             error={formik.touched.state && Boolean(formik.errors.state)}
           />
           {formik.errors.state && formik.touched.state && (
