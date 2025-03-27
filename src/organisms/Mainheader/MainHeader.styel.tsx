@@ -4,7 +4,7 @@ export const Header = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  borderBottom: `1px solid ${theme?.palette?.grey[200]}`,
+  borderBottom: `1px solid ${theme?.palette?.grey.lightGrey}`,
   padding: '10px 20px',
 }));
 

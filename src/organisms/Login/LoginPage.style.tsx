@@ -223,8 +223,8 @@ export const ImageBox = styled('div')(({ theme }) => ({
 }));
 
 export const TitleOne = styled(Typography)(({ theme }) => ({
-  fontSize: theme?.typography?.A4?.fontSize,
-  fontWeight: 300,
+  fontSize: theme?.typography?.h4?.fontSize,
+  fontWeight: 400,
 
   [theme.breakpoints.down('sm')]: {
     fontSize: theme.typography.h5.fontSize,
@@ -233,8 +233,8 @@ export const TitleOne = styled(Typography)(({ theme }) => ({
 
 export const TitleTwo = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.subtitle2.fontSize,
-  color: theme.palette.grey[500],
-
+  color: theme.palette.black[200],
+  marginBottom: '20px',
   [theme.breakpoints.down('sm')]: {
     fontSize: theme.typography.caption.fontSize,
   },
@@ -290,7 +290,7 @@ export const LinkSignup = styled(Typography)(({ theme }) => ({
   color: theme.palette.decor.main,
   fontSize: theme.typography.body2.fontSize,
   textDecoration: 'none',
-  fontWeight: 500,
+  fontWeight: 600,
 }));
 
 export const ButtonWrapper = styled(Box)({

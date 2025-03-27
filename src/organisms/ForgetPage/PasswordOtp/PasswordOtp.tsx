@@ -1,4 +1,4 @@
-import { Typography, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
 import { Formik, Form } from 'formik';
 import { LoginSchema } from '../../Login/LoginSchema';
 import TextInput from '../../../atoms/TextInput/TextInput';
@@ -13,6 +13,7 @@ import {
   LoginLink,
   Title,
   SignupContainer,
+  ResendTitle,
 } from '../Forgetpage.style';
 
 import loginImage from '../../../assets/images/signUpLogImage/SignUpLog.png';
@@ -70,9 +71,11 @@ const PasswordOtp = () => {
                         onChange={handleChange}
                         style={{
                           width: '100%',
-                          height: '10px',
-                          borderRadius: '5px',
+                          padding: '15px',
+                          textAlign: 'center',
+                          borderRadius: '8px',
                           marginBottom: '10px',
+                          fontWeight: 'bold',
                         }}
                         onBlur={handleBlur}
                         error={Boolean(touched.email && errors.email)}
@@ -87,6 +90,7 @@ const PasswordOtp = () => {
                       <Button
                         title="Continue"
                         type="submit"
+                        fontWeight="bold"
                         variant="contained"
                         onClick={() => {}}
                         style={{
@@ -110,6 +114,7 @@ const PasswordOtp = () => {
               type="submit"
               color="primary"
               variant="contained"
+              fontWeight="bold"
               onClick={() => {}}
               style={{
                 borderRadius: '8px',
@@ -118,19 +123,21 @@ const PasswordOtp = () => {
                 border: `1px solid ${theme.palette.grey[500]}`,
                 width: '100%',
                 height: '50px',
-                marginTop: '10px',
+                marginTop: '15px',
               }}
             />
           </LoginLink>
           <SignupContainer>
-            <Typography component="span">Dont receive the code ? </Typography>
-            <Link
-              to=""
-              style={{ color: theme.palette.decor.main }}
-              className="signup-link"
-            >
-              Please resend
-            </Link>
+            <ResendTitle>
+              Dont receive the code ?
+              <Link
+                to=""
+                style={{ color: theme.palette.decor.main }}
+                className="signup-link"
+              >
+                Please resend
+              </Link>
+            </ResendTitle>
           </SignupContainer>
         </ChildFlex>
 

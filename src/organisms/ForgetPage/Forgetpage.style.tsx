@@ -7,8 +7,8 @@ export const SignupContainer = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   flexDirection: 'row',
   gap: '10px',
-  marginTop: '20px',
-  fontSize: theme.typography?.body1.fontSize,
+  marginTop: '10px',
+  fontSize: theme.typography?.body2.fontSize,
   color: theme.palette.text.secondary,
   width: '100%',
   '.signup-link': {
@@ -294,4 +294,10 @@ export const LinkSignup = styled(Typography)(({ theme }) => ({
   color: theme.palette.decor.main,
   fontSize: theme.typography?.body1.fontSize,
   textDecoration: 'none',
+}));
+
+export const ResendTitle = styled(Typography)(({ theme }) => ({
+  color: theme.palette.black[200],
+  fontSize: theme.typography?.body2.fontSize,
+  fontWeight: 500,
 }));

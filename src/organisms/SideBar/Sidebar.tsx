@@ -4,10 +4,12 @@ import { StyledSidebarMain } from './Sidebar.style';
 
 const Sidebar = () => {
   return (
-    <StyledSidebarMain>
-      <MainNav />
-      <Notifications />
-    </StyledSidebarMain>
+    <>
+      <StyledSidebarMain>
+        <MainNav />
+        <Notifications />
+      </StyledSidebarMain>
+    </>
   );
 };
 

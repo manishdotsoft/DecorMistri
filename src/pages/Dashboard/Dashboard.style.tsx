@@ -72,11 +72,25 @@ export const ProjectBox = styled(Box)(() => ({
   marginTop: '15px',
 }));
 
-export const BoxContainer = styled(Box)({
+export const BoxContainer = styled(Box)(({ theme }) => ({
   gap: '16px',
   padding: '22px',
-});
+  backgroundColor: theme.palette.grey[200],
+  borderTop: `1px solid ${theme.palette.grey[400]}`,
 
+  height: 'calc(100vh - 170px)',
+  overflowY: 'auto',
+
+  '&::-webkit-scrollbar': {
+    width: '4px',
+  },
+  '&::-webkit-scrollbar-track': {
+    background: theme.palette.grey[300],
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: theme.palette.decor?.main || theme.palette.primary.main,
+  },
+}));
 export const LoadingWrapper = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
