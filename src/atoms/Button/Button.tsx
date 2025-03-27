@@ -21,6 +21,7 @@ interface ButtonProps {
   buttonWarraparStyle?: React.CSSProperties;
   svgIcon?: React.CSSProperties;
   fontFamily?: string;
+  iconAndTitleSection?: React.CSSProperties;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -40,6 +41,7 @@ const Button: React.FC<ButtonProps> = ({
   letterSpacing,
   buttonWarraparStyle,
   svgIcon,
+  iconAndTitleSection,
 }: ButtonProps) => {
   const theme = useTheme();
 
@@ -82,6 +84,7 @@ const Button: React.FC<ButtonProps> = ({
               justifyContent="center"
               alignItems="center"
               textAlign="center"
+              sx={iconAndTitleSection}
             >
               {logo && (
                 <img src={logo} alt="button logo" style={{ ...svgIcon }} />

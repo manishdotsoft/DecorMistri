@@ -1,100 +1,113 @@
-import { Typography } from "@mui/material";
+import { Box, Typography, useTheme } from '@mui/material';
 import {
   ButtonSection,
   Container,
-  FlexRow,
-  FullWidthFormControl,
-} from "./TimelineSchedule.style";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import Button from "../../../../atoms/Button/Button";
-import useTimelineSchedule from "./TimelineSchedule.hook";
+  GridContainer,
+  InputLabelItem,
+} from './TimelineSchedule.style';
+import Button from '../../../../atoms/Button/Button';
+import useTimelineSchedule from './TimelineSchedule.hook';
+import { DatePicker } from '../../../../atoms/DatePicker/DatePicker';
 
-// Import validation schema
+interface TimelineScheduleProps {
+  data: {
+    startDate: string | null | undefined;
+    endDate: string | null | undefined;
+  };
+  updateData: (values: TimelineScheduleProps['data']) => void;
+  currentPageIndex: number;
+  handleNext: () => void;
+  handlePrevious: () => void;
+}
 
-const TimelineSchedule = ({
+const TimelineSchedule: React.FC<TimelineScheduleProps> = ({
   data,
   updateData,
   handleNext,
   handlePrevious,
-}: {
-  currentPageIndex: number;
-  data: {
-    startDate?: Date | null;
-    endDate?: Date | null;
-  };
-  updateData: (data: {
-    startDate?: Date | null;
-    endDate?: Date | null;
-  }) => void;
-  handleNext: () => void;
-  handlePrevious: () => void;
 }) => {
   const { formik, isFormValid } = useTimelineSchedule({
     data,
     updateData,
     handleNext,
+    handlePrevious,
   });
+
+  console.log(formik.values, 'value');
+
+  // Separate states for each DatePicker
+
+  const handleNextClick = () => {
+    formik.handleSubmit();
+    localStorage.setItem('timelineScheduleData', JSON.stringify(formik.values));
+  };
+  const theme = useTheme();
 
   return (
     <Container>
-      <Typography variant="h6">Timeline Schedule</Typography>
+      {/* Start Date Field */}
+      <GridContainer>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <InputLabelItem>Start Date</InputLabelItem>
 
-      <FlexRow>
-        <FullWidthFormControl>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              label="Start Date"
-              value={formik.values.startDate}
-              onChange={(value: Date | null) =>
-                formik.setFieldValue("startDate", value)
-              }
-              slotProps={{
-                textField: {
-                  error:
-                    formik.touched.startDate &&
-                    Boolean(formik.errors.startDate),
-                  helperText:
-                    formik.touched.startDate && formik.errors.startDate,
-                },
-              }}
-            />
-          </LocalizationProvider>
-        </FullWidthFormControl>
+          <DatePicker
+            value={formik.values.startDate}
+            onDateChange={(value: Date | null) =>
+              formik.setFieldValue('startDate', value)
+            }
+            placeholder="Select date"
+            inputStyle={{ width: '100%', height: '18px', borderRadius: '8px' }}
+          />
 
-        <FullWidthFormControl>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              label="End Date"
-              value={formik.values.endDate}
-              onChange={(value: Date | null) =>
-                formik.setFieldValue("endDate", value)
-              }
-              slotProps={{
-                textField: {
-                  error:
-                    formik.touched.endDate && Boolean(formik.errors.endDate),
-                  helperText: formik.touched.endDate && formik.errors.endDate,
-                },
-              }}
-            />
-          </LocalizationProvider>
-        </FullWidthFormControl>
-      </FlexRow>
+          {formik.errors.startDate && formik.touched.startDate && (
+            <Typography color="error">{formik.errors.startDate}</Typography>
+          )}
+        </Box>
 
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <InputLabelItem>End Date</InputLabelItem>
+
+          <DatePicker
+            value={formik.values.endDate}
+            onDateChange={(value: Date | null) =>
+              formik.setFieldValue('endDate', value)
+            }
+            placeholder="Select date"
+            inputStyle={{ width: '100%', height: '18px', borderRadius: '8px' }}
+          />
+
+          {formik.errors.endDate && formik.touched.endDate && (
+            <Typography color="error">{formik.errors.endDate}</Typography>
+          )}
+        </Box>
+      </GridContainer>
+
+      {/* Navigation Buttons */}
       <ButtonSection>
         <Button
           title="Previous"
-          color="secondary"
-          onClick={handlePrevious}
+          color="primary"
           variant="contained"
+          onClick={handlePrevious}
+          style={{
+            borderRadius: '8px',
+            width: '150px',
+            color: theme.palette.decor.main,
+            border: `2px solid ${theme.palette.decor.main}`,
+          }}
+          backgroundColor={theme.palette.primary.contrastText}
+          hoverBackgroundColor={theme.palette.decor.hover}
         />
         <Button
-          title="Next"
-          color="primary"
-          onClick={() => formik.handleSubmit()}
+          title="Save"
           variant="contained"
-          disabled={!isFormValid() || !formik.isValid}
+          disabled={!isFormValid()}
+          onClick={handleNextClick}
+          style={{
+            borderRadius: '8px',
+            width: '150px',
+            background: !isFormValid() ? '' : theme.palette.decor.main,
+          }}
         />
       </ButtonSection>
     </Container>

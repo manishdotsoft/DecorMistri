@@ -14,6 +14,8 @@ export const GREY_300 = '#CACACA';
 export const GREY_600 = '#CCCCCC';
 export const GREY_700 = '#717171';
 export const GREY_800 = '#F4F4F4';
+export const SILVER_GREY = '#BCBCBC';
+export const LABEL_GREY = '#606062';
 
 export const GREY_400 = 'rgba(115, 115, 114, 0.9)';
 export const GREY_500 = 'rgba(158, 158, 158, 1)';
@@ -145,6 +147,8 @@ const palette = {
     borderColor: GRAY_BORDER_COLOR,
     greyFontColor: GREY_FONT_COLOR,
     offwhite: OFF_WHITE_GRAY,
+    silverGrey: SILVER_GREY,
+    labelGrey: LABEL_GREY,
     20: GREY_800,
     50: GREY_50,
     100: ICON_LIGHT,

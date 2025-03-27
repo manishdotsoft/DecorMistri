@@ -104,7 +104,7 @@ export const StyledHeader = styled('div')(() => ({
 
 export const Title = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.h4.fontSize,
-  fontWeight: '300',
+  fontWeight: '400',
   margin: '0',
   '@media(max-width: 1068px)': {
     fontSize: theme.typography.h5.fontSize,
@@ -113,8 +113,8 @@ export const Title = styled(Typography)(({ theme }) => ({
 
 export const Title2 = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.button.fontSize,
-  fontWeight: '300',
-  color: theme.palette.rateSheduleColors.colorB,
+  fontWeight: '400',
+  color: theme.palette.black[200],
   margin: '0',
   [theme.breakpoints.down('sm')]: {
     fontSize: theme.typography.caption.fontSize,
@@ -156,9 +156,13 @@ export const LogoImage = styled('img')(() => ({
 }));
 
 export const DividerLine = styled(Divider)(({ theme }) => ({
-  margin: '10px 0',
+  margin: '12px 0',
   color: theme.palette.text.primary,
   fontFamily: theme.typography.fontFamily,
+
+  '&::before, &::after': {
+    backgroundColor: theme.palette.grey.silverGrey,
+  },
 }));
 export const StrengthText = styled(Typography)(({ theme }) => ({
   color: theme.palette.grey[700],
@@ -182,7 +186,13 @@ export const HaveAccount1 = styled(Typography)(({ theme }) => ({
 
 export const HaveAccount2 = styled(Typography)(({ theme }) => ({
   color: theme.palette.decor.main,
-  // fontSize: "14px",
+  fontWeight: '500',
   fontSize: theme.typography.button.fontSize,
   textDecoration: 'none',
+}));
+
+export const PasswordLabel = styled(Typography)(({ theme }) => ({
+  marginBottom: '6px',
+  fontSize: theme.typography.body2.fontSize,
+  fontWeight: '600',
 }));

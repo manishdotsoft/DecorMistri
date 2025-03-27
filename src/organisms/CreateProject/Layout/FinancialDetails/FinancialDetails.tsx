@@ -76,7 +76,7 @@ const FinancialDetails = ({
             }
             style={{
               width: '100%',
-              borderRadius: '5px',
+              borderRadius: '8px',
             }}
             placeholder="Estimated Budget"
           />
@@ -96,9 +96,9 @@ const FinancialDetails = ({
             onBlur={formik.handleBlur}
             style={{
               width: '100%',
-              padding: '18px',
+              padding: '17px',
               borderRadius: '8px',
-              marginTop: '3px',
+              marginTop: '2px',
             }}
             error={
               formik.touched.paymentReceived &&
