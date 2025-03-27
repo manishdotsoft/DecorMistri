@@ -10,6 +10,7 @@ import {
   Title2,
   Logo,
   ImageFlex,
+  ButtonSectoLoginpage,
 } from './SuccessfullyPage.style';
 
 import SignUpImage from '../../assets/images/signUpLogImage/SignUpLog.png';
@@ -38,20 +39,23 @@ const SuccessfullyPage: React.FC = () => {
               print, and publishing industries
             </Title2>
           </StyledHeader>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <Button
-              title="Login now"
-              type="button"
-              variant="contained"
-              style={{
-                backgroundColor: `${theme.palette.decor.main}`,
-                width: '50%',
-                borderRadius: '5px',
-                padding: '25px',
-              }}
-              onClick={handleClick}
-            />
-          </Link>
+          <ButtonSectoLoginpage>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <Button
+                title="Login now"
+                type="button"
+                variant="contained"
+                style={{
+                  backgroundColor: `${theme.palette.decor.main}`,
+                  width: '200%',
+                  borderRadius: '8px',
+                  padding: '25px',
+                  display: 'flex',
+                }}
+                onClick={handleClick}
+              />
+            </Link>
+          </ButtonSectoLoginpage>
         </ChildFlex>
         <ImageFlex>
           <AllImg src={SignUpImage} alt="Signup visuals" />

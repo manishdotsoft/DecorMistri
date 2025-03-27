@@ -9,7 +9,7 @@ interface ProgressBarProps {
 const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
   const theme = useTheme();
   const progressBarStyles: SxProps = {
-    height: 10,
+    height: 8,
     borderRadius: 5,
     backgroundColor: theme.palette.grey[100],
     '& .MuiLinearProgress-bar': {

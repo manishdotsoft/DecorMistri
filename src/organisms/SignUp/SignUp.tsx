@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box, useTheme } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   StyledContainer,
@@ -24,6 +24,7 @@ import {
   HaveAccount1,
   HaveAccount2,
   StrengthLabel,
+  PasswordLabel,
 } from './SignUp.style';
 
 import TextInput from '../../atoms/TextInput/TextInput';
@@ -122,7 +123,7 @@ const SignUpForm: React.FC = () => {
                   width: '100%',
                   borderRadius: '8px',
 
-                  marginTop: '10px',
+                  // marginTop: '10px',
                   marginBottom: '4px',
                 }}
                 eyePadding={{ paddingRight: '30px' }}
@@ -149,7 +150,7 @@ const SignUpForm: React.FC = () => {
                   width: '100%',
                   borderRadius: '8px',
 
-                  marginTop: '10px',
+                  marginTop: '5px',
                   marginBottom: '4px',
                 }}
                 // inputProps={{
@@ -175,7 +176,7 @@ const SignUpForm: React.FC = () => {
                   width: '100%',
                   borderRadius: '8px',
 
-                  marginTop: '10px',
+                  marginTop: '5px',
                   marginBottom: '4px',
                 }}
                 eyePadding={{ paddingRight: '30px' }}
@@ -187,7 +188,7 @@ const SignUpForm: React.FC = () => {
 
               {/* Password Field */}
               <TextArea>
-                <Typography sx={{ marginBottom: '7px' }}>Password</Typography>
+                <PasswordLabel>Password</PasswordLabel>
                 <PasswordError>
                   <TextInput
                     name="password"
@@ -204,7 +205,7 @@ const SignUpForm: React.FC = () => {
                       width: '100%',
                       borderRadius: '8px',
 
-                      marginTop: '10px',
+                      marginTop: '5px',
                       marginBottom: '4px',
                     }}
                     eyePadding={{ paddingRight: '30px' }}
@@ -244,6 +245,7 @@ const SignUpForm: React.FC = () => {
                 width: '100%',
                 borderRadius: '5px',
                 padding: '25px',
+                marginTop: '15px',
               }}
               onClick={() => {}}
             />

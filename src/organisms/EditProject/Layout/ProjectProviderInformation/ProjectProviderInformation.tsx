@@ -1,35 +1,43 @@
-import { Typography, Box } from "@mui/material";
 import {
   ButtonSection,
   Container,
+  EmailIconSec,
   GridContainer,
-  GridContainerChild,
+  GridContainer2,
+  InputIconFor,
+  InputLabelItem,
+  InputSection,
+  LocationIconSec,
   StyledTypography,
-} from "./ProjectProviderInformation.style";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import Button from "../../../../atoms/Button/Button";
-import SelectOption from "../../../../atoms/Select/SelectOption";
-import { useProjectProviderForm } from "./ProjectProviderInformation.hook";
-import TextInput from "../../../../atoms/TextInput/TextInput";
+  WebsiteIconSec,
+} from './ProjectProviderInformation.style';
+
+import Button from '../../../../atoms/Button/Button';
+import SelectOption from '../../../../atoms/Select/SelectOption';
+import { useProjectProviderForm } from './ProjectProviderInformation.hook';
+import TextInput from '../../../../atoms/TextInput/TextInput';
+import { DatePicker } from '../../../../atoms/DatePicker/DatePicker';
+
+import EmailIcon from '../../../../assets/images/createProject/Email.svg';
+import LocationIcon from '../../../../assets/images/createProject/Location.svg';
+import WebsiteIcon from '../../../../assets/images/createProject/WebsiteIcon.svg';
+import { stateOptions } from '../../CreateProjectData/StateData';
+
+import { useTheme } from '@mui/material';
 
 interface ProjectProviderInformationProps {
+  currentPageIndex: number;
   data: {
     projectNumber: string;
-    dateOfIssue: Date | null;
+    dateOfIssue: Date | string | null;
     designerName: string;
     email: string;
     phoneNumber: string;
     website?: string;
     addressLine1: string;
-    addressLine2?: string;
-    zipCode: string;
-    city: string;
-    country: string;
     state: string;
   };
-  updateData: (values: ProjectProviderInformationProps["data"]) => void;
-  currentPageIndex: number;
+  updateData: (values: ProjectProviderInformationProps['data']) => void;
   handleNext: () => void;
   handlePrevious: () => void;
 }
@@ -37,7 +45,6 @@ interface ProjectProviderInformationProps {
 const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
   data,
   updateData,
-  currentPageIndex,
   handleNext,
   handlePrevious,
 }) => {
@@ -48,11 +55,18 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
     handlePrevious,
   });
 
+  const handleNextClick = () => {
+    formik.handleSubmit();
+    localStorage.setItem('timelineScheduleData', JSON.stringify(formik.values));
+  };
+
+  const theme = useTheme();
+
   return (
     <Container>
-      <Typography variant="h6">Basic Information</Typography>
       <GridContainer>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <InputSection>
+          <InputLabelItem>Project ID</InputLabelItem>
           <TextInput
             name="projectNumber"
             label="Project Number/ID"
@@ -65,39 +79,40 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               Boolean(formik.errors.projectNumber)
             }
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '100%',
+              borderRadius: '8px',
             }}
             placeholder="Project Number/ID"
           />
           {formik.errors.projectNumber && formik.touched.projectNumber && (
             <StyledTypography>{formik.errors.projectNumber}</StyledTypography>
           )}
-        </Box>
+        </InputSection>
 
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <InputSection>
+          <InputLabelItem>Date of Issue</InputLabelItem>
+
           <DatePicker
-            label="Date of Issue"
             value={formik.values.dateOfIssue}
-            onChange={(value: Date | null) =>
-              formik.setFieldValue("dateOfIssue", value)
+            onDateChange={(value: Date | null) =>
+              formik.setFieldValue('dateOfIssue', value)
             }
-            slotProps={{
-              textField: {
-                error:
-                  formik.touched.dateOfIssue &&
-                  Boolean(formik.errors.dateOfIssue),
-                helperText:
-                  formik.touched.dateOfIssue && formik.errors.dateOfIssue,
-              },
-            }}
+            placeholder="Select date"
+            inputStyle={{ width: '100%', height: '18px', borderRadius: '8px' }}
           />
-        </LocalizationProvider>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          {formik.errors.dateOfIssue && formik.touched.dateOfIssue && (
+            <StyledTypography color="error">
+              {formik.errors.dateOfIssue}
+            </StyledTypography>
+          )}
+        </InputSection>
+
+        <InputSection>
+          <InputLabelItem>Interior Designer Name</InputLabelItem>
           <TextInput
             name="designerName"
-            label="Interior Designer Name"
+            label="Name"
             value={formik.values.designerName}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -105,195 +120,159 @@ const ProjectProviderInformation: React.FC<ProjectProviderInformationProps> = ({
               formik.touched.designerName && Boolean(formik.errors.designerName)
             }
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '100%',
+              borderRadius: '8px',
             }}
-            placeholder="Enter Designer Name"
+            placeholder="Name"
           />
           {formik.errors.designerName && formik.touched.designerName && (
             <StyledTypography>{formik.errors.designerName}</StyledTypography>
           )}
-        </Box>
+        </InputSection>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-          <TextInput
-            name="email"
-            label="Email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            style={{
-              width: "95%",
-              borderRadius: "5px",
-            }}
-            placeholder="Enter Your Email Name"
-          />
+        <InputSection>
+          <InputLabelItem>Email</InputLabelItem>
+          <InputIconFor>
+            <TextInput
+              name="email"
+              label="Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              style={{
+                width: '100%',
+                borderRadius: '8px',
+                paddingRight: '40px',
+              }}
+              placeholder="Email address"
+            />
+            <EmailIconSec src={EmailIcon} alt="" />
+          </InputIconFor>
+
           {formik.errors.email && formik.touched.email && (
             <StyledTypography>{formik.errors.email}</StyledTypography>
           )}
-        </Box>
+        </InputSection>
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <InputSection>
+          <InputLabelItem>Phone Number</InputLabelItem>
+
           <TextInput
             name="phoneNumber"
             label="Phone Number"
             type="number"
             value={formik.values.phoneNumber}
-            onChange={formik.handleChange}
+            onChange={(e) => {
+              if (e.target.value.length <= 10) {
+                formik.handleChange(e);
+              }
+            }}
             onBlur={formik.handleBlur}
             error={
               formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
             }
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '100%',
+              borderRadius: '8px',
             }}
             placeholder="Phone Number"
           />
+          {/* </Box> */}
           {formik.errors.phoneNumber && formik.touched.phoneNumber && (
             <StyledTypography>{formik.errors.phoneNumber}</StyledTypography>
           )}
-        </Box>
-
-        <TextInput
-          name="website"
-          label="Website"
-          value={formik.values.website}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          style={{
-            width: "95%",
-            borderRadius: "5px",
-          }}
-          placeholder="Input here website name"
-        />
+        </InputSection>
+        <InputSection>
+          <InputLabelItem>Website</InputLabelItem>
+          <InputIconFor>
+            <TextInput
+              name="website"
+              label="Website"
+              value={formik.values.website}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              style={{
+                width: '100%',
+                borderRadius: '8px',
+                paddingRight: '40px',
+              }}
+              placeholder="Input here website name"
+            />
+            <WebsiteIconSec src={WebsiteIcon} alt="" />
+          </InputIconFor>
+        </InputSection>
       </GridContainer>
-      <Typography variant="subtitle1">Office Address</Typography>
-      <GridContainer>
-        <SelectOption
-          name="country"
-          label="Country"
-          options={[
-            { value: "country1", label: "Country 1" },
-            { value: "country2", label: "Country 2" },
-          ]}
-          value={formik.values.country}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
-          error={formik.touched.country && Boolean(formik.errors.country)}
-          helperText={formik.touched.country && formik.errors.country}
-        />
-        <SelectOption
-          name="state"
-          label="Province/State"
-          options={[
-            { value: "state1", label: "State 1" },
-            { value: "state2", label: "State 2" },
-          ]}
-          value={formik.values.state}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
-          error={formik.touched.state && Boolean(formik.errors.state)}
-          helperText={formik.touched.state && formik.errors.state}
-        />
 
-        <SelectOption
-          name="city"
-          label="City"
-          options={[
-            { value: "city1", label: "City 1" },
-            { value: "city2", label: "City 2" },
-          ]}
-          value={formik.values.city}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          style={{ width: "100%" }}
-          error={formik.touched.city && Boolean(formik.errors.city)}
-          helperText={formik.touched.city && formik.errors.city}
-        />
-
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-          <TextInput
-            name="zipCode"
-            label="Zip/Postal Code"
-            type="number"
-            value={formik.values.zipCode}
+      <GridContainer2>
+        <InputSection>
+          <SelectOption
+            name="state"
+            label="State"
+            options={stateOptions}
+            defaultOption={'Select State'}
+            value={formik.values.state}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.zipCode && Boolean(formik.errors.zipCode)}
             style={{
-              width: "95%",
-              borderRadius: "5px",
+              width: '100%',
+              borderRadius: '8px',
+              marginTop: '3px',
             }}
-            placeholder="Zip/Postal Code"
+            selectInputStyle={{ padding: '16px' }}
+            error={formik.touched.state && Boolean(formik.errors.state)}
           />
-          {formik.errors.zipCode && formik.touched.zipCode && (
-            <StyledTypography>{formik.errors.zipCode}</StyledTypography>
+          {formik.errors.state && formik.touched.state && (
+            <StyledTypography>{formik.errors.state}</StyledTypography>
           )}
-        </Box>
-      </GridContainer>
-      <GridContainerChild>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-          <TextInput
-            name="addressLine1"
-            label="Address Line 1"
-            value={formik.values.addressLine1}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.addressLine1 && Boolean(formik.errors.addressLine1)
-            }
-            style={{
-              width: "97.5%",
-              borderRadius: "5px",
-            }}
-            placeholder="Address Line 1"
-          />
+        </InputSection>
+
+        <InputSection>
+          <InputLabelItem>Office Address</InputLabelItem>
+          <InputIconFor>
+            <TextInput
+              name="addressLine1"
+              label="Address Line 1"
+              value={formik.values.addressLine1}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={
+                formik.touched.addressLine1 &&
+                Boolean(formik.errors.addressLine1)
+              }
+              style={{
+                width: '100%',
+                borderRadius: '8px',
+                paddingRight: '40px',
+              }}
+              placeholder="Enter location or Google Map link"
+            />
+            <LocationIconSec
+              src={LocationIcon}
+              alt=""
+              style={{
+                position: 'absolute',
+                right: 10,
+                top: 16,
+              }}
+            />
+          </InputIconFor>
           {formik.errors.addressLine1 && formik.touched.addressLine1 && (
             <StyledTypography>{formik.errors.addressLine1}</StyledTypography>
           )}
-        </Box>
-      </GridContainerChild>
-      <GridContainerChild>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-          <TextInput
-            name="addressLine2"
-            label="Address Line 2 (Optional)"
-            value={formik.values.addressLine2}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.addressLine2 && Boolean(formik.errors.addressLine2)
-            }
-            style={{
-              width: "97.5%",
-              borderRadius: "5px",
-            }}
-            placeholder="Address Line 2 (Optional)"
-          />
-          {formik.errors.addressLine2 && formik.touched.addressLine2 && (
-            <StyledTypography>{formik.errors.addressLine2}</StyledTypography>
-          )}
-        </Box>
-      </GridContainerChild>
-
+        </InputSection>
+      </GridContainer2>
       <ButtonSection>
         <Button
-          title="Previous"
-          color="secondary"
-          onClick={handlePrevious}
-          variant="contained"
-          disabled={currentPageIndex === 0}
-        />
-        <Button
-          title="Next"
-          color="primary"
+          title="Save"
           variant="contained"
           disabled={!isFormValid()}
-          onClick={() => formik.handleSubmit()}
+          onClick={handleNextClick}
+          style={{
+            borderRadius: '8px',
+            width: '150px',
+            background: !isFormValid() ? '' : theme.palette.decor.main,
+          }}
         />
       </ButtonSection>
     </Container>

@@ -10,14 +10,15 @@ export const FullWidthFormControl = styled('div')(() => ({
   width: '100%',
 }));
 
-export const InputLabelItem = styled('label')<InputLabelItemProps>(
-  ({ theme }) => ({
-    fontSize: '1rem',
-    marginBottom: '4px',
-    color: theme.palette.grey[700],
-    fontFamily: theme.typography.fontFamily,
-  })
-);
+export const InputLabelItem = styled('label')<
+  InputLabelItemProps & { fontSize?: string }
+>(({ theme, fontSize }) => ({
+  fontFamily: theme.typography.fontFamily,
+  fontSize: fontSize || '1rem',
+  marginBottom: '4px',
+  color: theme.palette.grey[700],
+}));
+
 export const SelectWrapper = styled('div')(() => ({
   position: 'relative',
   width: '100%',
@@ -25,12 +26,9 @@ export const SelectWrapper = styled('div')(() => ({
 
 export const SelectItem = styled('select')(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,
-
   width: '100%',
-  padding: '14px !important',
+  padding: '14px',
   border: `1px solid ${theme.palette.grey[300]}`,
-
-  fontSize: '16px',
   appearance: 'none',
   backgroundColor: theme.palette.primary.contrastText,
   outline: 'none',
@@ -38,6 +36,9 @@ export const SelectItem = styled('select')(({ theme }) => ({
     border: `1px solid ${theme.palette.decor.main}`,
   },
   cursor: 'pointer',
+  // '&.css-1yzywgk': {
+
+  // },
 }));
 
 export const IconWrapper = styled('div')(() => ({

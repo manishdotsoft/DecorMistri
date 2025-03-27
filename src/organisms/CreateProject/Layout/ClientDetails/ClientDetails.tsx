@@ -154,7 +154,7 @@ const ClientDetails = ({
             error={formik.touched.state && Boolean(formik.errors.state)}
             style={{
               width: '100%',
-              padding: '18px',
+              padding: '16px',
               borderRadius: '8px',
               marginTop: '2px',
             }}
@@ -178,7 +178,7 @@ const ClientDetails = ({
             error={formik.touched.city && Boolean(formik.errors.city)}
             style={{
               width: '100%',
-              padding: '18px',
+              padding: '16px',
               borderRadius: '8px',
               marginTop: '2px',
             }}

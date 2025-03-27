@@ -19,13 +19,17 @@ import {
   Header,
   Line,
   HeaderTitle,
-  A,
   HeaderProfileIcon,
   FirstTitleSec,
   TitleSec,
   SetFormikError,
   ButtonSec,
   ButtonContainer,
+  InputIconFor,
+  LocationIconSec,
+  InputLabelItem2,
+  ProfileIcon,
+  UploadImage,
 } from './UpdateProfile.style';
 
 import TextInput from '../../atoms/TextInput/TextInput';
@@ -35,79 +39,13 @@ import LogoDecor from '../../assets/images/logo/Layer_x0020_1.svg';
 import { useUpdateProfile } from './UpdateProfile.hook';
 import { Box, useTheme } from '@mui/material';
 import SelectOption from '../../atoms/Select/SelectOption';
-
 import ProfileImage from '../../assets/images/updateProfile/man.svg';
 import { useNavigate } from 'react-router-dom';
-
 import ProgressBar from './ProgressBar';
-
-const designOptions = [
-  {
-    value: 'commercial',
-    label: 'Commercial Design',
-    subcategories: [
-      'Office Spaces',
-      'Retail Spaces',
-      'Hospitality Spaces',
-      'Entertainment Spaces',
-    ],
-  },
-  {
-    value: 'residential',
-    label: 'Residential Design',
-    subcategories: [
-      'Living Areas',
-      'Bedrooms',
-      'Dining Areas',
-      'Kitchens',
-      'Bathrooms',
-      'Outdoor Spaces',
-    ],
-  },
-  {
-    value: 'industrial',
-    label: 'Industrial Design',
-    subcategories: [
-      'Manufacturing Areas',
-      'Storage Areas',
-      'Service Areas',
-      'Admin Spaces',
-      'Specialized Areas',
-    ],
-  },
-  {
-    value: 'institutional',
-    label: 'Institutional Design',
-    subcategories: [
-      'Educational Spaces',
-      'Healthcare Spaces',
-      'Cultural Spaces',
-      'Religious Spaces',
-      'Government Spaces',
-    ],
-  },
-  {
-    value: 'mixed-use',
-    label: 'Mixed-Use Design',
-    subcategories: [
-      'Residential Components',
-      'Commercial Components',
-      'Shared Amenities',
-      'Public Spaces',
-    ],
-  },
-  {
-    value: 'landscape',
-    label: 'Landscape Design',
-    subcategories: [
-      'Residential Landscaping',
-      'Commercial Landscaping',
-      'Urban Landscaping',
-      'Environmental Spaces',
-      'Specialized Areas',
-    ],
-  },
-];
+import LocationIcon from '../../assets/images/createProject/Location.svg';
+import { FaStarOfLife } from 'react-icons/fa';
+import ArrowRight from '../../assets/images/logo/ArrowRight.svg';
+import { DesignOptionData } from '../../Data/PropertyDetailsData/DesignOptionData';
 
 const UpdateProfile: React.FC = () => {
   const theme = useTheme();
@@ -125,6 +63,7 @@ const UpdateProfile: React.FC = () => {
     }
   };
 
+  const designOptions = DesignOptionData;
   const navigate = useNavigate();
 
   return (
@@ -137,7 +76,7 @@ const UpdateProfile: React.FC = () => {
             <HeaderTitle>Update Profile</HeaderTitle>
           </StyledHeader>
           <HeaderProfileIcon>
-            <A>A</A>
+            <ProfileIcon>A</ProfileIcon>
           </HeaderProfileIcon>
         </Header>
         <ChildFlex>
@@ -156,7 +95,18 @@ const UpdateProfile: React.FC = () => {
           <StyledForm onSubmit={formik.handleSubmit}>
             <GridContainer>
               <SetFormikError>
-                <InputLabelItem>Business Name</InputLabelItem>
+                <InputLabelItem>
+                  <FaStarOfLife
+                    style={{
+                      color: theme.palette.decor.main,
+                      fontSize: '5px',
+                      marginBottom: '6.5px',
+                      marginRight: '1px',
+                    }}
+                  />
+                  <span>Business Name</span>
+                </InputLabelItem>
+
                 <TextInput
                   name="businessName"
                   label="Business Name"
@@ -170,7 +120,7 @@ const UpdateProfile: React.FC = () => {
                   style={{
                     width: '100%',
                     borderRadius: '8px',
-                    padding: '15px',
+                    padding: '14px',
                   }}
                   placeholder="Enter your business name"
                 />
@@ -189,6 +139,16 @@ const UpdateProfile: React.FC = () => {
                     value,
                     label,
                   }))}
+                  starIcon={
+                    <FaStarOfLife
+                      style={{
+                        color: theme.palette.decor.main,
+                        fontSize: '5px',
+                        marginBottom: '6.5px',
+                        marginRight: '1px',
+                      }}
+                    />
+                  }
                   value={formik.values.professionalCategory}
                   onChange={(e) => {
                     formik.setFieldValue(
@@ -202,11 +162,12 @@ const UpdateProfile: React.FC = () => {
                     Boolean(formik.errors.professionalCategory)
                   }
                   defaultOption={'Select Category you are belong to'}
+                  labelFontSize="0.9rem"
                   style={{
                     width: '100%',
-                    padding: '15px',
                     borderRadius: '8px',
                   }}
+                  labelStyle={{ fontWeight: '500' }}
                 />
                 {formik.errors.professionalCategory &&
                   formik.touched.professionalCategory && (
@@ -223,6 +184,16 @@ const UpdateProfile: React.FC = () => {
                     value,
                     label,
                   }))}
+                  starIcon={
+                    <FaStarOfLife
+                      style={{
+                        color: theme.palette.decor.main,
+                        fontSize: '5px',
+                        marginBottom: '6.5px',
+                        marginRight: '1px',
+                      }}
+                    />
+                  }
                   value={formik.values.designTypeExpertise}
                   onChange={(e) => {
                     formik.setFieldValue('designTypeExpertise', e.target.value);
@@ -234,9 +205,10 @@ const UpdateProfile: React.FC = () => {
                     Boolean(formik.errors.designTypeExpertise)
                   }
                   defaultOption={'Select your expertise in design type'}
+                  labelFontSize="0.9rem"
+                  labelStyle={{ fontWeight: '500' }}
                   style={{
                     width: '100%',
-                    padding: '15px',
                     borderRadius: '8px',
                   }}
                 />
@@ -256,6 +228,16 @@ const UpdateProfile: React.FC = () => {
                     value,
                     label,
                   }))}
+                  starIcon={
+                    <FaStarOfLife
+                      style={{
+                        color: theme.palette.decor.main,
+                        fontSize: '5px',
+                        marginBottom: '6.5px',
+                        marginRight: '1px',
+                      }}
+                    />
+                  }
                   value={formik.values.styleTypeExpertise}
                   onChange={(e) => {
                     formik.setFieldValue('styleTypeExpertise', e.target.value);
@@ -267,9 +249,10 @@ const UpdateProfile: React.FC = () => {
                     Boolean(formik.errors.styleTypeExpertise)
                   }
                   defaultOption={'Select Style type'}
+                  labelFontSize="0.9rem"
+                  labelStyle={{ fontWeight: '500' }}
                   style={{
                     width: '100%',
-                    padding: '15px',
                     borderRadius: '8px',
                   }}
                 />
@@ -289,6 +272,16 @@ const UpdateProfile: React.FC = () => {
                     value,
                     label,
                   }))}
+                  starIcon={
+                    <FaStarOfLife
+                      style={{
+                        color: theme.palette.decor.main,
+                        fontSize: '5px',
+                        marginBottom: '6.5px',
+                        marginRight: '1px',
+                      }}
+                    />
+                  }
                   value={formik.values.state}
                   onChange={(e) => {
                     formik.setFieldValue('state', e.target.value);
@@ -297,10 +290,12 @@ const UpdateProfile: React.FC = () => {
                   onBlur={formik.handleBlur}
                   error={formik.touched.state && Boolean(formik.errors.state)}
                   defaultOption={'Select State'}
+                  labelFontSize="0.9rem"
+                  labelStyle={{ fontWeight: '500' }}
                   style={{
                     width: '100%',
-                    padding: '15px',
                     borderRadius: '8px',
+                    padding: '15px',
                   }}
                 />
                 {formik.errors.state && formik.touched.state && (
@@ -312,6 +307,16 @@ const UpdateProfile: React.FC = () => {
                 {/* <InputLabelItem>City Name</InputLabelItem> */}
                 <SelectOption
                   name="city"
+                  starIcon={
+                    <FaStarOfLife
+                      style={{
+                        color: theme.palette.decor.main,
+                        fontSize: '5px',
+                        marginBottom: '6.5px',
+                        marginRight: '1px',
+                      }}
+                    />
+                  }
                   label="City / Location"
                   options={designOptions.map(({ value, label }) => ({
                     value,
@@ -324,6 +329,8 @@ const UpdateProfile: React.FC = () => {
                   onBlur={formik.handleBlur}
                   error={formik.touched.city && Boolean(formik.errors.city)}
                   defaultOption={'Select City'}
+                  labelFontSize="0.9rem"
+                  labelStyle={{ fontWeight: '500' }}
                   style={{
                     width: '100%',
                     padding: '15px',
@@ -335,56 +342,79 @@ const UpdateProfile: React.FC = () => {
                 )}
               </SetFormikError>
               <SetFormikError>
-                <InputLabelItem>Google Map link</InputLabelItem>
-                <TextInput
-                  name="location"
-                  label="Location Name"
-                  value={formik.values.location}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  error={
-                    formik.touched.location && Boolean(formik.errors.location)
-                  }
-                  style={{
-                    width: '100%',
-                    borderRadius: '8px',
-                    padding: '15px',
-                  }}
-                  placeholder="Share your google map location"
-                />
+                <InputLabelItem>
+                  <FaStarOfLife
+                    style={{
+                      color: theme.palette.decor.main,
+                      fontSize: '5px',
+                      marginBottom: '6.5px',
+                      marginRight: '1px',
+                    }}
+                  />
+                  Google Map link
+                </InputLabelItem>
+                <InputIconFor>
+                  <TextInput
+                    name="location"
+                    label="Location Name"
+                    value={formik.values.location}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={
+                      formik.touched.location && Boolean(formik.errors.location)
+                    }
+                    style={{
+                      width: '100%',
+                      borderRadius: '8px',
+                      padding: '15px',
+                    }}
+                    placeholder="Share your google map location"
+                  />
+                  <LocationIconSec
+                    src={LocationIcon}
+                    alt=""
+                    style={{
+                      position: 'absolute',
+                      right: 12,
+                      top: 12,
+                      height: '24px',
+                    }}
+                  />
+                </InputIconFor>
                 {formik.errors.location && formik.touched.location && (
                   <StyledTypography>{formik.errors.location}</StyledTypography>
                 )}
               </SetFormikError>
               <ButtonContainer>
-                <InputLabelItem>Upload photo / your firm logo</InputLabelItem>
+                <InputLabelItem>
+                  <FaStarOfLife
+                    style={{
+                      color: theme.palette.decor.main,
+                      fontSize: '5px',
+                      marginBottom: '6.5px',
+                      marginRight: '1px',
+                    }}
+                  />
+                  Upload photo / your firm logo
+                </InputLabelItem>
                 <MainUploadImage>
                   {/* Profile Image */}
 
                   <LabelProfile htmlFor="profile-upload">
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        overflow: 'hidden',
-                        height: '100%',
-                        flexDirection: 'column',
-                      }}
-                    >
+                    <UploadImage>
                       <ProfileUploadImg
                         src={profileImage}
                         alt="Profile"
                         imageSelected={imageSelected}
                       />
                       {!imageSelected ? (
-                        <InputLabelItem>
+                        <InputLabelItem2>
                           Upload formats JPG, PNG, BMP and GIF
-                        </InputLabelItem>
+                        </InputLabelItem2>
                       ) : (
                         ''
                       )}
-                    </Box>
+                    </UploadImage>
                     <InputImg
                       id="profile-upload"
                       type="file"
@@ -402,14 +432,13 @@ const UpdateProfile: React.FC = () => {
                     variant="contained"
                     style={{
                       width: '100%',
-
                       borderRadius: '8px',
-                      padding: '25px',
+                      padding: '22px',
                       background: theme.palette.grey[300],
-                      color: theme.palette.grey[700],
-                      fontSize: theme.typography.caption.fontSize,
-                      fontWeight: 'bold',
+                      color: theme.palette.black[200],
                     }}
+                    buttonFontSize={theme.typography.button.fontSize}
+                    fontWeight={'900'}
                     buttonWarraparStyle={{
                       width: '50%',
                     }}
@@ -433,15 +462,23 @@ const UpdateProfile: React.FC = () => {
                           ? 'not-allowed'
                           : 'pointer',
                       width: '100%',
-
                       borderRadius: '8px',
-                      padding: '25px',
+                      padding: '21px',
                     }}
+                    buttonFontSize={theme.typography.button.fontSize}
                     buttonWarraparStyle={{
                       width: '50%',
                     }}
                     onClick={() => {
                       navigate('/dashboard');
+                    }}
+                    logo={ArrowRight}
+                    iconAndTitleSection={{ position: 'relative' }}
+                    svgIcon={{
+                      position: 'absolute',
+                      left: '70px',
+                      top: '5px',
+                      height: '13px',
                     }}
                   />
                 </ButtonSec>

@@ -73,13 +73,15 @@ export const InputSection = styled(Box)(() => ({
 
 export const SelectFileParent = styled(Box)(() => ({}));
 export const SelectSection = styled(Box)(({ theme }) => ({
+  fontFamily: theme?.typography?.fontFamily,
+  fontSize: '14px',
   display: 'flex',
   alignItems: 'center',
-  padding: '18px 16px',
+  padding: '16px',
   width: '91%',
   justifyContent: 'center',
   border: `1px solid ${theme.palette.grey[300]}`,
-  borderRadius: '6px',
+  borderRadius: '8px',
   cursor: 'pointer',
   transition: 'border-color 0.3s ease', // Smooth transition for focus effect
 
@@ -96,7 +98,7 @@ export const FileText = styled(Typography)(({ theme }) => ({
 
 export const TextArea = styled('textarea')(({ theme }) => ({
   width: '100%',
-  borderRadius: '6px',
+  borderRadius: '8px',
   height: '120px',
   borderColor: `${theme.palette.grey[300]} !important`,
   outline: 'none',

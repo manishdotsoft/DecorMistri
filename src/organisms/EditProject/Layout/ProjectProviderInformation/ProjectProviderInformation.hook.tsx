@@ -1,19 +1,15 @@
-// src/hooks/useProjectProviderForm.ts
-import { useFormik } from "formik";
-import { projectProviderSchema } from "../../Schema";
+import { useFormik } from 'formik';
+import { projectProviderSchema } from '../../Schema';
 
 interface ProjectProviderData {
   projectNumber: string;
-  dateOfIssue: Date | null;
+  dateOfIssue: Date | string | null;
   designerName: string;
   email: string;
   phoneNumber: string;
   website?: string;
   addressLine1: string;
-  addressLine2?: string;
-  zipCode: string;
-  city: string;
-  country: string;
+
   state: string;
 }
 
@@ -32,23 +28,27 @@ export const useProjectProviderForm = ({
 }: UseProjectProviderFormProps) => {
   const formik = useFormik({
     initialValues: {
-      projectNumber: data.projectNumber || "",
-      dateOfIssue: data.dateOfIssue || null,
-      designerName: data.designerName || "",
-      email: data.email || "",
-      phoneNumber: data.phoneNumber || "",
-      website: data.website || "",
-      addressLine1: data.addressLine1 || "",
-      addressLine2: data.addressLine2 || "",
-      zipCode: data.zipCode || "",
-      city: data.city || "",
-      country: data.country || "",
-      state: data.state || "",
+      projectNumber: data.projectNumber || '',
+      dateOfIssue: data.dateOfIssue ? new Date(data.dateOfIssue) : null,
+      designerName: data.designerName || '',
+      email: data.email || '',
+      phoneNumber: data.phoneNumber || '',
+      website: data.website || '',
+      addressLine1: data.addressLine1 || '',
+
+      state: data.state || '',
     },
     validationSchema: projectProviderSchema,
     validateOnBlur: true,
     onSubmit: (values) => {
-      updateData(values);
+      updateData({
+        ...values,
+        dateOfIssue:
+          values.dateOfIssue instanceof Date
+            ? values.dateOfIssue.toISOString()
+            : null,
+      });
+
       handleNext();
       console.log(values);
     },
@@ -59,10 +59,7 @@ export const useProjectProviderForm = ({
       formik.values.projectNumber &&
       formik.values.dateOfIssue &&
       formik.values.email &&
-      formik.values.city &&
-      formik.values.country &&
       formik.values.state &&
-      formik.values.zipCode &&
       formik.values.addressLine1 &&
       formik.values.designerName &&
       formik.values.phoneNumber

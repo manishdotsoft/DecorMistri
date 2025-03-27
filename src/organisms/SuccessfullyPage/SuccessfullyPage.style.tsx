@@ -1,4 +1,5 @@
 import { Typography, styled } from '@mui/material';
+import { Box } from '@mui/system';
 
 export const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -22,13 +23,6 @@ export const MainFlex = styled('div')(({ theme }) => ({
   boxShadow: `0px 0px 100px 10px ${theme.palette.black[500]}`,
 
   overflow: 'hidden',
-  // [theme.breakpoints.down("lg")]: {
-  //   flexDirection: "column",
-  //   maxWidth: "1200px",
-  // },
-  // [theme.breakpoints.down("md")]: {
-  //   maxWidth: "700px",
-  // },
   width: '80%',
   '@media(max-width: 1310px)': {
     flexDirection: 'column',
@@ -50,7 +44,7 @@ export const MainFlex = styled('div')(({ theme }) => ({
 
 export const ChildFlex = styled('div')(({ theme }) => ({
   flex: 1,
-  padding: '35px 100px',
+  padding: '35px 60px',
   display: 'flex',
   marginBottom: 'auto',
   flexDirection: 'column',
@@ -74,6 +68,12 @@ export const ImageFlex = styled('div')(() => ({
   },
 }));
 
+export const ButtonSectoLoginpage = styled(Box)(() => ({
+  display: 'flex',
+  width: '100%',
+  marginLeft: '60px',
+}));
+
 export const AllImg = styled('img')(() => ({
   width: '100%',
   height: '100%',
@@ -90,24 +90,22 @@ export const StyledHeader = styled('div')(() => ({
 }));
 
 export const Logo = styled('img')(() => ({
-  marginBottom: '20px',
+  marginBottom: '10px',
 }));
 
 export const Title = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.h4.fontSize,
-  fontWeight: '300',
-  lineHeight: '30px',
-  marginBottom: '10px',
+  fontSize: theme.typography.A4.fontSize,
+  fontWeight: '400',
   [theme.breakpoints.down('sm')]: {
     fontSize: theme.typography.h5.fontSize,
   },
 }));
 
 export const Title2 = styled(Typography)(({ theme }) => ({
-  // fontSize: "14px",
-  fontSize: theme.typography.button.fontSize,
+  fontSize: theme.typography.caption.fontSize,
+  width: '80%',
   fontWeight: '300',
-  color: theme.palette.rateSheduleColors.colorB,
+  color: theme.palette.black[200],
   margin: '0',
   [theme.breakpoints.down('sm')]: {
     fontSize: theme.typography.caption.fontSize,

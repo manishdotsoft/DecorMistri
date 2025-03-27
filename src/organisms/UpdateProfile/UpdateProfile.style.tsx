@@ -56,7 +56,7 @@ export const Line = styled(Box)(({ theme }) => ({
 export const HeaderTitle = styled(Typography)(() => ({
   fontWeight: '600',
 }));
-export const A = styled(Typography)(() => ({
+export const ProfileIcon = styled(Typography)(() => ({
   fontSize: '1.1rem',
 }));
 
@@ -98,6 +98,15 @@ export const SetFormikError = styled(Box)(() => ({
   flexDirection: 'column',
   gap: '2px',
   width: '100%',
+}));
+
+export const UploadImage = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  overflow: 'hidden',
+  height: '100%',
+  flexDirection: 'column',
 }));
 
 export const Logo = styled('img')(() => ({
@@ -145,17 +154,26 @@ export const GridContainerChild = styled(Box)({
 });
 
 export const StyledTypography = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
   fontSize: theme.typography.caption.fontSize,
   color: theme.palette.error.main,
-  fontFamily: 'sans-serif',
-
   marginLeft: '15px',
 }));
 
 export const InputLabelItem = styled('label')(({ theme }) => ({
-  fontSize: '0.8rem',
+  fontFamily: theme.typography.fontFamily,
+  fontSize: '0.9rem',
+  fontWeight: '500',
   marginBottom: '1px',
-  color: theme.palette.grey[600],
+  color: theme.palette.grey.labelGrey,
+}));
+
+export const InputLabelItem2 = styled('label')(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
+  fontSize: '0.8rem',
+  fontWeight: '400',
+
+  color: theme.palette.grey.labelGrey,
 }));
 
 export const ImageFlex = styled('div')(({ theme }) => ({
@@ -197,7 +215,7 @@ export const StyledHeader = styled(Box)(() => ({
 
 export const Title = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.h4.fontSize,
-  fontWeight: '300',
+  fontWeight: '400',
 
   margin: '0',
   '@media(max-width: 1068px)': {
@@ -206,14 +224,23 @@ export const Title = styled(Typography)(({ theme }) => ({
 }));
 
 export const Title2 = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.button.fontSize,
-  fontWeight: '300',
-  color: theme.palette.rateSheduleColors.colorB,
-
+  fontSize: theme.typography.caption.fontSize,
+  fontWeight: '400',
+  color: theme.palette.black[200],
   margin: '0',
   [theme.breakpoints.down('sm')]: {
-    fontSize: theme.typography.caption.fontSize,
+    fontSize: theme.typography.overline.fontSize,
   },
+}));
+
+export const InputIconFor = styled(Box)(() => ({
+  position: 'relative',
+}));
+
+export const LocationIconSec = styled('img')(() => ({
+  position: 'absolute',
+  right: 10,
+  top: 16,
 }));
 
 // Profile picture
@@ -228,7 +255,7 @@ export const MainUploadImage = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
-  height: '140px',
+  height: '110px',
   borderRadius: '8px',
   overflow: 'hidden',
   border: `1px solid ${theme.palette.grey.iconColor}`,
