@@ -24,22 +24,36 @@ export const SelectWrapper = styled('div')(() => ({
   width: '100%',
 }));
 
-export const SelectItem = styled('select')(({ theme }) => ({
-  fontFamily: theme.typography.fontFamily,
-  width: '100%',
-  padding: '14px',
-  border: `1px solid ${theme.palette.grey[300]}`,
-  appearance: 'none',
-  backgroundColor: theme.palette.primary.contrastText,
-  outline: 'none',
-  '&:focus': {
-    border: `1px solid ${theme.palette.decor.main}`,
-  },
-  cursor: 'pointer',
-  // '&.css-1yzywgk': {
+// export const SelectItem = styled('select')(({ theme }) => ({
+//   fontFamily: theme.typography.fontFamily,
+//   width: '100%',
+//   padding: '14px',
+//   border: `1px solid ${theme.palette.grey[300]}`,
+//   appearance: 'none',
+//   backgroundColor: theme.palette.primary.contrastText,
+//   outline: 'none',
+//   '&:focus': {
+//     border: `1px solid ${theme.palette.decor.main}`,
+//   },
+//   cursor: 'pointer',
+// }));
 
-  // },
-}));
+export const SelectItem = styled('select')<{ isDefault?: boolean }>(
+  ({ theme, isDefault }) => ({
+    fontFamily: theme.typography.fontFamily,
+    width: '100%',
+    padding: '14px',
+    border: `1px solid ${theme.palette.grey[300]}`,
+    appearance: 'none',
+    backgroundColor: theme.palette.primary.contrastText,
+    outline: 'none',
+    color: isDefault ? '#838282' : theme.palette.text.primary,
+    '&:focus': {
+      border: `1px solid ${theme.palette.decor.main}`,
+    },
+    cursor: 'pointer',
+  })
+);
 
 export const IconWrapper = styled('div')(() => ({
   position: 'absolute',
@@ -50,6 +64,10 @@ export const IconWrapper = styled('div')(() => ({
 }));
 
 export const OptionSelect = styled('option')(() => ({
+  fontSize: '14px',
+}));
+
+export const DefaultOptionSelect = styled('option')(() => ({
   fontSize: '14px',
 }));
 

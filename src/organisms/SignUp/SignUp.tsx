@@ -208,7 +208,7 @@ const SignUpForm: React.FC = () => {
                       marginTop: '5px',
                       marginBottom: '4px',
                     }}
-                    eyePadding={{ paddingRight: '30px' }}
+                    eyePadding={{ paddingBottom: '6px' }}
                   />
                   {formik.errors.password && formik.touched.password && (
                     <StyledTypography>

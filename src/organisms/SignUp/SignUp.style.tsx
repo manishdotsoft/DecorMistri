@@ -4,7 +4,7 @@ export const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  minHeight: '96vh',
+  minHeight: '92vh',
   backgroundColor: theme.palette.white.main,
   padding: '16px',
   [theme.breakpoints.down('sm')]: {
@@ -22,6 +22,12 @@ export const MainFlex = styled('div')(({ theme }) => ({
   boxShadow: `0px 0px 100px 10px ${theme.palette.black[500]}`,
 
   overflow: 'hidden',
+  width: '70%',
+
+  [theme.breakpoints.down('xl')]: {
+    // flexDirection: 'column',
+    width: '90%',
+  },
 
   [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',

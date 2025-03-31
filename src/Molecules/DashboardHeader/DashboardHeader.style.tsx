@@ -1,13 +1,14 @@
 import Button from '../../atoms/Button/Button';
 import { Box, styled, Typography } from '@mui/material';
 
-export const Container = styled('div')(() => ({
+export const Container = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
   // width: '100%',
   padding: '14px 22px',
   backgroundColor: '#fdfdfd',
+  borderBottom: `1px solid ${theme.palette.grey[300]}`,
 }));
 
 export const FilterSection = styled('div')({
@@ -121,7 +122,7 @@ export const ShortSection = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   border: `1px solid ${theme.palette.grey[300]}`,
   borderRadius: '8px',
-  padding: '0px 10px',
+  padding: '0px 5px',
   height: '38px',
 }));
 

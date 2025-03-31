@@ -49,6 +49,12 @@ export const MainFlex = styled('div')(({ theme }) => ({
   borderRadius: '25px',
   boxShadow: `0px 0px 100px 10px ${theme.palette.grey[800]}`,
   overflow: 'hidden',
+  width: '70%',
+
+  [theme.breakpoints.down('xl')]: {
+    // flexDirection: 'column',
+    width: '90%',
+  },
 
   [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',
@@ -106,12 +112,12 @@ export const Highlight = styled('span')(({ theme }) => ({
 
 export const ForgotPasswordLink = styled(RouterLink)(({ theme }) => ({
   display: 'block',
-  marginTop: '10px',
+  // marginTop: '10px',
   textAlign: 'right',
   color: theme.palette.decor.main,
   textDecoration: 'none',
   fontFamily: theme.typography.fontFamily,
-  fontSize: theme.typography.body2.fontSize,
+  fontSize: theme.typography.button.fontSize,
   [theme.breakpoints.down('sm')]: {
     fontSize: theme.typography.subtitle2.fontSize,
   },
@@ -308,11 +314,12 @@ export const CheckboxContainer = styled('div')(() => ({
 }));
 export const StyledCheckbox = styled('input')(({ theme }) => ({
   accentColor: theme?.palette?.decor?.Check,
-  width: '22px',
-  height: '22px',
+  width: '17px',
+  height: '17px',
   cursor: 'pointer',
 }));
 export const StyledLabel = styled('label')(({ theme }) => ({
   fontFamily: theme?.typography?.fontFamily,
   cursor: 'pointer',
+  fontSize: '0.9rem',
 }));
