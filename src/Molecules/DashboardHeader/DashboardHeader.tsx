@@ -158,7 +158,6 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
                   '&.MuiPopper-root': {
                     backgroundColor: theme.palette.white.main,
                     borderRadius: '8px',
-
                     border: `1px solid ${theme.palette.decor.main}`,
                   },
                 }}
@@ -292,7 +291,6 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = () =>
                       '&.MuiPopper-root': {
                         backgroundColor: '#ffffff',
                         borderRadius: '8px',
-
                         border: `1px solid ${theme.palette.decor.main}`,
                       },
                     }}

@@ -17,6 +17,7 @@ interface ReusableModalProps {
   buttons?: ButtonConfig[];
   showCloseIcon?: boolean;
   children?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 const ReusableModal: React.FC<ReusableModalProps> = ({
@@ -34,8 +35,8 @@ const ReusableModal: React.FC<ReusableModalProps> = ({
             onClick={onClose}
             style={{
               position: 'absolute',
-              top: '10px',
-              right: '10px',
+              top: '0px',
+              right: '0px',
               color: theme?.palette.grey[400],
             }}
             aria-label="close"

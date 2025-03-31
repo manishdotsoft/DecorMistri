@@ -1,11 +1,11 @@
-import { Box, Button, styled } from '@mui/material';
-import { Menu, MenuItem } from '@mui/material';
+import { Box, styled } from '@mui/material';
+import { Menu } from '@mui/material';
 
 export const StyledMenu = styled(Menu)<{ borderColor?: string }>(
   ({ theme, borderColor }) => ({
     '&& .MuiPaper-root': {
       borderRadius: '8px',
-      minWidth: '152px',
+      minWidth: '150px',
       backgroundColor: theme.palette.background.paper,
       border: `1px solid ${borderColor || theme.palette.grey[400]} !important`,
       boxShadow: 'none !important',
@@ -13,32 +13,36 @@ export const StyledMenu = styled(Menu)<{ borderColor?: string }>(
   })
 );
 
-export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
-  fontSize: theme.typography.body2.fontSize,
+export const StyledMenuItem = styled('div')(({ theme }) => ({
+  fontSize: theme.typography.subtitle2.fontSize,
   display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   color: theme.palette.black[200],
+  padding: '5px 8px !important',
+  gap: '0px !important',
+  fontFamily: theme.typography.fontFamily,
+  cursor: 'pointer',
+
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    // backgroundColor: theme.palette.action.hover,
+    color: theme.palette.decor.main,
   },
 }));
 
-export const StatusButton = styled(Button)(({ theme }) => ({
+export const StatusButton = styled('span')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
-  gap: '5px',
   border: 'none',
-  marginBottom: '5px',
-  padding: '0',
   color: theme.palette.text.primary,
   textTransform: 'inherit',
-  fontSize: theme.typography.body2.fontSize,
-  transition: 'all 0.3s ease-in-out',
+  fontSize: theme.typography.subtitle2.fontSize,
+  cursor: 'pointer',
+  fontFamily: theme.typography.fontFamily,
+
   width: '100%',
-  paddingLeft: '5px',
   '&:hover': {
-    transform: 'scale(1.05)',
-    color: theme.palette.grey[50],
-    backgroundColor: theme.palette.decor.main,
+    color: theme.palette.decor.main,
   },
 }));
 
@@ -52,15 +56,17 @@ export const MenuHeader = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  paddingRight: '8px',
+  paddingRight: '2px',
 });
 
 export const StatusContainer = styled(Box)<{ borderColor?: string }>(
   ({ theme, borderColor }) => ({
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
+    gap: '8px',
     display: 'flex',
+    backgroundColor: 'none',
     flexDirection: 'column',
-    gap: theme.spacing(1),
+
     border: `1px solid ${borderColor || theme.palette.divider}`,
   })
 );
