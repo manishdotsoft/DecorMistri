@@ -76,7 +76,6 @@ export const BoxContainer = styled(Box)(({ theme }) => ({
   gap: '16px',
   padding: '22px',
   backgroundColor: theme.palette.grey[200],
-  borderTop: `1px solid ${theme.palette.grey[400]}`,
 
   height: 'calc(100vh - 170px)',
   overflowY: 'auto',

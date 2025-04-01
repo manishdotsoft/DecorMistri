@@ -9,6 +9,7 @@ import {
   ErrorMe,
   IconWrapper,
   SelectWrapper,
+  DefaultOptionSelect,
 } from './SelectOption.style';
 import SelectDownArrow from '../../assets/images/logo/SelectDownArrow.svg';
 
@@ -75,10 +76,11 @@ const SelectOption: React.FC<SelectOptionProps> = ({
             onFocus={() => setIsFocused(true)}
             style={{ ...style }}
             sx={selectInputStyle}
+            isDefault={!value} // Pass true if value is empty (default selected)
           >
-            <OptionSelect value="" disabled>
+            <DefaultOptionSelect value="" disabled>
               {defaultOption}
-            </OptionSelect>
+            </DefaultOptionSelect>
             {options.map((option) => (
               <OptionSelect key={option.value} value={option.value}>
                 {option.label}

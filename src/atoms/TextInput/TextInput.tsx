@@ -61,7 +61,6 @@ const TextInput: React.FC<TextInputProps> = ({
           type={inputType}
           style={{
             ...style,
-            ...eyePadding,
           }}
           placeholder={placeholder}
           onKeyDown={onKeyDown}
@@ -82,7 +81,11 @@ const TextInput: React.FC<TextInputProps> = ({
               ...VisibilityStyle,
             }}
           >
-            {isPasswordVisible ? <Visibility /> : <VisibilityOff />}
+            {isPasswordVisible ? (
+              <Visibility style={eyePadding} />
+            ) : (
+              <VisibilityOff style={eyePadding} />
+            )}
           </button>
         )}
       </FullWidthFormControl>
