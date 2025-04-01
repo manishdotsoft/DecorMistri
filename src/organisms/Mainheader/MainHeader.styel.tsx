@@ -6,6 +6,7 @@ export const Header = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   borderBottom: `1px solid ${theme?.palette?.grey.lightGrey}`,
   padding: '10px 20px',
+  fontFamily: theme.typography.fontFamily,
 }));
 
 export const StyledHeader = styled(Box)(() => ({

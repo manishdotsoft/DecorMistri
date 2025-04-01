@@ -30,8 +30,9 @@ export const UserAccount = styled(Box)(() => ({
   gap: '6px',
 }));
 
-export const DrawerContainer = styled(Box)(() => ({
+export const DrawerContainer = styled(Box)(({ theme }) => ({
   width: 330,
   padding: 16,
   borderRadius: '10px',
+  fontFamily: theme.typography.fontFamily,
 }));

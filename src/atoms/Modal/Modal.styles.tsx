@@ -19,7 +19,7 @@ export const ModalBox = styled(Box)(({ theme }) => ({
 }));
 
 export const ModalTitle = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary || '#1e1e1e',
+  color: theme.palette.text.primary || '#8e8686',
   fontWeight: 700,
   fontSize: theme.typography.h6?.fontSize || '20px',
   marginBottom: '20px',

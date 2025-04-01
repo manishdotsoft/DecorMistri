@@ -90,7 +90,16 @@ const ProjectMenu: React.FC<ProjectMenuProps> = ({
             <>
               <StyledMenuItem onClick={handleOpenStatusMenu}>
                 Change Status
-                <IconButton size="small">
+                <IconButton
+                  sx={{
+                    width: '10px ',
+                    height: '10px',
+                    backgroundColor: 'transparent',
+                    '&:hover': {
+                      backgroundColor: 'transparent',
+                    },
+                  }}
+                >
                   <KeyboardArrowRightIcon fontSize="small" />
                 </IconButton>
               </StyledMenuItem>
