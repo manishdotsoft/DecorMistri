@@ -7,6 +7,7 @@ const Sidebar = () => {
     <>
       <StyledSidebarMain>
         <MainNav />
+
         <Notifications />
       </StyledSidebarMain>
     </>
