@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export const MainContainer = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'center',
+  marginBottom: '10px',
 }));
 export const CardContainer = styled(Box)(({ theme }) => ({
   width: '260px',
