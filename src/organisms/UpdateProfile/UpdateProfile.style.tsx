@@ -4,9 +4,8 @@ import { Box, Typography, styled } from '@mui/material';
 export const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
-
   alignItems: 'center',
-  minHeight: '92vh',
+  minHeight: '100vh',
   backgroundColor: theme.palette.white.main,
 }));
 

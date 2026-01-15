@@ -189,11 +189,9 @@ export const Title2 = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const StyledTypography = styled('p')(({ theme }) => ({
-  fontSize: theme.typography?.body2.fontSize,
+export const StyledTypography = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography?.caption.fontSize,
   color: theme.palette.error.main,
-
-  marginTop: '10px',
 }));
 
 export const StyledBoxCenter = styled('div')(() => ({

@@ -11,7 +11,7 @@ export const StyledPageContent = styled(Box)(({ theme }) => ({
   width: '74%',
   height: 'fit-content',
   marginTop: '25px',
-  marginBottom: '0px',
+  marginBottom: '20px',
   boxShadow: `0px 0px 10px 1px ${theme.palette.grey[600]}`,
   borderRadius: '14px',
   overflowY: 'auto',
@@ -41,7 +41,8 @@ export const HeaderIconSec = styled(Box, {
 }));
 
 export const MainBox = styled(Box)(({ theme }) => ({
-  height: '100%',
+  height: 'calc(100vh - 60px)',
+  overflowY: 'scroll',
   display: 'flex',
   justifyContent: 'center',
 

@@ -115,6 +115,7 @@ const NewPassword = () => {
                         padding: '18px',
 
                         marginTop: '10px',
+                        marginBottom: '5px',
                       }}
                       error={
                         touched.confirm_password &&

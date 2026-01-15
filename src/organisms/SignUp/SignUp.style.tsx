@@ -22,7 +22,7 @@ export const MainFlex = styled('div')(({ theme }) => ({
   boxShadow: `0px 0px 100px 10px ${theme.palette.black[500]}`,
 
   overflow: 'hidden',
-  width: '70%',
+  width: '85%',
 
   [theme.breakpoints.down('xl')]: {
     // flexDirection: 'column',

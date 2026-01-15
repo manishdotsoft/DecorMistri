@@ -82,7 +82,6 @@ const ForgetPassword = () => {
                         width: '100%',
                         borderRadius: '8px',
                         padding: '18px',
-                        marginBottom: '6px',
                       }}
                       onBlur={handleBlur}
                       error={Boolean(touched.email && errors.email)}

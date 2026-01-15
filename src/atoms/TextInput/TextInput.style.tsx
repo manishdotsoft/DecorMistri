@@ -32,4 +32,5 @@ export const TextInputField = styled('input')(({ theme }) => ({
 export const FormHelp = styled('span')(() => ({
   color: 'red',
   marginTop: '0px',
+  fontSize: '0.75rem',
 }));

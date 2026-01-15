@@ -106,6 +106,7 @@ const LoginPage = () => {
                       touched.email && errors.email ? errors.email : undefined
                     }
                   />
+
                   <TextInput
                     name="password"
                     type="password"

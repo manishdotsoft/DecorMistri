@@ -49,7 +49,7 @@ export const MainFlex = styled('div')(({ theme }) => ({
   borderRadius: '25px',
   boxShadow: `0px 0px 100px 10px ${theme.palette.grey[800]}`,
   overflow: 'hidden',
-  width: '70%',
+  width: '80%',
 
   [theme.breakpoints.down('xl')]: {
     // flexDirection: 'column',
@@ -58,7 +58,6 @@ export const MainFlex = styled('div')(({ theme }) => ({
 
   [theme.breakpoints.down('lg')]: {
     flexDirection: 'column',
-
     width: '90%',
   },
   [theme.breakpoints.down('md')]: {

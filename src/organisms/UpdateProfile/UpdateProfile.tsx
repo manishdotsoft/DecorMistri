@@ -46,6 +46,7 @@ import LocationIcon from '../../assets/images/createProject/Location.svg';
 import { FaStarOfLife } from 'react-icons/fa';
 import ArrowRight from '../../assets/images/logo/ArrowRight.svg';
 import { DesignOptionData } from '../../Data/PropertyDetailsData/DesignOptionData';
+import { stateOptions } from '../CreateProject/CreateProjectData/StateData';
 
 const UpdateProfile: React.FC = () => {
   const theme = useTheme();
@@ -268,10 +269,8 @@ const UpdateProfile: React.FC = () => {
                 <SelectOption
                   name="state"
                   label="State"
-                  options={designOptions.map(({ value, label }) => ({
-                    value,
-                    label,
-                  }))}
+                  options={stateOptions}
+                  defaultOption={'Select State'}
                   starIcon={
                     <FaStarOfLife
                       style={{
@@ -289,7 +288,6 @@ const UpdateProfile: React.FC = () => {
                   }}
                   onBlur={formik.handleBlur}
                   error={formik.touched.state && Boolean(formik.errors.state)}
-                  defaultOption={'Select State'}
                   labelFontSize="0.9rem"
                   labelStyle={{ fontWeight: '500' }}
                   style={{
@@ -318,10 +316,10 @@ const UpdateProfile: React.FC = () => {
                     />
                   }
                   label="City / Location"
-                  options={designOptions.map(({ value, label }) => ({
-                    value,
-                    label,
-                  }))}
+                  options={[
+                    { value: 'city1', label: 'City 1' },
+                    { value: 'city2', label: 'City 2' },
+                  ]}
                   value={formik.values.city}
                   onChange={(e) => {
                     formik.setFieldValue('city', e.target.value);
